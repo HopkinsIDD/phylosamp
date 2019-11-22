@@ -228,7 +228,7 @@ prob_trans_mtml <- function(
 
 
   (eta * rho * (R+1)) /
-    ((eta * rho * (R+1)) + ((1-chi) * (M - 1 - (rho * (R+1)))))
+    ((eta * rho * (R+1)) + ((1-chi) * (M - (rho * (R+1)))))
 }
 
 
@@ -382,12 +382,14 @@ falsediscoveryrate <- function(
   assumption
 ){
 
+  suppressMessages(
   1 - truediscoveryrate(eta=eta,
                         chi=chi,
                         rho=rho,
                         M=M,
                         R=R,
                         assumption=assumption)
+  )
 }
 
 
