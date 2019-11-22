@@ -1,11 +1,12 @@
 Package: phylosamp
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Tools to calculate the probability of transmission given phylogenetic linkage
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: John Giles <giles@jhu.edu>, Shirlee Wohl <swohl@jhu.edu>, Justin Lessler <justin@jhu.edu> 
+Maintainer: Justin Lessler <justin@jhu.edu>
+Description: Implements novel tools that estimate the probability of true transmission between two cases given 
+    phylogenetic linkage and the expected number of true transmission links in a sample.
+License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.99.9000
