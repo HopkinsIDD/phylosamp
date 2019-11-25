@@ -1,7 +1,7 @@
 Package: phylosamp
 Type: Package
 Title: Tools to calculate the probability of transmission given phylogenetic linkage
-Version: 0.1.0
+Version: 0.1.1
 Author: John Giles <giles@jhu.edu>, Shirlee Wohl <swohl@jhu.edu>, Justin Lessler <justin@jhu.edu> 
 Maintainer: Justin Lessler <justin@jhu.edu>
 Description: Implements novel tools that estimate the probability of true transmission between two cases given 
