@@ -127,9 +127,10 @@ prob_trans_mtsl <- function(
 
   if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
+  if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
   (1 - exp(-rho * eta * (R+1))) /
-    (1 - ((chi^(M-2)) * exp(rho * (R+1) * ((1-eta)/chi - 1))))
+    (1 - ((chi^(M-1)) * exp(rho * (R+1) * ((1-eta)/chi - 1))))
 }
 
 
@@ -176,8 +177,9 @@ obs_pairs_mtsl <- function(
 
   if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
+  if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
-  (M * rho * (R+1) * eta * (1 - ((chi^(M-2))) * exp(rho * (R+1) * ((1-eta)/chi -1)))) /
+  (M * rho * (R+1) * eta * (1 - ((chi^(M-1))) * exp(rho * (R+1) * (((1-eta)/chi) -1)))) /
     (2 * (1 - exp(-rho * (R+1) * eta)))
 
 }
@@ -225,10 +227,11 @@ prob_trans_mtml <- function(
 
   if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
+  if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
 
   (eta * rho * (R+1)) /
-    ((eta * rho * (R+1)) + ((1-chi) * (M - (rho * (R+1)))))
+    ((eta * rho * (R+1)) + ((1-chi) * (M - 1 - (rho * (R+1)))))
 }
 
 
@@ -275,8 +278,9 @@ obs_pairs_mtml <- function(
 
   if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
+  if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
-  (M / 2) * ((eta * rho * (R+1)) + ((1-chi) * (M - (rho * (R+1)))))
+  (M / 2) * ((eta * rho * (R+1)) + ((1-chi) * (M - 1- (rho * (R+1)))))
 }
 
 
@@ -284,8 +288,8 @@ obs_pairs_mtml <- function(
 ##' Calculate true discovery rate of a sample
 ##'
 ##' This function calculates the true discovery rate (proportion of true transmission pairs) in a sample given the sensitivity \eqn{\eta}
-##' and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. The reproductive number \eqn{R} of the pathogen is used when case i
-##' is allowed to infect multple cases in the population \eqn{N} (multiple-transmission assumption).
+##' and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)
+##' can be specified.
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria
 ##' @param chi scalar or vector giving the specificity of the linkage criteria
@@ -347,8 +351,8 @@ truediscoveryrate <- function(
 ##' Calculate false discovery rate of a sample
 ##'
 ##' This function calculates the false discovery rate (proportion of linked pairs that are false positives) in a sample given the sensitivity \eqn{\eta}
-##' and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. The reproductive number \eqn{R} of the pathogen is used when case i
-##' is allowed to infect multple cases in the population \eqn{N} (multiple-transmission assumption).
+##' and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)
+##' can be specified.
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria
 ##' @param chi scalar or vector giving the specificity of the linkage criteria
@@ -397,8 +401,8 @@ falsediscoveryrate <- function(
 ##' Calculate expected number of links in a sample
 ##'
 ##' This function calculates the expected number of observed pairs in the sample that are linked by the linkage criteria. The function requires the sensitivity \eqn{\eta}
-##' and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. The reproductive number \eqn{R} of the pathogen is used when case i
-##' is allowed to infect multple cases in the population \eqn{N} (multiple-transmission assumption).
+##' and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)
+##' can be specified.
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria
 ##' @param chi scalar or vector giving the specificity of the linkage criteria
@@ -537,6 +541,7 @@ true_pairs_mtsl <- function(
 
   if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
+  if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
   (M * rho * (R+1) * eta) / 2
 }
@@ -581,6 +586,7 @@ true_pairs_mtml <- function(
 
   if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
+  if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
   (M * rho * (R+1) * eta) / 2
 }
