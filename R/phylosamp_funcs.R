@@ -676,7 +676,7 @@ true_pairs <- function(
 ##'
 ##' @author John Giles, Shirlee Wohl, and Justin Lessler
 ##'
-##' @example R/examples/reqsamplesize.R
+##' @example R/examples/samplesize.R
 ##'
 ##' @family inverse_functions
 ##'
@@ -714,5 +714,178 @@ samplesize <- function(
   if (obs_pairs >= min_pairs){ return(M) } else{
     stop(sprintf('Resulting sample size (%.2f) does not produce enough linked pairs (%.2f);
                  consider requiring fewer linked pairs, or updating chi, eta, or phi', M,obs_pairs)) }
+  
+}
+
+
+# <--- FUNCTIONS TO ESTIMATE SENSITIVITY AND SPECIFICITY USING GENETIC DISTANCE AS A LINKAGE CRITERIA ---> #
+
+
+##' Function calculates the distribution of genetic distances in a population of viruses
+##' with the given parameterts
+##'
+##' @param mut_rate mean number of mutations per generation, assumed to be poisson distributed
+##' @param mean_gens_pdf the density distribution of the mean number of generations between cases;
+##'       the index of this vector is assumed to be the discrete distance between cases
+##' @param max_link_gens the maximium generations of separation for linked pairs
+##' @param max_gens the maximum number of generations to consider, defaults to the highest
+##'        number of generations in mean_gens_pdf with a non-zero probability
+##' @param max_dist the maximum distance to calculate, defaults to max_gens * 99.9th percentile
+##'       of mut_rate poisson distribution
+##' 
+##' @return a data frame with distances and probabilities
+##' 
+##' @author Shirlee Wohl and Justin Lessler
+##'
+##' @example R/examples/gen_dists.R
+##'
+##' @family mutrate_functions
+##'
+##' @export
+##'
+
+gen_dists <- function(mut_rate, mean_gens_pdf, max_link_gens=1,
+                      max_gens=which(mean_gens_pdf!=0)[length(which(mean_gens_pdf!=0))],
+                      max_dist = max_gens*qpois(.999,mut_rate)) {
+  
+  # set up matrix
+  gendist <- matrix(0,nrow=max_dist+1, ncol=3)
+  colnames(gendist) <- c("dist","linked_prob","unlinked_prob")
+  gendist[,1] <- 0:max_dist
+  
+  # get the CDF from the PDF
+  mean_gens_cdf <- cumsum(mean_gens_pdf)/sum(mean_gens_pdf)
+  
+  # calculate the probability distribution for linked cases
+  for (i in 1:(max_dist+1)){
+    for (j in 1:max_link_gens){
+      # calculate the probability of having a specific genetic distance
+      # for all generation separations considered linked
+      gendist[i,2] <- gendist[i,2] + mean_gens_pdf[j] * dpois(i-1,j*mut_rate)
+    }
+  }
+  
+  # calculate the probability distribution for unlinked cases
+  for (i in 1:(max_dist+1)){
+    for (j in (max_link_gens+1):max_gens){
+      # calculate the probability of having a specific genetic distance
+      # for all generation separations considered unlinked
+      gendist[i,3] <- gendist[i,3] + mean_gens_pdf[j] * dpois(i-1,j*mut_rate)
+    }
+  }
+  
+  # normalize the probability distributions for linked and unlinked cases
+  gendist[,"linked_prob"] <- gendist[,"linked_prob"]/sum(gendist[,"linked_prob"])
+  gendist[,"unlinked_prob"] <- gendist[,"unlinked_prob"]/sum(gendist[,"unlinked_prob"])
+  
+  return(gendist)
+  
+}
+
+##' Function to calculate the sensitivity and specificity of a genetic distance cutoff
+##' given an underlying mutation rate and mean number of generations between cases
+##'
+##' @param cutoff the maximum genetic distance at which to consider cases linked
+##' @param mut_rate mean number of mutations per generation, assumed to be poisson distributed
+##' @param mean_gens_pdf the density distribution of the mean number of generations between cases;
+##'       the index of this vector is assumed to be the discrete distance between cases
+##' @param max_link_gens the maximium generations of separation for linked pairs
+##' @param max_gens the maximum number of generations to consider, defaults to the highest
+##'        number of generations in mean_gens_pdf with a non-zero probability
+##' @param max_dist the maximum distance to calculate, defaults to max_gens * 99.9th percentile
+##'       of mut_rate poisson distribution
+##'
+##' @return a data frame with the sensitivity and specificity for a particular genetic distance cutoff
+##' 
+##' @author Shirlee Wohl and Justin Lessler
+##'
+##' @example R/examples/sens_spec_calc.R
+##'
+##' @family mutrate_functions
+##'
+##' @export
+##'
+
+sens_spec_calc <- function(cutoff, mut_rate, mean_gens_pdf, max_link_gens=1,
+                           max_gens=which(mean_gens_pdf!=0)[length(which(mean_gens_pdf!=0))],
+                           max_dist=max_gens*qpois(.999,mut_rate)) {
+  
+  # check that we have used a sensible cutoff
+  # the mutation rate should be high enough such that the cutoff used is less than the max possible distance
+  if (max_dist<max(cutoff+1)){warning("Nonsensical cutoff given distances considered")}
+  
+  # get linked and unlinked probability distributions
+  gendist <- gen_dists(mut_rate = mut_rate, mean_gens_pdf = mean_gens_pdf,
+                       max_link_gens = max_link_gens, max_gens = max_gens, max_dist = max_dist)
+  
+  linked_pdf <- gendist[,"linked_prob"]
+  unlinked_pdf <- gendist[,"unlinked_prob"]
+  
+  linked_cdf <- cumsum(linked_pdf)/sum(linked_pdf)
+  unlinked_cdf <- cumsum(unlinked_pdf)/sum(unlinked_pdf)
+  
+  # wrapping in function to allow for multiple cutoffs
+  get_sens_spec <- function(cutoff) {
+    
+    # remember that cdf[cutoff] represents the probability of cutoff-1
+    # but this is what we want because the threshold is <cutoff (not <=)
+    
+    # decrease specificity by probability mass of unlinked
+    spec <- 1 - unlinked_cdf[cutoff]
+    
+    # decrease sensitivity by probability mass of linked
+    sens <- 1 - (1 - linked_cdf[cutoff])
+    
+    return(c(sens,spec))
+    
+  }
+  
+  rc <- t(sapply(cutoff, get_sens_spec))
+  rc <- cbind(cutoff, rc)
+  colnames(rc) <- c("cutoff","sensitivity", "specificity")
+  
+  return(rc)
+}
+
+
+##' Wrapper function to turn output from sens_spec_calc to values to make an ROC curve
+##'
+##' @param cutoff the maximum genetic distance at which to consider cases linked
+##' @param mut_rate mean number of mutations per generation, assumed to be poisson distributed
+##' @param mean_gens_pdf the density distribution of the mean number of generations between cases;
+##'       the index of this vector is assumed to be the discrete distance between cases
+##' @param max_link_gens the maximium generations of separation for linked pairs
+##' @param max_gens the maximum number of generations to consider, defaults to the highest
+##'        number of generations in mean_gens_pdf with a non-zero probability
+##' @param max_dist the maximum distance to calculate, defaults to max_gens * 99.9th percentile
+##'       of mut_rate poisson distribution
+##'
+##' @return data frame with cutoff, sensitivity, and 1-specificity
+##' 
+##' @author Shirlee Wohl and Justin Lessler
+##'
+##' @example R/examples/sens_spec_roc.R
+##'
+##' @family mutrate_functions
+##'
+##' @export
+##'
+
+sens_spec_roc <- function(cutoff, mut_rate, mean_gens_pdf, max_link_gens=1,
+                      max_gens=which(mean_gens_pdf!=0)[length(which(mean_gens_pdf!=0))],
+                      max_dist=max_gens*qpois(.999,mut_rate)){
+  
+  rc <- sens_spec_calc(cutoff,mut_rate,mean_gens_pdf,max_link_gens,max_gens,max_dist)
+  
+  # turn this into a data frame that can be used for plotting ROC curves
+  rc <- as.data.frame(rc)
+  
+  # calculate 1-specificity for plotting
+  rc$specificity <- 1-rc$specificity
+  
+  # add the starting and ending points to make the complete curve
+  rc <- rbind(c(-1,0,0),rc,c(Inf,1,1))
+  
+  return(rc)
   
 }
