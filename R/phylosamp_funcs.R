@@ -651,9 +651,11 @@ true_pairs <- function(
   return(out)
 }
 
+
 # <--- MLMT-ONLY INVERSE FUNCTIONS ---> #
 
-##' Sample size required to obtain a defined false discovery rate given sampling proportion
+
+##' Sample size required to obtain a defined false discovery rate given the final outbreak size
 ##'
 ##' This function calculates the sample size needed to obtain a defined false disovery rate given a final outbreak size \eqn{N}.
 ##' This function is only provided for the multiple-transmission and multiple-linkage method, which assumes the following:
@@ -665,9 +667,10 @@ true_pairs <- function(
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria
 ##' @param chi scalar or vector giving the specificity of the linkage criteria
-##' @param rho scalar or vector giving the sampling proportion
+##' @param N scalar or vector giving the final outbreak size
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen
 ##' @param phi scalar or vector giving the desired true discovery rate (1-false discovery rate)
+##' @param min_pairs minimum number of linked pairs observed in the sample, defaults to 1 pair (2 samples); this is to ensure reasonable results are obtained
 ##'
 ##' @return scalar or vector giving the sample size needed to meet the given conditions
 ##'
@@ -680,33 +683,13 @@ true_pairs <- function(
 ##' @export
 ##'
 
-samplesize_fdr_rho <- function(
-  eta,    # sensitivity of the linkage criteria
-  chi,    # specificity of the linkage criteria
-  rho,    # proportion of cases sampled
-  R,      # effective reproductive number
-  phi     # true discovery rate
-){
-  
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
-           is.numeric(chi), chi >= 0 & chi <= 1,
-           is.numeric(phi), phi >= 0 & phi <= 1,
-           is.numeric(rho), rho >= 0 & rho <= 1)) stop('Arguements eta, chi, rho, and phi must be numeric between 0 and 1')
-  
-  if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
-  if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
- 
-  ((eta * rho * (1-phi) * (R+1)) + (phi * (1-chi) * (1 + rho * (R+1)))) / 
-    (phi * (1-chi))
-   
-}
-
-samplesize_fdr_N <- function(
-  eta,    # sensitivity of the linkage criteria
-  chi,    # specificity of the linkage criteria
-  N,    # proportion of cases sampled
-  R,      # effective reproductive number
-  phi     # true discovery rate
+samplesize <- function(
+  eta,         # sensitivity of the linkage criteria
+  chi,         # specificity of the linkage criteria
+  N,           # final outbreak size
+  R,           # effective reproductive number
+  phi,         # true discovery rate
+  min_pairs=1  # minimum number of linked pairs, defaults to 1 (2 samples)
 ){
   
   if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
@@ -717,7 +700,19 @@ samplesize_fdr_N <- function(
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
   
-  (phi * N * (1-chi)) / 
+  # calculate the sample size needed to obtain the desired true discovery rate
+  M = (phi * N * (1-chi)) / 
     ((phi * eta * (R+1)) + (phi * N * (1-chi)) - (phi * (1-chi) * (R+1)) - (eta * (R+1)))
+  
+  if (M<0) { stop(sprintf('Input values do not produce a viable solution (M=%.2f); consider updating chi, eta, or phi', M)) }
+  
+  if (M>N) { stop(sprintf('Sample size is larger than final outbreak size (M=%.2f); consider updating chi, eta, or phi', M)) }
+  
+  # check if this sample size is at least 2*E(pairs observed)
+  obs_pairs = suppressMessages(exp_links(eta = eta, chi = chi, rho = M/N, M = M, R = R, assumption = "mtml"))
+  
+  if (obs_pairs >= min_pairs){ return(M) } else{
+    stop(sprintf('Resulting sample size (%.2f) does not produce enough linked pairs (%.2f);
+                 consider requiring fewer linked pairs, or updating chi, eta, or phi', M,obs_pairs)) }
   
 }
