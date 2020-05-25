@@ -22,7 +22,7 @@ scalar or vector giving the expected number of linked pairs observed in the samp
 This function calculates the expected number of link pairs observed in a sample of size \code{M}.
 The single-transmission and single-linkage method assumes the following:
 \enumerate{
-     \item Each case \eqn{i} is the infector of only one other case \eqn{j} in the population (\eqn{N}).
+     \item Each case \eqn{i} is linked by transmission to only one other case \eqn{j} in the population (\eqn{N}).
      \item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
      }
 }
@@ -34,9 +34,10 @@ obs_pairs_stsl(eta=0.99, chi=0.9, rho=1, M=50)
 obs_pairs_stsl(eta=0.99, chi=0.9, rho=0.5, M=100)
 }
 \seealso{
-Other obs_pairs: \code{\link{exp_links}},
-  \code{\link{obs_pairs_mtml}},
-  \code{\link{obs_pairs_mtsl}}
+Other obs_pairs: 
+\code{\link{exp_links}()},
+\code{\link{obs_pairs_mtml}()},
+\code{\link{obs_pairs_mtsl}()}
 }
 \author{
 John Giles, Shirlee Wohl, and Justin Lessler

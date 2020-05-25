@@ -24,9 +24,8 @@ scalar or vector giving the probability of transmission between two cases given 
 This function calculates the probabilitiy that two cases are linked by direct transmission
 given that they have been linked by phylogenetic criteria. The multiple-transmission and single-linkage method assumes the following:
 \enumerate{
-     \item Each case \eqn{i} is the infector of \code{R} cases in the population (\eqn{N}), where \code{R} is Poisson distributed
-     with its mean equal to the effective reproductive number of the pathogen.
-     \item Each case \eqn{i} is linked by the linkage criteria to only one case \eqn{j} in the sampled population (\eqn{M}).
+     \item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
+     \item Each case \eqn{i} is allowed to be linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
      }
 }
 \examples{
@@ -34,15 +33,12 @@ prob_trans_mtsl(eta=1, chi=1, rho=0.5, M=100, R=1) # Perfect sensitivity and spe
 
 prob_trans_mtsl(eta=0.99, chi=0.9, rho=1, M=50, R=1)
 
-prob_trans_mtsl(eta=0.99, chi=0.9, rho=1, M=50, R=1.5)
-
 prob_trans_mtsl(eta=0.99, chi=0.9, rho=0.5, M=100, R=1)
-
-prob_trans_mtsl(eta=0.99, chi=0.9, rho=0.5, M=100, R=1.5)
 }
 \seealso{
-Other prob_trans: \code{\link{prob_trans_mtml}},
-  \code{\link{prob_trans_stsl}}
+Other prob_trans: 
+\code{\link{prob_trans_mtml}()},
+\code{\link{prob_trans_stsl}()}
 }
 \author{
 John Giles, Shirlee Wohl, and Justin Lessler

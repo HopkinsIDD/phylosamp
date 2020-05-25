@@ -20,7 +20,7 @@ scalar or vector giving the expected number of true transmission pairs in the sa
 This function calculates the expected number of true transmission pairs in a sample of size \code{M}.
 The single-transmission and single-linkage method assumes the following:
 \enumerate{
-     \item Each case \eqn{i} is the infector of only one other case \eqn{j} in the population (\eqn{N}).
+     \item Each case \eqn{i} is linked by transmissino to only one other case \eqn{j} in the population (\eqn{N}).
      \item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
      }
 }
@@ -28,8 +28,10 @@ The single-transmission and single-linkage method assumes the following:
 true_pairs_stsl(eta=0.95, rho=0.2, M=200)
 }
 \seealso{
-Other true_pairs: \code{\link{true_pairs_mtml}},
-  \code{\link{true_pairs_mtsl}}
+Other true_pairs: 
+\code{\link{true_pairs_mtml}()},
+\code{\link{true_pairs_mtsl}()},
+\code{\link{true_pairs}()}
 }
 \author{
 John Giles, Shirlee Wohl, and Justin Lessler

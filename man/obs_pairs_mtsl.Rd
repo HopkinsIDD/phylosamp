@@ -24,9 +24,8 @@ scalar or vector giving the expected number of linked pairs observed in the samp
 This function calculates the expected number of pairs observed in a sample of size \code{M}.
 The multiple-transmission and single-linkage method assumes the following:
 \enumerate{
-     \item Each case \eqn{i} is the infector of \code{R} cases in the population (\eqn{N}), where \code{R} is Poisson distributed
-     with its mean equal to the effective reproductive number of the pathogen.
-     \item Each case \eqn{i} is linked by the linkage criteria to only one case \eqn{j} in the sampled population (\eqn{M}).
+     \item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
+     \item Each case \eqn{i} is allowed to be linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
      }
 }
 \examples{
@@ -34,16 +33,13 @@ obs_pairs_mtsl(eta=1, chi=1, rho=0.5, M=100, R=1) # Perfect sensitivity and spec
 
 obs_pairs_mtsl(eta=0.99, chi=0.9, rho=1, M=50, R=1)
 
-obs_pairs_mtsl(eta=0.99, chi=0.9, rho=1, M=50, R=1.5)
-
 obs_pairs_mtsl(eta=0.99, chi=0.9, rho=0.5, M=100, R=1)
-
-obs_pairs_mtsl(eta=0.99, chi=0.9, rho=0.5, M=100, R=1.5)
 }
 \seealso{
-Other obs_pairs: \code{\link{exp_links}},
-  \code{\link{obs_pairs_mtml}},
-  \code{\link{obs_pairs_stsl}}
+Other obs_pairs: 
+\code{\link{exp_links}()},
+\code{\link{obs_pairs_mtml}()},
+\code{\link{obs_pairs_stsl}()}
 }
 \author{
 John Giles, Shirlee Wohl and Justin Lessler

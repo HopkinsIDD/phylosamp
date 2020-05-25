@@ -4,7 +4,7 @@
 \alias{falsediscoveryrate}
 \title{Calculate false discovery rate of a sample}
 \usage{
-falsediscoveryrate(eta, chi, rho, M, R = NULL, assumption)
+falsediscoveryrate(eta, chi, rho, M, R = NULL, assumption = "mtml")
 }
 \arguments{
 \item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
@@ -29,8 +29,8 @@ scalar or vector giving the true discovery rate
 }
 \description{
 This function calculates the false discovery rate (proportion of linked pairs that are false positives) in a sample given the sensitivity \eqn{\eta}
-and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. The reproductive number \eqn{R} of the pathogen is used when case i
-is allowed to infect multple cases in the population \eqn{N} (multiple-transmission assumption).
+and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)
+can be specified.
 }
 \examples{
 # The simplest case: single-transmission, single-linkage, and perfect sensitivity
@@ -40,13 +40,14 @@ falsediscoveryrate(eta=1, chi=0.9, rho=0.5, M=100, assumption='stsl')
 falsediscoveryrate(eta=0.99, chi=0.9, rho=1, M=50, R=1, assumption='mtsl')
 
 # Small outbreak, larger sampling proportion
-falsediscoveryrate(eta=0.99, chi=0.95, rho=1, M=50, R=1.5, assumption='mtml')
+falsediscoveryrate(eta=0.99, chi=0.95, rho=1, M=50, R=1, assumption='mtml')
 
 # Large outbreak, small sampling proportion
-falsediscoveryrate(eta=0.99, chi=0.95, rho=0.5, M=1000, R=1.5, assumption='mtml')
+falsediscoveryrate(eta=0.99, chi=0.95, rho=0.5, M=1000, R=1, assumption='mtml')
 }
 \seealso{
-Other discovery_rate: \code{\link{truediscoveryrate}}
+Other discovery_rate: 
+\code{\link{truediscoveryrate}()}
 }
 \author{
 John Giles, Shirlee Wohl, and Justin Lessler

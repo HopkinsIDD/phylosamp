@@ -22,7 +22,7 @@ scalar or vector giving the probability of transmission between two cases given 
 This function calculates the probabilitiy that two cases are linked by direct transmission
 given that they have been linked by phylogenetic criteria. The single-transmission and single-linkage method assumes the following:
 \enumerate{
-     \item Each case \eqn{i} is the infector of only one other case \eqn{j} in the population (\eqn{N}).
+     \item Each case \eqn{i} is linked by transmission to only one other case \eqn{j} in the population (\eqn{N}).
      \item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
      }
 }
@@ -39,8 +39,9 @@ prob_trans_stsl(eta=0.99, chi=0.95, rho=0.9, M=50)
 prob_trans_stsl(eta=0.99, chi=0.95, rho=0.05, M=100)
 }
 \seealso{
-Other prob_trans: \code{\link{prob_trans_mtml}},
-  \code{\link{prob_trans_mtsl}}
+Other prob_trans: 
+\code{\link{prob_trans_mtml}()},
+\code{\link{prob_trans_mtsl}()}
 }
 \author{
 John Giles, Shirlee Wohl, and Justin Lessler

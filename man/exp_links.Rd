@@ -4,7 +4,7 @@
 \alias{exp_links}
 \title{Calculate expected number of links in a sample}
 \usage{
-exp_links(eta, chi, rho, M, R = NULL, assumption)
+exp_links(eta, chi, rho, M, R = NULL, assumption = "mtml")
 }
 \arguments{
 \item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
@@ -29,8 +29,8 @@ scalar or vector giving the expected number of observed links in the sample
 }
 \description{
 This function calculates the expected number of observed pairs in the sample that are linked by the linkage criteria. The function requires the sensitivity \eqn{\eta}
-and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. The reproductive number \eqn{R} of the pathogen is used when case i
-is allowed to infect multple cases in the population \eqn{N} (multiple-transmission assumption).
+and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)
+can be specified.
 }
 \examples{
 # The simplest case: single-transmission, single-linkage, and perfect sensitivity
@@ -40,15 +40,16 @@ exp_links(eta=1, chi=0.9, rho=0.5, M=100, assumption='stsl')
 exp_links(eta=0.99, chi=0.9, rho=1, M=50, R=1, assumption='mtsl')
 
 # Small outbreak, larger sampling proportion
-exp_links(eta=0.99, chi=0.95, rho=1, M=50, R=1.5, assumption='mtml')
+exp_links(eta=0.99, chi=0.95, rho=1, M=50, R=1, assumption='mtml')
 
 # Large outbreak, small sampling proportion
-exp_links(eta=0.99, chi=0.95, rho=0.05, M=1000, R=1.5, assumption='mtml')
+exp_links(eta=0.99, chi=0.95, rho=0.05, M=1000, R=1, assumption='mtml')
 }
 \seealso{
-Other obs_pairs: \code{\link{obs_pairs_mtml}},
-  \code{\link{obs_pairs_mtsl}},
-  \code{\link{obs_pairs_stsl}}
+Other obs_pairs: 
+\code{\link{obs_pairs_mtml}()},
+\code{\link{obs_pairs_mtsl}()},
+\code{\link{obs_pairs_stsl}()}
 }
 \author{
 John Giles, Shirlee Wohl, and Justin Lessler
