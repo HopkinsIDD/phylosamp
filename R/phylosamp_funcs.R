@@ -652,18 +652,12 @@ true_pairs <- function(
 }
 
 
-# <--- MLMT-ONLY INVERSE FUNCTIONS ---> #
+# <--- INVERSE FUNCTIONS ---> #
 
 
-##' Sample size required to obtain a defined false discovery rate given the final outbreak size
+##' Sample size required to obtain at least a defined false discovery rate given the final outbreak size
 ##'
-##' This function calculates the sample size needed to obtain a defined false disovery rate given a final outbreak size \eqn{N}.
-##' This function is only provided for the multiple-transmission and multiple-linkage method, which assumes the following:
-##' \enumerate{
-##'      \item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
-##'      \item Each case \eqn{i} is allowed to be linked by the linkage criteria to multiple cases \eqn{j} in the sampled population (\eqn{M}).
-##'      \item Linkage events are independent of one another (i.e, linkage of case \eqn{i} to case \eqn{j} has no bearing on linkage of case \eqn{i} to any other sample).
-##'      }
+##' This function calculates the sample size needed to obtain at least a defined false disovery rate given a final outbreak size \eqn{N}.
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria
 ##' @param chi scalar or vector giving the specificity of the linkage criteria
@@ -671,6 +665,12 @@ true_pairs <- function(
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen
 ##' @param phi scalar or vector giving the desired true discovery rate (1-false discovery rate)
 ##' @param min_pairs minimum number of linked pairs observed in the sample, defaults to 1 pair (2 samples); this is to ensure reasonable results are obtained
+##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. The function expects one of the following:
+##' \enumerate{
+##'      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
+##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
+##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption (\code{\link{prob_trans_mtml}}).
+##'      }
 ##'
 ##' @return scalar or vector giving the sample size needed to meet the given conditions
 ##'
@@ -687,34 +687,33 @@ samplesize <- function(
   eta,         # sensitivity of the linkage criteria
   chi,         # specificity of the linkage criteria
   N,           # final outbreak size
-  R,           # effective reproductive number
-  phi,         # true discovery rate
-  min_pairs=1  # minimum number of linked pairs, defaults to 1 (2 samples)
+  R=NULL,      # effective reproductive number
+  phi,         # minimum true discovery rate
+  min_pairs=1,  # minimum number of linked pairs, defaults to 1 (2 samples)
+  assumption='mtml' # assume most general case if not specified
 ){
   
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
-           is.numeric(chi), chi >= 0 & chi <= 1,
-           is.numeric(phi), phi >= 0 & phi <= 1)) stop('Arguements eta, chi, and phi must be numeric between 0 and 1')
+  if (!(is.numeric(phi) & phi >= 0 & phi <= 1)) {stop('phi must be numeric between 0 and 1')}
   
-  if (!all(is.numeric(N), N > 0)) stop('Final outbreak size (N) must be numeric greater than 0')
-  if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
-  if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
+  # the max sample size in the final size of the outbreak
+  # iterate between minimum and maximum sample size until the desired value is reached
+  samplesize_found <- FALSE
+  for (i in 2:N) {
+
+    tdr <- suppressMessages(truediscoveryrate(eta=eta, chi=chi, rho=i/N, M=i, R=R, assumption=assumption))
+    obs_pairs = suppressMessages(exp_links(eta=eta, chi=chi, rho=i/N, M=i, R=R, assumption=assumption))
+    
+    if (tdr >= phi & obs_pairs >= min_pairs) { 
+      samplesize_found <- TRUE
+      break
+    }
+    
+  }
   
-  # calculate the sample size needed to obtain the desired true discovery rate
-  M = (phi * N * (1-chi)) / 
-    ((phi * eta * (R+1)) + (phi * N * (1-chi)) - (phi * (1-chi) * (R+1)) - (eta * (R+1)))
-  
-  if (M<0) { stop(sprintf('Input values do not produce a viable solution (M=%.2f); consider updating chi, eta, or phi', M)) }
-  
-  if (M>N) { stop(sprintf('Sample size is larger than final outbreak size (M=%.2f); consider updating chi, eta, or phi', M)) }
-  
-  # check if this sample size is at least 2*E(pairs observed)
-  obs_pairs = suppressMessages(exp_links(eta = eta, chi = chi, rho = M/N, M = M, R = R, assumption = "mtml"))
-  
-  if (obs_pairs >= min_pairs){ return(M) } else{
-    stop(sprintf('Resulting sample size (%.2f) does not produce enough linked pairs (%.2f);
-                 consider requiring fewer linked pairs, or updating chi, eta, or phi', M,obs_pairs)) }
-  
+  # check if we successfully achieved the desired true discovery rate
+  if (samplesize_found) { return(i) }
+  else { stop("Input values do no produce a viable solution") }
+    
 }
 
 
