@@ -10,6 +10,8 @@ All functions require the user to specify the underlying assumptions about trans
 
 The key functions of this package are documented, along with realistic examples, in the associated vignettes.
 
+### Methodology
+
 A detailed description of the methods can be found in:
 
 [Sample Size Calculation for Phylogenetic Case Linkage (Wohl, Giles, and Lessler 2020)](https://www.medrxiv.org/content/10.1101/2020.07.10.20150920v1)
