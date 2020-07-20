@@ -1,0 +1,179 @@
+---
+title: <font size="5">Illustrative examples</font>
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Illustrative examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir="../")
+knitr::opts_chunk$set(fig.width=7.5, fig.height=6, fig.path='../figures/', warning=FALSE, message=FALSE,cache=FALSE)
+
+library(phylosamp)
+```
+
+In this vignette, we apply the functions provided to estimate sensitivity and specificity and apply them to an Ebola-like pathogen. We compare the results to those of a pathogen with a slower mutation rate and higher reproductive number. Then, we will use these results to calculate the false discovery rate of our linkage criteria (genetic distance) given a sample size of 200 and a relevant population of 1000 infected individuals.
+
+In the first part of this vignette, we use the function `sens_spec_roc`, which formats the results of `sens_spec_calc` for plotting ROC curves.
+
+### Calculating sensitivity and specificity for an Ebola-like pathogen
+
+```{r gen_dist_compare_ebov, fig.width=4, fig.height=3}
+
+library(ggplot2)
+library(reshape2)
+library(RColorBrewer)
+library(cowplot)
+
+# ebola-like pathogen
+R <- 1.5
+mut_rate <- 1
+
+# use simulated generation distributions
+mgd <- read.csv("data/sim_distance_dist.csv")
+mean_gens_pdf <- mgd[mgd["R"]==R][3:dim(mgd)[2]]
+
+# get theoretical genetic distance dist based on mutation rate and generation parameters
+dists <- as.data.frame(gen_dists(mut_rate = mut_rate, mean_gens_pdf = mean_gens_pdf, max_link_gens = 1))
+# reshape dataframe for plotting
+dists <- reshape2::melt(dists, id.vars = "dist", variable.name = "status", value.name = "prob")
+
+# get sensitivity and specificity using the same paramters
+roc_calc <- sens_spec_roc(cutoff = 1:(max(dists$dist)-1), mut_rate = mut_rate,
+                          mean_gens_pdf = mean_gens_pdf)
+  
+# get the optimal value for the ROC plot
+# use point closest to corner
+  
+roc_optim <- roc_calc
+roc_optim$dist <- sqrt((1-roc_optim$sensitivity)^2 + (roc_optim$specificity)^2)
+roc_optim <- roc_optim[2:(dim(roc_optim)[1]),] # remove first row with zero threshold
+optim_value <- min(roc_optim$dist)
+threshold <- roc_optim[roc_optim$dist==optim_value,]$cutoff
+optim_point <- c(roc_optim[roc_optim$cutoff==threshold,]$specificity,
+                 roc_optim[roc_optim$cutoff==threshold,]$sensitivity)
+  
+# plot the distributions of genetic distance
+pal <- RColorBrewer::brewer.pal(5, "PuOr")
+  
+p1 <- ggplot(dists, aes(x=dist, y=prob, fill=status)) +
+    geom_bar(alpha=0.5, stat="identity", position="identity") +
+    scale_fill_manual(name="", values=c(pal[5], pal[2])) +
+    scale_x_continuous(limits = c(-1,35), expand = c(0,0)) +
+    scale_y_continuous(limits = c(0,0.4), expand = c(0,0)) +
+    xlab('Genetic distance') + ylab('Density') +
+    theme_classic() + theme(legend.position='none') +
+    geom_vline(xintercept=threshold, linetype=2, size=0.5, color = "black")
+  
+# add ROC curve on top
+r1 <- ggplot(data=roc_calc, aes(x=specificity, y=sensitivity)) +
+    geom_line(size=1.5) + xlim(0,1) + ylim(0,1) +
+    geom_point(x=optim_point[1], y=optim_point[2],
+               size = 3, stroke=1, shape=21, fill = "chartreuse") +
+    geom_abline(slope=1, intercept = 0, linetype=2, alpha=0.5) +
+    xlab("1-specificity") +
+    theme_bw()
+  
+cowplot::ggdraw(p1) + cowplot::draw_plot(r1, hjust=-0.16, vjust=-0.16, scale=0.6)
+
+```
+
+### Optimal values for an Ebola-like pathogen
+
+Using the closest-to-corner method, the optimal genetic distance threshold for this pathogen is:
+```{r optim_value}
+threshold
+```
+
+And the sensitivity and specificity at this threshold is:
+```{r sens_spec_values}
+roc_optim[roc_optim$cutoff==threshold,]$sensitivity ## sensitivity
+1-roc_optim[roc_optim$cutoff==threshold,]$specificity ## specificity
+```
+
+We repeat the above plot for a pathogen with a higher reproductive number and lower mutation rate:
+
+```{r gen_dist_compare_mev}
+
+# faster-spreading pathogen
+R <- 3
+mut_rate <- 0.2
+
+mean_gens_pdf <- mgd[mgd["R"]==R][3:dim(mgd)[2]]
+
+```
+
+### Calculating sensitivity and specificity for a faster-spreading, slower mutating pathogen
+
+```{r gen_dist_mev_plot, fig.width=4, fig.height=3, echo=FALSE}
+
+# get theoretical genetic distance dist based on mutation rate and generation parameters
+dists <- as.data.frame(gen_dists(mut_rate = mut_rate, mean_gens_pdf = mean_gens_pdf, max_link_gens = 1))
+# reshape dataframe for plotting
+dists <- reshape2::melt(dists, id.vars = "dist", variable.name = "status", value.name = "prob")
+
+# get sensitivity and specificity using the same paramters
+roc_calc <- sens_spec_roc(cutoff = 1:(max(dists$dist)-1), mut_rate = mut_rate,
+                          mean_gens_pdf = mean_gens_pdf)
+  
+# get the optimal value for the ROC plot using closest-to-corner metric
+roc_optim <- roc_calc
+roc_optim$dist <- sqrt((1-roc_optim$sensitivity)^2 + (roc_optim$specificity)^2)
+roc_optim <- roc_optim[2:(dim(roc_optim)[1]),] # remove first row with zero threshold
+optim_value <- min(roc_optim$dist)
+threshold <- roc_optim[roc_optim$dist==optim_value,]$cutoff
+optim_point <- c(roc_optim[roc_optim$cutoff==threshold,]$specificity,
+                 roc_optim[roc_optim$cutoff==threshold,]$sensitivity)
+  
+# plot the distributions of genetic distance
+pal <- RColorBrewer::brewer.pal(5, "PuOr")
+  
+p1 <- ggplot(dists, aes(x=dist, y=prob, fill=status)) +
+    geom_bar(alpha=0.5, stat="identity", position="identity") +
+    scale_fill_manual(name="", values=c(pal[5], pal[2])) +
+    scale_x_continuous(limits = c(-1,35), expand = c(0,0)) +
+    scale_y_continuous(limits = c(0,0.4), expand = c(0,0)) +
+    xlab('Genetic distance') + ylab('Density') +
+    theme_classic() + theme(legend.position='none') +
+    geom_vline(xintercept=threshold, linetype=2, size=0.5, color = "black")
+  
+# add ROC curve on top
+r1 <- ggplot(data=roc_calc, aes(x=specificity, y=sensitivity)) +
+    geom_line(size=1.5) + xlim(0,1) + ylim(0,1) +
+    geom_point(x=optim_point[1], y=optim_point[2],
+               size = 3, stroke=1, shape=21, fill = "chartreuse") +
+    geom_abline(slope=1, intercept = 0, linetype=2, alpha=0.5) +
+    xlab("1-specificity") +
+    theme_bw()
+  
+cowplot::ggdraw(p1) + cowplot::draw_plot(r1, hjust=-0.16, vjust=-0.16, scale=0.6)
+
+```
+
+### Optimal values for a faster-spreading, slower mutating pathogen
+
+For this pathogen, the optimal genetic distance threshold is:
+```{r optim_value_slow}
+threshold
+```
+
+And the sensitivity and specificity at this threshold is:
+```{r sens_spec_values_slow}
+roc_optim[roc_optim$cutoff==threshold,]$sensitivity ## sensitivity
+1-roc_optim[roc_optim$cutoff==threshold,]$specificity ## specificity
+```
+
+It is well understood that genetic distance is a much more accurate predictor of transmission linkage for pathogens with higher mutation rates and slower spread, as shown clearly in this example (lower sensitivity and specificity in the second example). Genetic distance is clearly not an appropriate metric for all pathogens, but more sophisticated linkage criteria -- espeically those that incorporate epidemiological information as well -- may produce better results.
+
+### Calculating the false discovery rate of genetic distance as a linkage criteria
+
+This is reflected in our confidence in identifying linked infection pairs. Assuming a sample size of 200, a relevant population of 1000, and the genetic distance threshold and associated sensitivity and specificity for each pathogen we get:
+
+```{r fdr_final}
+truediscoveryrate(eta=0.9963402,chi=0.9801562,rho=0.20,M=200,R=1) # ebola-like pathogen
+truediscoveryrate(eta=0.8187308,chi=0.8539157,rho=0.20,M=200,R=1) # slower-mutating pathogen
+```
+
+As a final note, we remind the reader that the specificity of the linkage criteria has a significant bearing on the true/false discovery rate, and that high true discovery rates require a specificity upwards of 0.999. Linkage criteria more complex than genetic distance may be needed to achieve this value.
