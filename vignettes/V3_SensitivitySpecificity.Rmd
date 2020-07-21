@@ -1,5 +1,5 @@
 ---
-title: <font size="4.5">Estimating the sensitivity and specificity of a linkage criteria</font>
+title: Estimating the sensitivity and specificity of a linkage criteria
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Estimating the sensitivity and specificity of a linkage criteria}

@@ -2,3 +2,8 @@
 ^\.Rproj\.user$
 ^data-raw$
 ^figures$
+^doc$
+^docs$
+^Meta$
+^_pkgdown\.yml$
+^pkgdown$

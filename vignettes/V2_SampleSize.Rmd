@@ -1,5 +1,5 @@
 ---
-title: <font size="5">Estimating sample size from the false discovery rate</font>
+title: Estimating sample size from the false discovery rate
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Estimating sample size from the false discovery rate}

@@ -1,5 +1,5 @@
 ---
-title: <font size="5">Illustrative examples</font>
+title: Illustrative examples
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Illustrative examples}
