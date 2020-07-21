@@ -14,8 +14,6 @@ true_pairs_mtsl(eta, rho, M, R)
 \item{M}{scalar or vector giving the number of cases sampled}
 
 \item{R}{scalar or vector giving the effective reproductive number of the pathogen}
-
-\item{chi}{scalar or vector giving the specificity of the linkage criteria}
 }
 \value{
 scalar or vector giving the expected number of true transmission pairs in the sample

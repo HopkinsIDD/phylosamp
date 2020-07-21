@@ -234,7 +234,6 @@ obs_pairs_mtsl <- function(
 ##'      }
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria
-##' @param chi scalar or vector giving the specificity of the linkage criteria
 ##' @param rho scalar or vector giving the proportion of the final outbreak size that is sampled
 ##' @param M scalar or vector giving the number of cases sampled
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen
@@ -259,7 +258,7 @@ true_pairs_mtsl <- function(
 ){
   
   if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
-           is.numeric(rho), rho >= 0 & rho <= 1)) stop('Arguements eta, chi, and rho must be numeric between 0 and 1')
+           is.numeric(rho), rho >= 0 & rho <= 1)) stop('Arguements eta and rho must be numeric between 0 and 1')
   
   if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
@@ -598,7 +597,6 @@ exp_links <- function(
 ##' Assumptions about transmission and linkage (single or multiple) can be specified.
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria
-##' @param chi scalar or vector giving the specificity of the linkage criteria
 ##' @param rho scalar or vector giving the proportion of the final outbreak size that is sampled
 ##' @param M scalar or vector giving the number of cases sampled
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen (default=NULL)
@@ -655,9 +653,10 @@ true_pairs <- function(
 # <--- INVERSE FUNCTIONS ---> #
 
 
-##' Sample size required to obtain at least a defined false discovery rate given the final outbreak size
-##'
-##' This function calculates the sample size needed to obtain at least a defined false disovery rate given a final outbreak size \eqn{N}.
+##' Calculate sample size
+##' 
+##' This function calculates the sample size needed to obtain at least a defined false disovery rate given 
+##' a final outbreak size \eqn{N}.
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria
 ##' @param chi scalar or vector giving the specificity of the linkage criteria
@@ -720,16 +719,18 @@ samplesize <- function(
 # <--- FUNCTIONS TO ESTIMATE SENSITIVITY AND SPECIFICITY USING GENETIC DISTANCE AS A LINKAGE CRITERIA ---> #
 
 
+##' Calculate genetic distance distribution
+##' 
 ##' Function calculates the distribution of genetic distances in a population of viruses
-##' with the given parameterts
+##' with the given parameters
 ##'
 ##' @param mut_rate mean number of mutations per generation, assumed to be poisson distributed
 ##' @param mean_gens_pdf the density distribution of the mean number of generations between cases;
 ##'       the index of this vector is assumed to be the discrete distance between cases
 ##' @param max_link_gens the maximium generations of separation for linked pairs
-##' @param max_gens the maximum number of generations to consider, defaults to the highest
+##' @param max_gens the maximum number of generations to consider, if \code{NULL} (default) value is set to the highest
 ##'        number of generations in mean_gens_pdf with a non-zero probability
-##' @param max_dist the maximum distance to calculate, defaults to max_gens * 99.9th percentile
+##' @param max_dist the maximum distance to calculate, if \code{NULL} (default) value is set to max_gens * 99.9th percentile
 ##'       of mut_rate poisson distribution
 ##' 
 ##' @return a data frame with distances and probabilities
@@ -743,9 +744,16 @@ samplesize <- function(
 ##' @export
 ##'
 
-gen_dists <- function(mut_rate, mean_gens_pdf, max_link_gens=1,
-                      max_gens=which(mean_gens_pdf!=0)[length(which(mean_gens_pdf!=0))],
-                      max_dist = max_gens*qpois(.999,mut_rate)) {
+gen_dists <- function(
+  mut_rate, 
+  mean_gens_pdf, 
+  max_link_gens=1,
+  max_gens=NULL,
+  max_dist=NULL
+) {
+  
+  if(is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
+  if(is.null(max_dist)) max_dist <- max_gens*stats::qpois(.999, mut_rate)
   
   # set up matrix
   gendist <- matrix(0,nrow=max_dist+1, ncol=3)
@@ -760,7 +768,7 @@ gen_dists <- function(mut_rate, mean_gens_pdf, max_link_gens=1,
     for (j in 1:max_link_gens){
       # calculate the probability of having a specific genetic distance
       # for all generation separations considered linked
-      gendist[i,2] <- gendist[i,2] + mean_gens_pdf[j] * dpois(i-1,j*mut_rate)
+      gendist[i,2] <- gendist[i,2] + mean_gens_pdf[j] * stats::dpois(i-1,j*mut_rate)
     }
   }
   
@@ -769,7 +777,7 @@ gen_dists <- function(mut_rate, mean_gens_pdf, max_link_gens=1,
     for (j in (max_link_gens+1):max_gens){
       # calculate the probability of having a specific genetic distance
       # for all generation separations considered unlinked
-      gendist[i,3] <- gendist[i,3] + mean_gens_pdf[j] * dpois(i-1,j*mut_rate)
+      gendist[i,3] <- gendist[i,3] + mean_gens_pdf[j] * stats::dpois(i-1,j*mut_rate)
     }
   }
   
@@ -781,6 +789,8 @@ gen_dists <- function(mut_rate, mean_gens_pdf, max_link_gens=1,
   
 }
 
+##' Calculate sensitivity and specificity
+##' 
 ##' Function to calculate the sensitivity and specificity of a genetic distance cutoff
 ##' given an underlying mutation rate and mean number of generations between cases
 ##'
@@ -789,9 +799,9 @@ gen_dists <- function(mut_rate, mean_gens_pdf, max_link_gens=1,
 ##' @param mean_gens_pdf the density distribution of the mean number of generations between cases;
 ##'       the index of this vector is assumed to be the discrete distance between cases
 ##' @param max_link_gens the maximium generations of separation for linked pairs
-##' @param max_gens the maximum number of generations to consider, defaults to the highest
+##' @param max_gens the maximum number of generations to consider, if \code{NULL} (default) value set to the highest
 ##'        number of generations in mean_gens_pdf with a non-zero probability
-##' @param max_dist the maximum distance to calculate, defaults to max_gens * 99.9th percentile
+##' @param max_dist the maximum distance to calculate, if \code{NULL} (default) value set to max_gens * 99.9th percentile
 ##'       of mut_rate poisson distribution
 ##'
 ##' @return a data frame with the sensitivity and specificity for a particular genetic distance cutoff
@@ -805,9 +815,17 @@ gen_dists <- function(mut_rate, mean_gens_pdf, max_link_gens=1,
 ##' @export
 ##'
 
-sens_spec_calc <- function(cutoff, mut_rate, mean_gens_pdf, max_link_gens=1,
-                           max_gens=which(mean_gens_pdf!=0)[length(which(mean_gens_pdf!=0))],
-                           max_dist=max_gens*qpois(.999,mut_rate)) {
+sens_spec_calc <- function(
+  cutoff, 
+  mut_rate, 
+  mean_gens_pdf, 
+  max_link_gens=1,
+  max_gens=NULL,
+  max_dist=NULL
+) {
+  
+  if(is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
+  if(is.null(max_dist)) max_dist <- max_gens*stats::qpois(.999, mut_rate)
   
   # check that we have used a sensible cutoff
   # the mutation rate should be high enough such that the cutoff used is less than the max possible distance
@@ -823,7 +841,7 @@ sens_spec_calc <- function(cutoff, mut_rate, mean_gens_pdf, max_link_gens=1,
   linked_cdf <- cumsum(linked_pdf)/sum(linked_pdf)
   unlinked_cdf <- cumsum(unlinked_pdf)/sum(unlinked_pdf)
   
-  # wrapping in function to allow for multiple cutoffs
+  # Utility function to allow for multiple sensitivity and specificity cutoffs
   get_sens_spec <- function(cutoff) {
     
     # remember that cdf[cutoff] represents the probability of cutoff-1
@@ -847,16 +865,21 @@ sens_spec_calc <- function(cutoff, mut_rate, mean_gens_pdf, max_link_gens=1,
 }
 
 
-##' Wrapper function to turn output from sens_spec_calc to values to make an ROC curve
+
+
+##' Make ROC from sensitivity and specificity
+##' 
+##' This is a wrapper function that takes output from the `sens_spec_calc()` function and constructs values for the
+##' Receiver Operating Characteric (ROC) curve
 ##'
 ##' @param cutoff the maximum genetic distance at which to consider cases linked
 ##' @param mut_rate mean number of mutations per generation, assumed to be poisson distributed
 ##' @param mean_gens_pdf the density distribution of the mean number of generations between cases;
 ##'       the index of this vector is assumed to be the discrete distance between cases
 ##' @param max_link_gens the maximium generations of separation for linked pairs
-##' @param max_gens the maximum number of generations to consider, defaults to the highest
+##' @param max_gens the maximum number of generations to consider, if \code{NULL} (default) value set to the highest
 ##'        number of generations in mean_gens_pdf with a non-zero probability
-##' @param max_dist the maximum distance to calculate, defaults to max_gens * 99.9th percentile
+##' @param max_dist the maximum distance to calculate, if \code{NULL} (default) value set to max_gens * 99.9th percentile
 ##'       of mut_rate poisson distribution
 ##'
 ##' @return data frame with cutoff, sensitivity, and 1-specificity
@@ -870,9 +893,17 @@ sens_spec_calc <- function(cutoff, mut_rate, mean_gens_pdf, max_link_gens=1,
 ##' @export
 ##'
 
-sens_spec_roc <- function(cutoff, mut_rate, mean_gens_pdf, max_link_gens=1,
-                      max_gens=which(mean_gens_pdf!=0)[length(which(mean_gens_pdf!=0))],
-                      max_dist=max_gens*qpois(.999,mut_rate)){
+sens_spec_roc <- function(
+  cutoff, 
+  mut_rate, 
+  mean_gens_pdf, 
+  max_link_gens=1,
+  max_gens=NULL,
+  max_dist=NULL
+){
+  
+  if(is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
+  if(is.null(max_dist)) max_dist <- max_gens*stats::qpois(.999, mut_rate)
   
   rc <- sens_spec_calc(cutoff,mut_rate,mean_gens_pdf,max_link_gens,max_gens,max_dist)
   
@@ -883,8 +914,35 @@ sens_spec_roc <- function(cutoff, mut_rate, mean_gens_pdf, max_link_gens=1,
   rc$specificity <- 1-rc$specificity
   
   # add the starting and ending points to make the complete curve
-  rc <- rbind(c(-1,0,0),rc,c(Inf,1,1))
+  rc <- rbind(c(-1,0,0), rc ,c(Inf,1,1))
   
   return(rc)
-  
 }
+
+
+##' Find optimal ROC threshold
+##'
+##' This function takes the dataframe output of the `sens_spec_roc()` function and finds the optimnal threshold 
+##' of sensitivity and specificity by minimizing the distance to the top left corner of the Receiver Operating Characteriztic (ROC) curve
+##'
+##' @param roc a dataframe produced by the `sens_spec_roc()` function containing the Receiver Operating Characteriztic (ROC) curve
+##' 
+##' @return vector contaitng optimal thresholds ofsensitivity and specificity
+##' 
+##' @author Shirlee Wohl, John Giles, and Justin Lessler
+##'
+##' @example R/examples/get_optim_roc.R
+##'
+##' @family mutrate_functions
+##'
+##' @export
+##'
+
+get_optim_roc <- function(roc) {
+
+  roc <- roc[-1,] # remove first row with zero threshold
+  dist <- sqrt((1-roc$sensitivity)^2 + (roc$specificity)^2)
+  as.list(roc[dist == min(dist),])
+}
+
+

@@ -2,15 +2,15 @@
 % Please edit documentation in R/phylosamp_funcs.R
 \name{sens_spec_roc}
 \alias{sens_spec_roc}
-\title{Wrapper function to turn output from sens_spec_calc to values to make an ROC curve}
+\title{Make ROC from sensitivity and specificity}
 \usage{
 sens_spec_roc(
   cutoff,
   mut_rate,
   mean_gens_pdf,
   max_link_gens = 1,
-  max_gens = which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))],
-  max_dist = max_gens * qpois(0.999, mut_rate)
+  max_gens = NULL,
+  max_dist = NULL
 )
 }
 \arguments{
@@ -23,21 +23,47 @@ the index of this vector is assumed to be the discrete distance between cases}
 
 \item{max_link_gens}{the maximium generations of separation for linked pairs}
 
-\item{max_gens}{the maximum number of generations to consider, defaults to the highest
+\item{max_gens}{the maximum number of generations to consider, if \code{NULL} (default) value set to the highest
 number of generations in mean_gens_pdf with a non-zero probability}
 
-\item{max_dist}{the maximum distance to calculate, defaults to max_gens * 99.9th percentile
+\item{max_dist}{the maximum distance to calculate, if \code{NULL} (default) value set to max_gens * 99.9th percentile
 of mut_rate poisson distribution}
 }
 \value{
 data frame with cutoff, sensitivity, and 1-specificity
 }
 \description{
-Wrapper function to turn output from sens_spec_calc to values to make an ROC curve
+This is a wrapper function that takes output from the `sens_spec_calc()` function and constructs values for the
+Receiver Operating Characteric (ROC) curve
+}
+\examples{
+# ebola-like pathogen
+R <- 1.5
+mut_rate <- 1
+
+# use simulated generation distributions
+data("gen_dist_sim")
+mean_gens_pdf <- as.numeric(gen_dist_sim[gen_dist_sim$R == R, -(1:2)])
+
+# get theoretical genetic distance dist based on mutation rate and generation parameters
+dists <- as.data.frame(gen_dists(mut_rate = mut_rate, 
+                                 mean_gens_pdf = mean_gens_pdf, 
+                                 max_link_gens = 1))
+
+dists <- reshape2::melt(dists, 
+                        id.vars = "dist", 
+                        variable.name = "status", 
+                        value.name = "prob")
+
+# get sensitivity and specificity using the same paramters
+roc_calc <- sens_spec_roc(cutoff = 1:(max(dists$dist)-1), 
+                          mut_rate = mut_rate,
+                          mean_gens_pdf = mean_gens_pdf)
 }
 \seealso{
 Other mutrate_functions: 
 \code{\link{gen_dists}()},
+\code{\link{get_optim_roc}()},
 \code{\link{sens_spec_calc}()}
 }
 \author{

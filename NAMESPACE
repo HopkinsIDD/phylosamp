@@ -3,6 +3,7 @@
 export(exp_links)
 export(falsediscoveryrate)
 export(gen_dists)
+export(get_optim_roc)
 export(obs_pairs_mtml)
 export(obs_pairs_mtsl)
 export(obs_pairs_stsl)

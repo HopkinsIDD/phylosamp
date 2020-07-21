@@ -18,13 +18,19 @@ The sensitivity and specificity of the linkage criteria to distinguish between l
 
 However, there are many scenarios in which this existing dataset is not available or representative of the desired sampling population. In this package, we provide a method for calculating the sensitivity and specificity of genetic distance -- the number of mutations between pathogen genome sequences -- as a linkage criteria. Further research is needed to extend this method beyond genetic distance as the linkage metric.
 
-In this package, we provide a function (`sens_spec_calc`) to calculate the sensitivity and specificity when using a specific genetic distance threshold (e.g. 2 mutations) or a vector of candidate thresholds (e.g. 1-10 mutations). Note that samples separated by a genetic distance of less than the cutoff are considered linked, so the minimum cutoff to consider is 1 (linked cases have identical genomes).
+In this package, we provide a function (`sens_spec_calc()`) to calculate the sensitivity and specificity when using a specific genetic distance threshold (e.g. 2 mutations) or a vector of candidate thresholds (e.g. 1-10 mutations). Note that samples separated by a genetic distance of less than the cutoff are considered linked, so the minimum cutoff to consider is 1 (linked cases have identical genomes).
 
 ```{r sens_spec_calc}
 
-sens_spec_calc(cutoff=2, mut_rate=1, mean_gens_pdf=c(0.02,0.08,0.15,0.75), max_link_gens=1)
+sens_spec_calc(cutoff=2, 
+               mut_rate=1, 
+               mean_gens_pdf=c(0.02,0.08,0.15,0.75), 
+               max_link_gens=1)
 
-sens_spec_calc(cutoff=1:10, mut_rate=1, mean_gens_pdf=c(0.02,0.08,0.15,0.75), max_link_gens=1)
+sens_spec_calc(cutoff=1:10, 
+               mut_rate=1, 
+               mean_gens_pdf=c(0.02,0.08,0.15,0.75), 
+               max_link_gens=1)
 
 ```
 
@@ -49,11 +55,15 @@ The number of generations between all pairs of cases in the population is key to
 We provide an example of using these results for given the mutation rate (~1) and reproductive number (1.5) of an Ebola-like virus:
 
 ```{r sens_spec_calc_ebov}
+R <- 1.5
 
-mgd <- read.csv("data/sim_distance_dist.csv")
+data("gen_dist_sim")
+mgd <- as.numeric(gen_dist_sim[gen_dist_sim$R == R, -(1:2)])
 
-sens_spec_calc(cutoff=1:10, mut_rate=1, mean_gens_pdf=mgd[mgd["R"]==1.5][3:dim(mgd)[2]], max_link_gens=1)
-
+sens_spec_calc(cutoff=1:10, 
+               mut_rate=1, 
+               mean_gens_pdf=mgd, 
+               max_link_gens=1)
 ```
 
 We can then choose the optimal threshold and the associated sensitivity and specificity for our transmission study. Many methods exist for choosing the optimal threshold, including the Youden index, closest to corner, etc. Using either of these methods, the optimal threshold in this example is 5 mutations. In other words, cases separate by less than 5 mutations will be considered linked given this linkage criteria, which has a sensitivity of 98.1% and a specficity of 98.7%.

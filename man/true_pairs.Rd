@@ -21,8 +21,6 @@ true_pairs(eta, rho, M, R = NULL, assumption = "mtml")
      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption (\code{\link{prob_trans_mtml}}).
      }}
-
-\item{chi}{scalar or vector giving the specificity of the linkage criteria}
 }
 \value{
 scalar or vector giving the expected number of true transmission pairs in the sample
@@ -30,6 +28,9 @@ scalar or vector giving the expected number of true transmission pairs in the sa
 \description{
 This function calculates the expected number true transmission pairs in a sample of size \code{M}.
 Assumptions about transmission and linkage (single or multiple) can be specified.
+}
+\examples{
+true_pairs(eta=0.99, rho=0.75, M=100, R=1)
 }
 \seealso{
 Other true_pairs: 

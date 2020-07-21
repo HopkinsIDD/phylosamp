@@ -2,9 +2,9 @@
 % Please edit documentation in R/phylosamp_funcs.R
 \name{samplesize}
 \alias{samplesize}
-\title{Sample size required to obtain a defined false discovery rate given the final outbreak size}
+\title{Calculate sample size}
 \usage{
-samplesize(eta, chi, N, R, phi, min_pairs = 1)
+samplesize(eta, chi, N, R = NULL, phi, min_pairs = 1, assumption = "mtml")
 }
 \arguments{
 \item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
@@ -18,18 +18,23 @@ samplesize(eta, chi, N, R, phi, min_pairs = 1)
 \item{phi}{scalar or vector giving the desired true discovery rate (1-false discovery rate)}
 
 \item{min_pairs}{minimum number of linked pairs observed in the sample, defaults to 1 pair (2 samples); this is to ensure reasonable results are obtained}
+
+\item{assumption}{a character vector indicating which assumptions about transmission and linkage criteria. The function expects one of the following:
+\enumerate{
+     \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
+     \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
+     \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption (\code{\link{prob_trans_mtml}}).
+     }}
 }
 \value{
 scalar or vector giving the sample size needed to meet the given conditions
 }
 \description{
-This function calculates the sample size needed to obtain a defined false disovery rate given a final outbreak size \eqn{N}.
-This function is only provided for the multiple-transmission and multiple-linkage method, which assumes the following:
-\enumerate{
-     \item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
-     \item Each case \eqn{i} is allowed to be linked by the linkage criteria to multiple cases \eqn{j} in the sampled population (\eqn{M}).
-     \item Linkage events are independent of one another (i.e, linkage of case \eqn{i} to case \eqn{j} has no bearing on linkage of case \eqn{i} to any other sample).
-     }
+This function calculates the sample size needed to obtain at least a defined false disovery rate given 
+a final outbreak size \eqn{N}.
+}
+\examples{
+samplesize(eta=0.99, chi=0.995, N=100, R=1, phi=0.75)
 }
 \author{
 John Giles, Shirlee Wohl, and Justin Lessler

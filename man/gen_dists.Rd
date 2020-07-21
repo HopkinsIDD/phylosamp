@@ -2,15 +2,14 @@
 % Please edit documentation in R/phylosamp_funcs.R
 \name{gen_dists}
 \alias{gen_dists}
-\title{Function calculates the distribution of genetic distances in a population of viruses
-with the given parameterts}
+\title{Calculate genetic distance distribution}
 \usage{
 gen_dists(
   mut_rate,
   mean_gens_pdf,
   max_link_gens = 1,
-  max_gens = which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))],
-  max_dist = max_gens * qpois(0.999, mut_rate)
+  max_gens = NULL,
+  max_dist = NULL
 )
 }
 \arguments{
@@ -21,10 +20,10 @@ the index of this vector is assumed to be the discrete distance between cases}
 
 \item{max_link_gens}{the maximium generations of separation for linked pairs}
 
-\item{max_gens}{the maximum number of generations to consider, defaults to the highest
+\item{max_gens}{the maximum number of generations to consider, if \code{NULL} (default) value is set to the highest
 number of generations in mean_gens_pdf with a non-zero probability}
 
-\item{max_dist}{the maximum distance to calculate, defaults to max_gens * 99.9th percentile
+\item{max_dist}{the maximum distance to calculate, if \code{NULL} (default) value is set to max_gens * 99.9th percentile
 of mut_rate poisson distribution}
 }
 \value{
@@ -32,10 +31,25 @@ a data frame with distances and probabilities
 }
 \description{
 Function calculates the distribution of genetic distances in a population of viruses
-with the given parameterts
+with the given parameters
+}
+\examples{
+# ebola-like pathogen
+R <- 1.5
+mut_rate <- 1
+
+# use simulated generation distributions from the provided 'gen_dist_sim' data object
+data("gen_dist_sim")
+mean_gens_pdf <- as.numeric(gen_dist_sim[gen_dist_sim$R == R, -(1:2)])
+
+# get theoretical genetic distance dist based on mutation rate and generation parameters
+gen_dists(mut_rate = mut_rate, 
+          mean_gens_pdf = mean_gens_pdf, 
+          max_link_gens = 1)
 }
 \seealso{
 Other mutrate_functions: 
+\code{\link{get_optim_roc}()},
 \code{\link{sens_spec_calc}()},
 \code{\link{sens_spec_roc}()}
 }

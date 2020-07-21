@@ -2,16 +2,15 @@
 % Please edit documentation in R/phylosamp_funcs.R
 \name{sens_spec_calc}
 \alias{sens_spec_calc}
-\title{Function to calculate the sensitivity and specificity of a genetic distance cutoff
-given an underlying mutation rate and mean number of generations between cases}
+\title{Calculate sensitivity and specificity}
 \usage{
 sens_spec_calc(
   cutoff,
   mut_rate,
   mean_gens_pdf,
   max_link_gens = 1,
-  max_gens = which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))],
-  max_dist = max_gens * qpois(0.999, mut_rate)
+  max_gens = NULL,
+  max_dist = NULL
 )
 }
 \arguments{
@@ -24,10 +23,10 @@ the index of this vector is assumed to be the discrete distance between cases}
 
 \item{max_link_gens}{the maximium generations of separation for linked pairs}
 
-\item{max_gens}{the maximum number of generations to consider, defaults to the highest
+\item{max_gens}{the maximum number of generations to consider, if \code{NULL} (default) value set to the highest
 number of generations in mean_gens_pdf with a non-zero probability}
 
-\item{max_dist}{the maximum distance to calculate, defaults to max_gens * 99.9th percentile
+\item{max_dist}{the maximum distance to calculate, if \code{NULL} (default) value set to max_gens * 99.9th percentile
 of mut_rate poisson distribution}
 }
 \value{
@@ -37,9 +36,23 @@ a data frame with the sensitivity and specificity for a particular genetic dista
 Function to calculate the sensitivity and specificity of a genetic distance cutoff
 given an underlying mutation rate and mean number of generations between cases
 }
+\examples{
+# calculate the sensitivity and specificity for a specific genetic distance threshold of 2 mutations
+sens_spec_calc(cutoff=2, 
+               mut_rate=1, 
+               mean_gens_pdf=c(0.02,0.08,0.15,0.75), 
+               max_link_gens=1)
+
+# calculate the sensitivity and specificity for a a range of genetic distance thresholds
+sens_spec_calc(cutoff=1:10, 
+               mut_rate=1, 
+               mean_gens_pdf=c(0.02,0.08,0.15,0.75), 
+               max_link_gens=1)
+}
 \seealso{
 Other mutrate_functions: 
 \code{\link{gen_dists}()},
+\code{\link{get_optim_roc}()},
 \code{\link{sens_spec_roc}()}
 }
 \author{
