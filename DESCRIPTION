@@ -2,19 +2,21 @@ Package: phylosamp
 Type: Package
 Title: Tools to calculate the probability of transmission given phylogenetic linkage
 Version: 0.1.2
-Authors@R: c(person("John", "Giles", role=c("aut"), email="giles@jhu.edu"),
+Authors@R: c(person("John R", "Giles", role=c("aut", "cre"), email="giles@jhu.edu"),
               person("Shirlee", "Wohl", role=c("aut"), email="swohl@jhu.edu"),
-              person("Justin", "Lessler", role=c("cre"), email="justin@jhu.edu"))
+              person("Justin", "Lessler", role=c("aut"), email="justin@jhu.edu"))
 Maintainer: Justin Lessler <justin@jhu.edu>
 Description: Implements novel tools that estimate the probability of true transmission between two cases given 
     phylogenetic linkage and the expected number of true transmission links in a sample.
 License: GPL-2
-URL: https://https://github.com/HopkinsIDD/phylosamp
+URL: https://github.com/HopkinsIDD/phylosamp
 BugReports: https://https://github.com/HopkinsIDD/phylosamp/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0
-Depends: R (>= 2.10), stats
+Depends: 
+  R (>= 2.10), 
+  stats
 Imports: 
   reshape2, 
   ggplot2, 
@@ -22,5 +24,6 @@ Imports:
   RColorBrewer
 Suggests: 
   knitr, 
-  rmarkdown
+  rmarkdown,
+  testthat
 VignetteBuilder: knitr

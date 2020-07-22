@@ -31,11 +31,10 @@ prob_trans_stsl <- function(
   M       # number of cases sampled
 ){
 
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
-           is.numeric(chi), chi >= 0 & chi <= 1,
-           is.numeric(rho), rho >= 0 & rho <= 1)) stop('Arguments eta, chi, and rho must be numeric between 0 and 1')
-
-  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
+  if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
+  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
+  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
 
   (eta * rho) /
     ((eta * rho) + ((1 - chi^(M-2)) * (1 - eta) * rho) + ((1 - chi^(M-1)) * (1 - rho)))
@@ -75,11 +74,10 @@ obs_pairs_stsl <- function(
 
 ){
 
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
-           is.numeric(chi), chi >= 0 & chi <= 1,
-           is.numeric(rho), rho >= 0 & rho <= 1)) stop('Arguments eta, chi, and rho must be numeric between 0 and 1')
-
-  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
+  if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
+  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
+  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
 
   (M / 2) * ((eta * rho) + (rho * (1 - eta) * (1 - chi^(M-2))) + ((1 - rho) * (1 - chi^(M-1))))
 }
@@ -115,11 +113,10 @@ true_pairs_stsl <- function(
   M       # number of cases sampled
   
 ){
-  
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
-           is.numeric(rho), rho >= 0 & rho <= 1)) stop('Arguments eta, chi, and rho must be numeric between 0 and 1')
-  
-  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
+
+  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
+  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
+  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
   
   (M / 2) * eta * rho
 }
@@ -160,11 +157,10 @@ prob_trans_mtsl <- function(
   R       # effective reproductive number
 ){
 
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
-           is.numeric(chi), chi >= 0 & chi <= 1,
-           is.numeric(rho), rho >= 0 & rho <= 1)) stop('Arguments eta, chi, and rho must be numeric between 0 and 1')
-
-  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
+  if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
+  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
+  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
@@ -209,11 +205,10 @@ obs_pairs_mtsl <- function(
   R       # effective reproductive number
 ){
 
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
-           is.numeric(chi), chi >= 0 & chi <= 1,
-           is.numeric(rho), rho >= 0 & rho <= 1)) stop('Arguements eta, chi, and rho must be numeric between 0 and 1')
-
-  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
+  if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
+  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
+  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
@@ -257,10 +252,9 @@ true_pairs_mtsl <- function(
   R       # effective reproductive number
 ){
   
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
-           is.numeric(rho), rho >= 0 & rho <= 1)) stop('Arguements eta and rho must be numeric between 0 and 1')
-  
-  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
+  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
+  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
   
@@ -304,14 +298,12 @@ prob_trans_mtml <- function(
   R       # effective reproductive number
 ){
 
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
-           is.numeric(chi), chi >= 0 & chi <= 1,
-           is.numeric(rho), rho >= 0 & rho <= 1)) stop('Arguements eta, chi, and rho must be numeric between 0 and 1')
-
-  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
+  if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
+  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
+  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
-
 
   (eta * rho * (R+1)) /
     ((eta * rho * (R+1)) + ((1-chi) * (M - 1 - (rho * (R+1)))))
@@ -355,11 +347,10 @@ obs_pairs_mtml <- function(
   R       # effective reproductive number
 ){
 
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
-           is.numeric(chi), chi >= 0 & chi <= 1,
-           is.numeric(rho), rho >= 0 & rho <= 1)) stop('Arguements eta, chi, and rho must be numeric between 0 and 1')
-
-  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
+  if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
+  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
+  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
@@ -401,10 +392,9 @@ true_pairs_mtml <- function(
   R       # effective reproductive number
 ){
   
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1,
-           is.numeric(rho), rho >= 0 & rho <= 1)) stop('Arguements eta, chi, and rho must be numeric between 0 and 1')
-  
-  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
+  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
+  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
   
