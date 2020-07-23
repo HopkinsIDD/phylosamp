@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
       </span>
     </div>
 
@@ -104,6 +104,13 @@
 
     
     
+<style type="text/css">
+
+h1.title {
+  font-size: 24px
+}
+
+</style>
 <p>In this vignette, we apply the functions provided to estimate sensitivity and specificity and apply them to an Ebola-like pathogen. We compare the results to those of a pathogen with a slower mutation rate and higher reproductive number. Then, we will use these results to calculate the false discovery rate of our linkage criteria (genetic distance) given a sample size of 200 and a relevant population of 1000 infected individuals.</p>
 <p>In the first part of this vignette, we use the function <code><a href="../reference/sens_spec_roc.html">sens_spec_roc()</a></code>, which formats the results of <code><a href="../reference/sens_spec_calc.html">sens_spec_calc()</a></code> for plotting ROC curves.</p>
 <div id="calculating-sensitivity-and-specificity-for-an-ebola-like-pathogen" class="section level3">

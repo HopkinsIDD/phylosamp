@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
       </span>
     </div>
 
@@ -104,6 +104,13 @@
 
     
     
+<style type="text/css">
+
+h1.title {
+  font-size: 24px
+}
+
+</style>
 <p>The sensitivity and specificity of the linkage criteria to distinguish between linked and unlinked infection pairs can be determined by applying a specific linkage criteria to an existing dataset for which the true transmission events are known, and then extrapoloating these results to a new or larger set of data for which transmission are not known.</p>
 <p>However, there are many scenarios in which this existing dataset is not available or representative of the desired sampling population. In this package, we provide a method for calculating the sensitivity and specificity of genetic distance – the number of mutations between pathogen genome sequences – as a linkage criteria. Further research is needed to extend this method beyond genetic distance as the linkage metric.</p>
 <p>In this package, we provide a function (<code><a href="../reference/sens_spec_calc.html">sens_spec_calc()</a></code>) to calculate the sensitivity and specificity when using a specific genetic distance threshold (e.g. 2 mutations) or a vector of candidate thresholds (e.g. 1-10 mutations). Note that samples separated by a genetic distance of less than the cutoff are considered linked, so the minimum cutoff to consider is 1 (linked cases have identical genomes).</p>

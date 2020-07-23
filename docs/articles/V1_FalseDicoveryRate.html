@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
       </span>
     </div>
 
@@ -104,6 +104,13 @@
 
     
     
+<style type="text/css">
+
+h1.title {
+  font-size: 24px
+}
+
+</style>
 <p>This vignette provides an overview of the primary function of the phylosamp package: how to estimate the false discovery rate given a sample size. In the examples provided, we use the default <code>assumption</code> argument (multiple transmissions and multiple links, <code>mtml</code>), though alternative assumptions can also be specified.</p>
 <p>The most basic function of the package is <code><a href="../reference/truediscoveryrate.html">truediscoveryrate()</a></code>, which calculates the probability that an identified link represents a true transmission event:</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="../reference/truediscoveryrate.html">truediscoveryrate</a></span>(<span class="kw">eta</span><span class="kw">=</span><span class="fl">0.99</span>, <span class="kw">chi</span><span class="kw">=</span><span class="fl">0.95</span>, <span class="kw">rho</span><span class="kw">=</span><span class="fl">0.75</span>, <span class="kw">M</span><span class="kw">=</span><span class="fl">100</span>, <span class="kw">R</span><span class="kw">=</span><span class="fl">1</span>)</pre></body></html></div>
