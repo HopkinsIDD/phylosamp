@@ -10,7 +10,7 @@ vignette: >
 <style type="text/css">
 
 h1.title {
-  font-size: 24px
+  font-size: 22px
 }
 
 </style>
