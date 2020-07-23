@@ -15,16 +15,13 @@ h1.title {
 
 </style>
 
-```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir="../")
-knitr::opts_chunk$set(fig.width=7.5, fig.height=6, fig.path='../figures/', warning=FALSE, message=FALSE,cache=FALSE)
-
-library(phylosamp)
-```
-
 In this vignette we describe how the `phylosamp` package can be used in reverse, to calculate the necessary sample size to achieve a pre-specified false discovery rate. For example, this calculation would be useful if a researcher is conducting a study for which specimens have yet to be collected, but they want to ensure at least 75% confidence in identified links. To calculate the proportion of links that represent true transmission pairs, the user needs to provide the sensitivity and specificity of the linkage criteria used, the final size of the outbreak, and the desired minimum true discovery rate ($1-\text{False Discovery Rate}$).
 
 Imagine we are interested in collecting enough samples from an outbreak of 100 cases to ensure that the identified links are correct at least 75% of the time. The phylogenetic criteria we are using to identify links has a sensitivity of 99% and a specificity of 99.5%:
+
+```{r setup, message=FALSE}
+library(phylosamp)
+```
 
 ```{r samplesize}
 

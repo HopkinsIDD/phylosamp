@@ -15,25 +15,21 @@ h1.title {
 
 </style>
 
-```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir="../")
-knitr::opts_chunk$set(fig.width=7.5, fig.height=6, fig.path='../figures/', warning=FALSE, message=FALSE,cache=FALSE)
-
-library(phylosamp)
-```
-
-In this vignette, we apply the functions provided to estimate sensitivity and specificity and apply them to an Ebola-like pathogen. We compare the results to those of a pathogen with a slower mutation rate and higher reproductive number. Then, we will use these results to calculate the false discovery rate of our linkage criteria (genetic distance) given a sample size of 200 and a relevant population of 1000 infected individuals.
+ this vignette, we apply the functions provided to estimate sensitivity and specificity and apply them to an Ebola-like pathogen. We compare the results to those of a pathogen with a slower mutation rate and higher reproductive number. Then, we will use these results to calculate the false discovery rate of our linkage criteria (genetic distance) given a sample size of 200 and a relevant population of 1000 infected individuals.
 
 In the first part of this vignette, we use the function `sens_spec_roc()`, which formats the results of `sens_spec_calc()` for plotting ROC curves.
 
-### Calculating sensitivity and specificity for an Ebola-like pathogen
-
-```{r gen_dist_compare_ebov, fig.width=4, fig.height=3}
-
+```{r setup, message=FALSE}
+library(phylosamp)
 library(ggplot2)
 library(reshape2)
 library(RColorBrewer)
 library(cowplot)
+```
+
+### Calculating sensitivity and specificity for an Ebola-like pathogen
+
+```{r gen_dist_compare_ebov, fig.width=6, fig.height=4, warning=FALSE}
 
 # ebola-like pathogen
 R <- 1.5
@@ -116,7 +112,7 @@ mean_gens_pdf <- gen_dist_sim[gen_dist_sim["R"]==R][3:dim(gen_dist_sim)[2]]
 
 ### Calculating sensitivity and specificity for a faster-spreading, slower mutating pathogen
 
-```{r gen_dist_mev_plot, fig.width=4, fig.height=3, echo=FALSE}
+```{r gen_dist_mev_plot, fig.width=6, fig.height=4, echo=FALSE, warning=FALSE}
 
 # get theoretical genetic distance dist based on mutation rate and generation parameters
 dists <- as.data.frame(gen_dists(mut_rate = mut_rate, mean_gens_pdf = mean_gens_pdf, max_link_gens = 1))

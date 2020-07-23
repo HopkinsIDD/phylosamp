@@ -111,17 +111,17 @@ h1.title {
 }
 
 </style>
-<p>In this vignette, we apply the functions provided to estimate sensitivity and specificity and apply them to an Ebola-like pathogen. We compare the results to those of a pathogen with a slower mutation rate and higher reproductive number. Then, we will use these results to calculate the false discovery rate of our linkage criteria (genetic distance) given a sample size of 200 and a relevant population of 1000 infected individuals.</p>
+<p>this vignette, we apply the functions provided to estimate sensitivity and specificity and apply them to an Ebola-like pathogen. We compare the results to those of a pathogen with a slower mutation rate and higher reproductive number. Then, we will use these results to calculate the false discovery rate of our linkage criteria (genetic distance) given a sample size of 200 and a relevant population of 1000 infected individuals.</p>
 <p>In the first part of this vignette, we use the function <code><a href="../reference/sens_spec_roc.html">sens_spec_roc()</a></code>, which formats the results of <code><a href="../reference/sens_spec_calc.html">sens_spec_calc()</a></code> for plotting ROC curves.</p>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">phylosamp</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">reshape2</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">RColorBrewer</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cowplot</span>)</pre></body></html></div>
 <div id="calculating-sensitivity-and-specificity-for-an-ebola-like-pathogen" class="section level3">
 <h3 class="hasAnchor">
 <a href="#calculating-sensitivity-and-specificity-for-an-ebola-like-pathogen" class="anchor"></a>Calculating sensitivity and specificity for an Ebola-like pathogen</h3>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">reshape2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">RColorBrewer</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cowplot</span>)
-
-<span class="co"># ebola-like pathogen</span>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># ebola-like pathogen</span>
 <span class="no">R</span> <span class="kw">&lt;-</span> <span class="fl">1.5</span>
 <span class="no">mut_rate</span> <span class="kw">&lt;-</span> <span class="fl">1</span>
 
@@ -172,21 +172,21 @@ h1.title {
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>()
 
 <span class="kw pkg">cowplot</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/cowplot/man/ggdraw.html">ggdraw</a></span>(<span class="no">p1</span>) + <span class="kw pkg">cowplot</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/cowplot/man/draw_plot.html">draw_plot</a></span>(<span class="no">r1</span>, <span class="kw">hjust</span><span class="kw">=</span>-<span class="fl">0.16</span>, <span class="kw">vjust</span><span class="kw">=</span>-<span class="fl">0.16</span>, <span class="kw">scale</span><span class="kw">=</span><span class="fl">0.6</span>)</pre></body></html></div>
-<p><img src="../figures/gen_dist_compare_ebov-1.png" width="384"></p>
+<p><img src="V4_FullExamples_files/figure-html/gen_dist_compare_ebov-1.png" width="672"></p>
 </div>
 <div id="optimal-values-for-an-ebola-like-pathogen" class="section level3">
 <h3 class="hasAnchor">
 <a href="#optimal-values-for-an-ebola-like-pathogen" class="anchor"></a>Optimal values for an Ebola-like pathogen</h3>
 <p>Using the closest-to-corner method, the optimal genetic distance threshold for this pathogen is:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">threshold</span></pre></body></html></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">threshold</span></pre></body></html></div>
 <pre><code>## [1] 5</code></pre>
 <p>And the sensitivity and specificity at this threshold is:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">roc_optim</span>$<span class="no">sensitivity</span> <span class="co">## sensitivity</span></pre></body></html></div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">roc_optim</span>$<span class="no">sensitivity</span> <span class="co">## sensitivity</span></pre></body></html></div>
 <pre><code>## [1] 0.9963402</code></pre>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fl">1</span> - <span class="no">roc_optim</span>$<span class="no">specificity</span> <span class="co">## specificity</span></pre></body></html></div>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fl">1</span> - <span class="no">roc_optim</span>$<span class="no">specificity</span> <span class="co">## specificity</span></pre></body></html></div>
 <pre><code>## [1] 0.9801562</code></pre>
 <p>We repeat the above plot for a pathogen with a higher reproductive number and lower mutation rate:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># faster-spreading pathogen</span>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># faster-spreading pathogen</span>
 <span class="no">R</span> <span class="kw">&lt;-</span> <span class="fl">3</span>
 <span class="no">mut_rate</span> <span class="kw">&lt;-</span> <span class="fl">0.2</span>
 
@@ -195,18 +195,18 @@ h1.title {
 <div id="calculating-sensitivity-and-specificity-for-a-faster-spreading-slower-mutating-pathogen" class="section level3">
 <h3 class="hasAnchor">
 <a href="#calculating-sensitivity-and-specificity-for-a-faster-spreading-slower-mutating-pathogen" class="anchor"></a>Calculating sensitivity and specificity for a faster-spreading, slower mutating pathogen</h3>
-<p><img src="../figures/gen_dist_mev_plot-1.png" width="384"></p>
+<p><img src="V4_FullExamples_files/figure-html/gen_dist_mev_plot-1.png" width="672"></p>
 </div>
 <div id="optimal-values-for-a-faster-spreading-slower-mutating-pathogen" class="section level3">
 <h3 class="hasAnchor">
 <a href="#optimal-values-for-a-faster-spreading-slower-mutating-pathogen" class="anchor"></a>Optimal values for a faster-spreading, slower mutating pathogen</h3>
 <p>For this pathogen, the optimal genetic distance threshold is:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">threshold</span></pre></body></html></div>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">threshold</span></pre></body></html></div>
 <pre><code>## [1] 1</code></pre>
 <p>And the sensitivity and specificity at this threshold is:</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">roc_optim</span>[<span class="no">roc_optim</span>$<span class="no">cutoff</span><span class="kw">==</span><span class="no">threshold</span>,]$<span class="no">sensitivity</span> <span class="co">## sensitivity</span></pre></body></html></div>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">roc_optim</span>[<span class="no">roc_optim</span>$<span class="no">cutoff</span><span class="kw">==</span><span class="no">threshold</span>,]$<span class="no">sensitivity</span> <span class="co">## sensitivity</span></pre></body></html></div>
 <pre><code>## [1] 0.8187308</code></pre>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fl">1</span> - <span class="no">roc_optim</span>[<span class="no">roc_optim</span>$<span class="no">cutoff</span><span class="kw">==</span><span class="no">threshold</span>,]$<span class="no">specificity</span> <span class="co">## specificity</span></pre></body></html></div>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fl">1</span> - <span class="no">roc_optim</span>[<span class="no">roc_optim</span>$<span class="no">cutoff</span><span class="kw">==</span><span class="no">threshold</span>,]$<span class="no">specificity</span> <span class="co">## specificity</span></pre></body></html></div>
 <pre><code>## [1] 0.8539157</code></pre>
 <p>It is well understood that genetic distance is a much more accurate predictor of transmission linkage for pathogens with higher mutation rates and slower spread, as shown clearly in this example (lower sensitivity and specificity in the second example). Genetic distance is clearly not an appropriate metric for all pathogens, but more sophisticated linkage criteria – espeically those that incorporate epidemiological information as well – may produce better results.</p>
 </div>
@@ -214,9 +214,11 @@ h1.title {
 <h3 class="hasAnchor">
 <a href="#calculating-the-false-discovery-rate-of-genetic-distance-as-a-linkage-criteria" class="anchor"></a>Calculating the false discovery rate of genetic distance as a linkage criteria</h3>
 <p>This is reflected in our confidence in identifying linked infection pairs. Assuming a sample size of 200, a relevant population of 1000, and the genetic distance threshold and associated sensitivity and specificity for each pathogen we get:</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="../reference/truediscoveryrate.html">truediscoveryrate</a></span>(<span class="kw">eta</span><span class="kw">=</span><span class="fl">0.9963402</span>, <span class="kw">chi</span><span class="kw">=</span><span class="fl">0.9801562</span>, <span class="kw">rho</span><span class="kw">=</span><span class="fl">0.20</span>, <span class="kw">M</span><span class="kw">=</span><span class="fl">200</span>, <span class="kw">R</span><span class="kw">=</span><span class="fl">1</span>) <span class="co"># ebola-like pathogen</span></pre></body></html></div>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="../reference/truediscoveryrate.html">truediscoveryrate</a></span>(<span class="kw">eta</span><span class="kw">=</span><span class="fl">0.9963402</span>, <span class="kw">chi</span><span class="kw">=</span><span class="fl">0.9801562</span>, <span class="kw">rho</span><span class="kw">=</span><span class="fl">0.20</span>, <span class="kw">M</span><span class="kw">=</span><span class="fl">200</span>, <span class="kw">R</span><span class="kw">=</span><span class="fl">1</span>) <span class="co"># ebola-like pathogen</span></pre></body></html></div>
+<pre><code>## Calculating true discovery rate assuming multiple-transmission and multiple-linkage</code></pre>
 <pre><code>## [1] 0.09183886</code></pre>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="../reference/truediscoveryrate.html">truediscoveryrate</a></span>(<span class="kw">eta</span><span class="kw">=</span><span class="fl">0.8187308</span>, <span class="kw">chi</span><span class="kw">=</span><span class="fl">0.8539157</span>, <span class="kw">rho</span><span class="kw">=</span><span class="fl">0.20</span>, <span class="kw">M</span><span class="kw">=</span><span class="fl">200</span>, <span class="kw">R</span><span class="kw">=</span><span class="fl">1</span>) <span class="co"># slower-mutating pathogen</span></pre></body></html></div>
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="../reference/truediscoveryrate.html">truediscoveryrate</a></span>(<span class="kw">eta</span><span class="kw">=</span><span class="fl">0.8187308</span>, <span class="kw">chi</span><span class="kw">=</span><span class="fl">0.8539157</span>, <span class="kw">rho</span><span class="kw">=</span><span class="fl">0.20</span>, <span class="kw">M</span><span class="kw">=</span><span class="fl">200</span>, <span class="kw">R</span><span class="kw">=</span><span class="fl">1</span>) <span class="co"># slower-mutating pathogen</span></pre></body></html></div>
+<pre><code>## Calculating true discovery rate assuming multiple-transmission and multiple-linkage</code></pre>
 <pre><code>## [1] 0.01116204</code></pre>
 <p>As a final note, we remind the reader that the specificity of the linkage criteria has a significant bearing on the true/false discovery rate, and that high true discovery rates require a specificity upwards of 0.999. Linkage criteria more complex than genetic distance may be needed to achieve this value.</p>
 </div>
