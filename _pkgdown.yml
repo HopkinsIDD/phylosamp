@@ -1,0 +1,36 @@
+template:
+  params:
+    ganalytics: UA-173221313-2
+
+reference:
+- title: "Probability of transmission"
+  desc: "Calculate the transmission probability in a sample"
+- contents:
+  - truediscoveryrate
+  - falsediscoveryrate
+  - starts_with("prob_trans")
+  
+- title: "Expected pairs"
+  desc: "Calculate the expected number of links in a sample"
+- contents:
+  - exp_links
+  - starts_with("obs_pairs")
+  
+- title: "True transmission pairs"
+  desc: "Calculate the expected number true transmission pairs in a sample"
+- contents:
+  - true_pairs
+  - starts_with("true_pairs")
+  
+- title: "Power calculations"
+  desc: "Sample size needed to obtain specified false discovery rate"
+- contents:
+  - samplesize
+  
+- title: "Performance of a linkage criteria"
+  desc: "Calculate the sensitivity and specificity for genetic distance measures"
+- contents:
+  - starts_with("gen_")
+  - starts_with("sens_")
+  - get_optim_roc
+  

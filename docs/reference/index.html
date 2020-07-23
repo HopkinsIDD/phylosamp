@@ -54,6 +54,16 @@
 <![endif]-->
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-173221313-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-173221313-2');
+</script>
+
 
   </head>
 
@@ -142,8 +152,8 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-probability-of-transmission" class="hasAnchor"><a href="#section-probability-of-transmission" class="anchor"></a>Probability of transmission</h2>
+          <p class="section-desc"><p>Calculate the transmission probability in a sample</p></p>
         </th>
       </tr>
       
@@ -154,51 +164,15 @@
       <tr>
         
         <td>
-          <p><code><a href="exp_links.html">exp_links()</a></code> </p>
+          <p><code><a href="truediscoveryrate.html">truediscoveryrate()</a></code> </p>
         </td>
-        <td><p>Calculate expected number of links in a sample</p></td>
+        <td><p>Calculate true discovery rate of a sample</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="falsediscoveryrate.html">falsediscoveryrate()</a></code> </p>
         </td>
         <td><p>Calculate false discovery rate of a sample</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gen_dist_sim.html">gen_dist_sim</a></code> </p>
-        </td>
-        <td><p>Simulations of the genetic distance distribution</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gen_dists.html">gen_dists()</a></code> </p>
-        </td>
-        <td><p>Calculate genetic distance distribution</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_optim_roc.html">get_optim_roc()</a></code> </p>
-        </td>
-        <td><p>Find optimal ROC threshold</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="obs_pairs_mtml.html">obs_pairs_mtml()</a></code> </p>
-        </td>
-        <td><p>Expected number of observed pairs assuming multiple-transmission and multiple-linkage</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="obs_pairs_mtsl.html">obs_pairs_mtsl()</a></code> </p>
-        </td>
-        <td><p>Expected number of observed pairs assuming multiple-transmission and single-linkage</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="obs_pairs_stsl.html">obs_pairs_stsl()</a></code> </p>
-        </td>
-        <td><p>Expected number of observed pairs assuming single-transmission and single-linkage</p></td>
       </tr><tr>
         
         <td>
@@ -217,25 +191,57 @@
           <p><code><a href="prob_trans_stsl.html">prob_trans_stsl()</a></code> </p>
         </td>
         <td><p>Probability of transmission assuming single-transmission and single-linkage</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-expected-pairs" class="hasAnchor"><a href="#section-expected-pairs" class="anchor"></a>Expected pairs</h2>
+          <p class="section-desc"><p>Calculate the expected number of links in a sample</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="exp_links.html">exp_links()</a></code> </p>
+        </td>
+        <td><p>Calculate expected number of links in a sample</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="samplesize.html">samplesize()</a></code> </p>
+          <p><code><a href="obs_pairs_mtml.html">obs_pairs_mtml()</a></code> </p>
         </td>
-        <td><p>Calculate sample size</p></td>
+        <td><p>Expected number of observed pairs assuming multiple-transmission and multiple-linkage</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="sens_spec_calc.html">sens_spec_calc()</a></code> </p>
+          <p><code><a href="obs_pairs_mtsl.html">obs_pairs_mtsl()</a></code> </p>
         </td>
-        <td><p>Calculate sensitivity and specificity</p></td>
+        <td><p>Expected number of observed pairs assuming multiple-transmission and single-linkage</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="sens_spec_roc.html">sens_spec_roc()</a></code> </p>
+          <p><code><a href="obs_pairs_stsl.html">obs_pairs_stsl()</a></code> </p>
         </td>
-        <td><p>Make ROC from sensitivity and specificity</p></td>
-      </tr><tr>
+        <td><p>Expected number of observed pairs assuming single-transmission and single-linkage</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-true-transmission-pairs" class="hasAnchor"><a href="#section-true-transmission-pairs" class="anchor"></a>True transmission pairs</h2>
+          <p class="section-desc"><p>Calculate the expected number true transmission pairs in a sample</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="true_pairs.html">true_pairs()</a></code> </p>
@@ -259,12 +265,68 @@
           <p><code><a href="true_pairs_stsl.html">true_pairs_stsl()</a></code> </p>
         </td>
         <td><p>Expected number of true transmission pairs assuming single-transmission and single-linkage</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-power-calculations" class="hasAnchor"><a href="#section-power-calculations" class="anchor"></a>Power calculations</h2>
+          <p class="section-desc"><p>Sample size needed to obtain specified false discovery rate</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="samplesize.html">samplesize()</a></code> </p>
+        </td>
+        <td><p>Calculate sample size</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-performance-of-a-linkage-criteria" class="hasAnchor"><a href="#section-performance-of-a-linkage-criteria" class="anchor"></a>Performance of a linkage criteria</h2>
+          <p class="section-desc"><p>Calculate the sensitivity and specificity for genetic distance measures</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="gen_dist_sim.html">gen_dist_sim</a></code> </p>
+        </td>
+        <td><p>Simulations of the genetic distance distribution</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="truediscoveryrate.html">truediscoveryrate()</a></code> </p>
+          <p><code><a href="gen_dists.html">gen_dists()</a></code> </p>
         </td>
-        <td><p>Calculate true discovery rate of a sample</p></td>
+        <td><p>Calculate genetic distance distribution</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="sens_spec_calc.html">sens_spec_calc()</a></code> </p>
+        </td>
+        <td><p>Calculate sensitivity and specificity</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="sens_spec_roc.html">sens_spec_roc()</a></code> </p>
+        </td>
+        <td><p>Make ROC from sensitivity and specificity</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_optim_roc.html">get_optim_roc()</a></code> </p>
+        </td>
+        <td><p>Find optimal ROC threshold</p></td>
       </tr>
     </tbody>
     </table>
