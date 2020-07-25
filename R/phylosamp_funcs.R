@@ -742,8 +742,17 @@ gen_dists <- function(
   max_dist=NULL
 ) {
   
+  if (!all(is.numeric(mut_rate), mut_rate >= 0)) stop('Mutation rate must have a positive value')
+  
   if(is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
   if(is.null(max_dist)) max_dist <- max_gens*stats::qpois(.999, mut_rate)
+  
+  if (!all(is.numeric(max_gens), max_gens > 0)) stop('Maximum number of generations to consider must be numeric greater than zero')
+  if (!all(is.numeric(max_dist), max_dist >= 0)) stop('Maximum distance to consider must have a positive value')
+  if (!all(is.numeric(max_link_gens), max_link_gens > 0)) stop('Maximum number of generations to consider linked must be numeric greater than zero')
+  
+  if(sum(mean_gens_pdf <= 0)) stop('Generation distribution must have at least one non-zero value')
+  if(any(mean_gens_pdf < 0)) stop('Generation distribution cannot contain negative probabilities')
   
   # set up matrix
   gendist <- matrix(0,nrow=max_dist+1, ncol=3)
