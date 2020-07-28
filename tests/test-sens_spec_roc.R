@@ -10,7 +10,7 @@ test_that("sensitivity estimate found", {
                    mut_rate=1, 
                    mean_gens_pdf=c(0.02,0.08,0.15,0.75), 
                    max_link_gens=1)[2,"sensitivity"][[1]], 
-    equals(0.7357589)
+    equals(0.7357589, tolerance=0.01)
   )
 })
 
@@ -21,17 +21,19 @@ test_that("specificity estimate found", {
                    mut_rate=1, 
                    mean_gens_pdf=c(0.02,0.08,0.15,0.75), 
                    max_link_gens=1)[2,"specificity"][[1]], 
-    equals(0.1337106)
+    equals(0.1337106, tolerance=0.01)
   )
 })
 
 test_that("returns sensitivity and specificity estimates for a range of cutoff values", {
   
-  expect_that(
-    dim(sens_spec_roc(cutoff=10, 
+  tmp <- sens_spec_roc(cutoff=10, 
                        mut_rate=1, 
                        mean_gens_pdf=c(0.02,0.08,0.15,0.75), 
-                       max_link_gens=1))[1], 
-    equals(12)
-  )
+                       max_link_gens=1)
+  
+  expect_identical(as.integer(c(3,3)), dim(tmp))
+  expect_identical(as.numeric(tmp[1, c('sensitivity', 'specificity')]), c(0,0))
+  expect_identical(as.numeric(tmp[3, c('sensitivity', 'specificity')]), c(1,1))
+  expect_equal(as.numeric(tmp[2, 'sensitivity']), 0.999, tolerance=0.01)
 })

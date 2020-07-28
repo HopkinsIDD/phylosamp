@@ -34,7 +34,7 @@ prob_trans_stsl <- function(
   if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
   if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
   if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
-  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
 
   (eta * rho) /
     ((eta * rho) + ((1 - chi^(M-2)) * (1 - eta) * rho) + ((1 - chi^(M-1)) * (1 - rho)))
@@ -77,7 +77,7 @@ obs_pairs_stsl <- function(
   if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
   if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
   if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
-  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
 
   (M / 2) * ((eta * rho) + (rho * (1 - eta) * (1 - chi^(M-2))) + ((1 - rho) * (1 - chi^(M-1))))
 }
@@ -116,7 +116,7 @@ true_pairs_stsl <- function(
 
   if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
   if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
-  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   
   (M / 2) * eta * rho
 }
@@ -160,7 +160,7 @@ prob_trans_mtsl <- function(
   if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
   if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
   if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
-  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
@@ -208,7 +208,7 @@ obs_pairs_mtsl <- function(
   if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
   if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
   if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
-  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
@@ -254,7 +254,7 @@ true_pairs_mtsl <- function(
   
   if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
   if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
-  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
   
@@ -301,7 +301,7 @@ prob_trans_mtml <- function(
   if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
   if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
   if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
-  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
@@ -350,7 +350,7 @@ obs_pairs_mtml <- function(
   if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
   if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
   if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
-  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
 
@@ -394,7 +394,7 @@ true_pairs_mtml <- function(
   
   if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
   if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
-  if (!all(is.numeric(M) | is.integer(M), M > 1)) stop('Sample size (M) must be integer or numeric greater than 0')
+  if (!all(is.numeric(M) | is.integer(M), M > 0)) stop('Sample size (M) must be integer or numeric greater than 0')
   if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
   if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
   
@@ -745,7 +745,7 @@ gen_dists <- function(
   if (!all(is.numeric(mut_rate), mut_rate >= 0)) stop('Mutation rate must have a positive value')
   
   if(is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
-  if(is.null(max_dist)) max_dist <- max_gens*stats::qpois(.999, mut_rate)
+  if(is.null(max_dist)) max_dist <- suppressWarnings(max_gens*stats::qpois(.999, mut_rate))
   
   if (!all(is.numeric(max_gens), max_gens > 0)) stop('Maximum number of generations to consider must be numeric greater than zero')
   if (!all(is.numeric(max_dist), max_dist >= 0)) stop('Maximum distance to consider must have a positive value')
@@ -824,7 +824,7 @@ sens_spec_calc <- function(
 ) {
   
   if(is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
-  if(is.null(max_dist)) max_dist <- max_gens*stats::qpois(.999, mut_rate)
+  if(is.null(max_dist)) max_dist <- suppressWarnings(max_gens*stats::qpois(.999, mut_rate))
   
   # check that we have used a sensible cutoff
   # the mutation rate should be high enough such that the cutoff used is less than the max possible distance
@@ -902,7 +902,7 @@ sens_spec_roc <- function(
 ){
   
   if(is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
-  if(is.null(max_dist)) max_dist <- max_gens*stats::qpois(.999, mut_rate)
+  if(is.null(max_dist)) max_dist <- suppressWarnings(max_gens*stats::qpois(.999, mut_rate))
   
   rc <- sens_spec_calc(cutoff,mut_rate,mean_gens_pdf,max_link_gens,max_gens,max_dist)
   
