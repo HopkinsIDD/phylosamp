@@ -751,7 +751,7 @@ gen_dists <- function(
   if (!all(is.numeric(max_dist), max_dist >= 0)) stop('Maximum distance to consider must have a positive value')
   if (!all(is.numeric(max_link_gens), max_link_gens > 0)) stop('Maximum number of generations to consider linked must be numeric greater than zero')
   
-  if(sum(mean_gens_pdf <= 0)) stop('Generation distribution must have at least one non-zero value')
+  if(sum(mean_gens_pdf) <= 0) stop('Generation distribution must have at least one non-zero value')
   if(any(mean_gens_pdf < 0)) stop('Generation distribution cannot contain negative probabilities')
   
   # set up matrix
