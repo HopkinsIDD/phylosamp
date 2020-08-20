@@ -49,7 +49,7 @@ test_that("fails when parameters invalid", {
   expect_error(
     true_pairs_stsl(eta=1, 
                     rho=0.5, 
-                    M=0)
+                    M=-1)
   )
   
   expect_error(

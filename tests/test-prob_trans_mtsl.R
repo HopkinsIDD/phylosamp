@@ -84,7 +84,7 @@ test_that("fails when parameters invalid", {
     prob_trans_mtsl(eta=1, 
                     chi=1, 
                     rho=0.5, 
-                    M=0,
+                    M=-1,
                     R=1)
   )
   
