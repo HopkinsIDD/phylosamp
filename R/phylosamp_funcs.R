@@ -416,7 +416,7 @@ true_pairs_mtml <- function(
 ##' @param rho scalar or vector giving the proportion of the final outbreak size that is sampled
 ##' @param M scalar or vector giving the number of cases sampled
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen (default=NULL)
-##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. The function expects one of the following:
+##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 ##' \enumerate{
 ##'      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
 ##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
@@ -479,7 +479,7 @@ truediscoveryrate <- function(
 ##' @param rho scalar or vector giving the proportion of the final outbreak size that is sampled
 ##' @param M scalar or vector giving the number of cases sampled
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen (default=NULL)
-##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. The function expects one of the following:
+##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 ##' \enumerate{
 ##'      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
 ##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
@@ -529,7 +529,7 @@ falsediscoveryrate <- function(
 ##' @param rho scalar or vector giving the proportion of the final outbreak size that is sampled
 ##' @param M scalar or vector giving the number of cases sampled
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen (default=NULL)
-##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. The function expects one of the following:
+##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 ##' \enumerate{
 ##'      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
 ##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
@@ -590,7 +590,7 @@ exp_links <- function(
 ##' @param rho scalar or vector giving the proportion of the final outbreak size that is sampled
 ##' @param M scalar or vector giving the number of cases sampled
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen (default=NULL)
-##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. The function expects one of the following:
+##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 ##' \enumerate{
 ##'      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
 ##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
@@ -654,7 +654,7 @@ true_pairs <- function(
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen
 ##' @param phi scalar or vector giving the desired true discovery rate (1-false discovery rate)
 ##' @param min_pairs minimum number of linked pairs observed in the sample, defaults to 1 pair (2 samples); this is to ensure reasonable results are obtained
-##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. The function expects one of the following:
+##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 ##' \enumerate{
 ##'      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
 ##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).

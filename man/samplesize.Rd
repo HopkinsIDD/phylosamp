@@ -19,7 +19,7 @@ samplesize(eta, chi, N, R = NULL, phi, min_pairs = 1, assumption = "mtml")
 
 \item{min_pairs}{minimum number of linked pairs observed in the sample, defaults to 1 pair (2 samples); this is to ensure reasonable results are obtained}
 
-\item{assumption}{a character vector indicating which assumptions about transmission and linkage criteria. The function expects one of the following:
+\item{assumption}{a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 \enumerate{
      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).

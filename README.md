@@ -28,6 +28,6 @@ devtools::install_github('HopkinsIDD/phylosamp')
 
 ### Troubleshooting
 
-For general questions, contact package maintainers John Giles (giles@jhu.edu), Shirlee Wohl (swohl@jhu.edu), or Justin Lessler (justin@jhu.edu).
+For general questions, contact package maintainers John Giles (jrgiles@uw.edu), Shirlee Wohl (swohl@jhu.edu), or Justin Lessler (jlessler@unc.edu).
 
 To report bugs or problems with documentation, please go to the [Issues](https://github.com/HopkinsIDD/phylosamp/issues) page associated with this GitHub page and click *new issue*.

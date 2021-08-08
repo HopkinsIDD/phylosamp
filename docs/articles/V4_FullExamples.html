@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
       </span>
     </div>
 
@@ -45,7 +45,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -77,7 +77,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/HopkinsIDD/phylosamp/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -91,7 +91,7 @@
 
       
 
-      </header><script src="V4_FullExamples_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
+      </header><script src="V4_FullExamples_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Illustrative examples</h1>
@@ -113,84 +113,90 @@ h1.title {
 </style>
 <p>this vignette, we apply the functions provided to estimate sensitivity and specificity and apply them to an Ebola-like pathogen. We compare the results to those of a pathogen with a slower mutation rate and higher reproductive number. Then, we will use these results to calculate the false discovery rate of our linkage criteria (genetic distance) given a sample size of 200 and a relevant population of 1000 infected individuals.</p>
 <p>In the first part of this vignette, we use the function <code><a href="../reference/sens_spec_roc.html">sens_spec_roc()</a></code>, which formats the results of <code><a href="../reference/sens_spec_calc.html">sens_spec_calc()</a></code> for plotting ROC curves.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">phylosamp</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">reshape2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">RColorBrewer</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cowplot</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/HopkinsIDD/phylosamp">phylosamp</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/reshape">reshape2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/">cowplot</a></span><span class="op">)</span></code></pre></div>
 <div id="calculating-sensitivity-and-specificity-for-an-ebola-like-pathogen" class="section level3">
 <h3 class="hasAnchor">
 <a href="#calculating-sensitivity-and-specificity-for-an-ebola-like-pathogen" class="anchor"></a>Calculating sensitivity and specificity for an Ebola-like pathogen</h3>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># ebola-like pathogen</span>
-<span class="no">R</span> <span class="kw">&lt;-</span> <span class="fl">1.5</span>
-<span class="no">mut_rate</span> <span class="kw">&lt;-</span> <span class="fl">1</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># ebola-like pathogen</span>
+<span class="va">R</span> <span class="op">&lt;-</span> <span class="fl">1.5</span>
+<span class="va">mut_rate</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 
 <span class="co"># use simulated generation distributions</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"gen_dist_sim"</span>)
-<span class="no">mean_gens_pdf</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="no">gen_dist_sim</span>[<span class="no">gen_dist_sim</span>$<span class="no">R</span> <span class="kw">==</span> <span class="no">R</span>, -(<span class="fl">1</span>:<span class="fl">2</span>)])
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"gen_dist_sim"</span><span class="op">)</span>
+<span class="va">mean_gens_pdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">gen_dist_sim</span><span class="op">[</span><span class="va">gen_dist_sim</span><span class="op">$</span><span class="va">R</span> <span class="op">==</span> <span class="va">R</span>, <span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
 
 <span class="co"># get theoretical genetic distance dist based on mutation rate and generation parameters</span>
-<span class="no">dists</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="fu"><a href="../reference/gen_dists.html">gen_dists</a></span>(<span class="kw">mut_rate</span> <span class="kw">=</span> <span class="no">mut_rate</span>,
-                                 <span class="kw">mean_gens_pdf</span> <span class="kw">=</span> <span class="no">mean_gens_pdf</span>,
-                                 <span class="kw">max_link_gens</span> <span class="kw">=</span> <span class="fl">1</span>))
+<span class="va">dists</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/gen_dists.html">gen_dists</a></span><span class="op">(</span>mut_rate <span class="op">=</span> <span class="va">mut_rate</span>, 
+                                 mean_gens_pdf <span class="op">=</span> <span class="va">mean_gens_pdf</span>, 
+                                 max_link_gens <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># reshape dataframe for plotting</span>
-<span class="no">dists</span> <span class="kw">&lt;-</span> <span class="kw pkg">reshape2</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/reshape2/man/melt.html">melt</a></span>(<span class="no">dists</span>,
-                        <span class="kw">id.vars</span> <span class="kw">=</span> <span class="st">"dist"</span>,
-                        <span class="kw">variable.name</span> <span class="kw">=</span> <span class="st">"status"</span>,
-                        <span class="kw">value.name</span> <span class="kw">=</span> <span class="st">"prob"</span>)
+<span class="va">dists</span> <span class="op">&lt;-</span> <span class="fu">reshape2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reshape2/man/melt.html">melt</a></span><span class="op">(</span><span class="va">dists</span>, 
+                        id.vars <span class="op">=</span> <span class="st">"dist"</span>, 
+                        variable.name <span class="op">=</span> <span class="st">"status"</span>, 
+                        value.name <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span>
 
 <span class="co"># get sensitivity and specificity using the same paramters</span>
-<span class="no">roc_calc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/sens_spec_roc.html">sens_spec_roc</a></span>(<span class="kw">cutoff</span> <span class="kw">=</span> <span class="fl">1</span>:(<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">dists</span>$<span class="no">dist</span>)-<span class="fl">1</span>),
-                          <span class="kw">mut_rate</span> <span class="kw">=</span> <span class="no">mut_rate</span>,
-                          <span class="kw">mean_gens_pdf</span> <span class="kw">=</span> <span class="no">mean_gens_pdf</span>)
-
+<span class="va">roc_calc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sens_spec_roc.html">sens_spec_roc</a></span><span class="op">(</span>cutoff <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">dists</span><span class="op">$</span><span class="va">dist</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>, 
+                          mut_rate <span class="op">=</span> <span class="va">mut_rate</span>,
+                          mean_gens_pdf <span class="op">=</span> <span class="va">mean_gens_pdf</span><span class="op">)</span>
+  
 <span class="co"># get the optimal value for the ROC plot</span>
-<span class="no">roc_optim</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_optim_roc.html">get_optim_roc</a></span>(<span class="no">roc_calc</span>)
-<span class="no">threshold</span> <span class="kw">&lt;-</span> <span class="no">roc_optim</span>$<span class="no">cutoff</span>
-<span class="no">optim_point</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">roc_optim</span>$<span class="no">specificity</span>, <span class="no">roc_optim</span>$<span class="no">sensitivity</span>)
+<span class="va">roc_optim</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_optim_roc.html">get_optim_roc</a></span><span class="op">(</span><span class="va">roc_calc</span><span class="op">)</span>
+<span class="va">threshold</span> <span class="op">&lt;-</span> <span class="va">roc_optim</span><span class="op">$</span><span class="va">cutoff</span>
+<span class="va">optim_point</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">roc_optim</span><span class="op">$</span><span class="va">specificity</span>, <span class="va">roc_optim</span><span class="op">$</span><span class="va">sensitivity</span><span class="op">)</span>
 
 <span class="co"># plot the distributions of genetic distance</span>
-<span class="no">pal</span> <span class="kw">&lt;-</span> <span class="kw pkg">RColorBrewer</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span>(<span class="fl">5</span>, <span class="st">"PuOr"</span>)
-
-<span class="no">p1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">dists</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">dist</span>, <span class="kw">y</span><span class="kw">=</span><span class="no">prob</span>, <span class="kw">fill</span><span class="kw">=</span><span class="no">status</span>)) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>(<span class="kw">alpha</span><span class="kw">=</span><span class="fl">0.5</span>, <span class="kw">stat</span><span class="kw">=</span><span class="st">"identity"</span>, <span class="kw">position</span><span class="kw">=</span><span class="st">"identity"</span>) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span>(<span class="kw">name</span><span class="kw">=</span><span class="st">""</span>, <span class="kw">values</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">pal</span>[<span class="fl">5</span>], <span class="no">pal</span>[<span class="fl">2</span>])) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="kw">limits</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">1</span>,<span class="fl">35</span>), <span class="kw">expand</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>)) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span>(<span class="kw">limits</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0.4</span>), <span class="kw">expand</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>)) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">'Genetic distance'</span>) + <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">'Density'</span>) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>() + <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">legend.position</span><span class="kw">=</span><span class="st">'none'</span>) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="kw">xintercept</span><span class="kw">=</span><span class="no">threshold</span>, <span class="kw">linetype</span><span class="kw">=</span><span class="fl">2</span>, <span class="kw">size</span><span class="kw">=</span><span class="fl">0.5</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"black"</span>)
-
+<span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"PuOr"</span><span class="op">)</span>
+  
+<span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dists</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">dist</span>, y<span class="op">=</span><span class="va">prob</span>, fill<span class="op">=</span><span class="va">status</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.5</span>, stat<span class="op">=</span><span class="st">"identity"</span>, position<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">""</span>, values<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pal</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span>, <span class="va">pal</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">35</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0.4</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'Genetic distance'</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">'Density'</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">'none'</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="va">threshold</span>, linetype<span class="op">=</span><span class="fl">2</span>, size<span class="op">=</span><span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>
+  
 <span class="co"># add ROC curve on top</span>
-<span class="no">r1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span><span class="kw">=</span><span class="no">roc_calc</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">specificity</span>, <span class="kw">y</span><span class="kw">=</span><span class="no">sensitivity</span>)) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="kw">size</span><span class="kw">=</span><span class="fl">1.5</span>) + <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span>(<span class="fl">0</span>,<span class="fl">1</span>) + <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span>(<span class="fl">0</span>,<span class="fl">1</span>) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">optim_point</span>[<span class="fl">1</span>], <span class="kw">y</span><span class="kw">=</span><span class="no">optim_point</span>[<span class="fl">2</span>],
-               <span class="kw">size</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">stroke</span><span class="kw">=</span><span class="fl">1</span>, <span class="kw">shape</span><span class="kw">=</span><span class="fl">21</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="st">"chartreuse"</span>) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span>(<span class="kw">slope</span><span class="kw">=</span><span class="fl">1</span>, <span class="kw">intercept</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">linetype</span><span class="kw">=</span><span class="fl">2</span>, <span class="kw">alpha</span><span class="kw">=</span><span class="fl">0.5</span>) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"1-specificity"</span>) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>()
-
-<span class="kw pkg">cowplot</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/cowplot/man/ggdraw.html">ggdraw</a></span>(<span class="no">p1</span>) + <span class="kw pkg">cowplot</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/cowplot/man/draw_plot.html">draw_plot</a></span>(<span class="no">r1</span>, <span class="kw">hjust</span><span class="kw">=</span>-<span class="fl">0.16</span>, <span class="kw">vjust</span><span class="kw">=</span>-<span class="fl">0.16</span>, <span class="kw">scale</span><span class="kw">=</span><span class="fl">0.6</span>)</pre></body></html></div>
+<span class="va">r1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">roc_calc</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">specificity</span>, y<span class="op">=</span><span class="va">sensitivity</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">optim_point</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, y<span class="op">=</span><span class="va">optim_point</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,
+               size <span class="op">=</span> <span class="fl">3</span>, stroke<span class="op">=</span><span class="fl">1</span>, shape<span class="op">=</span><span class="fl">21</span>, fill <span class="op">=</span> <span class="st">"chartreuse"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>slope<span class="op">=</span><span class="fl">1</span>, intercept <span class="op">=</span> <span class="fl">0</span>, linetype<span class="op">=</span><span class="fl">2</span>, alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"1-specificity"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span>
+  
+<span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/ggdraw.html">ggdraw</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span> <span class="op">+</span> <span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/draw_plot.html">draw_plot</a></span><span class="op">(</span><span class="va">r1</span>, hjust<span class="op">=</span><span class="op">-</span><span class="fl">0.16</span>, vjust<span class="op">=</span><span class="op">-</span><span class="fl">0.16</span>, scale<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span></code></pre></div>
 <p><img src="V4_FullExamples_files/figure-html/gen_dist_compare_ebov-1.png" width="576"></p>
 </div>
 <div id="optimal-values-for-an-ebola-like-pathogen" class="section level3">
 <h3 class="hasAnchor">
 <a href="#optimal-values-for-an-ebola-like-pathogen" class="anchor"></a>Optimal values for an Ebola-like pathogen</h3>
 <p>Using the closest-to-corner method, the optimal genetic distance threshold for this pathogen is:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">threshold</span></pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">threshold</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>And the sensitivity and specificity at this threshold is:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">roc_optim</span>$<span class="no">sensitivity</span> <span class="co">## sensitivity</span></pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">roc_optim</span><span class="op">$</span><span class="va">sensitivity</span> <span class="co">## sensitivity</span></code></pre></div>
 <pre><code>## [1] 0.9963402</code></pre>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fl">1</span> - <span class="no">roc_optim</span>$<span class="no">specificity</span> <span class="co">## specificity</span></pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">1</span> <span class="op">-</span> <span class="va">roc_optim</span><span class="op">$</span><span class="va">specificity</span> <span class="co">## specificity</span></code></pre></div>
 <pre><code>## [1] 0.9801562</code></pre>
 <p>We repeat the above plot for a pathogen with a higher reproductive number and lower mutation rate:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># faster-spreading pathogen</span>
-<span class="no">R</span> <span class="kw">&lt;-</span> <span class="fl">3</span>
-<span class="no">mut_rate</span> <span class="kw">&lt;-</span> <span class="fl">0.2</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># faster-spreading pathogen</span>
+<span class="va">R</span> <span class="op">&lt;-</span> <span class="fl">3</span>
+<span class="va">mut_rate</span> <span class="op">&lt;-</span> <span class="fl">0.2</span>
 
-<span class="no">mean_gens_pdf</span> <span class="kw">&lt;-</span> <span class="no">gen_dist_sim</span>[<span class="no">gen_dist_sim</span>[<span class="st">"R"</span>]<span class="kw">==</span><span class="no">R</span>][<span class="fl">3</span>:<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="no">gen_dist_sim</span>)[<span class="fl">2</span>]]</pre></body></html></div>
+<span class="va">mean_gens_pdf</span> <span class="op">&lt;-</span> <span class="va">gen_dist_sim</span><span class="op">[</span><span class="va">gen_dist_sim</span><span class="op">[</span><span class="st">"R"</span><span class="op">]</span><span class="op">==</span><span class="va">R</span><span class="op">]</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">gen_dist_sim</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 </div>
 <div id="calculating-sensitivity-and-specificity-for-a-faster-spreading-slower-mutating-pathogen" class="section level3">
 <h3 class="hasAnchor">
@@ -201,12 +207,15 @@ h1.title {
 <h3 class="hasAnchor">
 <a href="#optimal-values-for-a-faster-spreading-slower-mutating-pathogen" class="anchor"></a>Optimal values for a faster-spreading, slower mutating pathogen</h3>
 <p>For this pathogen, the optimal genetic distance threshold is:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">threshold</span></pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">threshold</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>And the sensitivity and specificity at this threshold is:</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">roc_optim</span>[<span class="no">roc_optim</span>$<span class="no">cutoff</span><span class="kw">==</span><span class="no">threshold</span>,]$<span class="no">sensitivity</span> <span class="co">## sensitivity</span></pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">roc_optim</span><span class="op">[</span><span class="va">roc_optim</span><span class="op">$</span><span class="va">cutoff</span><span class="op">==</span><span class="va">threshold</span>,<span class="op">]</span><span class="op">$</span><span class="va">sensitivity</span> <span class="co">## sensitivity</span></code></pre></div>
 <pre><code>## [1] 0.8187308</code></pre>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fl">1</span> - <span class="no">roc_optim</span>[<span class="no">roc_optim</span>$<span class="no">cutoff</span><span class="kw">==</span><span class="no">threshold</span>,]$<span class="no">specificity</span> <span class="co">## specificity</span></pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">1</span> <span class="op">-</span> <span class="va">roc_optim</span><span class="op">[</span><span class="va">roc_optim</span><span class="op">$</span><span class="va">cutoff</span><span class="op">==</span><span class="va">threshold</span>,<span class="op">]</span><span class="op">$</span><span class="va">specificity</span> <span class="co">## specificity</span></code></pre></div>
 <pre><code>## [1] 0.8539157</code></pre>
 <p>It is well understood that genetic distance is a much more accurate predictor of transmission linkage for pathogens with higher mutation rates and slower spread, as shown clearly in this example (lower sensitivity and specificity in the second example). Genetic distance is clearly not an appropriate metric for all pathogens, but more sophisticated linkage criteria – espeically those that incorporate epidemiological information as well – may produce better results.</p>
 </div>
@@ -214,10 +223,12 @@ h1.title {
 <h3 class="hasAnchor">
 <a href="#calculating-the-false-discovery-rate-of-genetic-distance-as-a-linkage-criteria" class="anchor"></a>Calculating the false discovery rate of genetic distance as a linkage criteria</h3>
 <p>This is reflected in our confidence in identifying linked infection pairs. Assuming a sample size of 200, a relevant population of 1000, and the genetic distance threshold and associated sensitivity and specificity for each pathogen we get:</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="../reference/truediscoveryrate.html">truediscoveryrate</a></span>(<span class="kw">eta</span><span class="kw">=</span><span class="fl">0.9963402</span>, <span class="kw">chi</span><span class="kw">=</span><span class="fl">0.9801562</span>, <span class="kw">rho</span><span class="kw">=</span><span class="fl">0.20</span>, <span class="kw">M</span><span class="kw">=</span><span class="fl">200</span>, <span class="kw">R</span><span class="kw">=</span><span class="fl">1</span>) <span class="co"># ebola-like pathogen</span></pre></body></html></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/truediscoveryrate.html">truediscoveryrate</a></span><span class="op">(</span>eta<span class="op">=</span><span class="fl">0.9963402</span>, chi<span class="op">=</span><span class="fl">0.9801562</span>, rho<span class="op">=</span><span class="fl">0.20</span>, M<span class="op">=</span><span class="fl">200</span>, R<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="co"># ebola-like pathogen</span></code></pre></div>
 <pre><code>## Calculating true discovery rate assuming multiple-transmission and multiple-linkage</code></pre>
 <pre><code>## [1] 0.09183886</code></pre>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="../reference/truediscoveryrate.html">truediscoveryrate</a></span>(<span class="kw">eta</span><span class="kw">=</span><span class="fl">0.8187308</span>, <span class="kw">chi</span><span class="kw">=</span><span class="fl">0.8539157</span>, <span class="kw">rho</span><span class="kw">=</span><span class="fl">0.20</span>, <span class="kw">M</span><span class="kw">=</span><span class="fl">200</span>, <span class="kw">R</span><span class="kw">=</span><span class="fl">1</span>) <span class="co"># slower-mutating pathogen</span></pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/truediscoveryrate.html">truediscoveryrate</a></span><span class="op">(</span>eta<span class="op">=</span><span class="fl">0.8187308</span>, chi<span class="op">=</span><span class="fl">0.8539157</span>, rho<span class="op">=</span><span class="fl">0.20</span>, M<span class="op">=</span><span class="fl">200</span>, R<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="co"># slower-mutating pathogen</span></code></pre></div>
 <pre><code>## Calculating true discovery rate assuming multiple-transmission and multiple-linkage</code></pre>
 <pre><code>## [1] 0.01116204</code></pre>
 <p>As a final note, we remind the reader that the specificity of the linkage criteria has a significant bearing on the true/false discovery rate, and that high true discovery rates require a specificity upwards of 0.999. Linkage criteria more complex than genetic distance may be needed to achieve this value.</p>
@@ -237,7 +248,7 @@ h1.title {
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

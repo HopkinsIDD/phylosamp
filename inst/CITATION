@@ -1,0 +1,14 @@
+bibentry(
+"Article",
+  title = "Sample size calculation for phylogenetic case linkage",  
+  author = "Wohl, Shirlee and Giles, John R. and Lessler, Justin",
+  journal = "{PLOS} Computational Biology",
+  year = "2021",
+  volume = "17",
+  issn = "1553-7358",
+  pages = "e1009182",
+  number = "7",
+  url = "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009182",
+  doi = "10.1371/journal.pcbi.1009182",
+  textVersion = "Wohl et al. (2021) Sample size calculation for phylogenetic case linkage, PLOS Computational Biology, 17(7), e1009182, https://doi.org/10.1371/journal.pcbi.1009182")
+

@@ -29,6 +29,7 @@ The most basic function of the package is `truediscoveryrate()`, which calculate
   
 |        **$R$**: the average reproductive number (also denoted $R_\text{pop}$, see below)
 
+
 ```{r setup, message=FALSE}
 library(phylosamp)
 ```

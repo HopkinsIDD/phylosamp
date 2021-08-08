@@ -17,7 +17,7 @@ falsediscoveryrate(eta, chi, rho, M, R = NULL, assumption = "mtml")
 
 \item{R}{scalar or vector giving the effective reproductive number of the pathogen (default=NULL)}
 
-\item{assumption}{a character vector indicating which assumptions about transmission and linkage criteria. The function expects one of the following:
+\item{assumption}{a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 \enumerate{
      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).

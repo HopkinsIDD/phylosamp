@@ -83,7 +83,7 @@ a final outbreak size \(N\)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@ a final outbreak size \(N\)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -123,7 +123,7 @@ a final outbreak size \(N\)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/HopkinsIDD/phylosamp/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -150,7 +150,7 @@ a final outbreak size \(N\)." />
 a final outbreak size \(N\).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>samplesize</span>(<span class='no'>eta</span>, <span class='no'>chi</span>, <span class='no'>N</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>phi</span>, <span class='kw'>min_pairs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>assumption</span> <span class='kw'>=</span> <span class='st'>"mtml"</span>)</pre>
+    <pre class="usage"><span class='fu'>samplesize</span><span class='op'>(</span><span class='va'>eta</span>, <span class='va'>chi</span>, <span class='va'>N</span>, R <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>phi</span>, min_pairs <span class='op'>=</span> <span class='fl'>1</span>, assumption <span class='op'>=</span> <span class='st'>"mtml"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,7 +181,7 @@ a final outbreak size \(N\).</p>
     </tr>
     <tr>
       <th>assumption</th>
-      <td><p>a character vector indicating which assumptions about transmission and linkage criteria. The function expects one of the following:</p><ol>
+      <td><p>a character vector indicating which assumptions about transmission and linkage criteria. Default = <code>'mtml'</code>. Accepted arguments are:</p><ol>
 <li><p><code>'stsl'</code> for the single-transmission single-linkage assumption (<code><a href='prob_trans_stsl.html'>prob_trans_stsl</a></code>).</p></li>
 <li><p><code>'mtsl'</code> for the multiple-transmission single-linkage assumption (<code><a href='prob_trans_mtsl.html'>prob_trans_mtsl</a></code>).</p></li>
 <li><p><code>'mtml'</code> for the multiple-transmission multiple-linkage assumption (<code><a href='prob_trans_mtml.html'>prob_trans_mtml</a></code>).</p></li>
@@ -192,9 +192,13 @@ a final outbreak size \(N\).</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>scalar or vector giving the sample size needed to meet the given conditions</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>John Giles, Shirlee Wohl, and Justin Lessler</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>samplesize</span>(<span class='kw'>eta</span><span class='kw'>=</span><span class='fl'>0.99</span>, <span class='kw'>chi</span><span class='kw'>=</span><span class='fl'>0.995</span>, <span class='kw'>N</span><span class='kw'>=</span><span class='fl'>100</span>, <span class='kw'>R</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>phi</span><span class='kw'>=</span><span class='fl'>0.75</span>)</div><div class='output co'>#&gt; [1] 10</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>samplesize</span><span class='op'>(</span>eta<span class='op'>=</span><span class='fl'>0.99</span>, chi<span class='op'>=</span><span class='fl'>0.995</span>, N<span class='op'>=</span><span class='fl'>100</span>, R<span class='op'>=</span><span class='fl'>1</span>, phi<span class='op'>=</span><span class='fl'>0.75</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 10</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -210,7 +214,7 @@ a final outbreak size \(N\).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
