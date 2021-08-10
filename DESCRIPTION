@@ -9,7 +9,7 @@ Authors@R: c(person("John R", "Giles", role=c("aut", "ctb"), email="jrgiles@uw.e
 Maintainer: Justin Lessler <jlessler@unc.edu>
 Description: Implements novel tools that estimate the probability of true transmission between two cases given 
     phylogenetic linkage and the expected number of true transmission links in a sample. Methods described in
-    Wohl, Giles, and Lessler (2020) doi: 10.1101/2020.07.10.20150920.
+    Wohl, Giles, and Lessler (2021) doi: 10.1371/journal.pcbi.1009182.
 License: GPL-2
 URL: https://github.com/HopkinsIDD/phylosamp
 BugReports: https://github.com/HopkinsIDD/phylosamp/issues
