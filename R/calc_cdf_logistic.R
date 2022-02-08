@@ -4,7 +4,7 @@
 ##' @param p0 initial variant prevalence (# introductions / population size)
 ##' @param r logistic growth rate
 ##' @param c_ratio coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2; default = 1 (no bias)
-##' @return scalar giving the cumulative variant prevalence at time t
+##' @return scalar giving the cdf of variant prevalence at time t
 ##'
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 ##'
