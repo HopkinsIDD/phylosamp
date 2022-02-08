@@ -6,7 +6,7 @@
 ##'
 ##' @param p_v1 actual variant prevalence (proportion)
 ##' @param c_ratio coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2
-##' @return scalar observed prevalence of variant 1
+##' @return scalar of observed prevalence of variant 1
 ##'
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 ##'
