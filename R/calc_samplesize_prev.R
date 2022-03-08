@@ -1,4 +1,4 @@
-##' Function to calculate sample size needed for variant prevalence estimation assuming cross-sectional sampling
+##' Function to calculate sample size needed for variant prevalence estimation under cross-sectional sampling
 ##'
 ##' @param p_v1 variant prevalence (proportion)
 ##' @param prob desired confidence in variant prevalence estimate
