@@ -72,7 +72,7 @@ test_that("return object is valid double", {
 
 })
 
-test_that("manuscript values remain valid", {
+test_that("manuscript results remain valid", {
 
     expect_equal(
         ceiling(
