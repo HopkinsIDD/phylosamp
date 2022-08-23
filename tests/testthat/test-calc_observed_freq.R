@@ -71,7 +71,7 @@ test_that("observed variant prevalence is less than actual variant prevalence if
 
 })
 
-test_that("manuscript values remain valid", {
+test_that("manuscript results remain valid", {
 
     expect_equal(
         round(calc_observed_freq(p_v1=0.02, c_ratio=(0.975*0.8)/(0.6*0.95)), 3),

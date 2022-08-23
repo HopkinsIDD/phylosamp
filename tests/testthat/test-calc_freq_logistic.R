@@ -102,7 +102,7 @@ test_that("observed variant prevalence is lower when c_ratio is below 1", {
         )
 })
 
-test_that("manuscript values remain valid", {
+test_that("manuscript results remain valid", {
 
     expect_equal(
         round(calc_freq_logistic(t=14, p0=1/10000, r=0.1, c_ratio=1), 4),
