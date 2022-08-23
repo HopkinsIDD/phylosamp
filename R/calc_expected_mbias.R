@@ -19,7 +19,7 @@
 
 calc_expected_mbias <- function(p_v1,c_ratio){
 
-  if(!all(is.numeric(p_v1), p_v1>0 & p_v1<1)) stop('Variant prevalence must numeric and between 0 and 1.')
+  if(!all(is.numeric(p_v1), p_v1>0 & p_v1<1)) stop('Variant prevalence must be numeric and between 0 and 1.')
   if(!all(is.numeric(c_ratio), c_ratio!=0)) stop('Coefficient of detection ratio must be numeric and non-zero')
 
   bias <- p_v1 + ((1/c_ratio) * (1 - p_v1))
