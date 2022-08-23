@@ -1,15 +1,4 @@
 
-test_that("actual variant prevalence is equal to observed variant prevalence if c_ratio is 1", {
-
-    expect_equal(
-        calc_expected_mbias(
-            p_v1=0.44,
-            c_ratio=1
-            ),
-        1
-        )
-})
-
 test_that("input arguments are valid", {
 
     expect_error(
@@ -39,7 +28,6 @@ test_that("input arguments are valid", {
         )
 })
 
-
 test_that("return object is valid double", {
 
     expect_type(
@@ -49,4 +37,15 @@ test_that("return object is valid double", {
         "double"
         )
 
+})
+
+test_that("actual variant prevalence is equal to observed variant prevalence if c_ratio is 1", {
+
+    expect_equal(
+        calc_expected_mbias(
+            p_v1=0.44,
+            c_ratio=1
+            ),
+        1
+        )
 })

@@ -1,31 +1,4 @@
 
-test_that("manuscript values remain valid", {
-
-    expect_equal(
-        round(
-            calc_cdf_logistic(t=14, p0=1/10000, r=0.1, c_ratio=1)-
-            calc_cdf_logistic(t=0, p0=1/10000, r=0.1, c_ratio=1),
-            8
-            ),
-        0.00305473
-        )
-
-})
-
-test_that("cdf increases monotonically", {
-
-    expect_gt(
-        calc_cdf_logistic(t=5, p0=0.1, r=0.1, c_ratio=1),
-        calc_cdf_logistic(t=3, p0=0.1, r=0.1, c_ratio=1)
-        )
-
-    expect_lt(
-        calc_cdf_logistic(t=5, p0=0.1, r=0.1, c_ratio=1.5),
-        calc_cdf_logistic(t=7, p0=0.1, r=0.1, c_ratio=1.5)
-        )
-
-})
-
 test_that("input arguments are valid", {
 
     expect_error(
@@ -94,6 +67,32 @@ test_that("return object is valid double", {
             r=0.1,
             c_ratio=1),
         "double"
+        )
+})
+
+test_that("cdf increases monotonically", {
+
+    expect_gt(
+        calc_cdf_logistic(t=5, p0=0.1, r=0.1, c_ratio=1),
+        calc_cdf_logistic(t=3, p0=0.1, r=0.1, c_ratio=1)
+        )
+
+    expect_lt(
+        calc_cdf_logistic(t=5, p0=0.1, r=0.1, c_ratio=1.5),
+        calc_cdf_logistic(t=7, p0=0.1, r=0.1, c_ratio=1.5)
+        )
+
+})
+
+test_that("manuscript values remain valid", {
+
+    expect_equal(
+        round(
+            calc_cdf_logistic(t=14, p0=1/10000, r=0.1, c_ratio=1)-
+            calc_cdf_logistic(t=0, p0=1/10000, r=0.1, c_ratio=1),
+            8
+            ),
+        0.00305473
         )
 
 })
