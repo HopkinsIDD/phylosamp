@@ -39,7 +39,7 @@ test_that("return object is valid double", {
 
 })
 
-test_that("actual variant prevalence is equal to observed variant prevalence if c_ratio is 1", {
+test_that("there is no bias if c_ratio is 1", {
 
     expect_equal(
         calc_expected_mbias(
