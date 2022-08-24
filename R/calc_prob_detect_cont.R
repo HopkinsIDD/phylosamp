@@ -17,6 +17,13 @@
 
 
 calc_prob_detect_cont <- function(n,t,p0,r,c_ratio=1){
+
+  if(!all(is.numeric(n), n>0)) stop('Number of samples per timestep must be numeric and greater than zero.')
+    if(!is.numeric(t)) stop('Time step must be numeric.')
+  if(!all(is.numeric(p0), p0>0 & p0<1)) stop('Initial variant prevalence must be numeric and between 0 and 1.')
+  if(!all(is.numeric(r), r!=0)) stop('Growth rate must be numeric and non-zero.')
+  if(!all(is.numeric(c_ratio), c_ratio>0)) stop('Coefficient of detection ratio must be numeric and greater than 0')
+
   prob <- 1-exp(-n*(calc_cdf_logistic(t,p0,r,c_ratio)-calc_cdf_logistic(0,p0,r,c_ratio)))
   return(prob)
 }
