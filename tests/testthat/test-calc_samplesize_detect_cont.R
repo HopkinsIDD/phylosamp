@@ -31,7 +31,7 @@ test_that("input arguments are valid", {
     expect_error(
         calc_samplesize_detect_cont(
             prob=0.95,
-            t="invalid",
+            t=FALSE,
             p0=1/10000,
             r=0.1,
             c_ratio=1.5)
@@ -78,7 +78,7 @@ test_that("input arguments are valid", {
             prob=0.95,
             t=4,
             p0=1/10000,
-            r="invalid",
+            r=TRUE,
             c_ratio=1.5)
         )
 

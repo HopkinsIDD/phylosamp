@@ -22,14 +22,14 @@ test_that("input arguments are valid", {
     expect_error(
         calc_observed_freq(
             p_v1=0.1,
-            c_ratio=0
+            c_ratio=-2
             )
         )
 
     expect_error(
         calc_observed_freq(
             p_v1=0.1,
-            c_ratio="invalid"
+            c_ratio=FALSE
             )
         )
 })

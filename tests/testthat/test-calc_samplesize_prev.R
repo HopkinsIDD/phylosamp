@@ -19,7 +19,7 @@ test_that("input arguments are valid", {
 
     expect_error(
         calc_samplesize_prev(
-            p_v1="invalid",
+            p_v1=Inf,
             prob=0.7,
             precision=0.05,
             c_ratio=1)

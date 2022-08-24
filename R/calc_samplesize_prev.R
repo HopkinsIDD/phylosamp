@@ -20,7 +20,7 @@ calc_samplesize_prev <- function(p_v1,prob,precision,c_ratio){
   if(!all(is.numeric(p_v1), p_v1>0 & p_v1<1)) stop('Variant prevalence must be numeric and between 0 and 1.')
   if(!all(is.numeric(prob), prob>0 & prob<1)) stop('Desired probability of detection must be numeric and between 0 and 1.')
   if(!all(is.numeric(precision), precision>0 & precision<1)) stop('Desired precision must be numeric and between 0 and 1.')
-  if(!all(is.numeric(c_ratio), c_ratio!=0)) stop('Coefficient of detection ratio must be numeric and non-zero')
+  if(!all(is.numeric(c_ratio), c_ratio>0)) stop('Coefficient of detection ratio must be numeric and greater than 0')
 
   p_star <- calc_observed_freq(p_v1,c_ratio)
   Z <- qnorm(1-((1-prob)/2))

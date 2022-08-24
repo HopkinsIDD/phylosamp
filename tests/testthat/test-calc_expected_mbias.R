@@ -9,14 +9,14 @@ test_that("input arguments are valid", {
 
     expect_error(
         calc_expected_mbias(
-            p_v1="invalid",
+            p_v1=TRUE,
             c_ratio=1)
         )
 
     expect_error(
         calc_expected_mbias(
             p_v1=0.1,
-            c_ratio=0
+            c_ratio=-0.1
             )
         )
 

@@ -22,7 +22,7 @@ calc_samplesize_detect_cont <- function(prob,t,p0,r,c_ratio=1){
     if(!is.numeric(t)) stop('Time step must be numeric.')
   if(!all(is.numeric(p0), p0>0 & p0<1)) stop('Initial variant prevalence must be numeric and between 0 and 1.')
   if(!all(is.numeric(r), r!=0)) stop('Growth rate must be numeric and non-zero.')
-  if(!all(is.numeric(c_ratio), c_ratio!=0)) stop('Coefficient of detection ratio must be numeric and non-zero')
+  if(!all(is.numeric(c_ratio), c_ratio>0)) stop('Coefficient of detection ratio must be numeric and greater than 0')
 
   n = -(log(1-prob)) / (calc_cdf_logistic(t,p0,r,c_ratio)-calc_cdf_logistic(0,p0,r,c_ratio))
   return(n)

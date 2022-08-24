@@ -17,7 +17,7 @@ test_that("input arguments are valid", {
 
     expect_error(
         calc_samplesize_detect(
-            p_v1="invalid",
+            p_v1=Inf,
             prob=0.7,
             c_ratio=1)
         )
@@ -47,7 +47,7 @@ test_that("input arguments are valid", {
         calc_samplesize_detect(
             p_v1=0.1,
             prob=0.3,
-            c_ratio=0
+            c_ratio=-0.9
             )
         )
 
