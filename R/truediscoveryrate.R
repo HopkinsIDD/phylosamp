@@ -27,32 +27,23 @@
 ##' @export
 ##'
 
-truediscoveryrate <- function(
-  eta,    # sensitivity of the linkage criteria
-  chi,    # specificity of the linkage criteria
-  rho,    # sampling proportion
-  M,      # number of cases sampled
-  R=NULL,       # effective reproductive number
-  assumption='mtml' # assume most general case if not specified
-){
-
-  if (assumption == 'stsl') {
-
-    message('Calculating true discovery rate assuming single-transmission and single-linkage')
-    out <- prob_trans_stsl(eta=eta, chi=chi, rho=rho, M=M)
-
-  } else if (assumption == 'mtsl') {
-
-    message('Calculating true discovery rate assuming multiple-transmission and single-linkage')
-    out <- prob_trans_mtsl(eta=eta, chi=chi, rho=rho, M=M, R=R)
-
-  } else if (assumption == 'mtml') {
-
-    message('Calculating true discovery rate assuming multiple-transmission and multiple-linkage')
-    out <- prob_trans_mtml(eta=eta, chi=chi, rho=rho, M=M, R=R)
-
+truediscoveryrate <- function(eta, # sensitivity of the linkage criteria
+                              chi, # specificity of the linkage criteria
+                              rho, # sampling proportion
+                              M, # number of cases sampled
+                              R = NULL, # effective reproductive number
+                              assumption = "mtml" # assume most general case if not specified
+) {
+  if (assumption == "stsl") {
+    message("Calculating true discovery rate assuming single-transmission and single-linkage")
+    out <- prob_trans_stsl(eta = eta, chi = chi, rho = rho, M = M)
+  } else if (assumption == "mtsl") {
+    message("Calculating true discovery rate assuming multiple-transmission and single-linkage")
+    out <- prob_trans_mtsl(eta = eta, chi = chi, rho = rho, M = M, R = R)
+  } else if (assumption == "mtml") {
+    message("Calculating true discovery rate assuming multiple-transmission and multiple-linkage")
+    out <- prob_trans_mtml(eta = eta, chi = chi, rho = rho, M = M, R = R)
   } else {
-
     stop("Incorrect assumption argument")
   }
 

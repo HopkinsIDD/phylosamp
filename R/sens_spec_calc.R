@@ -1,5 +1,5 @@
 ##' Calculate sensitivity and specificity
-##' 
+##'
 ##' Function to calculate the sensitivity and specificity of a genetic distance cutoff
 ##' given an underlying mutation rate and mean number of generations between cases
 ##'
@@ -14,7 +14,7 @@
 ##'       of mut_rate poisson distribution
 ##'
 ##' @return a data frame with the sensitivity and specificity for a particular genetic distance cutoff
-##' 
+##'
 ##' @author Shirlee Wohl and Justin Lessler
 ##'
 ##' @example R/examples/sens_spec_calc.R
@@ -24,51 +24,51 @@
 ##' @export
 ##'
 
-sens_spec_calc <- function(
-  cutoff, 
-  mut_rate, 
-  mean_gens_pdf, 
-  max_link_gens=1,
-  max_gens=NULL,
-  max_dist=NULL
-) {
-  
-  if(is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
-  if(is.null(max_dist)) max_dist <- suppressWarnings(max_gens*stats::qpois(.999, mut_rate))
-  
+sens_spec_calc <- function(cutoff,
+                           mut_rate,
+                           mean_gens_pdf,
+                           max_link_gens = 1,
+                           max_gens = NULL,
+                           max_dist = NULL) {
+  if (is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
+  if (is.null(max_dist)) max_dist <- suppressWarnings(max_gens * stats::qpois(.999, mut_rate))
+
   # check that we have used a sensible cutoff
   # the mutation rate should be high enough such that the cutoff used is less than the max possible distance
-  if (max_dist<max(cutoff+1)){warning("Nonsensical cutoff given distances considered")}
-  
+  if (max_dist < max(cutoff + 1)) {
+    warning("Nonsensical cutoff given distances considered")
+  }
+
   # get linked and unlinked probability distributions
-  gendist <- gen_dists(mut_rate = mut_rate, mean_gens_pdf = mean_gens_pdf,
-                       max_link_gens = max_link_gens, max_gens = max_gens, max_dist = max_dist)
-  
-  linked_pdf <- gendist[,"linked_prob"]
-  unlinked_pdf <- gendist[,"unlinked_prob"]
-  
-  linked_cdf <- cumsum(linked_pdf)/sum(linked_pdf)
-  unlinked_cdf <- cumsum(unlinked_pdf)/sum(unlinked_pdf)
-  
+  gendist <- gen_dists(
+    mut_rate = mut_rate, mean_gens_pdf = mean_gens_pdf,
+    max_link_gens = max_link_gens, max_gens = max_gens, max_dist = max_dist
+  )
+
+  linked_pdf <- gendist[, "linked_prob"]
+  unlinked_pdf <- gendist[, "unlinked_prob"]
+
+  linked_cdf <- cumsum(linked_pdf) / sum(linked_pdf)
+  unlinked_cdf <- cumsum(unlinked_pdf) / sum(unlinked_pdf)
+
   # Utility function to allow for multiple sensitivity and specificity cutoffs
   get_sens_spec <- function(cutoff) {
-    
+
     # remember that cdf[cutoff] represents the probability of cutoff-1
     # but this is what we want because the threshold is <cutoff (not <=)
-    
+
     # decrease specificity by probability mass of unlinked
     spec <- 1 - unlinked_cdf[cutoff]
-    
+
     # decrease sensitivity by probability mass of linked
     sens <- 1 - (1 - linked_cdf[cutoff])
-    
-    return(c(sens,spec))
-    
+
+    return(c(sens, spec))
   }
-  
+
   rc <- t(sapply(cutoff, get_sens_spec))
   rc <- cbind(cutoff, rc)
-  colnames(rc) <- c("cutoff","sensitivity", "specificity")
-  
+  colnames(rc) <- c("cutoff", "sensitivity", "specificity")
+
   return(rc)
 }

@@ -1,5 +1,5 @@
 ##' Make ROC from sensitivity and specificity
-##' 
+##'
 ##' This is a wrapper function that takes output from the `sens_spec_calc()` function and constructs values for the
 ##' Receiver Operating Characteric (ROC) curve
 ##'
@@ -14,7 +14,7 @@
 ##'       of mut_rate poisson distribution
 ##'
 ##' @return data frame with cutoff, sensitivity, and 1-specificity
-##' 
+##'
 ##' @author Shirlee Wohl and Justin Lessler
 ##'
 ##' @example R/examples/sens_spec_roc.R
@@ -24,28 +24,25 @@
 ##' @export
 ##'
 
-sens_spec_roc <- function(
-  cutoff, 
-  mut_rate, 
-  mean_gens_pdf, 
-  max_link_gens=1,
-  max_gens=NULL,
-  max_dist=NULL
-){
-  
-  if(is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
-  if(is.null(max_dist)) max_dist <- suppressWarnings(max_gens*stats::qpois(.999, mut_rate))
-  
-  rc <- sens_spec_calc(cutoff,mut_rate,mean_gens_pdf,max_link_gens,max_gens,max_dist)
-  
+sens_spec_roc <- function(cutoff,
+                          mut_rate,
+                          mean_gens_pdf,
+                          max_link_gens = 1,
+                          max_gens = NULL,
+                          max_dist = NULL) {
+  if (is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
+  if (is.null(max_dist)) max_dist <- suppressWarnings(max_gens * stats::qpois(.999, mut_rate))
+
+  rc <- sens_spec_calc(cutoff, mut_rate, mean_gens_pdf, max_link_gens, max_gens, max_dist)
+
   # turn this into a data frame that can be used for plotting ROC curves
   rc <- as.data.frame(rc)
-  
+
   # calculate 1-specificity for plotting
-  rc$specificity <- 1-rc$specificity
-  
+  rc$specificity <- 1 - rc$specificity
+
   # add the starting and ending points to make the complete curve
-  rc <- rbind(c(-1,0,0), rc ,c(Inf,1,1))
-  
+  rc <- rbind(c(-1, 0, 0), rc, c(Inf, 1, 1))
+
   return(rc)
 }

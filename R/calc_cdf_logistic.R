@@ -15,16 +15,15 @@
 ##' @export
 
 
-calc_cdf_logistic <- function(t,p0,r,c_ratio=1){
+calc_cdf_logistic <- function(t, p0, r, c_ratio = 1) {
+  if (!is.numeric(t)) stop("Time step must be numeric.")
+  if (!all(is.numeric(p0), p0 > 0 & p0 < 1)) stop("Initial variant prevalence must be numeric and between 0 and 1.")
+  if (!all(is.numeric(r), r != 0)) stop("Growth rate must be numeric and non-zero.")
+  if (!all(is.numeric(c_ratio), c_ratio != 0)) stop("Coefficient of detection ratio must be numeric and non-zero")
 
-  if(!is.numeric(t)) stop('Time step must be numeric.')
-  if(!all(is.numeric(p0), p0>0 & p0<1)) stop('Initial variant prevalence must be numeric and between 0 and 1.')
-  if(!all(is.numeric(r), r!=0)) stop('Growth rate must be numeric and non-zero.')
-  if(!all(is.numeric(c_ratio), c_ratio!=0)) stop('Coefficient of detection ratio must be numeric and non-zero')
-
-  a <- (1/p0)-1
-  b <- a*(1/c_ratio)
-  G <- (1/r) * log(b+exp(r*t))
+  a <- (1 / p0) - 1
+  b <- a * (1 / c_ratio)
+  G <- (1 / r) * log(b + exp(r * t))
 
   return(G)
 }

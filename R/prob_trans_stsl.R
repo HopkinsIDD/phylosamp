@@ -24,18 +24,16 @@
 ##'
 ##' @export
 
-prob_trans_stsl <- function(
-  eta,    # sensitivity of the linkage criteria
-  chi,    # specificity of the linkage criteria
-  rho,    # sampling proportion
-  M       # number of cases sampled
-){
-
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
-  if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
-  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
-  if (!all(is.numeric(M) | is.integer(M), M >= 0)) stop('Sample size (M) must be integer or numeric greater than 0')
+prob_trans_stsl <- function(eta, # sensitivity of the linkage criteria
+                            chi, # specificity of the linkage criteria
+                            rho, # sampling proportion
+                            M # number of cases sampled
+) {
+  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop("eta must be numeric between 0 and 1")
+  if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop("chi must be numeric between 0 and 1")
+  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop("rho must be numeric > 0 and <= 1")
+  if (!all(is.numeric(M) | is.integer(M), M >= 0)) stop("Sample size (M) must be integer or numeric greater than 0")
 
   (eta * rho) /
-    ((eta * rho) + ((1 - chi^(M-2)) * (1 - eta) * rho) + ((1 - chi^(M-1)) * (1 - rho)))
+    ((eta * rho) + ((1 - chi^(M - 2)) * (1 - eta) * rho) + ((1 - chi^(M - 1)) * (1 - rho)))
 }

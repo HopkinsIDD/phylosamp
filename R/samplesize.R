@@ -1,7 +1,7 @@
 
 ##' Calculate sample size
-##' 
-##' This function calculates the sample size needed to obtain at least a defined false disovery rate given 
+##'
+##' This function calculates the sample size needed to obtain at least a defined false disovery rate given
 ##' a final outbreak size \eqn{N}.
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria
@@ -28,35 +28,35 @@
 ##' @export
 ##'
 
-samplesize <- function(
-  eta,         # sensitivity of the linkage criteria
-  chi,         # specificity of the linkage criteria
-  N,           # final outbreak size
-  R=NULL,      # effective reproductive number
-  phi,         # minimum true discovery rate
-  min_pairs=1,  # minimum number of linked pairs, defaults to 1 (2 samples)
-  assumption='mtml' # assume most general case if not specified
-){
-  
-  if (!(is.numeric(phi) & phi >= 0 & phi <= 1)) {stop('phi must be numeric between 0 and 1')}
-  
+samplesize <- function(eta, # sensitivity of the linkage criteria
+                       chi, # specificity of the linkage criteria
+                       N, # final outbreak size
+                       R = NULL, # effective reproductive number
+                       phi, # minimum true discovery rate
+                       min_pairs = 1, # minimum number of linked pairs, defaults to 1 (2 samples)
+                       assumption = "mtml" # assume most general case if not specified
+) {
+  if (!(is.numeric(phi) & phi >= 0 & phi <= 1)) {
+    stop("phi must be numeric between 0 and 1")
+  }
+
   # the max sample size in the final size of the outbreak
   # iterate between minimum and maximum sample size until the desired value is reached
   samplesize_found <- FALSE
   for (i in 2:N) {
+    tdr <- suppressMessages(truediscoveryrate(eta = eta, chi = chi, rho = i / N, M = i, R = R, assumption = assumption))
+    obs_pairs <- suppressMessages(exp_links(eta = eta, chi = chi, rho = i / N, M = i, R = R, assumption = assumption))
 
-    tdr <- suppressMessages(truediscoveryrate(eta=eta, chi=chi, rho=i/N, M=i, R=R, assumption=assumption))
-    obs_pairs = suppressMessages(exp_links(eta=eta, chi=chi, rho=i/N, M=i, R=R, assumption=assumption))
-    
-    if (tdr >= phi & obs_pairs >= min_pairs) { 
+    if (tdr >= phi & obs_pairs >= min_pairs) {
       samplesize_found <- TRUE
       break
     }
-    
   }
-  
+
   # check if we successfully achieved the desired true discovery rate
-  if (samplesize_found) { return(i) }
-  else { stop("Input values do no produce a viable solution") }
-    
+  if (samplesize_found) {
+    return(i)
+  } else {
+    stop("Input values do no produce a viable solution")
+  }
 }

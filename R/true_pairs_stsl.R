@@ -21,16 +21,13 @@
 ##'
 ##' @export
 
-true_pairs_stsl <- function(
-  eta,
-  rho,    # sampling proportion
-  M       # number of cases sampled
-  
-){
+true_pairs_stsl <- function(eta,
+                            rho, # sampling proportion
+                            M # number of cases sampled
+) {
+  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop("eta must be numeric between 0 and 1")
+  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop("rho must be numeric > 0 and <= 1")
+  if (!all(is.numeric(M) | is.integer(M), M >= 0)) stop("Sample size (M) must be integer or numeric greater than 0")
 
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
-  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
-  if (!all(is.numeric(M) | is.integer(M), M >= 0)) stop('Sample size (M) must be integer or numeric greater than 0')
-  
   (M / 2) * eta * rho
 }

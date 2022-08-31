@@ -26,20 +26,18 @@
 ##'
 ##'
 
-obs_pairs_mtml <- function(
-  chi,    # specificity of the linkage criteria
-  eta,    # sensitivity of the linkage criteria
-  rho,    # sampling proportion
-  M,      # number of cases sampled
-  R       # effective reproductive number
-){
+obs_pairs_mtml <- function(chi, # specificity of the linkage criteria
+                           eta, # sensitivity of the linkage criteria
+                           rho, # sampling proportion
+                           M, # number of cases sampled
+                           R # effective reproductive number
+) {
+  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop("eta must be numeric between 0 and 1")
+  if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop("chi must be numeric between 0 and 1")
+  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop("rho must be numeric > 0 and <= 1")
+  if (!all(is.numeric(M) | is.integer(M), M >= 0)) stop("Sample size (M) must be integer or numeric greater than 0")
+  if (!all(is.numeric(R), R > 0)) stop("Reproductive number (R) must be numeric greater than 0")
+  if (!all(is.numeric(R), R <= 1)) warning("Reproductive number (R) is usually less than 1 for finite outbreaks")
 
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop('eta must be numeric between 0 and 1')
-  if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop('chi must be numeric between 0 and 1')
-  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop('rho must be numeric > 0 and <= 1')
-  if (!all(is.numeric(M) | is.integer(M), M >= 0)) stop('Sample size (M) must be integer or numeric greater than 0')
-  if (!all(is.numeric(R), R > 0)) stop('Reproductive number (R) must be numeric greater than 0')
-  if (!all(is.numeric(R), R <= 1)) warning('Reproductive number (R) is usually less than 1 for finite outbreaks')
-
-  (M / 2) * ((eta * rho * (R+1)) + ((1-chi) * (M - 1- (rho * (R+1)))))
+  (M / 2) * ((eta * rho * (R + 1)) + ((1 - chi) * (M - 1 - (rho * (R + 1)))))
 }

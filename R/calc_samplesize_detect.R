@@ -15,13 +15,12 @@
 ##' @export
 
 
-calc_samplesize_detect <- function(p_v1,prob,c_ratio){
+calc_samplesize_detect <- function(p_v1, prob, c_ratio) {
+  if (!all(is.numeric(p_v1), p_v1 > 0 & p_v1 < 1)) stop("Variant prevalence must be numeric and between 0 and 1.")
+  if (!all(is.numeric(prob), prob > 0 & prob < 1)) stop("Desired probability of detection must be numeric and between 0 and 1.")
+  if (!all(is.numeric(c_ratio), c_ratio > 0)) stop("Coefficient of detection ratio must be numeric and greater than 0")
 
-  if(!all(is.numeric(p_v1), p_v1>0 & p_v1<1)) stop('Variant prevalence must be numeric and between 0 and 1.')
-  if(!all(is.numeric(prob), prob>0 & prob<1)) stop('Desired probability of detection must be numeric and between 0 and 1.')
-  if(!all(is.numeric(c_ratio), c_ratio>0)) stop('Coefficient of detection ratio must be numeric and greater than 0')
-
-  p_star <- calc_observed_freq(p_v1,c_ratio)
-  n = (log(1-prob)) / (log(1-p_star))
+  p_star <- calc_observed_freq(p_v1, c_ratio)
+  n <- (log(1 - prob)) / (log(1 - p_star))
   return(n)
 }

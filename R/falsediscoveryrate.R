@@ -27,21 +27,21 @@
 ##' @export
 ##'
 
-falsediscoveryrate <- function(
-  eta,    # sensitivity of the linkage criteria
-  chi,    # specificity of the linkage criteria
-  rho,    # sampling proportion
-  M,      # number of cases sampled
-  R=NULL,       # effective reproductive number
-  assumption='mtml' # assume most general case if not specified
-){
-
+falsediscoveryrate <- function(eta, # sensitivity of the linkage criteria
+                               chi, # specificity of the linkage criteria
+                               rho, # sampling proportion
+                               M, # number of cases sampled
+                               R = NULL, # effective reproductive number
+                               assumption = "mtml" # assume most general case if not specified
+) {
   suppressMessages(
-  1 - truediscoveryrate(eta=eta,
-                        chi=chi,
-                        rho=rho,
-                        M=M,
-                        R=R,
-                        assumption=assumption)
+    1 - truediscoveryrate(
+      eta = eta,
+      chi = chi,
+      rho = rho,
+      M = M,
+      R = R,
+      assumption = assumption
+    )
   )
 }
