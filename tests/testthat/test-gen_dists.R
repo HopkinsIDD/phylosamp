@@ -1,22 +1,18 @@
-library(phylosamp)
-library(testthat)
-
-context("gen_dists")
 
 test_that("returns linked_prob==1 when max_dist 0 and mean_gens_pdf[1]>0", {
   
-  expect_that(
+  expect_equal(
     gen_dists(mut_rate = 1,
               mean_gens_pdf = c(0.2,0.2,0.2,0.2,0.2),
               max_dist = 0)[,"linked_prob"][[1]], 
-    equals(1)
+    1
   )
   
-  expect_that(
+  expect_equal(
     gen_dists(mut_rate = 2,
               mean_gens_pdf = c(1),
               max_dist = 0)[,"linked_prob"][[1]], 
-    equals(1)
+    1
   )
 })
 

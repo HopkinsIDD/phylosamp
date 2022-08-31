@@ -1,27 +1,25 @@
-library(phylosamp)
-library(testthat)
-
-context("sens_spec_calc")
 
 test_that("sensitivity estimate found", {
   
-  expect_that(
+  expect_equal(
     sens_spec_calc(cutoff=2, 
                    mut_rate=1, 
                    mean_gens_pdf=c(0.02,0.08,0.15,0.75), 
                    max_link_gens=1)[1,"sensitivity"][[1]], 
-    equals(0.7357589, tolerance=0.01)
+    0.7357589,
+    tolerance=0.01
   )
 })
 
 test_that("specificity estimate found", {
   
-  expect_that(
+  expect_equal(
     sens_spec_calc(cutoff=2, 
                    mut_rate=1, 
                    mean_gens_pdf=c(0.02,0.08,0.15,0.75), 
                    max_link_gens=1)[1,"specificity"][[1]], 
-    equals(0.8662894, tolerance=0.01)
+    0.8662894,
+    tolerance=0.01
   )
 })
 

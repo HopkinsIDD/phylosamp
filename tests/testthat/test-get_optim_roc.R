@@ -1,7 +1,3 @@
-library(phylosamp)
-library(testthat)
-
-context("get_optim_roc")
 
 test_that("point nearest (0,1) corner found", {
   
@@ -16,8 +12,8 @@ test_that("point nearest (0,1) corner found", {
     )
   )
 
-  expect_that(
+  expect_equal(
     get_optim_roc(x)$cutoff, 
-    equals(2)
+    2
   )
 })

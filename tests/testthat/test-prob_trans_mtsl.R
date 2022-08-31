@@ -1,56 +1,52 @@
-library(phylosamp)
-library(testthat)
-
-context("prob_trans_mtsl")
 
 test_that("returns 1 when sensitivity perfect", {
   
-  expect_that(
+  expect_equal(
     prob_trans_mtsl(eta=1, 
                     chi=1, 
                     rho=1, 
                     M=10,
                     R=1), 
-    equals(1)
+    1
   )
   
-  expect_that(
+  expect_equal(
     prob_trans_mtsl(eta=1, 
                     chi=1, 
                     rho=0.5, 
                     M=10,
                     R=1), 
-    equals(1)
+    1
   )
 })
 
 test_that("returns 0 when sensitivity 0", {
   
-  expect_that(
+  expect_equal(
     prob_trans_mtsl(eta=0, 
                     chi=0.99, 
                     rho=1, 
                     M=10,
                     R=1), 
-    equals(0)
+    0
   )
   
-  expect_that(
+  expect_equal(
     prob_trans_mtsl(eta=0, 
                     chi=0.99, 
                     rho=0.5, 
                     M=10,
                     R=1), 
-    equals(0)
+    0
   )
   
-  expect_that(
+  expect_equal(
     prob_trans_mtsl(eta=0, 
                     chi=0.5, 
                     rho=1, 
                     M=10,
                     R=1), 
-    equals(0)
+    0
   )
 })
 

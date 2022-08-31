@@ -1,72 +1,68 @@
-library(phylosamp)
-library(testthat)
-
-context("truediscoveryrate")
 
 test_that("returns 1 when sensitivity perfect", {
   
-  expect_that(
+  expect_equal(
     truediscoveryrate(eta=1, 
                       chi=1, 
                       rho=1, 
                       M=10,
                       R=NULL,
                       assumption='stsl'), 
-    equals(1)
+    1
   )
   
-  expect_that(
+  expect_equal(
     truediscoveryrate(eta=1, 
                       chi=1, 
                       rho=1, 
                       M=10,
                       R=1,
                       assumption='mtsl'), 
-    equals(1)
+    1
   )
   
-  expect_that(
+  expect_equal(
     truediscoveryrate(eta=1, 
                       chi=1, 
                       rho=1, 
                       M=10,
                       R=1,
                       assumption='mtml'), 
-    equals(1)
+    1
   )
 })
 
 
 test_that("returns 0 when sensitivity 0", {
   
-  expect_that(
+  expect_equal(
     truediscoveryrate(eta=0, 
                       chi=0.99, 
                       rho=1, 
                       M=10,
                       R=NULL,
                       assumption='stsl'), 
-    equals(0)
+    0
   )
   
-  expect_that(
+  expect_equal(
     truediscoveryrate(eta=0, 
                       chi=0.99, 
                       rho=1, 
                       M=10,
                       R=1,
                       assumption='mtsl'), 
-    equals(0)
+    0
   )
   
-  expect_that(
+  expect_equal(
     truediscoveryrate(eta=0, 
                       chi=0.99, 
                       rho=1, 
                       M=10,
                       R=1,
                       assumption='mtml'), 
-    equals(0)
+    0
   )
 })
 

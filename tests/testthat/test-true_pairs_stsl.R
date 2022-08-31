@@ -1,32 +1,28 @@
-library(phylosamp)
-library(testthat)
-
-context("true_pairs_stsl")
 
 test_that("returns (M/2) * rho when sensitivity perfect", {
   
-  expect_that(
+  expect_equal(
     true_pairs_stsl(eta=1, 
                     rho=1, 
                     M=10), 
-    equals(5)
+    5
   )
   
-  expect_that(
+  expect_equal(
     true_pairs_stsl(eta=1, 
                     rho=0.5, 
                     M=10), 
-    equals(2.5)
+    2.5
   )
 })
 
 test_that("returns 0 when sensitivity 0", {
   
-  expect_that(
+  expect_equal(
     true_pairs_stsl(eta=0, 
                     rho=1, 
                     M=10), 
-    equals(0)
+    0
   )
 
 })

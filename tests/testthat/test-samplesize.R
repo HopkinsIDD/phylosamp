@@ -1,7 +1,3 @@
-library(phylosamp)
-library(testthat)
-
-context("samplesize")
 
 test_that("fails when sensitivity 0", {
   

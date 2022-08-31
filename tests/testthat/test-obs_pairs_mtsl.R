@@ -1,26 +1,22 @@
-library(phylosamp)
-library(testthat)
-
-context("obs_pairs_mtsl")
 
 test_that("returns M*rho when sensitivity perfect", {
   
-  expect_that(
+  expect_equal(
     obs_pairs_mtsl(eta=1, 
                     chi=1, 
                     rho=1, 
                     M=10,
                     R=1), 
-    equals(10)
+    10
   )
   
-  expect_that(
+  expect_equal(
     obs_pairs_mtsl(eta=1, 
                     chi=1, 
                     rho=0.5, 
                     M=10,
                     R=1), 
-    equals(5)
+    5
   )
 })
 
