@@ -83,7 +83,7 @@ test_that("manuscript results remain valid", {
     expect_equal(
         ceiling(
             calc_samplesize_detect(p_v1=0.02, prob=0.95, c_ratio=(.8*.975)/(.6*.95))),
-        110
+        109
         )
 })
 

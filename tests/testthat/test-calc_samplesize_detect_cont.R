@@ -121,13 +121,26 @@ test_that("manuscript results remain valid", {
         ceiling(
             calc_samplesize_detect_cont(
                 prob=0.95,
-                t=14,
+                t=30,
                 p0=1/10000,
                 r=0.1,
                 c_ratio=1
                 )
             ),
         158
+        )
+
+    expect_equal(
+        ceiling(
+            calc_samplesize_detect_cont(
+                prob=0.95,
+                t=47,
+                p0=1/10000,
+                r=0.1,
+                c_ratio=1
+                )
+            )*7,
+        196
         )
 
     expect_equal(

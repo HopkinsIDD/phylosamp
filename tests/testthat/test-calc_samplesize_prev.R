@@ -127,6 +127,6 @@ test_that("manuscript results remain valid", {
                 c_ratio=1/0.84
                 )
             ),
-        464
+        465
         )
 })

@@ -111,7 +111,7 @@ test_that("manuscript results remain valid", {
     expect_gt(
         calc_prob_detect_cont(
             n=158,
-            t=14,
+            t=30,
             p0=1/10000,
             r=0.1,
             c_ratio=1
