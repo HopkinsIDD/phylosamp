@@ -9,6 +9,7 @@
 ##'
 ##' @author Shirlee Wohl, John Giles, and Justin Lessler
 ##'
-##' @example R/examples/gen_dist_sim.R
+##' @examples
+##' data(gen_dist_sim)
 ##'
 "gen_dist_sim"

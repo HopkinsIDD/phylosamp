@@ -10,7 +10,8 @@
 ##'
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 ##'
-##' @example R/examples/
+##' @examples
+##' calc_expected_mbias(p_v1 = 0.1, c_ratio = 1.1)
 ##'
 ##' @family VOC_bias
 ##'

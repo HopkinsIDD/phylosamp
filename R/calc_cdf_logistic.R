@@ -8,7 +8,8 @@
 ##'
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 ##'
-##' @example R/examples/
+##' @examples
+##' calc_cdf_logistic(t = 30, p0 = 1/10000, r = 0.1, c_ratio = 1)
 ##'
 ##' @family VOC_loggrowth
 ##'

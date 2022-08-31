@@ -1,1 +1,0 @@
-true_pairs(eta=0.99, rho=0.75, M=100, R=1)

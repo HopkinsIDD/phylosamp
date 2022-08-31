@@ -8,7 +8,8 @@
 ##'
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 ##'
-##' @example R/examples/
+##' @examples
+##' calc_samplesize_prev(p_v1 = 0.1, prob = 0.95, precision = 0.25, c_ratio = 1)
 ##'
 ##' @family VOC_prevalence
 ##'

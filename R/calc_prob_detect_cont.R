@@ -9,7 +9,8 @@
 ##'
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 ##'
-##' @example R/examples/
+##' @examples
+##' calc_prob_detect_cont(n = 158, t = 30, p0 = 1/10000, r = 0.1, c_ratio = 1)
 ##'
 ##' @family VOC_detection
 ##'

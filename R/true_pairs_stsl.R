@@ -15,7 +15,8 @@
 ##'
 ##' @author John Giles, Shirlee Wohl, and Justin Lessler
 ##'
-##' @example R/examples/true_pairs_stsl.R
+##' @examples
+##' true_pairs_stsl(eta=0.95, rho=0.2, M=200)
 ##'
 ##' @family true_pairs
 ##'

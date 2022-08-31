@@ -8,7 +8,8 @@
 ##'
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 ##'
-##' @example R/examples/
+##' @examples
+##' calc_samplesize_detect(p_v1 = 0.1, prob = 0.95, c_ratio = 1)
 ##'
 ##' @family VOC_detection
 ##'

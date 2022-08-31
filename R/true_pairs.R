@@ -18,7 +18,8 @@
 ##'
 ##' @author John Giles, Shirlee Wohl, and Justin Lessler
 ##'
-##' @example R/examples/true_pairs.R
+##' @examples
+##' true_pairs(eta=0.99, rho=0.75, M=100, R=1)
 ##'
 ##' @family true_pairs
 ##'
