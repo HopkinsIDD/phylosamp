@@ -15,7 +15,7 @@ h1.title {
 
 </style>
 
-This vignette provides an overview of the primary function of the phylosamp package: how to estimate the false discovery rate given a sample size. In the examples provided, we use the default `assumption` argument (multiple transmissions and multiple links, `mtml`), though alternative assumptions can also be specified.
+This vignette provides an overview of the primary function of the linkage scenario portion of the phylosamp package: how to estimate the false discovery rate given a sample size. In the examples provided, we use the default `assumption` argument (multiple transmissions and multiple links, `mtml`), though alternative assumptions can also be specified.
 
 The most basic function of the package is `truediscoveryrate()`, which calculates the probability that an identified link represents a true transmission event. This calculation relies on the following parameters:
 

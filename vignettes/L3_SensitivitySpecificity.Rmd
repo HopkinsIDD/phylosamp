@@ -15,7 +15,7 @@ h1.title {
 
 </style>
 
-The sensitivity and specificity of the linkage criteria to distinguish between linked and unlinked infection pairs can be determined by applying a specific linkage criteria to an existing dataset for which the true transmission events are known, and then extrapoloating these results to a new or larger set of data for which transmission are not known.
+The sensitivity and specificity of the linkage criteria to distinguish between linked and unlinked infection pairs can be determined by applying a specific linkage criteria to an existing dataset for which the true transmission events are known, and then extrapolating these results to a new or larger set of data for which transmission are not known.
 
 However, there are many scenarios in which this existing dataset is not available or representative of the desired sampling population. In this package, we provide a method for calculating the sensitivity and specificity of genetic distance -- the number of mutations between pathogen genome sequences -- as a linkage criteria. Further research is needed to extend this method beyond genetic distance as the linkage metric.
 
