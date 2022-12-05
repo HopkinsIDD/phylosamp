@@ -2,9 +2,9 @@
 
 # phylosamp
 
-This repository provides code for the `phylosamp` R package, which was designed to help users conduct and evaluate sample size calculations for phylogenetic studies. Presently, the functions can be used to calculate sample size in two types of scenarios that frequently arise when analyzing pathogen genomic data: (1) trying to determine if pathogen infections are linked by transmission (['linkage scenario'](#Determining-linkage-between-pathogen-infections)); (2) trying to estimate the frequency of a known pathogen lineage or variant of concern (['VOC scenario'](#Determining-the-frequency-of-a-pathogen-VOC)).
+This repository provides code for the `phylosamp` R package, which was designed to help users conduct and evaluate sample size calculations for phylogenetic studies. Presently, the functions can be used to calculate sample size in two types of scenarios that frequently arise when analyzing pathogen genomic data: (1) trying to determine if pathogen infections are linked by transmission ([linkage scenario](#Determining-linkage-between-pathogen-infections)); (2) trying to estimate the frequency of a known pathogen lineage or variant of concern ([VOC scenario](#Determining-the-frequency-of-a-pathogen-VOC)).
 
-All key functions of each scenario are documented, along with realistic examples, in the [associated vignettes](hopkinsidd.github.io/phylosamp/). Vignettes are organized as follows:
+All key functions of each scenario are documented, along with realistic examples, in the [associated vignettes](https://hopkinsidd.github.io/phylosamp/index.html). Vignettes are organized as follows:
 
 * Vignettes L1-L4: linkage scenario vignettes and examples
 * Vignettes V1-V4: VOC scenario vignettes and examples
