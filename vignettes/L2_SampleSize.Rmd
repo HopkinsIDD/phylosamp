@@ -1,8 +1,8 @@
 ---
-title: Estimating sample size from the false discovery rate
+title: <font size="5"> Estimating sample size for transmission linkage from the false discovery rate </font>
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Estimating sample size from the false discovery rate}
+  %\VignetteIndexEntry{L2: Estimating sample size for transmission linkage from the false discovery rate}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---

@@ -1,8 +1,8 @@
 ---
-title: Estimating the sensitivity and specificity of a linkage criteria
+title: <font size="5"> Estimating the sensitivity and specificity of a linkage criteria </font>
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Estimating the sensitivity and specificity of a linkage criteria}
+  %\VignetteIndexEntry{L3: Estimating the sensitivity and specificity of a linkage criteria}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
