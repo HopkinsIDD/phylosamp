@@ -4,7 +4,7 @@
 
 This repository provides code for the `phylosamp` R package, which was designed to help users conduct and evaluate sample size calculations for phylogenetic studies. Presently, the functions can be used to calculate sample size in two types scenarios that frequently arise when analyzing pathogen genomic data: (1) trying to determine if pathogen infections are linked by transmission; (2) trying to estimate the frequency of a known pathogen lineage or variant of concern (VOC).
 
-##### Determining linkage between pathogen infections
+### Determining linkage between pathogen infections
 
 The package includes a suite of functions that can be used to determine the the ability of some phylogenetic criteria (e.g., genetic distance) to correctly identify pairs of pathogen infections linked by transmission, given a particular sample size or proportion. The package also includes functions that do the reverse: calculate the sample size needed to correctly identify true pairs at some particular rate.
 
@@ -12,7 +12,7 @@ The functions used to calculate the sample size or false discovery rate of the c
 
 All functions require the user to specify the underlying assumptions about transmissions and linkage, i.e., if an infected individual can transmit to more than one susceptible individual (single transmission/multiple transmissions), and if the criteria being used is capable of linking a case to more than one other case (single linkage/multiple linkage). Permitting multiple transmissions and multiple links ('mtml') is the default.
 
-##### Determining the frequency of a pathogen VOC
+### Determining the frequency of a pathogen VOC
 
 The package includes another set of functions that can be used to determine the sample size needed to detect or estimate the frequency of a VOC in a population. It also includes functions that do the reverse: calculate the confidence in a detection or frequency estimate, given a number of sequences.
 
@@ -34,7 +34,7 @@ A detailed description of the VOC estimation methods can be found in:
 
 [Sample Size Calculations for Variant Surveillance in the Presence of Biological and Systematic Biases (Wohl, Lee, Diprete, and Lessler 2022)](https://doi.org/10.1101/2021.12.30.21268453)
 
-This package is maintained by Elizabeth Lee ([@eclee25](https://github.com/eclee25)), Shirlee Wohl ([@shwohl](https://github.com/shwohl)) and Justin Lessler ([@jlessler](https://github.com/jlessler).
+This package is maintained by Elizabeth Lee ([@eclee25](https://github.com/eclee25)), Shirlee Wohl ([@shwohl](https://github.com/shwohl)), and Justin Lessler ([@jlessler](https://github.com/jlessler)).
 
 ### Installation
 
