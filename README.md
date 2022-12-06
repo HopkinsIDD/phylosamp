@@ -7,7 +7,7 @@ This repository provides code for the `phylosamp` R package, which was designed 
 All key functions of each scenario are documented, along with realistic examples, in the [associated vignettes](https://hopkinsidd.github.io/phylosamp/index.html). Vignettes are organized as follows:
 
 * Vignettes L1-L4: linkage scenario vignettes and examples
-* Vignettes V1-V4: VOC scenario vignettes and examples
+* Vignettes V1-V6: VOC scenario vignettes and examples
 
 ## Determining linkage between pathogen infections
 
