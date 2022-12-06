@@ -1,0 +1,58 @@
+---
+title: <font size="5"> Estimating the sample size needed for variant monitoring </font>
+subtitle: Periodic sampling
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{V4: Estimating the sample size needed for variant monitoring (periodic)}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+<style type="text/css">
+
+h1.title {
+  font-size: 18px
+}
+
+</style>
+
+This vignette provides an overview of the functions that can be used to estimate the sample size needed to detect a pathogen variant in a population, given a periodic sampling scheme.
+
+The `calc_samplesize_detect_cont()` function can be used to calculate the sample size needed to detect a particular variant in the population within a specific number of days since its introduction, OR by the time a variant reaches a specific frequency. As in the cross-sectional counterpart to this function, `calc_samplesize_detect_cont()` requires knowledge of the coefficient of detection ratio between two pathogen variants (or, more commonly, one variant and the rest of the pathogen population). The coefficient of detection ratio for two variants can be calculated using the `calc_cod_ratio()` function. Since we are only interested in the ratio of the coefficients of detection, applying this function only requires providing parameters which are expected to differ between variants. The ratio between any variants not provided is assumed to be equal to one.
+
+Once we have an estimate of the coefficient of detection ratio, we can calculate the sample size needed for detection from the following parameters:
+
+| Param | Variable Name | <span style="display: inline-block; width:500px">Description</span> |
+|:-----:|:-------------:|-------------|
+|   **$p$**   |       prob       | the desired probability of detection           |
+|   **$t$**   |       t       | the number of days after introduction a variant should be detected by          |
+|   **$P_detect$**   |       p_detect       | the desired prevalence to detect a variant by          |
+|   **$P_0$**   |       p0       | the initial variant prevalence (# introductions / population size)          |
+|   **$r$**   |       r       | the estimated logistic growth rate of the variant (per day)         |
+|   **$\frac{C_{V_1}}{C_{V_2}}$**   |       c_ratio       | the coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2 (can be calculated using `calc_cod_ratio()`)           |
+
+If we would like to know the sample size needed per day to ensure detection of a variant by the time it reaches 1% prevalence in the population, we can apply the `calc_samplesize_detect_cont()` function as follows:
+
+```{r setup, message=FALSE}
+library(phylosamp)
+```
+
+```{r calc_samplesize_detect_cont}
+
+c1_c2 <- calc_cod_ratio(phi_v1=0.975, phi_v2=0.95, gamma_v1=0.8, gamma_v2=0.6)
+calc_samplesize_detect_cont(prob=0.95, p_detect=0.01, p0=3/10000, r=0.1, c_ratio=c1_c2)
+
+```
+
+In other words, 21 sequences *per day* are needed to detect a variant at 1% (or higher) in a population with 95% probability of detection, given a coefficient of detection ratio ($\frac{C_{V_1}}{C_{V_2}}$) of 1.368 (as calculated from parameters listed above). However, we also have to recognize that not all samples sequenced (or otherwise characterized) will be successful. If we assume an 80% success rate, for example, we need to collect and process 27 samples per day to ensure 21 high quality data points that can be used to detect the presence of a pathogen variant. If sequencing will occur on a weekly basis, this means we need to process $27*7=189$ samples per week (ideally from infections spread evenly over the 7 days) to ensure we detect a variant by the time it reaches 1% frequency in the population.
+
+If instead we are interested in detecting a variant within the first month of its introduction into the population (assuming all other parameters are the same as above), we can use the `calc_samplesize_detect_cont()` function as follows:
+
+```{r calc_samplesize_detect_cont2}
+
+c1_c2 <- calc_cod_ratio(phi_v1=0.975, phi_v2=0.95, gamma_v1=0.8, gamma_v2=0.6)
+calc_samplesize_detect_cont(prob=0.95, t=30, p0=3/10000, r=0.1, c_ratio=c1_c2)
+
+```
+
+In this case, we can see that we will need to generate 39 sequences per day (which, assuming an 80% sequencing success rate, means processing 49 samples per day) to ensure detection within the first month of variant introduction into the population.
