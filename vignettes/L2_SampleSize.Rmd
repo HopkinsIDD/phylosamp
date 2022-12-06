@@ -17,15 +17,13 @@ h1.title {
 
 In this vignette we describe how the linkage scenario functionality can be used in reverse, to calculate the necessary sample size to achieve a pre-specified false discovery rate. For example, this calculation would be useful if a researcher is conducting a study for which specimens have yet to be collected, but they want to ensure at least 75% confidence in identified links. To calculate the proportion of links that represent true transmission pairs, the user needs to provide the sensitivity and specificity of the linkage criteria used, the final size of the outbreak, and the desired minimum true discovery rate ($1-\text{False Discovery Rate}$):
 
-|        **$\eta$** (eta): the sensitivity of the linkage criteria for identifying transmission links
-  
-|        **$\chi$** (chi): the specificity of the linkage criteria for identifying transmission links
-  
-|        **N**: the final size of the outbreak (total number of infections)
-  
-|        **$R$**: the average reproductive number (also denoted $R_\text{pop}$)
-
-|        **$\phi$** (phi): the desired minimum true discovery rate
+| Param | Variable Name | <span style="display: inline-block; width:500px">Description</span> |
+|:-----:|:-------------:|-------------|
+|   **$\eta$**   |       eta       | the sensitivity of the linkage criteria for identifying transmission links          |
+|   **$\chi$**   |       chi       | the specificity of the linkage criteria for identifying transmission links          |
+|   **$N$**   |       N       | the final size of the outbreak (total number of infections)           |
+|   **$R$**   |       R       | the average reproductive number (also denoted $R_\text{pop}$, see below)           |
+|   **$\phi$**   |       phi       | the desired minimum true discovery rate          |
 
 Imagine we are interested in collecting enough samples from an outbreak of 100 cases to ensure that the identified links are correct at least 75% of the time. The phylogenetic criteria we are using to identify links has a sensitivity of 99% and a specificity of 99.5%:
 
