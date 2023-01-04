@@ -15,7 +15,7 @@ h1.title {
 
 </style>
 
-in this vignette, we apply the functions provided to estimate sensitivity and specificity and apply them to an Ebola-like pathogen. We compare the results to those of a pathogen with a slower mutation rate and higher reproductive number. Then, we will use these results to calculate the false discovery rate of our linkage criteria (genetic distance) given a sample size of 200 and a relevant population of 1000 infected individuals.
+In this vignette, we apply the functions provided to estimate sensitivity and specificity and apply them to an Ebola-like pathogen. We compare the results to those of a pathogen with a slower mutation rate and higher reproductive number. Then, we will use these results to calculate the false discovery rate of our linkage criteria (genetic distance) given a sample size of 200 and a relevant population of 1000 infected individuals.
 
 In the first part of this vignette, we use the function `sens_spec_roc()`, which formats the results of `sens_spec_calc()` for plotting ROC curves.
 
