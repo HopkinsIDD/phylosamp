@@ -11,14 +11,14 @@
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 ##'
 ##' @examples
-##' calc_observed_freq(p_v1 = 0.1, c_ratio = 1.1)
+##' varfreq_obs_freq(p_v1 = 0.1, c_ratio = 1.1)
 ##'
-##' @family VOC_bias
+##' @family variant frequency functions
 ##'
 ##' @export
 
 
-calc_observed_freq <- function(p_v1, c_ratio) {
+varfreq_obs_freq <- function(p_v1, c_ratio) {
   if (!all(is.numeric(p_v1), p_v1 > 0 & p_v1 < 1)) stop("Variant prevalence must be numeric and between 0 and 1.")
   if (!all(is.numeric(c_ratio), c_ratio > 0)) stop("Coefficient of detection ratio must be numeric and greater than 0")
 

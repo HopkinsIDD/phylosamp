@@ -18,14 +18,14 @@
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 ##'
 ##' @examples
-##' calc_cod_ratio(phi_v1=0.975, phi_v2=0.95, gamma_v1=0.8, gamma_v2=0.6)
+##' vartrack_cod_ratio(phi_v1=0.975, phi_v2=0.95, gamma_v1=0.8, gamma_v2=0.6)
 ##'
-##' @family VOC_bias
+##' @family variant tracking functions
 ##'
 ##' @export
 
 
-calc_cod_ratio <- function(phi_v1=1,phi_v2=1,gamma_v1=1,gamma_v2=1,
+vartrack_cod_ratio <- function(phi_v1=1,phi_v2=1,gamma_v1=1,gamma_v2=1,
                            alpha_v1=1,alpha_v2=1,beta_a=1,beta_s=1) {
   if (!all(is.numeric(phi_v1), phi_v1 > 0 & phi_v1 <= 1)) stop("Testing sensitivity must be numeric and between 0 and 1.")
   if (!all(is.numeric(phi_v2), phi_v2 > 0 & phi_v1 <= 1)) stop("Testing sensitivity must be numeric and between 0 and 1.")
