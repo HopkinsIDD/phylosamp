@@ -11,9 +11,9 @@
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen (default=NULL)
 ##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 ##' \enumerate{
-##'      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
-##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
-##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption (\code{\link{prob_trans_mtml}}).
+##'      \item \code{'stsl'} for the single-transmission single-linkage assumption.
+##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
+##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
 ##'      }
 ##'
 ##' @return scalar or vector giving the true discovery rate
@@ -22,23 +22,23 @@
 ##'
 ##' @examples
 ##' # The simplest case: single-transmission, single-linkage, and perfect sensitivity
-##' truediscoveryrate(eta=1, chi=0.9, rho=0.5, M=100, assumption='stsl')
+##' translink_tdr(eta=1, chi=0.9, rho=0.5, M=100, assumption='stsl')
 ##'
 ##' # Multiple-transmission and imperfect sensitivity
-##' truediscoveryrate(eta=0.99, chi=0.9, rho=1, M=50, R=1, assumption='mtsl')
+##' translink_tdr(eta=0.99, chi=0.9, rho=1, M=50, R=1, assumption='mtsl')
 ##'
 ##' # Small outbreak, larger sampling proportion
-##' truediscoveryrate(eta=0.99, chi=0.95, rho=1, M=50, R=1, assumption='mtml')
+##' translink_tdr(eta=0.99, chi=0.95, rho=1, M=50, R=1, assumption='mtml')
 ##'
 ##' # Large outbreak, small sampling proportion
-##' truediscoveryrate(eta=0.99, chi=0.95, rho=0.5, M=1000, R=1, assumption='mtml')
+##' translink_tdr(eta=0.99, chi=0.95, rho=0.5, M=1000, R=1, assumption='mtml')
 ##'
-##' @family discovery_rate
+##' @family transmission linkage functions
 ##'
 ##' @export
 ##'
 
-truediscoveryrate <- function(eta, # sensitivity of the linkage criteria
+translink_tdr <- function(eta, # sensitivity of the linkage criteria
                               chi, # specificity of the linkage criteria
                               rho, # sampling proportion
                               M, # number of cases sampled
@@ -47,13 +47,13 @@ truediscoveryrate <- function(eta, # sensitivity of the linkage criteria
 ) {
   if (assumption == "stsl") {
     message("Calculating true discovery rate assuming single-transmission and single-linkage")
-    out <- prob_trans_stsl(eta = eta, chi = chi, rho = rho, M = M)
+    out <- translink_prob_transmit_stsl(eta = eta, chi = chi, rho = rho, M = M)
   } else if (assumption == "mtsl") {
     message("Calculating true discovery rate assuming multiple-transmission and single-linkage")
-    out <- prob_trans_mtsl(eta = eta, chi = chi, rho = rho, M = M, R = R)
+    out <- translink_prob_transmit_mtsl(eta = eta, chi = chi, rho = rho, M = M, R = R)
   } else if (assumption == "mtml") {
     message("Calculating true discovery rate assuming multiple-transmission and multiple-linkage")
-    out <- prob_trans_mtml(eta = eta, chi = chi, rho = rho, M = M, R = R)
+    out <- translink_prob_transmit_mtml(eta = eta, chi = chi, rho = rho, M = M, R = R)
   } else {
     stop("Incorrect assumption argument")
   }

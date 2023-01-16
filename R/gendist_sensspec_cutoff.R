@@ -19,23 +19,23 @@
 ##'
 ##' @examples
 ##' # calculate the sensitivity and specificity for a specific genetic distance threshold of 2 mutations
-##' sens_spec_calc(cutoff=2,
+##' gendist_sensspec_cutoff(cutoff=2,
 ##'                mut_rate=1,
 ##'                mean_gens_pdf=c(0.02,0.08,0.15,0.75),
 ##'                max_link_gens=1)
 ##'
 ##' # calculate the sensitivity and specificity for a a range of genetic distance thresholds
-##' sens_spec_calc(cutoff=1:10,
+##' gendist_sensspec_cutoff(cutoff=1:10,
 ##'                mut_rate=1,
 ##'                mean_gens_pdf=c(0.02,0.08,0.15,0.75),
 ##'                max_link_gens=1)
 ##'
-##' @family mutrate_functions
+##' @family genetic distance functions
 ##'
 ##' @export
 ##'
 
-sens_spec_calc <- function(cutoff,
+gendist_sensspec_cutoff <- function(cutoff,
                            mut_rate,
                            mean_gens_pdf,
                            max_link_gens = 1,

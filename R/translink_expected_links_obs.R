@@ -11,9 +11,9 @@
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen (default=NULL)
 ##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 ##' \enumerate{
-##'      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
-##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
-##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption (\code{\link{prob_trans_mtml}}).
+##'      \item \code{'stsl'} for the single-transmission single-linkage assumption.
+##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
+##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
 ##'      }
 ##'
 ##' @return scalar or vector giving the expected number of observed links in the sample
@@ -22,23 +22,23 @@
 ##'
 ##' @examples
 ##' # The simplest case: single-transmission, single-linkage, and perfect sensitivity
-##' exp_links(eta=1, chi=0.9, rho=0.5, M=100, assumption='stsl')
+##' translink_expected_links_obs(eta=1, chi=0.9, rho=0.5, M=100, assumption='stsl')
 ##'
 ##' # Multiple-transmission and imperfect sensitivity
-##' exp_links(eta=0.99, chi=0.9, rho=1, M=50, R=1, assumption='mtsl')
+##' translink_expected_links_obs(eta=0.99, chi=0.9, rho=1, M=50, R=1, assumption='mtsl')
 ##'
 ##' # Small outbreak, larger sampling proportion
-##' exp_links(eta=0.99, chi=0.95, rho=1, M=50, R=1, assumption='mtml')
+##' translink_expected_links_obs(eta=0.99, chi=0.95, rho=1, M=50, R=1, assumption='mtml')
 ##'
 ##' # Large outbreak, small sampling proportion
-##' exp_links(eta=0.99, chi=0.95, rho=0.05, M=1000, R=1, assumption='mtml')
+##' translink_expected_links_obs(eta=0.99, chi=0.95, rho=0.05, M=1000, R=1, assumption='mtml')
 ##'
-##' @family obs_pairs
+##' @family transmission linkage functions
 ##'
 ##' @export
 ##'
 
-exp_links <- function(eta, # sensitivity of the linkage criteria
+translink_expected_links_obs <- function(eta, # sensitivity of the linkage criteria
                       chi, # specificity of the linkage criteria
                       rho, # sampling proportion
                       M, # number of cases sampled
@@ -47,13 +47,13 @@ exp_links <- function(eta, # sensitivity of the linkage criteria
 ) {
   if (assumption == "stsl") {
     message("Calculating expected number of links assuming single-transmission and single-linkage")
-    out <- obs_pairs_stsl(eta = eta, chi = chi, rho = rho, M = M)
+    out <- translink_expected_links_obs_stsl(eta = eta, chi = chi, rho = rho, M = M)
   } else if (assumption == "mtsl") {
     message("Calculating expected number of links assuming multiple-transmission and single-linkage")
-    out <- obs_pairs_mtsl(eta = eta, chi = chi, rho = rho, M = M, R = R)
+    out <- translink_expected_links_obs_mtsl(eta = eta, chi = chi, rho = rho, M = M, R = R)
   } else if (assumption == "mtml") {
     message("Calculating expected number of links assuming multiple-transmission and multiple-linkage")
-    out <- obs_pairs_mtml(eta = eta, chi = chi, rho = rho, M = M, R = R)
+    out <- translink_expected_links_obs_mtml(eta = eta, chi = chi, rho = rho, M = M, R = R)
   } else {
     stop("Incorrect assumption argument")
   }

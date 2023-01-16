@@ -16,13 +16,13 @@
 ##' @author John Giles, Shirlee Wohl, and Justin Lessler
 ##'
 ##' @examples
-##' true_pairs_stsl(eta=0.95, rho=0.2, M=200)
+##' translink_expected_links_true_stsl(eta=0.95, rho=0.2, M=200)
 ##'
-##' @family true_pairs
+##' @family transmission linkage functions
 ##'
 ##' @export
 
-true_pairs_stsl <- function(eta,
+translink_expected_links_true_stsl <- function(eta,
                             rho, # sampling proportion
                             M # number of cases sampled
 ) {

@@ -10,6 +10,6 @@
 ##' @author Shirlee Wohl, John Giles, and Justin Lessler
 ##'
 ##' @examples
-##' data(gen_dist_sim)
+##' data(genDistSim)
 ##'
-"gen_dist_sim"
+"genDistSim"

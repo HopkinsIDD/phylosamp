@@ -17,15 +17,15 @@
 ##' @author John Giles, Shirlee Wohl and Justin Lessler
 ##'
 ##' @examples
-##' true_pairs_mtsl(eta=0.95, rho=0.2, M=200, R=1)
+##' translink_expected_links_true_mtsl(eta=0.95, rho=0.2, M=200, R=1)
 ##'
-##' @family true_pairs
+##' @family transmission linkage functions
 ##'
 ##' @export
 ##'
 ##'
 
-true_pairs_mtsl <- function(eta, # sensitivity of the linkage criteria
+translink_expected_links_true_mtsl <- function(eta, # sensitivity of the linkage criteria
                             rho, # sampling proportion
                             M, # number of cases sampled
                             R # effective reproductive number

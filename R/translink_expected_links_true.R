@@ -9,9 +9,9 @@
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen (default=NULL)
 ##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 ##' \enumerate{
-##'      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
-##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
-##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption (\code{\link{prob_trans_mtml}}).
+##'      \item \code{'stsl'} for the single-transmission single-linkage assumption.
+##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
+##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
 ##'      }
 ##'
 ##' @return scalar or vector giving the expected number of true transmission pairs in the sample
@@ -19,14 +19,14 @@
 ##' @author John Giles, Shirlee Wohl, and Justin Lessler
 ##'
 ##' @examples
-##' true_pairs(eta=0.99, rho=0.75, M=100, R=1)
+##' translink_expected_links_true(eta=0.99, rho=0.75, M=100, R=1)
 ##'
-##' @family true_pairs
+##' @family transmission linkage functions
 ##'
 ##' @export
 ##'
 
-true_pairs <- function(eta, # sensitivity of the linkage criteria
+translink_expected_links_true <- function(eta, # sensitivity of the linkage criteria
                        rho, # sampling proportion
                        M, # number of cases sampled
                        R = NULL, # effective reproductive number
@@ -34,13 +34,13 @@ true_pairs <- function(eta, # sensitivity of the linkage criteria
 ) {
   if (assumption == "stsl") {
     message("Calculating expected number of links assuming single-transmission and single-linkage")
-    out <- true_pairs_stsl(eta = eta, rho = rho, M = M)
+    out <- translink_expected_links_true_stsl(eta = eta, rho = rho, M = M)
   } else if (assumption == "mtsl") {
     message("Calculating expected number of links assuming multiple-transmission and single-linkage")
-    out <- true_pairs_mtsl(eta = eta, rho = rho, M = M, R = R)
+    out <- translink_expected_links_true_mtsl(eta = eta, rho = rho, M = M, R = R)
   } else if (assumption == "mtml") {
     message("Calculating expected number of links assuming multiple-transmission and multiple-linkage")
-    out <- true_pairs_mtml(eta = eta, rho = rho, M = M, R = R)
+    out <- translink_expected_links_true_mtml(eta = eta, rho = rho, M = M, R = R)
   } else {
     stop("Incorrect assumption argument")
   }

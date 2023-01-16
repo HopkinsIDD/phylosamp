@@ -1,6 +1,6 @@
 ##' Make ROC from sensitivity and specificity
 ##'
-##' This is a wrapper function that takes output from the `sens_spec_calc()` function and constructs values for the
+##' This is a wrapper function that takes output from the `gendist_sensspec_cutoff()` function and constructs values for the
 ##' Receiver Operating Characteric (ROC) curve
 ##'
 ##' @param cutoff the maximum genetic distance at which to consider cases linked
@@ -23,11 +23,11 @@
 ##' mut_rate <- 1
 ##'
 ##' # use simulated generation distributions
-##' data("gen_dist_sim")
-##' mean_gens_pdf <- as.numeric(gen_dist_sim[gen_dist_sim$R == R, -(1:2)])
+##' data("genDistSim")
+##' mean_gens_pdf <- as.numeric(genDistSim[genDistSim$R == R, -(1:2)])
 ##'
 ##' # get theoretical genetic distance dist based on mutation rate and generation parameters
-##' dists <- as.data.frame(gen_dists(mut_rate = mut_rate,
+##' dists <- as.data.frame(gendist_distribution(mut_rate = mut_rate,
 ##'                                  mean_gens_pdf = mean_gens_pdf,
 ##'                                  max_link_gens = 1))
 ##'
@@ -37,16 +37,17 @@
 ##'                         value.name = "prob")
 ##'
 ##' # get sensitivity and specificity using the same paramters
-##' roc_calc <- sens_spec_roc(cutoff = 1:(max(dists$dist)-1),
+##' roc_calc <- gendist_roc_format(cutoff = 1:(max(dists$dist)-1),
 ##'                           mut_rate = mut_rate,
 ##'                           mean_gens_pdf = mean_gens_pdf)
 ##'
-##' @family mutrate_functions
+##' @family genetic distance functions
+##' @family ROC functions
 ##'
 ##' @export
 ##'
 
-sens_spec_roc <- function(cutoff,
+gendist_roc_format <- function(cutoff,
                           mut_rate,
                           mean_gens_pdf,
                           max_link_gens = 1,
@@ -55,7 +56,7 @@ sens_spec_roc <- function(cutoff,
   if (is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
   if (is.null(max_dist)) max_dist <- suppressWarnings(max_gens * stats::qpois(.999, mut_rate))
 
-  rc <- sens_spec_calc(cutoff, mut_rate, mean_gens_pdf, max_link_gens, max_gens, max_dist)
+  rc <- gendist_sensspec_cutoff(cutoff, mut_rate, mean_gens_pdf, max_link_gens, max_gens, max_dist)
 
   # turn this into a data frame that can be used for plotting ROC curves
   rc <- as.data.frame(rc)

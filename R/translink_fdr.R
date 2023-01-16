@@ -11,9 +11,9 @@
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen (default=NULL)
 ##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 ##' \enumerate{
-##'      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
-##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
-##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption (\code{\link{prob_trans_mtml}}).
+##'      \item \code{'stsl'} for the single-transmission single-linkage assumption.
+##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
+##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
 ##'      }
 ##'
 ##' @return scalar or vector giving the true discovery rate
@@ -22,23 +22,23 @@
 ##'
 ##' @examples
 ##' # The simplest case: single-transmission, single-linkage, and perfect sensitivity
-##' falsediscoveryrate(eta=1, chi=0.9, rho=0.5, M=100, assumption='stsl')
+##' translink_fdr(eta=1, chi=0.9, rho=0.5, M=100, assumption='stsl')
 ##'
 ##' # Multiple-transmission and imperfect sensitivity
-##' falsediscoveryrate(eta=0.99, chi=0.9, rho=1, M=50, R=1, assumption='mtsl')
+##' translink_fdr(eta=0.99, chi=0.9, rho=1, M=50, R=1, assumption='mtsl')
 ##'
 ##' # Small outbreak, larger sampling proportion
-##' falsediscoveryrate(eta=0.99, chi=0.95, rho=1, M=50, R=1, assumption='mtml')
+##' translink_fdr(eta=0.99, chi=0.95, rho=1, M=50, R=1, assumption='mtml')
 ##'
 ##' # Large outbreak, small sampling proportion
-##' falsediscoveryrate(eta=0.99, chi=0.95, rho=0.5, M=1000, R=1, assumption='mtml')
+##' translink_fdr(eta=0.99, chi=0.95, rho=0.5, M=1000, R=1, assumption='mtml')
 ##'
-##' @family discovery_rate
+##' @family transmission linkage functions
 ##'
 ##' @export
 ##'
 
-falsediscoveryrate <- function(eta, # sensitivity of the linkage criteria
+translink_fdr <- function(eta, # sensitivity of the linkage criteria
                                chi, # specificity of the linkage criteria
                                rho, # sampling proportion
                                M, # number of cases sampled
@@ -46,7 +46,7 @@ falsediscoveryrate <- function(eta, # sensitivity of the linkage criteria
                                assumption = "mtml" # assume most general case if not specified
 ) {
   suppressMessages(
-    1 - truediscoveryrate(
+    1 - translink_tdr(
       eta = eta,
       chi = chi,
       rho = rho,
