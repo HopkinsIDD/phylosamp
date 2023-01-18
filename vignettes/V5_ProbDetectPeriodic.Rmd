@@ -18,7 +18,7 @@ h1.title {
 
 This vignette provides an overview of the functions that can be used to estimate the probability of detecting a pathogen variant in a population, given a periodic sampling scheme with a fixed sample size.
 
-The `calc_prob_detect_cont()` function can be used to calculate the probability of detecting a particular variant in the population within a specific number of days since its introduction, OR by the time the variant reaches a specific frequency. As in the cross-sectional counterpart to this function, `calc_prob_detect_cont()` requires knowledge of the coefficient of detection ratio between two pathogen variants (or, more commonly, one variant and the rest of the pathogen population). The coefficient of detection ratio for two variants can be calculated using the `calc_cod_ratio()` function. Since we are only interested in the ratio of the coefficients of detection, applying this function only requires providing parameters which are expected to differ between variants. The ratio between any variants not provided is assumed to be equal to one.
+By specifying `sampling_freq = "cont"`, the `vartrack_samplesize_detect()` function can be used to calculate the probability of detecting a particular variant in the population within a specific number of days since its introduction, OR by the time the variant reaches a specific frequency. As with the cross-sectional option (`sampling_freq = "xsect"`), this requires knowledge of the coefficient of detection ratio between two pathogen variants (or, more commonly, one variant and the rest of the pathogen population). The coefficient of detection ratio for two variants can be calculated using the `vartrack_cod_ratio()` function. Since we are only interested in the ratio of the coefficients of detection, applying this function only requires providing parameters which are expected to differ between variants. The ratio between any variants not provided is assumed to be equal to one.
 
 Once we have an estimate of the coefficient of detection ratio, we can calculate the sample size needed for detection from the following parameters:
 
@@ -26,13 +26,15 @@ Once we have an estimate of the coefficient of detection ratio, we can calculate
 |:-----:|:-------------:|-------------|
 |   **$n$**   |       n       | the per-day sample size           |
 |   **$t$**   |       t       | the number of days after introduction a variant should be detected by          |
-|   **$P_detect$**   |       p_detect       | the desired prevalence to detect a variant by          |
-|   **$\omega$**   |       omega       | the per-day sample size           |
+|   **$P_{V_1}$**   |       p_detect       | the desired prevalence to detect a variant by          |
+|   **$\omega$**   |       omega       | the sequencing success rate           |
 |   **$P_0$**   |       p0       | the initial variant prevalence (# introductions / population size)          |
 |   **$r$**   |       r       | the estimated logistic growth rate of the variant (per day)         |
-|   **$\frac{C_{V_1}}{C_{V_2}}$**   |       c_ratio       | the coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2 (can be calculated using `calc_cod_ratio()`)           |
+|   **$\frac{C_{V_1}}{C_{V_2}}$**   |       c_ratio       | the coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2 (can be calculated using `vartrack_cod_ratio()`)           |
 
-If we would like to know the probability of detecting a variant by the time it reaches 1% prevalence in the population, we can apply the `calc_prob_detect_cont()` function as follows:
+To calculate the probability of detection assuming periodic sampling, we must provide *either* the number of days after introduction a variant should be detected by ($t$) OR the desired prevalence to detect a variant by ($P_{V_1}$), but not both. All other parameters listed above are required.
+
+Therefore, if we would like to know the probability of detecting a variant by the time it reaches 1% prevalence in the population, we can apply the `vartrack_prob_detect()` function as follows:
 
 ```{r setup, message=FALSE}
 library(phylosamp)
@@ -40,19 +42,21 @@ library(phylosamp)
 
 ```{r calc_samplesize_detect_cont}
 
-c1_c2 <- calc_cod_ratio(phi_v1=0.975, phi_v2=0.95, gamma_v1=0.8, gamma_v2=0.6)
-calc_prob_detect_cont(n=20, p_detect=0.01, omega=0.8, p0=3/10000, r=0.1, c_ratio=c1_c2)
+c1_c2 <- vartrack_cod_ratio(phi_v1=0.975, phi_v2=0.95, gamma_v1=0.8, gamma_v2=0.6)
+vartrack_prob_detect(n=20, p_v1=0.01, omega=0.8, p0=3/10000, 
+                          r=0.1, c_ratio=c1_c2, sampling_freq="cont")
 
 ```
 
 In other words, we have a 90% probability of detecting a variant by the time it reaches a frequency of 1% in the population if we sequence 20 samples per day (which results in 16 high-quality sequences that can be used for characterization, due to $\omega=0.8$).
 
-If instead we are interested in detecting a variant within the first month of its introduction into the population (assuming all other parameters are the same as above), we can use the `calc_prob_detect_cont()` function as follows:
+If instead we are interested in detecting a variant within the first month of its introduction into the population (assuming all other parameters are the same as above), we can use the `calc_prob_detect()` function as follows:
 
 ```{r calc_samplesize_detect_cont2}
 
-c1_c2 <- calc_cod_ratio(phi_v1=0.975, phi_v2=0.95, gamma_v1=0.8, gamma_v2=0.6)
-calc_prob_detect_cont(n=20, t=30, omega=0.8, p0=3/10000, r=0.1, c_ratio=c1_c2)
+c1_c2 <- vartrack_cod_ratio(phi_v1=0.975, phi_v2=0.95, gamma_v1=0.8, gamma_v2=0.6)
+vartrack_prob_detect(n=20, t=30, omega=0.8, p0=3/10000, r=0.1,
+                     c_ratio=c1_c2, sampling_freq="cont")
 
 ```
 
