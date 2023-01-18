@@ -25,7 +25,7 @@ In this vignette we describe how the linkage scenario functionality can be used 
 |   **$R$**   |       R       | the average reproductive number (also denoted $R_\text{pop}$, see below)           |
 |   **$\phi$**   |       phi       | the desired minimum true discovery rate          |
 
-Imagine we are interested in collecting enough samples from an outbreak of 100 cases to ensure that the identified links are correct at least 75% of the time. The phylogenetic criteria we are using to identify links has a sensitivity of 99% and a specificity of 99.5%:
+Imagine we are interested in collecting enough samples from an outbreak of 100 cases to ensure that the identified links are correct at least 75% of the time. The phylogenetic criteria we are using to identify links has a sensitivity of 99% and a specificity of 99.5%, and we assume multiple transmissions and multiple links are possible (i.e., we use the default `assumption` argument, `mtml`).
 
 ```{r setup, message=FALSE}
 library(phylosamp)
@@ -33,15 +33,15 @@ library(phylosamp)
 
 ```{r samplesize}
 
-samplesize(eta=0.99, chi=0.995, N=100, R=1, phi=0.75)
+translink_samplesize(eta=0.99, chi=0.995, N=100, R=1, phi=0.75)
 
 ```
 
-Although 10 samples will ensure a false discovery rate of no more than 25%, 10 samples may not provide enough data for analysis. In this case, we can use the optional `min_pairs` parameter to require that the expected number of links (calculated using the `exp_links` function) is at least some minimum value:
+Although 10 samples will ensure a false discovery rate of no more than 25%, 10 samples may not provide enough data for analysis. In this case, we can use the optional `min_pairs` parameter to require that the expected number of links (calculated using the `translink_expected_links_obs()` function) is at least some minimum value:
 
 ```{r samplesize_explinks}
 
-samplesize(eta=0.99, chi=0.995, N=100, R=1, phi=0.75, min_pairs=30)
+translink_samplesize(eta=0.99, chi=0.995, N=100, R=1, phi=0.75, min_pairs=30)
 
 ```
 
@@ -49,16 +49,16 @@ In another example, it may be crucial that links are identified with high certai
 
 ```{r samplesize_fail, error=TRUE}
 
-samplesize(eta=0.99, chi=0.995, N=100, R=1, phi=0.95)
+translink_samplesize(eta=0.99, chi=0.995, N=100, R=1, phi=0.95)
 
 ```
 
-This result suggests it is not possible to obtain such high certainty with this linkage criteria. We can confirm this with the `truediscoveryrate` function, which shows that even with 100% sampling of this outbreak, we will correctly identify transmission links no more than 80% of the time.
+This result suggests it is not possible to obtain such high certainty with this linkage criteria. We can confirm this with the `translink_tdr` function, which shows that even with 100% sampling of this outbreak, we will correctly identify transmission links no more than 80% of the time.
 
 ```{r truediscoveryrate_explain}
 
-truediscoveryrate(eta=0.99, chi=0.995, rho=1, M=100, R=1)
+translink_tdr(eta=0.99, chi=0.995, rho=1, M=100, R=1)
 
 ```
 
-Further exploration of the `samplesize` function reveals that there are limited combinations of sensitivity and specificity that produce reasonable sample sizes, and that specificity in particular affects the minimum false discovery rate that can be obtained. Therefore, correctly estimating sensitivity and specificity are of key importance when using these functions to understand transmission.
+Further exploration of the `translink_samplesize()` function reveals that there are limited combinations of sensitivity and specificity that produce reasonable sample sizes, and that specificity in particular affects the minimum false discovery rate that can be obtained. Therefore, correctly estimating sensitivity and specificity are of key importance when using these functions to understand transmission.

@@ -17,7 +17,7 @@ h1.title {
 
 In this vignette, we apply the functions provided to estimate sensitivity and specificity and apply them to an Ebola-like pathogen. We compare the results to those of a pathogen with a slower mutation rate and higher reproductive number. Then, we will use these results to calculate the false discovery rate of our linkage criteria (genetic distance) given a sample size of 200 and a relevant population of 1000 infected individuals.
 
-In the first part of this vignette, we use the function `sens_spec_roc()`, which formats the results of `sens_spec_calc()` for plotting ROC curves.
+In the first part of this vignette, we use the function `gendist_roc_format()`, which formats the results of `gendist_sensspec_cutoff()` for plotting ROC curves.
 
 ```{r setup, message=FALSE}
 library(phylosamp)
@@ -36,13 +36,13 @@ R <- 1.5
 mut_rate <- 1
 
 # use simulated generation distributions
-data("gen_dist_sim")
-mean_gens_pdf <- as.numeric(gen_dist_sim[gen_dist_sim$R == R, -(1:2)])
+data("genDistSim")
+mean_gens_pdf <- as.numeric(genDistSim[genDistSim$R == R, -(1:2)])
 
 # get theoretical genetic distance dist based on mutation rate and generation parameters
-dists <- as.data.frame(gen_dists(mut_rate = mut_rate, 
-                                 mean_gens_pdf = mean_gens_pdf, 
-                                 max_link_gens = 1))
+dists <- as.data.frame(gendist_distribution(mut_rate = mut_rate, 
+                                            mean_gens_pdf = mean_gens_pdf, 
+                                            max_link_gens = 1))
 
 # reshape dataframe for plotting
 dists <- reshape2::melt(dists, 
@@ -51,12 +51,12 @@ dists <- reshape2::melt(dists,
                         value.name = "prob")
 
 # get sensitivity and specificity using the same paramters
-roc_calc <- sens_spec_roc(cutoff = 1:(max(dists$dist)-1), 
-                          mut_rate = mut_rate,
-                          mean_gens_pdf = mean_gens_pdf)
+roc_calc <- gendist_roc_format(cutoff = 1:(max(dists$dist)-1), 
+                               mut_rate = mut_rate,
+                               mean_gens_pdf = mean_gens_pdf)
   
 # get the optimal value for the ROC plot
-roc_optim <- get_optim_roc(roc_calc)
+roc_optim <- optim_roc_threshold(roc_calc)
 threshold <- roc_optim$cutoff
 optim_point <- c(roc_optim$specificity, roc_optim$sensitivity)
 
@@ -106,7 +106,7 @@ We repeat the above plot for a pathogen with a higher reproductive number and lo
 R <- 3
 mut_rate <- 0.2
 
-mean_gens_pdf <- gen_dist_sim[gen_dist_sim["R"]==R][3:dim(gen_dist_sim)[2]]
+mean_gens_pdf <- genDistSim[genDistSim["R"]==R][3:dim(genDistSim)[2]]
 
 ```
 
@@ -115,12 +115,13 @@ mean_gens_pdf <- gen_dist_sim[gen_dist_sim["R"]==R][3:dim(gen_dist_sim)[2]]
 ```{r gen_dist_mev_plot, fig.width=6, fig.height=4, echo=FALSE, warning=FALSE}
 
 # get theoretical genetic distance dist based on mutation rate and generation parameters
-dists <- as.data.frame(gen_dists(mut_rate = mut_rate, mean_gens_pdf = mean_gens_pdf, max_link_gens = 1))
+dists <- as.data.frame(gendist_distribution(mut_rate = mut_rate, 
+                                            mean_gens_pdf = mean_gens_pdf, max_link_gens = 1))
 # reshape dataframe for plotting
 dists <- reshape2::melt(dists, id.vars = "dist", variable.name = "status", value.name = "prob")
 
 # get sensitivity and specificity using the same paramters
-roc_calc <- sens_spec_roc(cutoff = 1:(max(dists$dist)-1), mut_rate = mut_rate,
+roc_calc <- gendist_roc_format(cutoff = 1:(max(dists$dist)-1), mut_rate = mut_rate,
                           mean_gens_pdf = mean_gens_pdf)
   
 # get the optimal value for the ROC plot using closest-to-corner metric
@@ -170,15 +171,15 @@ roc_optim[roc_optim$cutoff==threshold,]$sensitivity ## sensitivity
 1 - roc_optim[roc_optim$cutoff==threshold,]$specificity ## specificity
 ```
 
-It is well understood that genetic distance is a much more accurate predictor of transmission linkage for pathogens with higher mutation rates and slower spread, as shown clearly in this example (lower sensitivity and specificity in the second example). Genetic distance is clearly not an appropriate metric for all pathogens, but more sophisticated linkage criteria -- espeically those that incorporate epidemiological information as well -- may produce better results.
+It is well understood that genetic distance is a much more accurate predictor of transmission linkage for pathogens with higher mutation rates and slower spread, as shown clearly in this example (lower sensitivity and specificity in the second example). Genetic distance is clearly not an appropriate metric for all pathogens, but more sophisticated linkage criteria -- especially those that incorporate epidemiological information as well -- may produce better results.
 
 ### Calculating the false discovery rate of genetic distance as a linkage criteria
 
 This is reflected in our confidence in identifying linked infection pairs. Assuming a sample size of 200, a relevant population of 1000, and the genetic distance threshold and associated sensitivity and specificity for each pathogen we get:
 
 ```{r fdr_final}
-truediscoveryrate(eta=0.9963402, chi=0.9801562, rho=0.20, M=200, R=1) # ebola-like pathogen
-truediscoveryrate(eta=0.8187308, chi=0.8539157, rho=0.20, M=200, R=1) # slower-mutating pathogen
+translink_tdr(eta=0.9963402, chi=0.9801562, rho=0.20, M=200, R=1) # ebola-like pathogen
+translink_tdr(eta=0.8187308, chi=0.8539157, rho=0.20, M=200, R=1) # slower-mutating pathogen
 ```
 
 As a final note, we remind the reader that the specificity of the linkage criteria has a significant bearing on the true/false discovery rate, and that high true discovery rates require a specificity upwards of 0.999. Linkage criteria more complex than genetic distance may be needed to achieve this value.

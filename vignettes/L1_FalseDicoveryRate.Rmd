@@ -17,7 +17,7 @@ h1.title {
 
 This vignette provides an overview of the primary function of the linkage scenario portion of the phylosamp package: how to estimate the false discovery rate given a sample size. In the examples provided, we use the default `assumption` argument (multiple transmissions and multiple links, `mtml`), though alternative assumptions can also be specified.
 
-The most basic function of the package is `truediscoveryrate()`, which calculates the probability that an identified link represents a true transmission event. This calculation relies on the following parameters:
+The most basic function of the package is `translink_tdr()`, which calculates the probability that an identified link represents a true transmission event. This calculation relies on the following parameters:
 
 | Param | Variable Name | <span style="display: inline-block; width:500px">Description</span> |
 |:-----:|:-------------:|-------------|
@@ -33,7 +33,7 @@ library(phylosamp)
 
 ```{r truediscoveryrate}
 
-truediscoveryrate(eta=0.99, chi=0.95, rho=0.75, M=100, R=1)
+translink_tdr(eta=0.99, chi=0.95, rho=0.75, M=100, R=1)
 
 ```
 
@@ -41,16 +41,16 @@ In other words, given a sample size of 100 infections (representing 75% of the t
 
 ```{r truediscoveryrate2}
 
-truediscoveryrate(eta=0.99, chi=0.995, rho=0.75, M=100, R=1)
+translink_tdr(eta=0.99, chi=0.995, rho=0.75, M=100, R=1)
 
 ```
 
-The other core functions are designed to calculate the expected number of true transmission pairs identified in the sample (`true_pairs`) and the total number of linkages one can expect to identify given the sensitivity and specificity of the linkage criteria and a particular sample size and proportion (`exp_links`).
+The other core functions are designed to calculate the expected number of true transmission pairs identified in the sample (`translink_expected_links_true()`) and the total number of linkages one can expect to identify given the sensitivity and specificity of the linkage criteria and a particular sample size and proportion (`translink_expected_links_obs()`).
 
 ```{r expected_pairs}
 
-true_pairs(eta=0.99, rho=0.75, M=100, R=1)
-exp_links(eta=0.99, chi=0.95, rho=0.75, M=100, R=1)
+translink_expected_links_true(eta=0.99, rho=0.75, M=100, R=1)
+translink_expected_links_obs(eta=0.99, chi=0.95, rho=0.75, M=100, R=1)
 
 ```
 
