@@ -51,7 +51,7 @@ gendist_sensspec_cutoff <- function(cutoff,
   }
 
   # get linked and unlinked probability distributions
-  gendist <- gen_dists(
+  gendist <- gendist_distribution(
     mut_rate = mut_rate, mean_gens_pdf = mean_gens_pdf,
     max_link_gens = max_link_gens, max_gens = max_gens, max_dist = max_dist
   )
