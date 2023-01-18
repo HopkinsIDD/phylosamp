@@ -12,3 +12,12 @@ bibentry(
   doi = "10.1371/journal.pcbi.1009182",
   textVersion = "Wohl et al. (2021) Sample size calculation for phylogenetic case linkage, PLOS Computational Biology, 17(7), e1009182, https://doi.org/10.1371/journal.pcbi.1009182")
 
+bibentry(
+"Article",
+  title = "Sample size calculations for variant surveillance in the presence of biological and systematic biases",  
+  author = "Wohl, Shirlee and Lee, Elizabeth C. and DiPrete, Bethany and Lessler, Justin",
+  journal = "medRxiv",
+  year = "2022",
+  url = "https://doi.org/10.1101/2021.12.30.21268453",
+  doi = "10.1101/2021.12.30.21268453",
+  textVersion = "Wohl et al. (2022) Sample size calculations for variant surveillance in the presence of biological and systematic biases, medRxiv, https://doi.org/10.1101/2021.12.30.21268453")

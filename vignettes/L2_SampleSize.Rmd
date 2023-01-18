@@ -1,19 +1,11 @@
 ---
-title: <font size="5"> Estimating sample size for transmission linkage from the false discovery rate </font>
+title: Estimating sample size for transmission linkage from the false discovery rate
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{L2: Estimating sample size for transmission linkage from the false discovery rate}
+  %\VignetteIndexEntry{Estimating sample size for transmission linkage from the false discovery rate}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
-
-<style type="text/css">
-
-h1.title {
-  font-size: 18px
-}
-
-</style>
 
 In this vignette we describe how the linkage scenario functionality can be used in reverse, to calculate the necessary sample size to achieve a pre-specified false discovery rate. For example, this calculation would be useful if a researcher is conducting a study for which specimens have yet to be collected, but they want to ensure at least 75% confidence in identified links. To calculate the proportion of links that represent true transmission pairs, the user needs to provide the sensitivity and specificity of the linkage criteria used, the final size of the outbreak, and the desired minimum true discovery rate ($1-\text{False Discovery Rate}$):
 

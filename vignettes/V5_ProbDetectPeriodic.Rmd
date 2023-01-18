@@ -1,20 +1,12 @@
 ---
-title: <font size="5"> Estimating the probability of detecting a variant </font>
+title: Estimating the probability of detecting a variant
 subtitle: Periodic sampling
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{V5: Estimating the probability of detecting a variant (periodic)}
+  %\VignetteIndexEntry{Estimating the probability of detecting a variant (periodic sampling)}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
-
-<style type="text/css">
-
-h1.title {
-  font-size: 18px
-}
-
-</style>
 
 This vignette provides an overview of the functions that can be used to estimate the probability of detecting a pathogen variant in a population, given a periodic sampling scheme with a fixed sample size.
 

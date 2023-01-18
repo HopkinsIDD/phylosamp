@@ -1,19 +1,11 @@
 ---
-title: <font size="5"> Estimating the linkage false discovery rate from sample size </font>
+title: Estimating the linkage false discovery rate from sample size
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{L1: Estimating the linkage false discovery rate from sample size}
+  %\VignetteIndexEntry{Estimating the linkage false discovery rate from sample size}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
-
-<style type="text/css">
-
-h1.title {
-  font-size: 18px
-}
-
-</style>
 
 This vignette provides an overview of the primary function of the linkage scenario portion of the phylosamp package: how to estimate the false discovery rate given a sample size. In the examples provided, we use the default `assumption` argument (multiple transmissions and multiple links, `mtml`), though alternative assumptions can also be specified.
 

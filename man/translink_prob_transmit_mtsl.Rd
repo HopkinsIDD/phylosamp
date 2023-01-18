@@ -50,6 +50,7 @@ Other transmission linkage functions:
 \code{\link{translink_fdr}()},
 \code{\link{translink_prob_transmit_mtml}()},
 \code{\link{translink_prob_transmit_stsl}()},
+\code{\link{translink_prob_transmit}()},
 \code{\link{translink_samplesize}()},
 \code{\link{translink_tdr}()}
 }

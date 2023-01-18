@@ -1,20 +1,12 @@
 ---
-title: <font size="5"> Estimating the sample size needed for variant monitoring </font>
+title: Estimating the sample size needed for variant monitoring
 subtitle: Periodic sampling
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{V4: Estimating the sample size needed for variant monitoring (periodic)}
+  %\VignetteIndexEntry{Estimating the sample size needed for variant monitoring (periodic sampling)}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
-
-<style type="text/css">
-
-h1.title {
-  font-size: 18px
-}
-
-</style>
 
 This vignette provides an overview of the functions that can be used to estimate the sample size needed to detect a pathogen variant in a population, given a periodic sampling scheme.
 

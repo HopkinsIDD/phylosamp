@@ -1,19 +1,11 @@
 ---
-title: <font size="5"> Estimating bias in observed variant prevalence </font>
+title: Estimating bias in observed variant prevalence
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{V1: Estimating bias in observed variant prevalence}
+  %\VignetteIndexEntry{Estimating bias in observed variant prevalence}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
-
-<style type="text/css">
-
-h1.title {
-  font-size: 18px
-}
-
-</style>
 
 This vignette provides an overview of functions that are useful for understanding bias in the detection of pathogen variants and estimation of their prevalence in a population. Central to these functions is the assumption that biological differences in pathogen variants may affect how infections are tested and characterized. For example, a variant that causes more severe clinical outcomes may result in a higher testing rate, since more individuals get sick enough to present at a healthcare facility. This higher testing rate may mean that a higher proportion of the samples selected for molecular characterization (e.g., sequencing) belong to this variant than the true underlying frequency of this variant in the population.
 

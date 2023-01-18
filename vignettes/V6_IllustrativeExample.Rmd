@@ -1,19 +1,11 @@
 ---
-title: <font size="5"> Tracking variants of concern - worked example </font>
+title: Variant surveillance example
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{V6: Tracking variants of concern: worked example}
+  %\VignetteIndexEntry{Variant surveillance example}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
-
-<style type="text/css">
-
-h1.title {
-  font-size: 18px
-}
-
-</style>
 
 In this vignette, we use the `phylosamp` package to prepare for the emergence of a new variant of a SARS-CoV-2-like pathogen into a fictional population, based on current whole genome sequencing capacity and experience with previous variants of concern.
 

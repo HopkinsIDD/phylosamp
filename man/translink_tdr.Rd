@@ -60,6 +60,7 @@ Other transmission linkage functions:
 \code{\link{translink_prob_transmit_mtml}()},
 \code{\link{translink_prob_transmit_mtsl}()},
 \code{\link{translink_prob_transmit_stsl}()},
+\code{\link{translink_prob_transmit}()},
 \code{\link{translink_samplesize}()}
 }
 \author{

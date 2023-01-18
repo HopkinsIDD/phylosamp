@@ -1,20 +1,12 @@
 ---
-title: <font size="5"> Estimating the sample size needed for variant monitoring </font>
+title: Estimating the sample size needed for variant monitoring
 subtitle: Cross-sectional sampling
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{V2: Estimating the sample size needed for variant monitoring (cross-sectional)}
+  %\VignetteIndexEntry{Estimating the sample size needed for variant monitoring (cross-sectional sampling)}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
-
-<style type="text/css">
-
-h1.title {
-  font-size: 18px
-}
-
-</style>
 
 This vignette provides an overview of the functions that can be used to estimate the sample size needed to detect a pathogen variant or estimate its frequency in a population, given molecular characterization of a single cross-sectional sample of pathogen infections.
 
