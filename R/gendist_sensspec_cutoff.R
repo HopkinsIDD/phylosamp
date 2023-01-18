@@ -1,4 +1,4 @@
-##' Calculate sensitivity and specificity
+##' Calculate sensitivity and specificity of a genetic distance cutoff
 ##'
 ##' Function to calculate the sensitivity and specificity of a genetic distance cutoff
 ##' given an underlying mutation rate and mean number of generations between cases
@@ -20,15 +20,15 @@
 ##' @examples
 ##' # calculate the sensitivity and specificity for a specific genetic distance threshold of 2 mutations
 ##' gendist_sensspec_cutoff(cutoff=2,
-##'                mut_rate=1,
-##'                mean_gens_pdf=c(0.02,0.08,0.15,0.75),
-##'                max_link_gens=1)
+##'                         mut_rate=1,
+##'                         mean_gens_pdf=c(0.02,0.08,0.15,0.75),
+##'                         max_link_gens=1)
 ##'
 ##' # calculate the sensitivity and specificity for a a range of genetic distance thresholds
 ##' gendist_sensspec_cutoff(cutoff=1:10,
-##'                mut_rate=1,
-##'                mean_gens_pdf=c(0.02,0.08,0.15,0.75),
-##'                max_link_gens=1)
+##'                         mut_rate=1,
+##'                         mean_gens_pdf=c(0.02,0.08,0.15,0.75),
+##'                         max_link_gens=1)
 ##'
 ##' @family genetic distance functions
 ##'

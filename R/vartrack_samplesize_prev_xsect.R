@@ -1,10 +1,14 @@
-##' Function to calculate sample size needed for variant prevalence estimation under cross-sectional sampling
+##' Calculate sample size needed for variant prevalence estimation under cross-sectional sampling
+##' 
+##' This function calculates the sample size needed for estimating variant prevalence
+##' given a desired confidence and desired precision in the variant prevalence estimate
+##' and assuming a single, cross-sectional sample of detected infections.
 ##'
 ##' @param p_v1 variant prevalence (proportion)
 ##' @param prob desired confidence in variant prevalence estimate
 ##' @param precision desired precision in variant prevalence estimate
 ##' @param omega probability of sequencing (or other characterization) success
-##' @param c_ratio coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. default = 1 (no bias)
+##' @param c_ratio coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)
 ##' @return scalar of sample size
 ##'
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
@@ -12,6 +16,7 @@
 ##' @examples
 ##' vartrack_samplesize_prev_xsect(p_v1 = 0.1, prob = 0.95, precision = 0.25, omega = 0.8, c_ratio = 1)
 ##'
+##' @family variant prevalence estimation functions
 ##' @family variant tracking functions
 ##'
 ##' @export

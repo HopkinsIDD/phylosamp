@@ -1,4 +1,4 @@
-##' Probability of transmission assuming multiple-transmission and multiple-linkage
+##' Calculate probability of transmission assuming multiple-transmission and multiple-linkage
 ##'
 ##' This function calculates the probabilitiy that two cases are linked by direct transmission
 ##' given that they have been linked by phylogenetic criteria. The multiple-transmission and multiple-linkage method assumes the following:

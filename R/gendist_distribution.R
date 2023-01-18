@@ -27,8 +27,8 @@
 ##'
 ##' # get theoretical genetic distance dist based on mutation rate and generation parameters
 ##' gendist_distribution(mut_rate = mut_rate,
-##'           mean_gens_pdf = mean_gens_pdf,
-##'           max_link_gens = 1)
+##'                      mean_gens_pdf = mean_gens_pdf,
+##'                      max_link_gens = 1)
 ##'
 ##' @family genetic distance functions
 ##'

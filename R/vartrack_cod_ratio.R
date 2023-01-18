@@ -1,7 +1,7 @@
-##' Function to calculate the coefficient of detection ratio for two variants
+##' Calculate the coefficient of detection ratio for two variants
 ##'
 ##' This function calculates the coefficient of detection ratio \eqn{C_{V_1}/C_{V_2}} for two variants.
-##' This function assumes that variant 1 is the variant of concern (VOC).
+##' This function assumes that variant 1 is the variant of concern.
 ##' This function is specific to the two-variant system.
 ##' Parameters not provided are assumed to be equivalent between the two variants.
 ##'

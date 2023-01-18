@@ -2,7 +2,7 @@
 % Please edit documentation in R/vartrack_samplesize_prev_xsect.R
 \name{vartrack_samplesize_prev_xsect}
 \alias{vartrack_samplesize_prev_xsect}
-\title{Function to calculate sample size needed for variant prevalence estimation under cross-sectional sampling}
+\title{Calculate sample size needed for variant prevalence estimation under cross-sectional sampling}
 \usage{
 vartrack_samplesize_prev_xsect(p_v1, prob, precision, omega, c_ratio = 1)
 }
@@ -15,19 +15,26 @@ vartrack_samplesize_prev_xsect(p_v1, prob, precision, omega, c_ratio = 1)
 
 \item{omega}{probability of sequencing (or other characterization) success}
 
-\item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. default = 1 (no bias)}
+\item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)}
 }
 \value{
 scalar of sample size
 }
 \description{
-Function to calculate sample size needed for variant prevalence estimation under cross-sectional sampling
+This function calculates the sample size needed for estimating variant prevalence
+given a desired confidence and desired precision in the variant prevalence estimate
+and assuming a single, cross-sectional sample of detected infections.
 }
 \examples{
 vartrack_samplesize_prev_xsect(p_v1 = 0.1, prob = 0.95, precision = 0.25, omega = 0.8, c_ratio = 1)
 
 }
 \seealso{
+Other variant prevalence estimation functions: 
+\code{\link{vartrack_prob_prev_xsect}()},
+\code{\link{vartrack_prob_prev}()},
+\code{\link{vartrack_samplesize_prev}()}
+
 Other variant tracking functions: 
 \code{\link{vartrack_cod_ratio}()},
 \code{\link{vartrack_prob_detect_cont}()},
@@ -43,4 +50,5 @@ Other variant tracking functions:
 \author{
 Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 }
+\concept{variant prevalence estimation functions}
 \concept{variant tracking functions}

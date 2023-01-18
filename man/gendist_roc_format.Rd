@@ -2,7 +2,7 @@
 % Please edit documentation in R/gendist_roc_format.R
 \name{gendist_roc_format}
 \alias{gendist_roc_format}
-\title{Make ROC from sensitivity and specificity}
+\title{Make ROC curve from sensitivity and specificity}
 \usage{
 gendist_roc_format(
   cutoff,
@@ -47,8 +47,8 @@ mean_gens_pdf <- as.numeric(genDistSim[genDistSim$R == R, -(1:2)])
 
 # get theoretical genetic distance dist based on mutation rate and generation parameters
 dists <- as.data.frame(gendist_distribution(mut_rate = mut_rate,
-                                 mean_gens_pdf = mean_gens_pdf,
-                                 max_link_gens = 1))
+                       mean_gens_pdf = mean_gens_pdf,
+                       max_link_gens = 1))
 
 dists <- reshape2::melt(dists,
                         id.vars = "dist",
@@ -57,8 +57,8 @@ dists <- reshape2::melt(dists,
 
 # get sensitivity and specificity using the same paramters
 roc_calc <- gendist_roc_format(cutoff = 1:(max(dists$dist)-1),
-                          mut_rate = mut_rate,
-                          mean_gens_pdf = mean_gens_pdf)
+                               mut_rate = mut_rate,
+                               mean_gens_pdf = mean_gens_pdf)
 
 }
 \seealso{

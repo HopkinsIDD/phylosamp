@@ -1,4 +1,4 @@
-##' Expected number of observed pairs assuming single-transmission and single-linkage
+##' Calculate expected number of observed pairs assuming single-transmission and single-linkage
 ##'
 ##' This function calculates the expected number of link pairs observed in a sample of size \code{M}.
 ##' The single-transmission and single-linkage method assumes the following:

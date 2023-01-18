@@ -2,7 +2,7 @@
 % Please edit documentation in R/vartrack_samplesize_detect_xsect.R
 \name{vartrack_samplesize_detect_xsect}
 \alias{vartrack_samplesize_detect_xsect}
-\title{Function to calculate sample size needed for variant detection assuming cross-sectional sampling}
+\title{Calculate sample size needed for variant detection assuming cross-sectional sampling}
 \usage{
 vartrack_samplesize_detect_xsect(p_v1, prob, omega, c_ratio = 1)
 }
@@ -13,19 +13,27 @@ vartrack_samplesize_detect_xsect(p_v1, prob, omega, c_ratio = 1)
 
 \item{omega}{probability of sequencing (or other characterization) success}
 
-\item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. default = 1 (no bias)}
+\item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)}
 }
 \value{
 scalar of expected sample size
 }
 \description{
-Function to calculate sample size needed for variant detection assuming cross-sectional sampling
+This function calculates the sample size needed for detecting the presence of a variant
+given a desired probability of detection and assuming a single, cross-sectional sample of detected infections.
 }
 \examples{
 vartrack_samplesize_detect_xsect(p_v1 = 0.1, prob = 0.95, omega = 0.8, c_ratio = 1)
 
 }
 \seealso{
+Other variant detection functions: 
+\code{\link{vartrack_prob_detect_cont}()},
+\code{\link{vartrack_prob_detect_xsect}()},
+\code{\link{vartrack_prob_detect}()},
+\code{\link{vartrack_samplesize_detect_cont}()},
+\code{\link{vartrack_samplesize_detect}()}
+
 Other variant tracking functions: 
 \code{\link{vartrack_cod_ratio}()},
 \code{\link{vartrack_prob_detect_cont}()},
@@ -41,4 +49,5 @@ Other variant tracking functions:
 \author{
 Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 }
+\concept{variant detection functions}
 \concept{variant tracking functions}

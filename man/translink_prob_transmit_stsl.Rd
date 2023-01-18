@@ -2,7 +2,7 @@
 % Please edit documentation in R/translink_prob_transmit_stsl.R
 \name{translink_prob_transmit_stsl}
 \alias{translink_prob_transmit_stsl}
-\title{Probability of transmission assuming single-transmission and single-linkage}
+\title{Calculate probability of transmission assuming single-transmission and single-linkage}
 \usage{
 translink_prob_transmit_stsl(eta, chi, rho, M)
 }

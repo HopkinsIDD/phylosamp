@@ -1,7 +1,7 @@
-##' Function to calculate multiplicative bias (observed / actual) in variant prevalence
+##' Calculate multiplicative bias (observed / actual) in variant prevalence
 ##'
-##' This function calculates the multiplicative bias of the observed variant proportion in \eqn{H_v1} relative to the actual variant proportion in \eqn{N_v1}.
-##' This function assumes that variant 1 is the variant of concern (VOC).
+##' This function calculates the multiplicative bias of the observed variant proportion
+##' relative to the actual variant proportion. This function assumes that variant 1 is the variant of concern.
 ##' This function is specific to the two-variant system.
 ##'
 ##' @param p_v1 actual variant prevalence (proportion)

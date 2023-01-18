@@ -1,4 +1,4 @@
-##' Calculate true discovery rate of a sample
+##' Calculate true discovery rate of identifying transmission pairs
 ##'
 ##' This function calculates the true discovery rate (proportion of true transmission pairs) in a sample given the sensitivity \eqn{\eta}
 ##' and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)

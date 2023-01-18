@@ -2,7 +2,7 @@
 % Please edit documentation in R/vartrack_cod_ratio.R
 \name{vartrack_cod_ratio}
 \alias{vartrack_cod_ratio}
-\title{Function to calculate the coefficient of detection ratio for two variants}
+\title{Calculate the coefficient of detection ratio for two variants}
 \usage{
 vartrack_cod_ratio(
   phi_v1 = 1,
@@ -37,7 +37,7 @@ scalar giving the multiplicative bias of variant 1
 }
 \description{
 This function calculates the coefficient of detection ratio \eqn{C_{V_1}/C_{V_2}} for two variants.
-This function assumes that variant 1 is the variant of concern (VOC).
+This function assumes that variant 1 is the variant of concern.
 This function is specific to the two-variant system.
 Parameters not provided are assumed to be equivalent between the two variants.
 }

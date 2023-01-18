@@ -2,7 +2,7 @@
 % Please edit documentation in R/translink_tdr.R
 \name{translink_tdr}
 \alias{translink_tdr}
-\title{Calculate true discovery rate of a sample}
+\title{Calculate true discovery rate of identifying transmission pairs}
 \usage{
 translink_tdr(eta, chi, rho, M, R = NULL, assumption = "mtml")
 }

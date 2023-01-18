@@ -1,5 +1,7 @@
-##' Function to calculate observed variant prevalence at time t given logistic growth (PDF)
+##' Calculate observed variant prevalence at time t given logistic growth
 ##'
+##' This function calculates the observed variant prevalence after t time steps (e.g., days)
+##' given a logistic growth rate and initial variant prevalence.
 ##'
 ##' @param t time step number (e.g., days) at which to calculate prevalence
 ##' @param p0 initial variant prevalence (# introductions / infected population size)
@@ -12,6 +14,7 @@
 ##' @examples
 ##' varfreq_freq_logistic(t = 30, p0 = 1/10000, r = 0.1, c_ratio = 1)
 ##'
+##' @family logistic growth functions
 ##' @family variant frequency functions
 ##'
 ##' @export

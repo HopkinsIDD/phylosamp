@@ -1,7 +1,7 @@
-##' Function to calculate observed variant prevalence
+##' Calculate observed variant prevalence
 ##'
-##' This function calculates the observed variant prevalence in \eqn{H_v1} from the coefficient of detection ratio and the actual variant prevalence \eqn{N_v1}.
-##' This function assumes that variant 1 is the variant of concern (VOC).
+##' This function calculates the observed variant prevalence from the coefficient of detection ratio 
+##' and the actual variant prevalence. This function assumes that variant 1 is the variant of concern.
 ##' This function is specific to the two-variant system.
 ##'
 ##' @param p_v1 actual variant prevalence (proportion)

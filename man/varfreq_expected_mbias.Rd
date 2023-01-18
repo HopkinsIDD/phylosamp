@@ -2,7 +2,7 @@
 % Please edit documentation in R/varfreq_expected_mbias.R
 \name{varfreq_expected_mbias}
 \alias{varfreq_expected_mbias}
-\title{Function to calculate multiplicative bias (observed / actual) in variant prevalence}
+\title{Calculate multiplicative bias (observed / actual) in variant prevalence}
 \usage{
 varfreq_expected_mbias(p_v1, c_ratio)
 }
@@ -15,8 +15,8 @@ varfreq_expected_mbias(p_v1, c_ratio)
 scalar giving the multiplicative bias of variant 1
 }
 \description{
-This function calculates the multiplicative bias of the observed variant proportion in \eqn{H_v1} relative to the actual variant proportion in \eqn{N_v1}.
-This function assumes that variant 1 is the variant of concern (VOC).
+This function calculates the multiplicative bias of the observed variant proportion
+relative to the actual variant proportion. This function assumes that variant 1 is the variant of concern.
 This function is specific to the two-variant system.
 }
 \examples{

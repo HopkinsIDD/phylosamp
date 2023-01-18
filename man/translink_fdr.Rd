@@ -2,7 +2,7 @@
 % Please edit documentation in R/translink_fdr.R
 \name{translink_fdr}
 \alias{translink_fdr}
-\title{Calculate false discovery rate of a sample}
+\title{Calculate false discovery rate of identifying transmission pairs in a sample}
 \usage{
 translink_fdr(eta, chi, rho, M, R = NULL, assumption = "mtml")
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/varfreq_cdf_logistic.R
 \name{varfreq_cdf_logistic}
 \alias{varfreq_cdf_logistic}
-\title{Function to calculate cumulative observed variant prevalence at time t given logistic growth (CDF)}
+\title{Calculate cumulative observed variant prevalence at time t given logistic growth}
 \usage{
 varfreq_cdf_logistic(t, p0, r, c_ratio = 1)
 }
@@ -13,19 +13,23 @@ varfreq_cdf_logistic(t, p0, r, c_ratio = 1)
 
 \item{r}{logistic growth rate}
 
-\item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2; default = 1 (no bias)}
+\item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)}
 }
 \value{
 scalar giving the cdf of variant prevalence at time t
 }
 \description{
-Function to calculate cumulative observed variant prevalence at time t given logistic growth (CDF)
+This function calculates the cumulative observed variant prevalence after t time steps (e.g., days)
+given a logistic growth rate and initial variant prevalence.
 }
 \examples{
 varfreq_cdf_logistic(t = 30, p0 = 1/10000, r = 0.1, c_ratio = 1)
 
 }
 \seealso{
+Other logistic growth functions: 
+\code{\link{varfreq_freq_logistic}()}
+
 Other variant frequency functions: 
 \code{\link{varfreq_expected_mbias}()},
 \code{\link{varfreq_freq_logistic}()},
@@ -34,4 +38,5 @@ Other variant frequency functions:
 \author{
 Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 }
+\concept{logistic growth functions}
 \concept{variant frequency functions}

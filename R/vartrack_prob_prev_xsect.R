@@ -1,11 +1,14 @@
-##' Function to calculate confidence in a variant estimate assuming cross-sectional sampling
+##' Calculate confidence in a variant estimate assuming cross-sectional sampling
 ##'
+##' This function calculates the probability of accurately estimating variant prevalence
+##' given a given a sample size and desired precision in the variant prevalence estimate,
+##' and assuming a single, cross-sectional sample of detected infections.
 ##'
 ##' @param p_v1 variant prevalence (proportion)
 ##' @param n sample size
 ##' @param omega probability of sequencing (or other characterization) success
 ##' @param precision desired precision in variant prevalence estimate
-##' @param c_ratio coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. default = 1 (no bias)
+##' @param c_ratio coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)
 ##' @return scalar of expected sample size
 ##'
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
@@ -13,6 +16,7 @@
 ##' @examples
 ##' vartrack_prob_prev_xsect(p_v1 = 0.1, n = 200, omega = 0.8, c_ratio = 1)
 ##'
+##' @family variant prevalence estimation functions
 ##' @family variant tracking functions
 ##'
 ##' @export

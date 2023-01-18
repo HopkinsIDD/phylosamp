@@ -2,7 +2,7 @@
 % Please edit documentation in R/varfreq_obs_freq.R
 \name{varfreq_obs_freq}
 \alias{varfreq_obs_freq}
-\title{Function to calculate observed variant prevalence}
+\title{Calculate observed variant prevalence}
 \usage{
 varfreq_obs_freq(p_v1, c_ratio)
 }
@@ -15,8 +15,8 @@ varfreq_obs_freq(p_v1, c_ratio)
 scalar of observed prevalence of variant 1
 }
 \description{
-This function calculates the observed variant prevalence in \eqn{H_v1} from the coefficient of detection ratio and the actual variant prevalence \eqn{N_v1}.
-This function assumes that variant 1 is the variant of concern (VOC).
+This function calculates the observed variant prevalence from the coefficient of detection ratio 
+and the actual variant prevalence. This function assumes that variant 1 is the variant of concern.
 This function is specific to the two-variant system.
 }
 \examples{

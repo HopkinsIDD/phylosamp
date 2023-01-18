@@ -2,7 +2,7 @@
 % Please edit documentation in R/varfreq_freq_logistic.R
 \name{varfreq_freq_logistic}
 \alias{varfreq_freq_logistic}
-\title{Function to calculate observed variant prevalence at time t given logistic growth (PDF)}
+\title{Calculate observed variant prevalence at time t given logistic growth}
 \usage{
 varfreq_freq_logistic(t, p0, r, c_ratio = 1)
 }
@@ -19,13 +19,17 @@ varfreq_freq_logistic(t, p0, r, c_ratio = 1)
 scalar giving the variant prevalence at time t
 }
 \description{
-Function to calculate observed variant prevalence at time t given logistic growth (PDF)
+This function calculates the observed variant prevalence after t time steps (e.g., days)
+given a logistic growth rate and initial variant prevalence.
 }
 \examples{
 varfreq_freq_logistic(t = 30, p0 = 1/10000, r = 0.1, c_ratio = 1)
 
 }
 \seealso{
+Other logistic growth functions: 
+\code{\link{varfreq_cdf_logistic}()}
+
 Other variant frequency functions: 
 \code{\link{varfreq_cdf_logistic}()},
 \code{\link{varfreq_expected_mbias}()},
@@ -34,4 +38,5 @@ Other variant frequency functions:
 \author{
 Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 }
+\concept{logistic growth functions}
 \concept{variant frequency functions}

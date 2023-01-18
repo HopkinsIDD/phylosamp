@@ -2,7 +2,7 @@
 % Please edit documentation in R/translink_expected_links_true_stsl.R
 \name{translink_expected_links_true_stsl}
 \alias{translink_expected_links_true_stsl}
-\title{Expected number of true transmission pairs assuming single-transmission and single-linkage}
+\title{Calculate expected number of true transmission pairs assuming single-transmission and single-linkage}
 \usage{
 translink_expected_links_true_stsl(eta, rho, M)
 }

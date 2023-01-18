@@ -1,4 +1,4 @@
-##' Calculate false discovery rate of a sample
+##' Calculate false discovery rate of identifying transmission pairs in a sample
 ##'
 ##' This function calculates the false discovery rate (proportion of linked pairs that are false positives) in a sample given the sensitivity \eqn{\eta}
 ##' and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)

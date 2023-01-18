@@ -2,7 +2,7 @@
 % Please edit documentation in R/translink_prob_transmit_mtsl.R
 \name{translink_prob_transmit_mtsl}
 \alias{translink_prob_transmit_mtsl}
-\title{Probability of transmission assuming multiple-transmission and single-linkage}
+\title{Calculate probability of transmission assuming multiple-transmission and single-linkage}
 \usage{
 translink_prob_transmit_mtsl(chi, eta, rho, M, R)
 }

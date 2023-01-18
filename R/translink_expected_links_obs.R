@@ -1,4 +1,4 @@
-##' Calculate expected number of links in a sample
+##' Calculate expected number of transmission links in a sample
 ##'
 ##' This function calculates the expected number of observed pairs in the sample that are linked by the linkage criteria. The function requires the sensitivity \eqn{\eta}
 ##' and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)

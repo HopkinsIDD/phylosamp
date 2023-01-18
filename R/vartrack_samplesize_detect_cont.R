@@ -1,12 +1,17 @@
-##' Function to calculate sample size needed for variant detection assuming periodic sampling
+##' Calculate sample size needed for variant detection assuming periodic sampling
+##'
+##' This function calculates the sample size needed for detecting the presence of a variant
+##' given a desired probability of detection and either a desired maximum time until detection
+##' or a desired prevalence by which to detect the variant by.
+##' It assumes a periodic sampling strategy, where samples are collected at regular intervals (time steps).
 ##'
 ##' @param prob desired probability of detection
-##' @param t time step number (e.g., days) at which variant should be detected by
-##' @param p_v1 the desired prevalence to detect a variant by
-##' @param omega the sequencing success rate
+##' @param t time step number (e.g., days) at which variant should be detected by. Default = NA (either \code{'t'} or \code{'p_v1'} should be provided, not both)
+##' @param p_v1 the desired prevalence to detect a variant by. Default = NA (either \code{'t'} or \code{'p_v1'} should be provided, not both)
+##' @param omega probability of sequencing (or other characterization) success
 ##' @param p0 initial variant prevalence (# introductions / infected population size)
 ##' @param r logistic growth rate
-##' @param c_ratio coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. default = 1 (no bias)
+##' @param c_ratio coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)
 ##' @return scalar of expected sample size
 ##'
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
@@ -14,6 +19,7 @@
 ##' @examples
 ##' vartrack_samplesize_detect_cont(prob = 0.95, t = 30, omega = 0.8, p0 = 1/10000, r = 0.1, c_ratio = 1)
 ##'
+##' @family variant detection functions
 ##' @family variant tracking functions
 ##'
 ##' @export

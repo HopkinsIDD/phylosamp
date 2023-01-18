@@ -2,7 +2,7 @@
 % Please edit documentation in R/vartrack_prob_detect.R
 \name{vartrack_prob_detect}
 \alias{vartrack_prob_detect}
-\title{Function to calculate the probability of detecting a variant given a sample size}
+\title{Calculate the probability of detecting a variant given a sample size}
 \usage{
 vartrack_prob_detect(
   n,
@@ -18,17 +18,17 @@ vartrack_prob_detect(
 \arguments{
 \item{n}{sample size (either of cross-section or per timestep)}
 
-\item{t}{time step number (e.g., days) at which variant should be detected by}
+\item{t}{time step number (e.g., days) at which variant should be detected by. Default = NA (either \code{'t'} or \code{'p_v1'} should be provided, not both)}
 
-\item{p_v1}{the variant prevalence at detection}
+\item{p_v1}{the desired prevalence to detect a variant by. Default = NA (either \code{'t'} or \code{'p_v1'} should be provided, not both)}
 
-\item{omega}{the sequencing success rate}
+\item{omega}{probability of sequencing (or other characterization) success}
 
 \item{p0}{initial variant prevalence (# introductions / infected population size)}
 
 \item{r}{logistic growth rate}
 
-\item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. default = 1 (no bias)}
+\item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)}
 
 \item{sampling_freq}{the sampling frequency (must be either "xsect" or "cont")}
 }
@@ -36,7 +36,8 @@ vartrack_prob_detect(
 scalar of detection probability
 }
 \description{
-Function to calculate the probability of detecting a variant given a sample size
+This function calculates the probability of detecting the presence of a variant
+given a sample size and sampling strategy.
 }
 \examples{
 # Cross-sectional sampling
@@ -47,6 +48,13 @@ vartrack_prob_detect(n = 158, t = 30, omega = 0.8, p0 = 1/10000, r = 0.1, c_rati
 
 }
 \seealso{
+Other variant detection functions: 
+\code{\link{vartrack_prob_detect_cont}()},
+\code{\link{vartrack_prob_detect_xsect}()},
+\code{\link{vartrack_samplesize_detect_cont}()},
+\code{\link{vartrack_samplesize_detect_xsect}()},
+\code{\link{vartrack_samplesize_detect}()}
+
 Other variant tracking functions: 
 \code{\link{vartrack_cod_ratio}()},
 \code{\link{vartrack_prob_detect_cont}()},
@@ -62,4 +70,5 @@ Other variant tracking functions:
 \author{
 Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 }
+\concept{variant detection functions}
 \concept{variant tracking functions}

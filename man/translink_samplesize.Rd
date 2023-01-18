@@ -2,7 +2,7 @@
 % Please edit documentation in R/translink_samplesize.R
 \name{translink_samplesize}
 \alias{translink_samplesize}
-\title{Calculate sample size}
+\title{Calculate sample size needed to identify true transmission links}
 \usage{
 translink_samplesize(
   eta,
@@ -38,8 +38,8 @@ translink_samplesize(
 scalar or vector giving the sample size needed to meet the given conditions
 }
 \description{
-This function calculates the sample size needed to obtain at least a defined false disovery rate given
-a final outbreak size \eqn{N}.
+This function calculates the sample size needed to identify transmission links at 
+a pre-defined false disovery rate, given a final outbreak size \eqn{N}.
 }
 \examples{
 translink_samplesize(eta=0.99, chi=0.995, N=100, R=1, phi=0.75)

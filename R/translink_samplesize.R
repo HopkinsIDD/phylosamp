@@ -1,7 +1,7 @@
-##' Calculate sample size
+##' Calculate sample size needed to identify true transmission links
 ##'
-##' This function calculates the sample size needed to obtain at least a defined false disovery rate given
-##' a final outbreak size \eqn{N}.
+##' This function calculates the sample size needed to identify transmission links at 
+##' a pre-defined false disovery rate, given a final outbreak size \eqn{N}.
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria
 ##' @param chi scalar or vector giving the specificity of the linkage criteria

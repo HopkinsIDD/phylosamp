@@ -1,12 +1,15 @@
-##' Function to calculate the probability of detecting a variant given a sample size
+##' Calculate the probability of detecting a variant given a sample size
+##'
+##' This function calculates the probability of detecting the presence of a variant
+##' given a sample size and sampling strategy.
 ##'
 ##' @param n sample size (either of cross-section or per timestep)
-##' @param t time step number (e.g., days) at which variant should be detected by
-##' @param p_v1 the variant prevalence at detection
-##' @param omega the sequencing success rate
+##' @param t time step number (e.g., days) at which variant should be detected by. Default = NA (either \code{'t'} or \code{'p_v1'} should be provided, not both)
+##' @param p_v1 the desired prevalence to detect a variant by. Default = NA (either \code{'t'} or \code{'p_v1'} should be provided, not both)
+##' @param omega probability of sequencing (or other characterization) success
 ##' @param p0 initial variant prevalence (# introductions / infected population size)
 ##' @param r logistic growth rate
-##' @param c_ratio coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. default = 1 (no bias)
+##' @param c_ratio coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)
 ##' @param sampling_freq the sampling frequency (must be either "xsect" or "cont")
 ##' @return scalar of detection probability
 ##'
@@ -19,6 +22,7 @@
 ##' # Periodic sampling
 ##' vartrack_prob_detect(n = 158, t = 30, omega = 0.8, p0 = 1/10000, r = 0.1, c_ratio = 1, sampling_freq = "cont")
 ##' 
+##' @family variant detection functions
 ##' @family variant tracking functions
 ##'
 ##' @export

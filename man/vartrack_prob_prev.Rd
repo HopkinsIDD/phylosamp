@@ -2,7 +2,7 @@
 % Please edit documentation in R/vartrack_prob_prev.R
 \name{vartrack_prob_prev}
 \alias{vartrack_prob_prev}
-\title{Function to calculate confidence in a variant estimate given a sample size}
+\title{Calculate confidence in a variant estimate given a sample size}
 \usage{
 vartrack_prob_prev(p_v1, n, omega, precision, c_ratio = 1, sampling_freq)
 }
@@ -15,21 +15,28 @@ vartrack_prob_prev(p_v1, n, omega, precision, c_ratio = 1, sampling_freq)
 
 \item{precision}{desired precision in variant prevalence estimate}
 
-\item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. default = 1 (no bias)}
+\item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)}
 
-\item{sampling_freq}{the sampling frequency (must be either "xsect" or "cont")}
+\item{sampling_freq}{the sampling frequency (must be either "xsect" in current implementation)}
 }
 \value{
 scalar of expected sample size
 }
 \description{
-Function to calculate confidence in a variant estimate given a sample size
+This function calculates the probability of accurately estimating variant prevalence
+given a sample size and desired precision in the variant prevalence estimate.
+Currently, only cross-sectional sampling is supported.
 }
 \examples{
 vartrack_prob_prev(p_v1 = 0.1, n = 200, omega = 0.8, c_ratio = 1, sampling_freq = "xsect")
 
 }
 \seealso{
+Other variant prevalence estimation functions: 
+\code{\link{vartrack_prob_prev_xsect}()},
+\code{\link{vartrack_samplesize_prev_xsect}()},
+\code{\link{vartrack_samplesize_prev}()}
+
 Other variant tracking functions: 
 \code{\link{vartrack_cod_ratio}()},
 \code{\link{vartrack_prob_detect_cont}()},
@@ -45,4 +52,5 @@ Other variant tracking functions:
 \author{
 Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 }
+\concept{variant prevalence estimation functions}
 \concept{variant tracking functions}

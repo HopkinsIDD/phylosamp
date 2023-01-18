@@ -20,8 +20,8 @@
 ##'
 ##' # get theoretical genetic distance dist based on mutation rate and generation parameters
 ##' dists <- as.data.frame(gendist_distribution(mut_rate = mut_rate,
-##'                                  mean_gens_pdf = mean_gens_pdf,
-##'                                  max_link_gens = 1))
+##'                        mean_gens_pdf = mean_gens_pdf,
+##'                        max_link_gens = 1))
 ##'
 ##' # reshape dataframe for plotting
 ##' dists <- reshape2::melt(dists,

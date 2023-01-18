@@ -1,4 +1,4 @@
-##' Expected number of true transmission pairs assuming single-transmission and single-linkage
+##' Calculate expected number of true transmission pairs assuming single-transmission and single-linkage
 ##'
 ##' This function calculates the expected number of true transmission pairs in a sample of size \code{M}.
 ##' The single-transmission and single-linkage method assumes the following:

@@ -2,7 +2,7 @@
 % Please edit documentation in R/translink_expected_links_obs.R
 \name{translink_expected_links_obs}
 \alias{translink_expected_links_obs}
-\title{Calculate expected number of links in a sample}
+\title{Calculate expected number of transmission links in a sample}
 \usage{
 translink_expected_links_obs(eta, chi, rho, M, R = NULL, assumption = "mtml")
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/vartrack_samplesize_detect.R
 \name{vartrack_samplesize_detect}
 \alias{vartrack_samplesize_detect}
-\title{Function to calculate sample size needed for variant detection given a desired probability of detection}
+\title{Calculate sample size needed for variant detection given a desired probability of detection}
 \usage{
 vartrack_samplesize_detect(
   prob,
@@ -18,17 +18,17 @@ vartrack_samplesize_detect(
 \arguments{
 \item{prob}{desired probability of detection}
 
-\item{t}{time step number (e.g., days) at which variant should be detected by}
+\item{t}{time step number (e.g., days) at which variant should be detected by. Default = NA (either \code{'t'} or \code{'p_v1'} should be provided, not both)}
 
-\item{p_v1}{the desired prevalence to detect a variant by}
+\item{p_v1}{the desired prevalence to detect a variant by. Default = NA (either \code{'t'} or \code{'p_v1'} should be provided, not both)}
 
-\item{omega}{the sequencing success rate}
+\item{omega}{probability of sequencing (or other characterization) success}
 
 \item{p0}{initial variant prevalence (# introductions / infected population size)}
 
 \item{r}{logistic growth rate}
 
-\item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. default = 1 (no bias)}
+\item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)}
 
 \item{sampling_freq}{the sampling frequency (must be either "xsect" or "cont")}
 }
@@ -36,17 +36,27 @@ vartrack_samplesize_detect(
 scalar of expected sample size
 }
 \description{
-Function to calculate sample size needed for variant detection given a desired probability of detection
+This function calculates the sample size needed for detecting the presence of a variant
+given a desired probability of detection and sampling strategy.
 }
 \examples{
 # Cross-sectional sampling
-vartrack_samplesize_detect(p_v1 = 0.1, prob = 0.95, omega = 0.8, c_ratio = 1, sampling_freq = "xsect")
+vartrack_samplesize_detect(p_v1 = 0.1, prob = 0.95, omega = 0.8,
+                           c_ratio = 1, sampling_freq = "xsect")
 
 # Periodic sampling
-vartrack_samplesize_detect(prob = 0.95, t = 30, omega = 0.8, p0 = 1/10000, r = 0.1, c_ratio = 1, sampling_freq = "cont")
+vartrack_samplesize_detect(prob = 0.95, t = 30, omega = 0.8, p0 = 1/10000,
+                           r = 0.1, c_ratio = 1, sampling_freq = "cont")
 
 }
 \seealso{
+Other variant detection functions: 
+\code{\link{vartrack_prob_detect_cont}()},
+\code{\link{vartrack_prob_detect_xsect}()},
+\code{\link{vartrack_prob_detect}()},
+\code{\link{vartrack_samplesize_detect_cont}()},
+\code{\link{vartrack_samplesize_detect_xsect}()}
+
 Other variant tracking functions: 
 \code{\link{vartrack_cod_ratio}()},
 \code{\link{vartrack_prob_detect_cont}()},
@@ -62,4 +72,5 @@ Other variant tracking functions:
 \author{
 Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 }
+\concept{variant detection functions}
 \concept{variant tracking functions}

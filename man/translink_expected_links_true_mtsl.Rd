@@ -2,7 +2,7 @@
 % Please edit documentation in R/translink_expected_links_true_mtsl.R
 \name{translink_expected_links_true_mtsl}
 \alias{translink_expected_links_true_mtsl}
-\title{Expected number of true transmission pairs assuming multiple-transmission and single-linkage}
+\title{Calculate expected number of true transmission pairs assuming multiple-transmission and single-linkage}
 \usage{
 translink_expected_links_true_mtsl(eta, rho, M, R)
 }

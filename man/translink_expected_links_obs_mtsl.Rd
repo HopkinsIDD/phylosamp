@@ -2,7 +2,7 @@
 % Please edit documentation in R/translink_expected_links_obs_mtsl.R
 \name{translink_expected_links_obs_mtsl}
 \alias{translink_expected_links_obs_mtsl}
-\title{Expected number of observed pairs assuming multiple-transmission and single-linkage}
+\title{Calculate expected number of observed pairs assuming multiple-transmission and single-linkage}
 \usage{
 translink_expected_links_obs_mtsl(chi, eta, rho, M, R)
 }

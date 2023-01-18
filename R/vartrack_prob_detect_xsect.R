@@ -1,10 +1,12 @@
-##' Function to calculate probability of detecting a variant assuming cross-sectional sampling
+##' Calculate probability of detecting a variant assuming cross-sectional sampling
 ##'
+##' This function calculates the probability of detecting the presence of a variant
+##' given a sample size and assuming a single, cross-sectional sample of detected infections.
 ##'
 ##' @param p_v1 variant prevalence (proportion)
 ##' @param n sample size
 ##' @param omega probability of sequencing (or other characterization) success
-##' @param c_ratio coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. default = 1 (no bias)
+##' @param c_ratio coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)
 ##' @return scalar of expected sample size
 ##'
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
@@ -12,6 +14,7 @@
 ##' @examples
 ##' vartrack_prob_detect_xsect(p_v1 = 0.02, n = 100, omega = 0.8, c_ratio = 1)
 ##'
+##' @family variant detection functions
 ##' @family variant tracking functions
 ##'
 ##' @export

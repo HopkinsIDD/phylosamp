@@ -1,4 +1,4 @@
-##' Probability of transmission assuming single-transmission and single-linkage
+##' Calculate probability of transmission assuming single-transmission and single-linkage
 ##'
 ##' This function calculates the probabilitiy that two cases are linked by direct transmission
 ##' given that they have been linked by phylogenetic criteria. The single-transmission and single-linkage method assumes the following:
