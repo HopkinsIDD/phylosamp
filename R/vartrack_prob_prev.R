@@ -32,4 +32,6 @@ vartrack_prob_prev <- function(p_v1, n, omega, precision, c_ratio = 1, sampling_
   else {
     stop("Incorrect sampling frequency argument (please specify 'xsect' or 'cont')")
   }
+
+  return(out)
 }
