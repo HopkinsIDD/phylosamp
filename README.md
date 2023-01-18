@@ -2,12 +2,12 @@
 
 # phylosamp
 
-This repository provides code for the `phylosamp` R package, which was designed to help users conduct and evaluate sample size calculations for phylogenetic studies. Presently, the functions can be used to calculate sample size in two types of scenarios that frequently arise when analyzing pathogen genomic data: (1) trying to determine if pathogen infections are linked by transmission ([linkage scenario](#Determining-linkage-between-pathogen-infections)); (2) trying to estimate the frequency of a known pathogen lineage or variant of concern ([VOC scenario](#Determining-the-frequency-of-a-pathogen-VOC)).
+This repository provides code for the `phylosamp` R package, which was designed to help users conduct and evaluate sample size calculations for phylogenetic studies. Presently, the functions can be used to calculate sample size in two types of scenarios that frequently arise when analyzing pathogen genomic data: (1) trying to determine if pathogen infections are linked by transmission ([linkage scenario](#Determining-linkage-between-pathogen-infections)); (2) trying to estimate the frequency of a known pathogen lineage or variant of concern ([variant tracking scenario](#Determining-the-frequency-of-a-pathogen-VOC)).
 
 All key functions of each scenario are documented, along with realistic examples, in the [associated vignettes](https://hopkinsidd.github.io/phylosamp/index.html). Vignettes are organized as follows:
 
 * Vignettes L1-L4: linkage scenario vignettes and examples
-* Vignettes V1-V6: VOC scenario vignettes and examples
+* Vignettes V1-V6: variant tracking scenario vignettes and examples
 
 ## Determining linkage between pathogen infections
 
@@ -21,15 +21,15 @@ A detailed description of the linkage methods can be found in:
 
 [Sample Size Calculation for Phylogenetic Case Linkage (Wohl, Giles, and Lessler 2020)](https://doi.org/10.1371/journal.pcbi.1009182)
 
-## Determining the frequency of a pathogen VOC
+## Determining the frequency of a pathogen variant
 
-The package includes another set of functions that can be used to determine the sample size needed to detect or estimate the frequency of a VOC in a population. It also includes functions that do the reverse: calculate the confidence in a detection or frequency estimate, given a number of sequences.
+The package includes another set of functions that can be used to determine the sample size needed to detect or estimate the frequency of a pathogen variant in a population. It also includes functions that do the reverse: calculate the confidence in a detection or frequency estimate, given a number of samples.
 
-These functions require the user to specify a desired confidence in the results (either probability of detection or confidence in prevalence estimate), a desired or estimated variant prevalence, and (if applicable) a desired precision in the prevlance estimate. The user can also provide variant-specific parameters to help account for baises in VOC detection, such as the probability that an infection is asymptomatic, the testing sensitivity, the testing probability, and the sequencing success rate.
+These functions require the user to specify a desired confidence in the results (either probability of detection or confidence in prevalence estimate), a desired or estimated variant prevalence, and (if applicable) a desired precision in the prevlance estimate. The user can also provide variant-specific parameters to help account for baises in variant detection, such as the probability that an infection is asymptomatic, the testing sensitivity, the testing probability, and the sequencing success rate.
 
-Functions are provided for sample size calculations in a cross-sectional scenario, where a single batch of samples will be collected and sequenced, and in a regular surveillance scenario, where samples are collected and sequenced repeatedly at some regular interval. In the later case, the user must also provide information on how the VOC frequency may be changing over time (in the form of an initial frequency and estimated growth rate).
+Functions are provided for sample size calculations in a cross-sectional scenario, where a single batch of samples will be collected and sequenced, and in a periodic surveillance scenario, where samples are collected and sequenced repeatedly at some regular interval. In the later case, the user must also provide information on how the variant frequency may be changing over time (in the form of an initial frequency and estimated logistic growth rate).
 
-All calculations assume a two-variant system; in other words, that there is a particular variant of interest that may behave differently from the rest of the pathogen population (in terms of asymptomatic rate, testing sensitivity, etc.). Detection biases due to these differences are incorporated into function calculations. That said, the framework could be easily extended to a multi-VOC system in the future.
+All calculations assume a two-variant system; in other words, that there is a particular variant of interest that may behave differently from the rest of the pathogen population (in terms of asymptomatic rate, testing sensitivity, etc.). Detection biases due to these differences are incorporated into function calculations. That said, the framework could be easily extended to a multi-variant system in the future.
 
 A detailed description of the VOC estimation methods can be found in:
 
