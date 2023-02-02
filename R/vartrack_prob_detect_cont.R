@@ -26,30 +26,40 @@
 
 
 vartrack_prob_detect_cont <- function(n, t = NA, p_v1 = NA, omega, p0_v1, r_v1, c_ratio = 1) {
-  if (is.na(t) & is.na(p_v1)) stop("Either time to detection or detection prevalence must be provided.")
-  if (!is.na(t) & !is.na(p_v1)) stop("Please provide either a desired time to detection OR desired prevalence.")
-  
-  if (!is.na(t)) {
-    if (!is.numeric(t)) stop("Time step must be numeric.")
-  }
-  
-  if (!is.na(p_v1)) {
-    if (!all(is.numeric(p_v1), p_v1 > 0 & p_v1 < 1)) stop("Variant prevalence must be numeric and between 0 and 1.")
-  }
-  
-  if (!all(is.numeric(n), n > 0)) stop("Number of samples per timestep must be numeric and greater than zero.")
-  if (!all(is.numeric(p0_v1), p0_v1 > 0 & p0_v1 < 1)) stop("Initial variant prevalence must be numeric and between 0 and 1.")
-  if (!all(is.numeric(omega), omega > 0 & omega <= 1)) stop("Sequencing success rate must be numeric and between 0 and 1.")
-  if (!all(is.numeric(r_v1), r_v1 != 0)) stop("Growth rate must be numeric and non-zero.")
-  if (!all(is.numeric(c_ratio), c_ratio > 0)) stop("Coefficient of detection ratio must be numeric and greater than 0.")
-  
-  if (is.na(t)) {
-    a <- (1/p0_v1)-1
-    t <- ceiling(-(1/r_v1) * log( ((1/p_v1)-1) / a ))
-  }
-  
-  n_star <- n * omega
-  
-  prob <- 1 - exp(-n_star * (varfreq_cdf_logistic(t, p0_v1, r_v1, c_ratio) - varfreq_cdf_logistic(0, p0_v1, r_v1, c_ratio)))
-  return(prob)
+    if (is.na(t) & is.na(p_v1))
+        stop("Either time to detection or detection prevalence must be provided.")
+    if (!is.na(t) & !is.na(p_v1))
+        stop("Please provide either a desired time to detection OR desired prevalence.")
+
+    if (!is.na(t)) {
+        if (!is.numeric(t))
+            stop("Time step must be numeric.")
+    }
+
+    if (!is.na(p_v1)) {
+        if (!all(is.numeric(p_v1), p_v1 > 0 & p_v1 < 1))
+            stop("Variant prevalence must be numeric and between 0 and 1.")
+    }
+
+    if (!all(is.numeric(n), n > 0))
+        stop("Number of samples per timestep must be numeric and greater than zero.")
+    if (!all(is.numeric(p0_v1), p0_v1 > 0 & p0_v1 < 1))
+        stop("Initial variant prevalence must be numeric and between 0 and 1.")
+    if (!all(is.numeric(omega), omega > 0 & omega <= 1))
+        stop("Sequencing success rate must be numeric and between 0 and 1.")
+    if (!all(is.numeric(r_v1), r_v1 != 0))
+        stop("Growth rate must be numeric and non-zero.")
+    if (!all(is.numeric(c_ratio), c_ratio > 0))
+        stop("Coefficient of detection ratio must be numeric and greater than 0.")
+
+    if (is.na(t)) {
+        a <- (1/p0_v1) - 1
+        t <- ceiling(-(1/r_v1) * log(((1/p_v1) - 1)/a))
+    }
+
+    n_star <- n * omega
+
+    prob <- 1 - exp(-n_star * (varfreq_cdf_logistic(t, p0_v1, r_v1, c_ratio) - varfreq_cdf_logistic(0,
+        p0_v1, r_v1, c_ratio)))
+    return(prob)
 }

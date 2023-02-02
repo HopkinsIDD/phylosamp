@@ -25,18 +25,26 @@
 ##' @export
 
 
-vartrack_cod_ratio <- function(phi_v1=1,phi_v2=1,gamma_v1=1,gamma_v2=1,
-                           psi_v1=1,psi_v2=1,tau_a=1,tau_s=1) {
-  if (!all(is.numeric(phi_v1), phi_v1 > 0 & phi_v1 <= 1)) stop("Testing sensitivity must be numeric and between 0 and 1.")
-  if (!all(is.numeric(phi_v2), phi_v2 > 0 & phi_v1 <= 1)) stop("Testing sensitivity must be numeric and between 0 and 1.")
-  if (!all(is.numeric(gamma_v1), gamma_v1 > 0 & gamma_v1 <= 1)) stop("Probability of characterization success must be numeric and between 0 and 1.")
-  if (!all(is.numeric(gamma_v2), gamma_v2 > 0 & gamma_v2 <= 1)) stop("Probability of characterization success must be numeric and between 0 and 1.")
-  if (!all(is.numeric(psi_v1), psi_v1 >= 0 & psi_v1 <= 1)) stop("Asymptomatic rate must be numeric and between 0 and 1.")
-  if (!all(is.numeric(psi_v2), psi_v2 >= 0 & psi_v2 <= 1)) stop("Asymptomatic rate must be numeric and between 0 and 1.")
-  if (!all(is.numeric(tau_a), tau_a > 0 & tau_a <= 1)) stop("Testing probability must be numeric and between 0 and 1.")
-  if (!all(is.numeric(tau_s), tau_s > 0 & tau_s <= 1)) stop("Testing probability must be numeric and between 0 and 1.")
+vartrack_cod_ratio <- function(phi_v1 = 1, phi_v2 = 1, gamma_v1 = 1, gamma_v2 = 1,
+    psi_v1 = 1, psi_v2 = 1, tau_a = 1, tau_s = 1) {
+    if (!all(is.numeric(phi_v1), phi_v1 > 0 & phi_v1 <= 1))
+        stop("Testing sensitivity must be numeric and between 0 and 1.")
+    if (!all(is.numeric(phi_v2), phi_v2 > 0 & phi_v1 <= 1))
+        stop("Testing sensitivity must be numeric and between 0 and 1.")
+    if (!all(is.numeric(gamma_v1), gamma_v1 > 0 & gamma_v1 <= 1))
+        stop("Probability of characterization success must be numeric and between 0 and 1.")
+    if (!all(is.numeric(gamma_v2), gamma_v2 > 0 & gamma_v2 <= 1))
+        stop("Probability of characterization success must be numeric and between 0 and 1.")
+    if (!all(is.numeric(psi_v1), psi_v1 >= 0 & psi_v1 <= 1))
+        stop("Asymptomatic rate must be numeric and between 0 and 1.")
+    if (!all(is.numeric(psi_v2), psi_v2 >= 0 & psi_v2 <= 1))
+        stop("Asymptomatic rate must be numeric and between 0 and 1.")
+    if (!all(is.numeric(tau_a), tau_a > 0 & tau_a <= 1))
+        stop("Testing probability must be numeric and between 0 and 1.")
+    if (!all(is.numeric(tau_s), tau_s > 0 & tau_s <= 1))
+        stop("Testing probability must be numeric and between 0 and 1.")
 
-  c_v1 <- phi_v1 * gamma_v1 * ( psi_v1*tau_a + (1-psi_v1)*tau_s )
-  c_v2 <- phi_v2 * gamma_v2 * ( psi_v2*tau_a + (1-psi_v2)*tau_s )
-  return(c_v1 / c_v2)
+    c_v1 <- phi_v1 * gamma_v1 * (psi_v1 * tau_a + (1 - psi_v1) * tau_s)
+    c_v2 <- phi_v2 * gamma_v2 * (psi_v2 * tau_a + (1 - psi_v2) * tau_s)
+    return(c_v1/c_v2)
 }
