@@ -53,7 +53,7 @@ translink_samplesize <- function(sensitivity, # sensitivity of the linkage crite
     }
   }
 
-  # check if we successfully aspecificityeved the desired true discovery rate
+  # check if we successfully achieved the desired true discovery rate
   if (samplesize_found) {
     return(i)
   } else {
