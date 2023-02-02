@@ -28,35 +28,31 @@
 ##' @export
 ##'
 
-translink_samplesize <- function(sensitivity, # sensitivity of the linkage criteria
-                       specificity, # specificity of the linkage criteria
-                       N, # final outbreak size
-                       R = NULL, # effective reproductive number
-                       tdr, # minimum true discovery rate
-                       min_pairs = 1, # minimum number of linked pairs, defaults to 1 (2 samples)
-                       assumption = "mtml" # assume most general case if not specified
-) {
-  if (!(is.numeric(tdr) & tdr >= 0 & tdr <= 1)) {
-    stop("tdr must be numeric between 0 and 1")
-  }
-
-  # the max sample size in the final size of the outbreak
-  # iterate between minimum and maximum sample size until the desired value is reached
-  samplesize_found <- FALSE
-  for (i in 2:N) {
-    tdr <- suppressMessages(translink_tdr(sensitivity = sensitivity, specificity = specificity, rho = i / N, M = i, R = R, assumption = assumption))
-    obs_pairs <- suppressMessages(translink_expected_links_obs(sensitivity = sensitivity, specificity = specificity, rho = i / N, M = i, R = R, assumption = assumption))
-
-    if (tdr >= tdr & obs_pairs >= min_pairs) {
-      samplesize_found <- TRUE
-      break
+translink_samplesize <- function(sensitivity, specificity, N, R = NULL, tdr, min_pairs = 1,
+    assumption = "mtml") {
+    if (!(is.numeric(tdr) & tdr >= 0 & tdr <= 1)) {
+        stop("tdr must be numeric between 0 and 1")
     }
-  }
 
-  # check if we successfully achieved the desired true discovery rate
-  if (samplesize_found) {
-    return(i)
-  } else {
-    stop("Input values do no produce a viable solution")
-  }
+    # the max sample size in the final size of the outbreak iterate between
+    # minimum and maximum sample size until the desired value is reached
+    samplesize_found <- FALSE
+    for (i in 2:N) {
+        tdr <- suppressMessages(translink_tdr(sensitivity = sensitivity, specificity = specificity,
+            rho = i/N, M = i, R = R, assumption = assumption))
+        obs_pairs <- suppressMessages(translink_expected_links_obs(sensitivity = sensitivity,
+            specificity = specificity, rho = i/N, M = i, R = R, assumption = assumption))
+
+        if (tdr >= tdr & obs_pairs >= min_pairs) {
+            samplesize_found <- TRUE
+            break
+        }
+    }
+
+    # check if we successfully achieved the desired true discovery rate
+    if (samplesize_found) {
+        return(i)
+    } else {
+        stop("Input values do no produce a viable solution")
+    }
 }
