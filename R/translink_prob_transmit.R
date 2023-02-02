@@ -28,25 +28,22 @@
 ##' @export
 ##'
 
-translink_prob_transmit <- function(sensitivity, # sensitivity of the linkage criteria
-                            specificity, # specificity of the linkage criteria
-                            rho, # sampling proportion
-                            M, # number of cases sampled
-                            R, # effective reproductive number
-                            assumption = "mtml" # assume most general case if not specified
-) {
-  if (assumption == "stsl") {
-    message("Calculating probability of transmission assuming single-transmission and single-linkage")
-    out <- translink_prob_transmit_stsl(sensitivity = sensitivity, specificity = specificity, rho = rho, M = M)
-  } else if (assumption == "mtsl") {
-    message("Calculating probability of transmission assuming multiple-transmission and single-linkage")
-    out <- translink_prob_transmit_mtsl(sensitivity = sensitivity, specificity = specificity, rho = rho, M = M, R = R)
-  } else if (assumption == "mtml") {
-    message("Calculating probability of transmission assuming multiple-transmission and multiple-linkage")
-    out <- translink_prob_transmit_mtml(sensitivity = sensitivity, specificity = specificity, rho = rho, M = M, R = R)
-  } else {
-    stop("Incorrect assumption argument")
-  }
+translink_prob_transmit <- function(sensitivity, specificity, rho, M, R, assumption = "mtml") {
+    if (assumption == "stsl") {
+        message("Calculating probability of transmission assuming single-transmission and single-linkage")
+        out <- translink_prob_transmit_stsl(sensitivity = sensitivity, specificity = specificity,
+            rho = rho, M = M)
+    } else if (assumption == "mtsl") {
+        message("Calculating probability of transmission assuming multiple-transmission and single-linkage")
+        out <- translink_prob_transmit_mtsl(sensitivity = sensitivity, specificity = specificity,
+            rho = rho, M = M, R = R)
+    } else if (assumption == "mtml") {
+        message("Calculating probability of transmission assuming multiple-transmission and multiple-linkage")
+        out <- translink_prob_transmit_mtml(sensitivity = sensitivity, specificity = specificity,
+            rho = rho, M = M, R = R)
+    } else {
+        stop("Incorrect assumption argument")
+    }
 
-  return(out)
+    return(out)
 }
