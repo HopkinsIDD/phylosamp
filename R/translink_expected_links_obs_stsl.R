@@ -28,15 +28,16 @@
 ##'
 ##' @export
 
-translink_expected_links_obs_stsl <- function(sensitivity,
-                           specificity, # specificity of the linkage criteria
-                           rho, # sampling proportion
-                           M # number of cases sampled
-) {
-  if (!all(is.numeric(sensitivity), sensitivity >= 0 & sensitivity <= 1)) stop("sensitivity must be numeric between 0 and 1")
-  if (!all(is.numeric(specificity), specificity >= 0 & specificity <= 1)) stop("specificity must be numeric between 0 and 1")
-  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop("rho must be numeric > 0 and <= 1")
-  if (!all(is.numeric(M) | is.integer(M), M >= 0)) stop("Sample size (M) must be integer or numeric greater than 0")
+translink_expected_links_obs_stsl <- function(sensitivity, specificity, rho, M) {
+    if (!all(is.numeric(sensitivity), sensitivity >= 0 & sensitivity <= 1))
+        stop("sensitivity must be numeric between 0 and 1")
+    if (!all(is.numeric(specificity), specificity >= 0 & specificity <= 1))
+        stop("specificity must be numeric between 0 and 1")
+    if (!all(is.numeric(rho), rho > 0 & rho <= 1))
+        stop("rho must be numeric > 0 and <= 1")
+    if (!all(is.numeric(M) | is.integer(M), M >= 0))
+        stop("Sample size (M) must be integer or numeric greater than 0")
 
-  (M / 2) * ((sensitivity * rho) + (rho * (1 - sensitivity) * (1 - specificity^(M - 2))) + ((1 - rho) * (1 - specificity^(M - 1))))
+    (M/2) * ((sensitivity * rho) + (rho * (1 - sensitivity) * (1 - specificity^(M -
+        2))) + ((1 - rho) * (1 - specificity^(M - 1))))
 }

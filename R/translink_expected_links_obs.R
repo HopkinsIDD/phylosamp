@@ -38,25 +38,23 @@
 ##' @export
 ##'
 
-translink_expected_links_obs <- function(sensitivity, # sensitivity of the linkage criteria
-                      specificity, # specificity of the linkage criteria
-                      rho, # sampling proportion
-                      M, # number of cases sampled
-                      R = NULL, # effective reproductive number
-                      assumption = "mtml" # assume most general case if not specified
-) {
-  if (assumption == "stsl") {
-    message("Calculating expected number of links assuming single-transmission and single-linkage")
-    out <- translink_expected_links_obs_stsl(sensitivity = sensitivity, specificity = specificity, rho = rho, M = M)
-  } else if (assumption == "mtsl") {
-    message("Calculating expected number of links assuming multiple-transmission and single-linkage")
-    out <- translink_expected_links_obs_mtsl(sensitivity = sensitivity, specificity = specificity, rho = rho, M = M, R = R)
-  } else if (assumption == "mtml") {
-    message("Calculating expected number of links assuming multiple-transmission and multiple-linkage")
-    out <- translink_expected_links_obs_mtml(sensitivity = sensitivity, specificity = specificity, rho = rho, M = M, R = R)
-  } else {
-    stop("Incorrect assumption argument")
-  }
+translink_expected_links_obs <- function(sensitivity, specificity, rho, M, R = NULL,
+    assumption = "mtml") {
+    if (assumption == "stsl") {
+        message("Calculating expected number of links assuming single-transmission and single-linkage")
+        out <- translink_expected_links_obs_stsl(sensitivity = sensitivity, specificity = specificity,
+            rho = rho, M = M)
+    } else if (assumption == "mtsl") {
+        message("Calculating expected number of links assuming multiple-transmission and single-linkage")
+        out <- translink_expected_links_obs_mtsl(sensitivity = sensitivity, specificity = specificity,
+            rho = rho, M = M, R = R)
+    } else if (assumption == "mtml") {
+        message("Calculating expected number of links assuming multiple-transmission and multiple-linkage")
+        out <- translink_expected_links_obs_mtml(sensitivity = sensitivity, specificity = specificity,
+            rho = rho, M = M, R = R)
+    } else {
+        stop("Incorrect assumption argument")
+    }
 
-  return(out)
+    return(out)
 }
