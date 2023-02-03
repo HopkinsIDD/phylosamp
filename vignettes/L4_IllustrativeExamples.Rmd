@@ -90,6 +90,8 @@ roc_optim$sensitivity ## sensitivity
 1 - roc_optim$specificity ## specificity
 ```
 
+### Calculating sensitivity and specificity for a faster-spreading, slower mutating pathogen
+
 We repeat the above plot for a pathogen with a higher reproductive number and lower mutation rate:
 
 ```{r gen_dist_compare_mev}
@@ -101,8 +103,6 @@ mut_rate <- 0.2
 mean_gens_pdf <- genDistSim[genDistSim["R"]==R][3:dim(genDistSim)[2]]
 
 ```
-
-### Calculating sensitivity and specificity for a faster-spreading, slower mutating pathogen
 
 ```{r gen_dist_mev_plot, fig.width=6, fig.height=4, echo=FALSE, warning=FALSE}
 
@@ -170,8 +170,10 @@ It is well understood that genetic distance is a much more accurate predictor of
 This is reflected in our confidence in identifying linked infection pairs. Assuming a sample size of 200, a relevant population of 1000, and the genetic distance threshold and associated sensitivity and specificity for each pathogen we get:
 
 ```{r fdr_final}
-translink_tdr(eta=0.9963402, chi=0.9801562, rho=0.20, M=200, R=1) # ebola-like pathogen
-translink_tdr(eta=0.8187308, chi=0.8539157, rho=0.20, M=200, R=1) # slower-mutating pathogen
+translink_tdr(sensitivity=0.9963402, specificity=0.9801562, 
+              rho=0.20, M=200, R=1) # ebola-like pathogen
+translink_tdr(sensitivity=0.8187308, specificity=0.8539157, 
+              rho=0.20, M=200, R=1) # slower-mutating pathogen
 ```
 
 As a final note, we remind the reader that the specificity of the linkage criteria has a significant bearing on the true/false discovery rate, and that high true discovery rates require a specificity upwards of 0.999. Linkage criteria more complex than genetic distance may be needed to achieve this value.

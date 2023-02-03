@@ -11,11 +11,11 @@ In this vignette we describe how the linkage scenario functionality can be used 
 
 | Param | Variable Name | <span style="display: inline-block; width:500px">Description</span> |
 |:-----:|:-------------:|-------------|
-|   **$\eta$**   |       eta       | the sensitivity of the linkage criteria for identifying transmission links          |
-|   **$\chi$**   |       chi       | the specificity of the linkage criteria for identifying transmission links          |
+|   **$\eta$**   |       sensitivity       | the sensitivity of the linkage criteria for identifying transmission links          |
+|   **$\chi$**   |       specificity       | the specificity of the linkage criteria for identifying transmission links          |
 |   **$N$**   |       N       | the final size of the outbreak (total number of infections)           |
 |   **$R$**   |       R       | the average reproductive number (also denoted $R_\text{pop}$, see below)           |
-|   **$\phi$**   |       phi       | the desired minimum true discovery rate          |
+|   **$\phi$**   |       tdr       | the desired minimum true discovery rate          |
 
 Imagine we are interested in collecting enough samples from an outbreak of 100 cases to ensure that the identified links are correct at least 75% of the time. The phylogenetic criteria we are using to identify links has a sensitivity of 99% and a specificity of 99.5%, and we assume multiple transmissions and multiple links are possible (i.e., we use the default `assumption` argument, `mtml`).
 
@@ -25,7 +25,8 @@ library(phylosamp)
 
 ```{r samplesize}
 
-translink_samplesize(eta=0.99, chi=0.995, N=100, R=1, phi=0.75)
+translink_samplesize(sensitivity=0.99, specificity=0.995, 
+                     N=100, R=1, tdr=0.75)
 
 ```
 
@@ -33,7 +34,8 @@ Although 10 samples will ensure a false discovery rate of no more than 25%, 10 s
 
 ```{r samplesize_explinks}
 
-translink_samplesize(eta=0.99, chi=0.995, N=100, R=1, phi=0.75, min_pairs=30)
+translink_samplesize(sensitivity=0.99, specificity=0.995, 
+                     N=100, R=1, tdr=0.75, min_pairs=30)
 
 ```
 
@@ -41,7 +43,8 @@ In another example, it may be crucial that links are identified with high certai
 
 ```{r samplesize_fail, error=TRUE}
 
-translink_samplesize(eta=0.99, chi=0.995, N=100, R=1, phi=0.95)
+translink_samplesize(sensitivity=0.99, specificity=0.995, 
+                     N=100, R=1, tdr=0.95)
 
 ```
 
@@ -49,7 +52,7 @@ This result suggests it is not possible to obtain such high certainty with this 
 
 ```{r truediscoveryrate_explain}
 
-translink_tdr(eta=0.99, chi=0.995, rho=1, M=100, R=1)
+translink_tdr(sensitivity=0.99, specificity=0.995, rho=1, M=100, R=1)
 
 ```
 

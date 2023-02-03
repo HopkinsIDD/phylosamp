@@ -17,10 +17,10 @@ The combination of the factors that may affect the detection and characterizatio
 |   **$\phi_{V_2}$**   |       phi_v2       | the probability that a tested infection caused by variant 2 results in a positive test (sensitivity)          |
 |   **$\gamma_{V_1}$**   |       gamma_v1       | the probability that a detected infection caused by variant 1 meets some quality threshold           |
 |   **$\gamma_{V_2}$**   |       gamma_v2       | the probability that a detected infection caused by variant 2 meets some quality threshold           |
-|   **$\alpha_{V_1}$**   |       alpha_v1       | the probability that an infection caused by variant 1 is asymptomatic           |
-|   **$\alpha_{V_2}$**   |       alpha_v2       | the probability that an infection caused by variant 2 is asymptomatic           |
-|   **$\beta_{a}$**   |       beta_a       | the probability of testing an asymptomatic infection (any variant)           |
-|   **$\beta_{s}$**   |       beta_s       | the probability of testing a symptomatic infection (any variant)           |
+|   **$\psi_{V_1}$**   |       psi_v1       | the probability that an infection caused by variant 1 is asymptomatic           |
+|   **$\psi_{V_2}$**   |       psi_v2       | the probability that an infection caused by variant 2 is asymptomatic           |
+|   **$\tau_{a}$**   |       tau_a       | the probability of testing an asymptomatic infection (any variant)           |
+|   **$\tau_{s}$**   |       tau_s       | the probability of testing a symptomatic infection (any variant)           |
 
 While it may be difficult to estimate all of the parameters needed to estimate this coefficient, we find that only the *ratio* in the coefficients of detection for two variants (more commonly, the variant of interest and the values for the rest of the pathogen population) is necessary for understanding the biases in a sample. Therefore, it may not be necessary to estimate the true value of each parameter, provided we can estimate the ratio between their values for the two variants in question. We can use the `vartrack_cod_ratio()` function to estimate the coefficient of detection ratio, only providing parameters which are expected to differ between variants. The ratio between any variants not provided is assumed to be equal to one.
 
