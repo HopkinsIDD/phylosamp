@@ -31,19 +31,20 @@
 ##' @export
 ##'
 
-translink_prob_transmit_mtml <- function(sensitivity, # sensitivity of the linkage criteria
-                            specificity, # specificity of the linkage criteria
-                            rho, # sampling proportion
-                            M, # number of cases sampled
-                            R # effective reproductive number
-) {
-  if (!all(is.numeric(sensitivity), sensitivity >= 0 & sensitivity <= 1)) stop("sensitivity must be numeric between 0 and 1")
-  if (!all(is.numeric(specificity), specificity >= 0 & specificity <= 1)) stop("specificity must be numeric between 0 and 1")
-  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop("rho must be numeric > 0 and <= 1")
-  if (!all(is.numeric(M) | is.integer(M), M >= 0)) stop("Sample size (M) must be integer or numeric greater than 0")
-  if (!all(is.numeric(R), R > 0)) stop("Reproductive number (R) must be numeric greater than 0")
-  if (!all(is.numeric(R), R <= 1)) warning("Reproductive number (R) is usually less than 1 for finite outbreaks")
+translink_prob_transmit_mtml <- function(sensitivity, specificity, rho, M, R) {
+    if (!all(is.numeric(sensitivity), sensitivity >= 0 & sensitivity <= 1))
+        stop("sensitivity must be numeric between 0 and 1")
+    if (!all(is.numeric(specificity), specificity >= 0 & specificity <= 1))
+        stop("specificity must be numeric between 0 and 1")
+    if (!all(is.numeric(rho), rho > 0 & rho <= 1))
+        stop("rho must be numeric > 0 and <= 1")
+    if (!all(is.numeric(M) | is.integer(M), M >= 0))
+        stop("Sample size (M) must be integer or numeric greater than 0")
+    if (!all(is.numeric(R), R > 0))
+        stop("Reproductive number (R) must be numeric greater than 0")
+    if (!all(is.numeric(R), R <= 1))
+        warning("Reproductive number (R) is usually less than 1 for finite outbreaks")
 
-  (sensitivity * rho * (R + 1)) /
-    ((sensitivity * rho * (R + 1)) + ((1 - specificity) * (M - 1 - (rho * (R + 1)))))
+    (sensitivity * rho * (R + 1))/((sensitivity * rho * (R + 1)) + ((1 - specificity) *
+        (M - 1 - (rho * (R + 1)))))
 }

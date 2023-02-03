@@ -22,13 +22,13 @@
 ##'
 ##' @export
 
-translink_expected_links_true_stsl <- function(sensitivity,
-                            rho, # sampling proportion
-                            M # number of cases sampled
-) {
-  if (!all(is.numeric(sensitivity), sensitivity >= 0 & sensitivity <= 1)) stop("sensitivity must be numeric between 0 and 1")
-  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop("rho must be numeric > 0 and <= 1")
-  if (!all(is.numeric(M) | is.integer(M), M >= 0)) stop("Sample size (M) must be integer or numeric greater than 0")
+translink_expected_links_true_stsl <- function(sensitivity, rho, M) {
+    if (!all(is.numeric(sensitivity), sensitivity >= 0 & sensitivity <= 1))
+        stop("sensitivity must be numeric between 0 and 1")
+    if (!all(is.numeric(rho), rho > 0 & rho <= 1))
+        stop("rho must be numeric > 0 and <= 1")
+    if (!all(is.numeric(M) | is.integer(M), M >= 0))
+        stop("Sample size (M) must be integer or numeric greater than 0")
 
-  (M / 2) * sensitivity * rho
+    (M/2) * sensitivity * rho
 }

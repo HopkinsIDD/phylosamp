@@ -38,21 +38,7 @@
 ##' @export
 ##'
 
-translink_fdr <- function(sensitivity, # sensitivity of the linkage criteria
-                               specificity, # specificity of the linkage criteria
-                               rho, # sampling proportion
-                               M, # number of cases sampled
-                               R = NULL, # effective reproductive number
-                               assumption = "mtml" # assume most general case if not specified
-) {
-  suppressMessages(
-    1 - translink_tdr(
-      sensitivity = sensitivity,
-      specificity = specificity,
-      rho = rho,
-      M = M,
-      R = R,
-      assumption = assumption
-    )
-  )
+translink_fdr <- function(sensitivity, specificity, rho, M, R = NULL, assumption = "mtml") {
+    suppressMessages(1 - translink_tdr(sensitivity = sensitivity, specificity = specificity,
+        rho = rho, M = M, R = R, assumption = assumption))
 }
