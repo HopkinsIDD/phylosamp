@@ -28,10 +28,12 @@
 ##' translink_expected_links_obs(sensitivity=0.99, specificity=0.9, rho=1, M=50, R=1, assumption='mtsl')
 ##'
 ##' # Small outbreak, larger sampling proportion
-##' translink_expected_links_obs(sensitivity=0.99, specificity=0.95, rho=1, M=50, R=1, assumption='mtml')
+##' translink_expected_links_obs(sensitivity=0.99, specificity=0.95, rho=1, M=50, 
+##' R=1, assumption='mtml')
 ##'
 ##' # Large outbreak, small sampling proportion
-##' translink_expected_links_obs(sensitivity=0.99, specificity=0.95, rho=0.05, M=1000, R=1, assumption='mtml')
+##' translink_expected_links_obs(sensitivity=0.99, specificity=0.95, 
+##' rho=0.05, M=1000, R=1, assumption='mtml')
 ##'
 ##' @family transmission linkage functions
 ##'

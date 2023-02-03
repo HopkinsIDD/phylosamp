@@ -14,7 +14,7 @@
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 ##'
 ##' @examples
-##' vartrack_prob_prev_xsect(p_v1 = 0.1, n = 200, omega = 0.8, c_ratio = 1)
+##' vartrack_prob_prev_xsect(p_v1 = 0.1, n = 200, precision = 0.1, omega = 0.8, c_ratio = 1)
 ##'
 ##' @family variant prevalence estimation functions
 ##' @family variant tracking functions
@@ -32,6 +32,6 @@ vartrack_prob_prev_xsect <- function(p_v1, n, omega, precision, c_ratio = 1) {
   p_star <- varfreq_obs_freq(p_v1, c_ratio)
   n_star <- n * omega
   z <- sqrt( (n_star * ((p_star*precision)^2) ) / (p_star * (1-p_star)) )
-  prob <- 1 - (2*(1-pnorm(z)))
+  prob <- 1 - (2*(1-stats::pnorm(z)))
   return(prob)
 }

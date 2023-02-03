@@ -20,7 +20,8 @@
 ##' vartrack_prob_detect(p_v1 = 0.02, n = 100, omega = 0.8, c_ratio = 1, sampling_freq = 'xsect')
 ##'
 ##' # Periodic sampling
-##' vartrack_prob_detect(n = 158, t = 30, omega = 0.8, p0_v1 = 1/10000, r_v1 = 0.1, c_ratio = 1, sampling_freq = 'cont')
+##' vartrack_prob_detect(n = 158, t = 30, omega = 0.8, p0_v1 = 1/10000, 
+##' r_v1 = 0.1, c_ratio = 1, sampling_freq = 'cont')
 ##'
 ##' @family variant detection functions
 ##' @family variant tracking functions

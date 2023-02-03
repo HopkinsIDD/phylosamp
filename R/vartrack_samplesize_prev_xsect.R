@@ -35,7 +35,7 @@ vartrack_samplesize_prev_xsect <- function(p_v1, prob, precision, omega, c_ratio
         stop("Coefficient of detection ratio must be numeric and greater than 0")
 
     p_star <- varfreq_obs_freq(p_v1, c_ratio)
-    Z <- qnorm(1 - ((1 - prob)/2))
+    Z <- stats::qnorm(1 - ((1 - prob)/2))
     n <- ((Z^2) * p_star * (1 - p_star))/((p_star * precision)^2)
     n_samples <- n/omega
     return(n_samples)

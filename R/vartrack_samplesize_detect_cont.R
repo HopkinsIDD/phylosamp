@@ -17,7 +17,8 @@
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 ##'
 ##' @examples
-##' vartrack_samplesize_detect_cont(prob = 0.95, t = 30, omega = 0.8, p0_v1 = 1/10000, r_v1 = 0.1, c_ratio = 1)
+##' vartrack_samplesize_detect_cont(prob = 0.95, t = 30, omega = 0.8, 
+##' p0_v1 = 1/10000, r_v1 = 0.1, c_ratio = 1)
 ##'
 ##' @family variant detection functions
 ##' @family variant tracking functions

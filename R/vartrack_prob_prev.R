@@ -15,7 +15,8 @@
 ##' @author Shirlee Wohl, Elizabeth C. Lee, Bethany L. DiPrete, and Justin Lessler
 ##'
 ##' @examples
-##' vartrack_prob_prev(p_v1 = 0.1, n = 200, omega = 0.8, c_ratio = 1, sampling_freq = 'xsect')
+##' vartrack_prob_prev(p_v1 = 0.1, n = 200, omega = 0.8, precision = 0.1, 
+##' c_ratio = 1, sampling_freq = 'xsect')
 ##'
 ##' @family variant prevalence estimation functions
 ##' @family variant tracking functions
