@@ -1,5 +1,7 @@
 ##' Probability of transmission assuming single-transmission and single-linkage
 ##'
+##' @description
+##' `r lifecycle::badge('deprecated')
 ##' This function calculates the probabilitiy that two cases are linked by direct transmission
 ##' given that they have been linked by phylogenetic criteria. The single-transmission and single-linkage method assumes the following:
 ##' \enumerate{

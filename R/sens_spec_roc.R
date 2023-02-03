@@ -1,5 +1,7 @@
 ##' Make ROC from sensitivity and specificity
 ##'
+##' @description
+##' `r lifecycle::badge('deprecated')
 ##' This is a wrapper function that takes output from the `sens_spec_calc()` function and constructs values for the
 ##' Receiver Operating Characteric (ROC) curve
 ##'

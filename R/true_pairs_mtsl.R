@@ -1,5 +1,7 @@
 ##' Expected number of true transmission pairs assuming multiple-transmission and single-linkage
 ##'
+##' @description
+##' `r lifecycle::badge('deprecated')
 ##' This function calculates the expected number true transmission pairs in a sample of size \code{M}.
 ##' The multiple-transmission and single-linkage method assumes the following:
 ##' \enumerate{

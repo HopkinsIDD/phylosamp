@@ -1,5 +1,7 @@
 ##' Calculate genetic distance distribution
 ##'
+##' @description
+##' `r lifecycle::badge('deprecated')
 ##' Function calculates the distribution of genetic distances in a population of viruses
 ##' with the given parameters
 ##'

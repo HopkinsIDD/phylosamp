@@ -1,5 +1,7 @@
 ##' Calculate expected number of true transmission pairs
 ##'
+##' @description
+##' `r lifecycle::badge('deprecated')
 ##' This function calculates the expected number true transmission pairs in a sample of size \code{M}.
 ##' Assumptions about transmission and linkage (single or multiple) can be specified.
 ##'

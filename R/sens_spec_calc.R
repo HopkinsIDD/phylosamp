@@ -1,5 +1,7 @@
 ##' Calculate sensitivity and specificity
 ##'
+##' @description
+##' `r lifecycle::badge('deprecated')
 ##' Function to calculate the sensitivity and specificity of a genetic distance cutoff
 ##' given an underlying mutation rate and mean number of generations between cases
 ##'

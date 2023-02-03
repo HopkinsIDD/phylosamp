@@ -1,5 +1,7 @@
 ##' Find optimal ROC threshold
 ##'
+##' @description
+##' `r lifecycle::badge('deprecated')
 ##' This function takes the dataframe output of the `sens_spec_roc()` function and finds the optimnal threshold
 ##' of sensitivity and specificity by minimizing the distance to the top left corner of the Receiver Operating Characteriztic (ROC) curve
 ##'

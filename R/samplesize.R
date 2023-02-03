@@ -1,6 +1,8 @@
 
 ##' Calculate sample size
 ##'
+##' @description
+##' `r lifecycle::badge('deprecated')
 ##' This function calculates the sample size needed to obtain at least a defined false disovery rate given
 ##' a final outbreak size \eqn{N}.
 ##'

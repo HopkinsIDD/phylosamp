@@ -1,5 +1,7 @@
 ##' Probability of transmission assuming multiple-transmission and multiple-linkage
 ##'
+##' @description
+##' `r lifecycle::badge('deprecated')
 ##' This function calculates the probabilitiy that two cases are linked by direct transmission
 ##' given that they have been linked by phylogenetic criteria. The multiple-transmission and multiple-linkage method assumes the following:
 ##' \enumerate{
