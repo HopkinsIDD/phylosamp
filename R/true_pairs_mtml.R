@@ -26,8 +26,8 @@
 ##'
 
 true_pairs_mtml <- function(eta, rho, M, R) {
-    lifecyle::deprecate_soft("1.0.0", "true_pairs_mtml()", "translink_expected_links_true_mtml()")
-    lifecyle::deprecate_soft("1.0.0", "true_pairs_mtml(eta)", "translink_expected_links_true_mtml(sensitivity)")
+    lifecycle::deprecate_soft("1.0.0", "true_pairs_mtml()", "translink_expected_links_true_mtml()")
+    lifecycle::deprecate_soft("1.0.0", "true_pairs_mtml(eta)", "translink_expected_links_true_mtml(sensitivity)")
 
     if (!all(is.numeric(eta), eta >= 0 & eta <= 1))
         stop("eta must be numeric between 0 and 1")

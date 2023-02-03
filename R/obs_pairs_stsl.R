@@ -29,9 +29,9 @@
 ##' @export
 
 obs_pairs_stsl <- function(eta, chi, rho, M) {
-    lifecyle::deprecate_soft("1.0.0", "obs_pairs_stsl()", "translink_expected_links_obs_stsl()")
-    lifecyle::deprecate_soft("1.0.0", "obs_pairs_stsl(eta)", "translink_expected_links_obs_stsl(sensitivity)")
-    lifecyle::deprecate_soft("1.0.0", "obs_pairs_stsl(chi)", "translink_expected_links_obs_stsl(specificity)")
+    lifecycle::deprecate_soft("1.0.0", "obs_pairs_stsl()", "translink_expected_links_obs_stsl()")
+    lifecycle::deprecate_soft("1.0.0", "obs_pairs_stsl(eta)", "translink_expected_links_obs_stsl(sensitivity)")
+    lifecycle::deprecate_soft("1.0.0", "obs_pairs_stsl(chi)", "translink_expected_links_obs_stsl(specificity)")
 
     if (!all(is.numeric(eta), eta >= 0 & eta <= 1))
         stop("eta must be numeric between 0 and 1")

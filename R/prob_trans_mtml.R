@@ -32,9 +32,9 @@
 ##'
 
 prob_trans_mtml <- function(eta, chi, rho, M, R) {
-    lifecyle::deprecate_soft("1.0.0", "prob_trans_mtml()", "translink_prob_transmit_mtml()")
-    lifecyle::deprecate_soft("1.0.0", "prob_trans_mtml(eta)", "translink_prob_transmit_mtml(sensitivity)")
-    lifecyle::deprecate_soft("1.0.0", "prob_trans_mtml(chi)", "translink_prob_transmit_mtml(specificity)")
+    lifecycle::deprecate_soft("1.0.0", "prob_trans_mtml()", "translink_prob_transmit_mtml()")
+    lifecycle::deprecate_soft("1.0.0", "prob_trans_mtml(eta)", "translink_prob_transmit_mtml(sensitivity)")
+    lifecycle::deprecate_soft("1.0.0", "prob_trans_mtml(chi)", "translink_prob_transmit_mtml(specificity)")
 
     if (!all(is.numeric(eta), eta >= 0 & eta <= 1))
         stop("eta must be numeric between 0 and 1")

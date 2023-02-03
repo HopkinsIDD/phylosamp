@@ -37,7 +37,7 @@
 
 gen_dists <- function(mut_rate, mean_gens_pdf, max_link_gens = 1, max_gens = NULL,
     max_dist = NULL) {
-    lifecyle::deprecate_soft("1.0.0", "gen_dists()", "gendist_distribution()")
+    lifecycle::deprecate_soft("1.0.0", "gen_dists()", "gendist_distribution()")
 
     if (!all(is.numeric(mut_rate), mut_rate >= 0))
         stop("Mutation rate must have a positive value")

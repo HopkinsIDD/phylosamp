@@ -23,8 +23,8 @@
 ##' @export
 
 true_pairs_stsl <- function(eta, rho, M) {
-    lifecyle::deprecate_soft("1.0.0", "true_pairs_stsl()", "translink_expected_links_true_stsl()")
-    lifecyle::deprecate_soft("1.0.0", "true_pairs_stsl(eta)", "translink_expected_links_true_stsl(sensitivity)")
+    lifecycle::deprecate_soft("1.0.0", "true_pairs_stsl()", "translink_expected_links_true_stsl()")
+    lifecycle::deprecate_soft("1.0.0", "true_pairs_stsl(eta)", "translink_expected_links_true_stsl(sensitivity)")
 
     if (!all(is.numeric(eta), eta >= 0 & eta <= 1))
         stop("eta must be numeric between 0 and 1")

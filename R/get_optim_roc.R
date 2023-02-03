@@ -43,7 +43,7 @@
 ##'
 
 get_optim_roc <- function(roc) {
-    lifecyle::deprecate_soft("1.0.0", "get_optim_roc()", "optim_roc_threshold()")
+    lifecycle::deprecate_soft("1.0.0", "get_optim_roc()", "optim_roc_threshold()")
 
     roc <- roc[-1, ]  # remove first row with zero threshold
     dist <- sqrt((1 - roc$sensitivity)^2 + (roc$specificity)^2)

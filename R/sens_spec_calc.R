@@ -37,7 +37,7 @@
 
 sens_spec_calc <- function(cutoff, mut_rate, mean_gens_pdf, max_link_gens = 1, max_gens = NULL,
     max_dist = NULL) {
-    lifecyle::deprecate_soft("1.0.0", "sens_spec_calc()", "gendist_sensspec_cutoff()")
+    lifecycle::deprecate_soft("1.0.0", "sens_spec_calc()", "gendist_sensspec_cutoff()")
 
     if (is.null(max_gens))
         max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]

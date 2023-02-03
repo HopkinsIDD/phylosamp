@@ -39,9 +39,9 @@
 ##'
 
 falsediscoveryrate <- function(eta, chi, rho, M, R = NULL, assumption = "mtml") {
-    lifecyle::deprecate_soft("1.0.0", "falsediscoveryrate()", "translink_fdr()")
-    lifecyle::deprecate_soft("1.0.0", "falsediscoveryrate(eta)", "translink_fdr(sensitivity)")
-    lifecyle::deprecate_soft("1.0.0", "falsediscoveryrate(chi)", "translink_fdr(specificity)")
+    lifecycle::deprecate_soft("1.0.0", "falsediscoveryrate()", "translink_fdr()")
+    lifecycle::deprecate_soft("1.0.0", "falsediscoveryrate(eta)", "translink_fdr(sensitivity)")
+    lifecycle::deprecate_soft("1.0.0", "falsediscoveryrate(chi)", "translink_fdr(specificity)")
 
     suppressMessages(1 - truediscoveryrate(eta = eta, chi = chi, rho = rho, M = M,
         R = R, assumption = assumption))

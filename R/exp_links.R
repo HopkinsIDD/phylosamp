@@ -39,9 +39,9 @@
 ##'
 
 exp_links <- function(eta, chi, rho, M, R = NULL, assumption = "mtml") {
-    lifecyle::deprecate_soft("1.0.0", "exp_links()", "translink_expected_links_obs()")
-    lifecyle::deprecate_soft("1.0.0", "exp_links(eta)", "translink_expected_links_obs(sensitivity)")
-    lifecyle::deprecate_soft("1.0.0", "exp_links(chi)", "translink_expected_links_obs(specificity)")
+    lifecycle::deprecate_soft("1.0.0", "exp_links()", "translink_expected_links_obs()")
+    lifecycle::deprecate_soft("1.0.0", "exp_links(eta)", "translink_expected_links_obs(sensitivity)")
+    lifecycle::deprecate_soft("1.0.0", "exp_links(chi)", "translink_expected_links_obs(specificity)")
 
     if (assumption == "stsl") {
         message("Calculating expected number of links assuming single-transmission and single-linkage")

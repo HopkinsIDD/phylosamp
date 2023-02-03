@@ -27,8 +27,8 @@
 ##'
 
 true_pairs <- function(eta, rho, M, R = NULL, assumption = "mtml") {
-    lifecyle::deprecate_soft("1.0.0", "true_pairs()", "translink_expected_links_true()")
-    lifecyle::deprecate_soft("1.0.0", "true_pairs(eta)", "translink_expected_links_true(sensitivity)")
+    lifecycle::deprecate_soft("1.0.0", "true_pairs()", "translink_expected_links_true()")
+    lifecycle::deprecate_soft("1.0.0", "true_pairs(eta)", "translink_expected_links_true(sensitivity)")
 
     if (assumption == "stsl") {
         message("Calculating expected number of links assuming single-transmission and single-linkage")

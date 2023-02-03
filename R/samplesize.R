@@ -30,10 +30,10 @@
 ##'
 
 samplesize <- function(eta, chi, N, R = NULL, phi, min_pairs = 1, assumption = "mtml") {
-    lifecyle::deprecate_soft("1.0.0", "samplesize()", "translink_samplesize()")
-    lifecyle::deprecate_soft("1.0.0", "samplesize(eta)", "translink_samplesize(sensitivity)")
-    lifecyle::deprecate_soft("1.0.0", "samplesize(chi)", "translink_samplesize(specificity)")
-    lifecyle::deprecate_soft("1.0.0", "samplesize(phi)", "translink_samplesize(tdr)")
+    lifecycle::deprecate_soft("1.0.0", "samplesize()", "translink_samplesize()")
+    lifecycle::deprecate_soft("1.0.0", "samplesize(eta)", "translink_samplesize(sensitivity)")
+    lifecycle::deprecate_soft("1.0.0", "samplesize(chi)", "translink_samplesize(specificity)")
+    lifecycle::deprecate_soft("1.0.0", "samplesize(phi)", "translink_samplesize(tdr)")
 
     if (!(is.numeric(phi) & phi >= 0 & phi <= 1)) {
         stop("phi must be numeric between 0 and 1")

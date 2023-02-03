@@ -39,9 +39,9 @@
 ##'
 
 truediscoveryrate <- function(eta, chi, rho, M, R = NULL, assumption = "mtml") {
-    lifecyle::deprecate_soft("1.0.0", "truediscoveryrate()", "translink_tdr()")
-    lifecyle::deprecate_soft("1.0.0", "truediscoveryrate(eta)", "translink_tdr(sensitivity)")
-    lifecyle::deprecate_soft("1.0.0", "truediscoveryrate(chi)", "translink_tdr(specificity)")
+    lifecycle::deprecate_soft("1.0.0", "truediscoveryrate()", "translink_tdr()")
+    lifecycle::deprecate_soft("1.0.0", "truediscoveryrate(eta)", "translink_tdr(sensitivity)")
+    lifecycle::deprecate_soft("1.0.0", "truediscoveryrate(chi)", "translink_tdr(specificity)")
 
     if (assumption == "stsl") {
         message("Calculating true discovery rate assuming single-transmission and single-linkage")
