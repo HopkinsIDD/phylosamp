@@ -1,7 +1,7 @@
 ##' Calculate false discovery rate of identifying transmission pairs in a sample
 ##'
-##' This function calculates the false discovery rate (proportion of linked pairs that are false positives) in a sample given the sensitivity \eqn{\sensitivity}
-##' and specificity \eqn{\specificity} of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)
+##' This function calculates the false discovery rate (proportion of linked pairs that are false positives) in a sample given the sensitivity
+##' and specificity of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)
 ##' can be specified.
 ##'
 ##' @param sensitivity scalar or vector giving the sensitivity of the linkage criteria

@@ -1,7 +1,7 @@
 ##' Calculate expected number of transmission links in a sample
 ##'
-##' This function calculates the expected number of observed pairs in the sample that are linked by the linkage criteria. The function requires the sensitivity \eqn{\sensitivity}
-##' and specificity \eqn{\specificity} of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)
+##' This function calculates the expected number of observed pairs in the sample that are linked by the linkage criteria. The function requires the sensitivity
+##' and specificity of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)
 ##' can be specified.
 ##'
 ##' @param sensitivity scalar or vector giving the sensitivity of the linkage criteria
