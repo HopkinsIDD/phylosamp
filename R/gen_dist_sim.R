@@ -13,4 +13,4 @@
 ##' data(gen_dist_sim)
 ##'
 "gen_dist_sim"
-lifecyle::deprecate_soft("1.0.0", "data(gen_dist_sim)", "data(genDistSim)")
+lifecycle::deprecate_soft("1.0.0", "data(gen_dist_sim)", "data(genDistSim)")
