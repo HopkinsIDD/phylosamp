@@ -1,7 +1,7 @@
 ##' Probability of transmission assuming single-transmission and single-linkage
 ##'
 ##' @description
-##' `r lifecycle::badge('deprecated')
+##' `r lifecycle::badge('deprecated')`
 ##' This function calculates the probabilitiy that two cases are linked by direct transmission
 ##' given that they have been linked by phylogenetic criteria. The single-transmission and single-linkage method assumes the following:
 ##' \enumerate{
@@ -9,7 +9,7 @@
 ##'      \item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
 ##'      }
 ##'
-##' For perfect sensitivity, set \code{eta = 1}.
+##' For perfect sensitivity, set `eta = 1`.
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria
 ##' @param chi scalar or vector giving the specificity of the linkage criteria

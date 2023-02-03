@@ -1,9 +1,9 @@
 ##' Calculate expected number of true transmission pairs assuming multiple-transmission and single-linkage
 ##'
-##' This function calculates the expected number true transmission pairs in a sample of size \code{M}.
+##' This function calculates the expected number true transmission pairs in a sample of size `M`.
 ##' The multiple-transmission and single-linkage method assumes the following:
 ##' \enumerate{
-##'      \item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
+##'      \item Each case \eqn{i} is, on average, the infector of `R` cases in the population (\eqn{N})
 ##'      \item Each case \eqn{i} is allowed to be linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
 ##'      }
 ##'

@@ -2,7 +2,7 @@
 ##' Calculate sample size
 ##'
 ##' @description
-##' `r lifecycle::badge('deprecated')
+##' `r lifecycle::badge('deprecated')`
 ##' This function calculates the sample size needed to obtain at least a defined false disovery rate given
 ##' a final outbreak size \eqn{N}.
 ##'
@@ -12,11 +12,11 @@
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen
 ##' @param phi scalar or vector giving the desired true discovery rate (1-false discovery rate)
 ##' @param min_pairs minimum number of linked pairs observed in the sample, defaults to 1 pair (2 samples); this is to ensure reasonable results are obtained
-##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
+##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = `'mtml'`. Accepted arguments are:
 ##' \enumerate{
-##'      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
-##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
-##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption (\code{\link{prob_trans_mtml}}).
+##'      \item `'stsl'` for the single-transmission single-linkage assumption ([prob_trans_stsl()]).
+##'      \item `'mtsl'` for the multiple-transmission single-linkage assumption ([prob_trans_mtsl()]).
+##'      \item `'mtml'` for the multiple-transmission multiple-linkage assumption ([prob_trans_mtml()]).
 ##'      }
 ##'
 ##' @return scalar or vector giving the sample size needed to meet the given conditions

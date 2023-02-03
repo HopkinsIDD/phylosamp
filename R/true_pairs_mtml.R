@@ -1,11 +1,11 @@
 ##' Expected number of true transmission pairs assuming multiple-transmission and multiple-linkage
 ##'
 ##' @description
-##' `r lifecycle::badge('deprecated')
-##' This function calculates the expected number of true transmission pairs in a sample of size \code{M}.
+##' `r lifecycle::badge('deprecated')`
+##' This function calculates the expected number of true transmission pairs in a sample of size `M`.
 ##' The multiple-transmission and multiple-linkage method assumes the following:
 ##' \enumerate{
-##'      \item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
+##'      \item Each case \eqn{i} is, on average, the infector of `R` cases in the population (\eqn{N})
 ##'      \item Each case \eqn{i} is allowed to be linked by the linkage criteria to multiple cases \eqn{j} in the sampled population (\eqn{M}).
 ##'      \item Linkage events are independent of one another (i.e, linkage of case \eqn{i} to case \eqn{j} has no bearing on linkage of case \eqn{i} to any other sample).
 ##'      }

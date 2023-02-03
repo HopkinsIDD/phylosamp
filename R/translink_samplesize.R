@@ -9,11 +9,11 @@
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen
 ##' @param tdr scalar or vector giving the desired true discovery rate (1-false discovery rate)
 ##' @param min_pairs minimum number of linked pairs observed in the sample, defaults to 1 pair (2 samples); this is to ensure reasonable results are obtained
-##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
+##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = `'mtml'`. Accepted arguments are:
 ##' \enumerate{
-##'      \item \code{'stsl'} for the single-transmission single-linkage assumption.
-##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
-##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
+##'      \item `'stsl'` for the single-transmission single-linkage assumption.
+##'      \item `'mtsl'` for the multiple-transmission single-linkage assumption.
+##'      \item `'mtml'` for the multiple-transmission multiple-linkage assumption.
 ##'      }
 ##'
 ##' @return scalar or vector giving the sample size needed to meet the given conditions

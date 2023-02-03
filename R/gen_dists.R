@@ -1,7 +1,7 @@
 ##' Calculate genetic distance distribution
 ##'
 ##' @description
-##' `r lifecycle::badge('deprecated')
+##' `r lifecycle::badge('deprecated')`
 ##' Function calculates the distribution of genetic distances in a population of viruses
 ##' with the given parameters
 ##'
@@ -9,9 +9,9 @@
 ##' @param mean_gens_pdf the density distribution of the mean number of generations between cases;
 ##'       the index of this vector is assumed to be the discrete distance between cases
 ##' @param max_link_gens the maximium generations of separation for linked pairs
-##' @param max_gens the maximum number of generations to consider, if \code{NULL} (default) value is set to the highest
+##' @param max_gens the maximum number of generations to consider, if `NULL` (default) value is set to the highest
 ##'        number of generations in mean_gens_pdf with a non-zero probability
-##' @param max_dist the maximum distance to calculate, if \code{NULL} (default) value is set to max_gens * 99.9th percentile
+##' @param max_dist the maximum distance to calculate, if `NULL` (default) value is set to max_gens * 99.9th percentile
 ##'       of mut_rate poisson distribution
 ##'
 ##' @return a data frame with distances and probabilities

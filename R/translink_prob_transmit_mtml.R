@@ -3,7 +3,7 @@
 ##' This function calculates the probabilitiy that two cases are linked by direct transmission
 ##' given that they have been linked by phylogenetic criteria. The multiple-transmission and multiple-linkage method assumes the following:
 ##' \enumerate{
-##'      \item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
+##'      \item Each case \eqn{i} is, on average, the infector of `R` cases in the population (\eqn{N})
 ##'      \item Each case \eqn{i} is allowed to be linked by the linkage criteria to multiple cases \eqn{j} in the sampled population (\eqn{M}).
 ##'      \item Linkage events are independent of one another (i.e, linkage of case \eqn{i} to case \eqn{j} has no bearing on linkage of case \eqn{i} to any other sample).
 ##'      }

@@ -9,11 +9,11 @@
 ##' @param rho scalar or vector giving the proportion of the final outbreak size that is sampled
 ##' @param M scalar or vector giving the number of cases sampled
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen (default=NULL)
-##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
+##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = `'mtml'`. Accepted arguments are:
 ##' \enumerate{
-##'      \item \code{'stsl'} for the single-transmission single-linkage assumption.
-##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
-##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
+##'      \item `'stsl'` for the single-transmission single-linkage assumption.
+##'      \item `'mtsl'` for the multiple-transmission single-linkage assumption.
+##'      \item `'mtml'` for the multiple-transmission multiple-linkage assumption.
 ##'      }
 ##'
 ##' @return scalar or vector giving the expected number of observed links in the sample

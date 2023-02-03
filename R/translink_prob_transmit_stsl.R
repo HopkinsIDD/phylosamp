@@ -7,7 +7,7 @@
 ##'      \item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
 ##'      }
 ##'
-##' For perfect sensitivity, set \code{sensitivity = 1}.
+##' For perfect sensitivity, set `sensitivity = 1`.
 ##'
 ##' @param sensitivity scalar or vector giving the sensitivity of the linkage criteria
 ##' @param specificity scalar or vector giving the specificity of the linkage criteria

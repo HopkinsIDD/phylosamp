@@ -6,8 +6,8 @@
 ##' It assumes a periodic sampling strategy, where samples are collected at regular intervals (time steps).
 ##'
 ##' @param prob desired probability of detection
-##' @param t time step number (e.g., days) at which variant should be detected by. Default = NA (either \code{'t'} or \code{'p_v1'} should be provided, not both)
-##' @param p_v1 the desired prevalence to detect a variant by. Default = NA (either \code{'t'} or \code{'p_v1'} should be provided, not both)
+##' @param t time step number (e.g., days) at which variant should be detected by. Default = NA (either `'t'` or `'p_v1'` should be provided, not both)
+##' @param p_v1 the desired prevalence to detect a variant by. Default = NA (either `'t'` or `'p_v1'` should be provided, not both)
 ##' @param omega probability of sequencing (or other characterization) success
 ##' @param p0_v1 initial variant prevalence (# introductions / infected population size)
 ##' @param r_v1 logistic growth rate

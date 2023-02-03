@@ -1,19 +1,19 @@
 ##' Calculate expected number of true transmission pairs
 ##'
 ##' @description
-##' `r lifecycle::badge('deprecated')
-##' This function calculates the expected number true transmission pairs in a sample of size \code{M}.
+##' `r lifecycle::badge('deprecated')`
+##' This function calculates the expected number true transmission pairs in a sample of size `M`.
 ##' Assumptions about transmission and linkage (single or multiple) can be specified.
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria
 ##' @param rho scalar or vector giving the proportion of the final outbreak size that is sampled
 ##' @param M scalar or vector giving the number of cases sampled
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen (default=NULL)
-##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
+##' @param assumption a character vector indicating which assumptions about transmission and linkage criteria. Default = `'mtml'`. Accepted arguments are:
 ##' \enumerate{
-##'      \item \code{'stsl'} for the single-transmission single-linkage assumption (\code{\link{prob_trans_stsl}}).
-##'      \item \code{'mtsl'} for the multiple-transmission single-linkage assumption (\code{\link{prob_trans_mtsl}}).
-##'      \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption (\code{\link{prob_trans_mtml}}).
+##'      \item `'stsl'` for the single-transmission single-linkage assumption ([prob_trans_stsl()]).
+##'      \item `'mtsl'` for the multiple-transmission single-linkage assumption ([prob_trans_mtsl()]).
+##'      \item `'mtml'` for the multiple-transmission multiple-linkage assumption ([prob_trans_mtml()]).
 ##'      }
 ##'
 ##' @return scalar or vector giving the expected number of true transmission pairs in the sample

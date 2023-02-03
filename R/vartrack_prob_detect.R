@@ -4,8 +4,8 @@
 ##' given a sample size and sampling strategy.
 ##'
 ##' @param n sample size (either of cross-section or per timestep)
-##' @param t time step number (e.g., days) at which variant should be detected by. Default = NA (either \code{'t'} or \code{'p_v1'} should be provided, not both)
-##' @param p_v1 the desired prevalence to detect a variant by. Default = NA (either \code{'t'} or \code{'p_v1'} should be provided, not both)
+##' @param t time step number (e.g., days) at which variant should be detected by. Default = NA (either `'t'` or `'p_v1'` should be provided, not both)
+##' @param p_v1 the desired prevalence to detect a variant by. Default = NA (either `'t'` or `'p_v1'` should be provided, not both)
 ##' @param omega probability of sequencing (or other characterization) success
 ##' @param p0_v1 initial variant prevalence (# introductions / infected population size)
 ##' @param r_v1 logistic growth rate
