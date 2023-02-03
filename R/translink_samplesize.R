@@ -38,12 +38,12 @@ translink_samplesize <- function(sensitivity, specificity, N, R = NULL, tdr, min
     # minimum and maximum sample size until the desired value is reached
     samplesize_found <- FALSE
     for (i in 2:N) {
-        tdr <- suppressMessages(translink_tdr(sensitivity = sensitivity, specificity = specificity,
+        tdr_calc <- suppressMessages(translink_tdr(sensitivity = sensitivity, specificity = specificity,
             rho = i/N, M = i, R = R, assumption = assumption))
         obs_pairs <- suppressMessages(translink_expected_links_obs(sensitivity = sensitivity,
             specificity = specificity, rho = i/N, M = i, R = R, assumption = assumption))
 
-        if (tdr >= tdr & obs_pairs >= min_pairs) {
+        if (tdr_calc >= tdr & obs_pairs >= min_pairs) {
             samplesize_found <- TRUE
             break
         }
