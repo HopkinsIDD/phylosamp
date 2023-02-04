@@ -24,7 +24,7 @@ vartrack_samplesize_prev(
 
 \item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)}
 
-\item{sampling_freq}{the sampling frequency (must be "xsect" in current implementation)}
+\item{sampling_freq}{the sampling frequency (must be 'xsect' in current implementation)}
 }
 \value{
 scalar of sample size
@@ -35,7 +35,8 @@ given a desired confidence and desired precision in the variant prevalence estim
 Currently, only cross-sectional sampling is supported.
 }
 \examples{
-vartrack_samplesize_prev(p_v1 = 0.1, prob = 0.95, precision = 0.25, omega = 0.8, c_ratio = 1, sampling_freq = "xsect")
+vartrack_samplesize_prev(p_v1 = 0.1, prob = 0.95, precision = 0.25, 
+omega = 0.8, c_ratio = 1, sampling_freq = 'xsect')
 
 }
 \seealso{

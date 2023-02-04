@@ -4,14 +4,14 @@
 \alias{varfreq_freq_logistic}
 \title{Calculate observed variant prevalence at time t given logistic growth}
 \usage{
-varfreq_freq_logistic(t, p0, r, c_ratio = 1)
+varfreq_freq_logistic(t, p0_v1, r_v1, c_ratio = 1)
 }
 \arguments{
 \item{t}{time step number (e.g., days) at which to calculate prevalence}
 
-\item{p0}{initial variant prevalence (# introductions / infected population size)}
+\item{p0_v1}{initial variant prevalence (# introductions / infected population size)}
 
-\item{r}{logistic growth rate}
+\item{r_v1}{logistic growth rate}
 
 \item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2; default = 1 (no bias)}
 }
@@ -23,7 +23,7 @@ This function calculates the observed variant prevalence after t time steps (e.g
 given a logistic growth rate and initial variant prevalence.
 }
 \examples{
-varfreq_freq_logistic(t = 30, p0 = 1/10000, r = 0.1, c_ratio = 1)
+varfreq_freq_logistic(t = 30, p0_v1 = 1/10000, r_v1 = 0.1, c_ratio = 1)
 
 }
 \seealso{

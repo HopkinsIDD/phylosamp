@@ -9,8 +9,8 @@ vartrack_prob_detect(
   t = NA,
   p_v1 = NA,
   omega,
-  p0 = NA,
-  r = NA,
+  p0_v1 = NA,
+  r_v1 = NA,
   c_ratio = 1,
   sampling_freq
 )
@@ -24,13 +24,13 @@ vartrack_prob_detect(
 
 \item{omega}{probability of sequencing (or other characterization) success}
 
-\item{p0}{initial variant prevalence (# introductions / infected population size)}
+\item{p0_v1}{initial variant prevalence (# introductions / infected population size)}
 
-\item{r}{logistic growth rate}
+\item{r_v1}{logistic growth rate}
 
 \item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)}
 
-\item{sampling_freq}{the sampling frequency (must be either "xsect" or "cont")}
+\item{sampling_freq}{the sampling frequency (must be either 'xsect' or 'cont')}
 }
 \value{
 scalar of detection probability
@@ -41,10 +41,11 @@ given a sample size and sampling strategy.
 }
 \examples{
 # Cross-sectional sampling
-vartrack_prob_detect(p_v1 = 0.02, n = 100, omega = 0.8, c_ratio = 1, sampling_freq = "xsect")
+vartrack_prob_detect(p_v1 = 0.02, n = 100, omega = 0.8, c_ratio = 1, sampling_freq = 'xsect')
 
 # Periodic sampling
-vartrack_prob_detect(n = 158, t = 30, omega = 0.8, p0 = 1/10000, r = 0.1, c_ratio = 1, sampling_freq = "cont")
+vartrack_prob_detect(n = 158, t = 30, omega = 0.8, p0_v1 = 1/10000, 
+r_v1 = 0.1, c_ratio = 1, sampling_freq = 'cont')
 
 }
 \seealso{

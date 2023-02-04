@@ -4,12 +4,19 @@
 \alias{translink_expected_links_obs}
 \title{Calculate expected number of transmission links in a sample}
 \usage{
-translink_expected_links_obs(eta, chi, rho, M, R = NULL, assumption = "mtml")
+translink_expected_links_obs(
+  sensitivity,
+  specificity,
+  rho,
+  M,
+  R = NULL,
+  assumption = "mtml"
+)
 }
 \arguments{
-\item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
+\item{sensitivity}{scalar or vector giving the sensitivity of the linkage criteria}
 
-\item{chi}{scalar or vector giving the specificity of the linkage criteria}
+\item{specificity}{scalar or vector giving the specificity of the linkage criteria}
 
 \item{rho}{scalar or vector giving the proportion of the final outbreak size that is sampled}
 
@@ -19,31 +26,33 @@ translink_expected_links_obs(eta, chi, rho, M, R = NULL, assumption = "mtml")
 
 \item{assumption}{a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 \enumerate{
-     \item \code{'stsl'} for the single-transmission single-linkage assumption.
-     \item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
-     \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
-     }}
+\item \code{'stsl'} for the single-transmission single-linkage assumption.
+\item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
+\item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
+}}
 }
 \value{
 scalar or vector giving the expected number of observed links in the sample
 }
 \description{
-This function calculates the expected number of observed pairs in the sample that are linked by the linkage criteria. The function requires the sensitivity \eqn{\eta}
-and specificity \eqn{\chi} of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)
+This function calculates the expected number of observed pairs in the sample that are linked by the linkage criteria. The function requires the sensitivity
+and specificity of the linkage criteria, and sample size \eqn{M}. Assumptions about transmission and linkage (single or multiple)
 can be specified.
 }
 \examples{
 # The simplest case: single-transmission, single-linkage, and perfect sensitivity
-translink_expected_links_obs(eta=1, chi=0.9, rho=0.5, M=100, assumption='stsl')
+translink_expected_links_obs(sensitivity=1, specificity=0.9, rho=0.5, M=100, assumption='stsl')
 
 # Multiple-transmission and imperfect sensitivity
-translink_expected_links_obs(eta=0.99, chi=0.9, rho=1, M=50, R=1, assumption='mtsl')
+translink_expected_links_obs(sensitivity=0.99, specificity=0.9, rho=1, M=50, R=1, assumption='mtsl')
 
 # Small outbreak, larger sampling proportion
-translink_expected_links_obs(eta=0.99, chi=0.95, rho=1, M=50, R=1, assumption='mtml')
+translink_expected_links_obs(sensitivity=0.99, specificity=0.95, rho=1, M=50, 
+R=1, assumption='mtml')
 
 # Large outbreak, small sampling proportion
-translink_expected_links_obs(eta=0.99, chi=0.95, rho=0.05, M=1000, R=1, assumption='mtml')
+translink_expected_links_obs(sensitivity=0.99, specificity=0.95, 
+rho=0.05, M=1000, R=1, assumption='mtml')
 
 }
 \seealso{

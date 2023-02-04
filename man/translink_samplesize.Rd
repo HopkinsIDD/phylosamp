@@ -5,44 +5,44 @@
 \title{Calculate sample size needed to identify true transmission links}
 \usage{
 translink_samplesize(
-  eta,
-  chi,
+  sensitivity,
+  specificity,
   N,
   R = NULL,
-  phi,
+  tdr,
   min_pairs = 1,
   assumption = "mtml"
 )
 }
 \arguments{
-\item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
+\item{sensitivity}{scalar or vector giving the sensitivity of the linkage criteria}
 
-\item{chi}{scalar or vector giving the specificity of the linkage criteria}
+\item{specificity}{scalar or vector giving the specificity of the linkage criteria}
 
 \item{N}{scalar or vector giving the final outbreak size}
 
 \item{R}{scalar or vector giving the effective reproductive number of the pathogen}
 
-\item{phi}{scalar or vector giving the desired true discovery rate (1-false discovery rate)}
+\item{tdr}{scalar or vector giving the desired true discovery rate (1-false discovery rate)}
 
 \item{min_pairs}{minimum number of linked pairs observed in the sample, defaults to 1 pair (2 samples); this is to ensure reasonable results are obtained}
 
 \item{assumption}{a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 \enumerate{
-     \item \code{'stsl'} for the single-transmission single-linkage assumption.
-     \item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
-     \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
-     }}
+\item \code{'stsl'} for the single-transmission single-linkage assumption.
+\item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
+\item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
+}}
 }
 \value{
 scalar or vector giving the sample size needed to meet the given conditions
 }
 \description{
-This function calculates the sample size needed to identify transmission links at 
+This function calculates the sample size needed to identify transmission links at
 a pre-defined false disovery rate, given a final outbreak size \eqn{N}.
 }
 \examples{
-translink_samplesize(eta=0.99, chi=0.995, N=100, R=1, phi=0.75)
+translink_samplesize(sensitivity=0.99, specificity=0.995, N=100, R=1, tdr=0.75)
 
 }
 \seealso{

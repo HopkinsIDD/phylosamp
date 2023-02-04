@@ -14,7 +14,6 @@ In the first part of this vignette, we use the function `gendist_roc_format()`, 
 ```{r setup, message=FALSE}
 library(phylosamp)
 library(ggplot2)
-library(reshape2)
 library(RColorBrewer)
 library(cowplot)
 ```

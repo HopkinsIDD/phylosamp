@@ -26,7 +26,7 @@ given a given a sample size and desired precision in the variant prevalence esti
 and assuming a single, cross-sectional sample of detected infections.
 }
 \examples{
-vartrack_prob_prev_xsect(p_v1 = 0.1, n = 200, omega = 0.8, c_ratio = 1)
+vartrack_prob_prev_xsect(p_v1 = 0.1, n = 200, precision = 0.1, omega = 0.8, c_ratio = 1)
 
 }
 \seealso{

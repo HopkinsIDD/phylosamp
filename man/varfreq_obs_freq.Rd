@@ -15,7 +15,7 @@ varfreq_obs_freq(p_v1, c_ratio)
 scalar of observed prevalence of variant 1
 }
 \description{
-This function calculates the observed variant prevalence from the coefficient of detection ratio 
+This function calculates the observed variant prevalence from the coefficient of detection ratio
 and the actual variant prevalence. This function assumes that variant 1 is the variant of concern.
 This function is specific to the two-variant system.
 }

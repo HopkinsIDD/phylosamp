@@ -39,7 +39,7 @@ R <- 1.5
 mut_rate <- 1
 
 # use simulated generation distributions from the provided 'genDistSim' data object
-data("genDistSim")
+data('genDistSim')
 mean_gens_pdf <- as.numeric(genDistSim[genDistSim$R == R, -(1:2)])
 
 # get theoretical genetic distance dist based on mutation rate and generation parameters
