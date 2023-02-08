@@ -30,8 +30,10 @@ vartrack_prob_prev <- function(p_v1, n, omega, precision, c_ratio = 1, sampling_
         message("Calculating confidence in variant estimate assuming single cross-sectional sample")
         out <- vartrack_prob_prev_xsect(p_v1 = p_v1, n = n, omega = omega, precision = precision,
             c_ratio = c_ratio)
+
     } else if (sampling_freq == "cont") {
         stop("Functionality for calculating confidence in variant estimate given periodic sampling is not yet implemented in the phylosamp package. You can calculate the confidence in variant estimating given a cross-sectional sample by specifying 'xsect' as the sampling frequency")
+
     } else {
         stop("Incorrect sampling frequency argument (please specify 'xsect' or 'cont')")
     }
