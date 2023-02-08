@@ -32,12 +32,22 @@ vartrack_prob_detect <- function(n, t = NA, p_v1 = NA, omega, p0_v1 = NA, r_v1 =
     c_ratio = 1, sampling_freq) {
 
     if (sampling_freq == "xsect") {
+        if(any(is.na(c(p_v1, n, omega, c_ratio)))) {
+            stop("Please specify the correct arguments for the xsect method: p_v1, n, omega, c_ratio.")
+        }
+
         message("Calculating probability of detection assuming single cross-sectional sample")
         out <- vartrack_prob_detect_xsect(p_v1 = p_v1, n = n, omega = omega, c_ratio = c_ratio)
+
     } else if (sampling_freq == "cont") {
+        if(any(is.na(c(n, omega, p0_v1, r_v1, c_ratio))) | sum(is.na(c(t, p_v1))) %in% c(0,2)) {
+            stop("Please specify the correct arguments for the cont method: n, t or p_v1 (but not both), omega, p0_v1, r_v1, c_ratio.")
+        }
+
         message("Calculating probability of detection assuming periodic sampling")
         out <- vartrack_prob_detect_cont(n = n, t = t, p_v1 = p_v1, omega = omega,
             p0_v1 = p0_v1, r_v1 = r_v1, c_ratio = c_ratio)
+
     } else {
         stop("Incorrect sampling frequency argument (please specify 'xsect' or 'cont')")
     }
