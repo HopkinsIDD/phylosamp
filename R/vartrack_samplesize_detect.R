@@ -34,10 +34,18 @@ vartrack_samplesize_detect <- function(prob, t = NA, p_v1 = NA, omega, p0_v1 = N
     r_v1 = NA, c_ratio = 1, sampling_freq) {
 
     if (sampling_freq == "xsect") {
+        if(any(is.na(c(p_v1, prob, omega, c_ratio)))){
+            stop("Please specify the correct arguments for the xsect method: p_v1, prob, omega, c_ratio.")
+        }
+
         message("Calculating sample size for variant detection assuming single cross-sectional sample")
         out <- vartrack_samplesize_detect_xsect(p_v1 = p_v1, prob = prob, omega = omega,
             c_ratio = c_ratio)
     } else if (sampling_freq == "cont") {
+        if(any(is.na(c(prob, omega, p0_v1, r_v1, c_ratio))) | sum(is.na(c(t, p_v1))) %in% c(0,2)) {
+            stop("Please specify the correct arguments for the cont method: prob, t, p_v1, omega, p0_v1, r_v1, c_ratio.")
+        }
+
         message("Calculating sample size for variant detection assuming periodic sampling")
         out <- vartrack_samplesize_detect_cont(prob = prob, t = t, p_v1 = p_v1, omega = omega,
             p0_v1 = p0_v1, r_v1 = r_v1, c_ratio = c_ratio)
