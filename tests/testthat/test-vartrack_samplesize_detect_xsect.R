@@ -1,5 +1,5 @@
 
-test_that("input arguments are valid", {
+test_that("vartrack_samplesize_detect_xsect input arguments are valid", {
 
     expect_error(vartrack_samplesize_detect_xsect(p_v1 = 0, prob = 0.4, omega = 0.9,
         c_ratio = 1))
@@ -35,14 +35,14 @@ test_that("input arguments are valid", {
         c_ratio = "invalid"))
 })
 
-test_that("return object is valid double", {
+test_that("vartrack_samplesize_detect_xsect return object is valid double", {
 
     expect_type(vartrack_samplesize_detect_xsect(p_v1 = 0.2, prob = 0.9, omega = 0.9,
         c_ratio = 1.5), "double")
 
 })
 
-test_that("manuscript results remain valid", {
+test_that("vartrack_samplesize_detect_xsect manuscript results remain valid", {
 
     expect_equal(ceiling(vartrack_samplesize_detect_xsect(p_v1 = 0.02, prob = 0.95,
         omega = 1, c_ratio = 1)), 149)
