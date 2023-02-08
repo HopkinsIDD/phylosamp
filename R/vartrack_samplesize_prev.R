@@ -30,8 +30,10 @@ vartrack_samplesize_prev <- function(p_v1, prob, precision, omega, c_ratio = 1, 
         message("Calculating sample size for variant prevalence estimation assuming single cross-sectional sample")
         out <- vartrack_samplesize_prev_xsect(p_v1 = p_v1, prob = prob, precision = precision,
             omega = omega, c_ratio = c_ratio)
+
     } else if (sampling_freq == "cont") {
         stop("Functionality for the sample size needed for estimating variant prevalence given periodic sampling is not yet implemented in the phylosamp package. You can calculate the sample size needed for variant prevalence estimation given a cross-sectional sample by specifying 'xsect' as the sampling frequency")
+        
     } else {
         stop("Incorrect sampling frequency argument (please specify 'xsect' or 'cont')")
     }
