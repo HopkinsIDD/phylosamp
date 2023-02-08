@@ -15,9 +15,9 @@ Now that we've identified our surveillance goals, we need to estimate some basic
 
 ### Variant-specific parameter estimation
 
-*The asymptomatic rate ($\alpha$)*. So far, epidemiologists have determined that the asymptomatic rate of Pathogen X has ranged from 30-40%. The currently circulating variant has an asymptomatic rate of 30%. Given this, we want to plan for variants that could have asymptomatic rates ranging from 25-45%. A lower asymptomatic rate causes enrichment of the variant in sampled infections; conversely, a higher asymptomatic rate would artificially deplete samples belonging to the variant of interest in the pool of detected infections. Therefore, an asymptomatic rate of 25% represents the least conservative scenario (since enrichment of a variant of interest would mean fewer sequences are required to detect it) while an asymptomatic rate of 45% represents the most conservative scenario.
+*The asymptomatic rate ($\psi$)*. So far, epidemiologists have determined that the asymptomatic rate of Pathogen X has ranged from 30-40%. The currently circulating variant has an asymptomatic rate of 30%. Given this, we want to plan for variants that could have asymptomatic rates ranging from 25-45%. A lower asymptomatic rate causes enrichment of the variant in sampled infections; conversely, a higher asymptomatic rate would artificially deplete samples belonging to the variant of interest in the pool of detected infections. Therefore, an asymptomatic rate of 25% represents the least conservative scenario (since enrichment of a variant of interest would mean fewer sequences are required to detect it) while an asymptomatic rate of 45% represents the most conservative scenario.
 
-*The testing rate ($\beta$)*. Given the widespread availability of rapid antigen tests for Pathogen X, we assume that only 50% of symptomatic infections (of any variant) are tested, and only 10% of asymptomatic infections are detected and samples sent to national public health laboratories. We anticipate that testing rates could drop as low as 40% (symptomatic) / 5% (asymptomatic) as the population becomes increasingly desensitized to disease spread. Because of the complex relationship between testing rates and sampling bias, we'll explore these two scenarios independently when performing sample size calculations.
+*The testing rate ($\tau$)*. Given the widespread availability of rapid antigen tests for Pathogen X, we assume that only 50% of symptomatic infections (of any variant) are tested, and only 10% of asymptomatic infections are detected and samples sent to national public health laboratories. We anticipate that testing rates could drop as low as 40% (symptomatic) / 5% (asymptomatic) as the population becomes increasingly desensitized to disease spread. Because of the complex relationship between testing rates and sampling bias, we'll explore these two scenarios independently when performing sample size calculations.
 
 *The testing sensitivity ($\phi$)*. The current gold-standard PCR test for Pathogen X has a sensitivity of 95% for the currently circulating variant. Historical data shows this rate has changed very little between variants. However, to account for the possibility that a future variant may significantly change the viral load present in patient samples or mutate in such a way that tests temporarily become less effective (until an updated PCR target can be developed), we will perform sample size calculations assuming no change in sensitivity (least conservative scenario) as well as a drop in sensitivity down to 90% (most conservative scenario).
 
@@ -38,18 +38,18 @@ We can provide the remaining parameters as follows. (Note that $V_1$ represents 
 library(phylosamp)
 
 # Least conservative scenario assuming higher testing rate:
-vartrack_cod_ratio(alpha_v1=0.25, alpha_v2=0.3, beta_a=0.1, beta_s=0.5)
+vartrack_cod_ratio(psi_v1=0.25, psi_v2=0.3, tau_a=0.1, tau_s=0.5)
 
 # Least conservative scenario assuming lower testing rate:
-vartrack_cod_ratio(alpha_v1=0.25, alpha_v2=0.3, beta_a=0.05, beta_s=0.4)
+vartrack_cod_ratio(psi_v1=0.25, psi_v2=0.3, tau_a=0.05, tau_s=0.4)
 
 # Most conservative scenario assuming higher testing rate:
-vartrack_cod_ratio(alpha_v1=0.45, alpha_v2=0.3, phi_v1=0.9, phi_v2=0.95,
-                   beta_a=0.1, beta_s=0.5)
+vartrack_cod_ratio(psi_v1=0.45, psi_v2=0.3, phi_v1=0.9, phi_v2=0.95,
+                   tau_a=0.1, tau_s=0.5)
 
 # Most conservative scenario assuming lower testing rate:
-vartrack_cod_ratio(alpha_v1=0.45, alpha_v2=0.3, phi_v1=0.9, phi_v2=0.95,
-                   beta_a=0.05, beta_s=0.4)
+vartrack_cod_ratio(psi_v1=0.45, psi_v2=0.3, phi_v1=0.9, phi_v2=0.95,
+                   tau_a=0.05, tau_s=0.4)
 
 ```
 
@@ -76,19 +76,19 @@ We now have all of the values we need to estimate the sample size needed for det
 library(phylosamp)
 
 # Least conservative scenario with low initial prevalence:
-vartrack_samplesize_detect(prob=0.75, p_v1=0.01, p0=1/10000, r=0.1,
+vartrack_samplesize_detect(prob=0.75, p_v1=0.01, p0_v1=1/10000, r_v1=0.1,
                            omega=0.8, c_ratio=1.059, sampling_freq="cont")
 
 # Least conservative scenario with high initial prevalence:
-vartrack_samplesize_detect(prob=0.75, p_v1=0.01, p0=1/1000, r=0.1,
+vartrack_samplesize_detect(prob=0.75, p_v1=0.01, p0_v1=1/1000, r_v1=0.1,
                            omega=0.8, c_ratio=1.059, sampling_freq="cont")
 
 # Most conservative scenario with low initial prevalence:
-vartrack_samplesize_detect(prob=0.95, p_v1=0.01, p0=1/10000, r=0.2,
+vartrack_samplesize_detect(prob=0.95, p_v1=0.01, p0_v1=1/10000, r_v1=0.2,
                            omega=0.8, c_ratio=0.779, sampling_freq="cont")
 
 # Most conservative scenario with high initial prevalence:
-vartrack_samplesize_detect(prob=0.95, p_v1=0.01, p0=1/1000, r=0.2,
+vartrack_samplesize_detect(prob=0.95, p_v1=0.01, p0_v1=1/1000, r_v1=0.2,
                            omega=0.8, c_ratio=0.779, sampling_freq="cont")
 
 ```
@@ -104,11 +104,11 @@ Given the recommendation of 112-679 samples per week, the government of our coun
 library(phylosamp)
 
 # Most conservative scenario with low initial prevalence
-vartrack_prob_detect(n=28, p_v1=0.01, p0=1/10000, r=0.2,
+vartrack_prob_detect(n=28, p_v1=0.01, p0_v1=1/10000, r_v1=0.2,
                      omega=0.8, c_ratio=0.779, sampling_freq="cont")
 
 # Most conservative scenario with high initial prevalence
-vartrack_prob_detect(n=28, p_v1=0.01, p0=1/1000, r=0.2,
+vartrack_prob_detect(n=28, p_v1=0.01, p0_v1=1/1000, r_v1=0.2,
                      omega=0.8, c_ratio=0.779, sampling_freq="cont")
 
 ```
@@ -122,21 +122,21 @@ library(phylosamp)
 ## DETECTION BEFORE REACHING 2% PREVALENCE
 
 # Most conservative scenario with low initial prevalence
-vartrack_prob_detect(n=28, p_v1=0.02, p0=1/10000, r=0.2,
+vartrack_prob_detect(n=28, p_v1=0.02, p0_v1=1/10000, r_v1=0.2,
                      omega=0.8, c_ratio=0.779, sampling_freq="cont")
 
 # Most conservative scenario with high initial prevalence
-vartrack_prob_detect(n=28, p_v1=0.02, p0=1/1000, r=0.2,
+vartrack_prob_detect(n=28, p_v1=0.02, p0_v1=1/1000, r_v1=0.2,
                      omega=0.8, c_ratio=0.779, sampling_freq="cont")
 
 ## DETECTION BEFORE REACHING 5% PREVALENCE
 
 # Most conservative scenario with low initial prevalence
-vartrack_prob_detect(n=28, p_v1=0.05, p0=1/10000, r=0.2,
+vartrack_prob_detect(n=28, p_v1=0.05, p0_v1=1/10000, r_v1=0.2,
                      omega=0.8, c_ratio=0.779, sampling_freq="cont")
 
 # Most conservative scenario with high initial prevalence
-vartrack_prob_detect(n=28, p_v1=0.05, p0=1/1000, r=0.2,
+vartrack_prob_detect(n=28, p_v1=0.05, p0_v1=1/1000, r_v1=0.2,
                      omega=0.8, c_ratio=0.779, sampling_freq="cont")
 
 ```

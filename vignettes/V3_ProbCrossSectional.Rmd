@@ -50,10 +50,10 @@ We then can calculate confidence in the estimated prevalence as follows:
 
 ```{r calc_prob_prev}
 
-c1_c2 <- vartrack_cod_ratio(alpha_v1=0.25, alpha_v2=0.4, beta_a=0.05, beta_s=0.3)
+c1_c2 <- vartrack_cod_ratio(psi_v1=0.25, psi_v2=0.4, tau_a=0.05, tau_s=0.3)
 vartrack_prob_prev(p_v1=0.1, n=200, omega=0.8, precision=0.25, 
                    c_ratio=c1_c2, sampling_freq="xsect")
 
 ```
 
-In other words, we can be 75% confident that any estimate of prevalence of a variant we expect has at least 10% prevalence in the population is within 25% of the true value, given a sample size of 200 samples. This takes into account the fact that we expect only 80% ($\omega=0.8$) of these samples will be successfully sequenced (or otherwise characterized). It also assumes that our variant of interest has a lower asymptomatic rate than the rest of the pathogen population ($\alpha_{V_1}=0.25$ vs $\alpha_{V_2}=0.4$) and that the testing probability of symptomatic infections ($\beta_s=0.3$) is 6 times higher than the testing probability of asymptomatic infections ($\beta_a=0.05$), leading to a coefficient of detection ratio of 1.187.
+In other words, we can be 75% confident that any estimate of prevalence of a variant we expect has at least 10% prevalence in the population is within 25% of the true value, given a sample size of 200 samples. This takes into account the fact that we expect only 80% ($\omega=0.8$) of these samples will be successfully sequenced (or otherwise characterized). It also assumes that our variant of interest has a lower asymptomatic rate than the rest of the pathogen population ($\psi_{V_1}=0.25$ vs $\psi_{V_2}=0.4$) and that the testing probability of symptomatic infections ($\tau_s=0.3$) is 6 times higher than the testing probability of asymptomatic infections ($\tau_a=0.05$), leading to a coefficient of detection ratio of 1.187.

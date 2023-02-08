@@ -13,8 +13,8 @@ The most basic function of the package is `translink_tdr()`, which calculates th
 
 | Param | Variable Name | <span style="display: inline-block; width:500px">Description</span> |
 |:-----:|:-------------:|-------------|
-|   **$\eta$**   |       eta       | the sensitivity of the linkage criteria for identifying transmission links          |
-|   **$\chi$**   |       chi       | the specificity of the linkage criteria for identifying transmission links          |
+|   **$\eta$**   |       sensitivity       | the sensitivity of the linkage criteria for identifying transmission links          |
+|   **$\chi$**   |       specificity       | the specificity of the linkage criteria for identifying transmission links          |
 |   **$\rho$**   |       rho       | the proportion of infections sampled           |
 |   **$M$**   |       M       | the number of infections sampled          |
 |   **$R$**   |       R       | the average reproductive number (also denoted $R_\text{pop}$, see below)           |
@@ -25,7 +25,7 @@ library(phylosamp)
 
 ```{r truediscoveryrate}
 
-translink_tdr(eta=0.99, chi=0.95, rho=0.75, M=100, R=1)
+translink_tdr(sensitivity=0.99, specificity=0.95, rho=0.75, M=100, R=1)
 
 ```
 
@@ -33,7 +33,7 @@ In other words, given a sample size of 100 infections (representing 75% of the t
 
 ```{r truediscoveryrate2}
 
-translink_tdr(eta=0.99, chi=0.995, rho=0.75, M=100, R=1)
+translink_tdr(sensitivity=0.99, specificity=0.995, rho=0.75, M=100, R=1)
 
 ```
 
@@ -41,8 +41,9 @@ The other core functions are designed to calculate the expected number of true t
 
 ```{r expected_pairs}
 
-translink_expected_links_true(eta=0.99, rho=0.75, M=100, R=1)
-translink_expected_links_obs(eta=0.99, chi=0.95, rho=0.75, M=100, R=1)
+translink_expected_links_true(sensitivity=0.99, rho=0.75, M=100, R=1)
+translink_expected_links_obs(sensitivity=0.99, specificity=0.95, 
+                             rho=0.75, M=100, R=1)
 
 ```
 

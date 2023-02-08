@@ -1,6 +1,6 @@
 ##' Calculate observed variant prevalence
 ##'
-##' This function calculates the observed variant prevalence from the coefficient of detection ratio 
+##' This function calculates the observed variant prevalence from the coefficient of detection ratio
 ##' and the actual variant prevalence. This function assumes that variant 1 is the variant of concern.
 ##' This function is specific to the two-variant system.
 ##'
@@ -19,9 +19,11 @@
 
 
 varfreq_obs_freq <- function(p_v1, c_ratio) {
-  if (!all(is.numeric(p_v1), p_v1 > 0 & p_v1 < 1)) stop("Variant prevalence must be numeric and between 0 and 1.")
-  if (!all(is.numeric(c_ratio), c_ratio > 0)) stop("Coefficient of detection ratio must be numeric and greater than 0")
+    if (!all(is.numeric(p_v1), p_v1 > 0 & p_v1 < 1))
+        stop("Variant prevalence must be numeric and between 0 and 1.")
+    if (!all(is.numeric(c_ratio), c_ratio > 0))
+        stop("Coefficient of detection ratio must be numeric and greater than 0")
 
-  obs <- p_v1 / (p_v1 + (1 / c_ratio) * (1 - p_v1))
-  return(obs)
+    obs <- p_v1/(p_v1 + (1/c_ratio) * (1 - p_v1))
+    return(obs)
 }

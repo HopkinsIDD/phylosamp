@@ -21,13 +21,17 @@
 
 
 vartrack_samplesize_detect_xsect <- function(p_v1, prob, omega, c_ratio = 1) {
-  if (!all(is.numeric(p_v1), p_v1 > 0 & p_v1 < 1)) stop("Variant prevalence must be numeric and between 0 and 1.")
-  if (!all(is.numeric(prob), prob > 0 & prob < 1)) stop("Desired probability of detection must be numeric and between 0 and 1.")
-  if (!all(is.numeric(omega), omega > 0 & omega <= 1)) stop("Sequencing success rate must be numeric and between 0 and 1.")
-  if (!all(is.numeric(c_ratio), c_ratio > 0)) stop("Coefficient of detection ratio must be numeric and greater than 0")
+    if (!all(is.numeric(p_v1), p_v1 > 0 & p_v1 < 1))
+        stop("Variant prevalence must be numeric and between 0 and 1.")
+    if (!all(is.numeric(prob), prob > 0 & prob < 1))
+        stop("Desired probability of detection must be numeric and between 0 and 1.")
+    if (!all(is.numeric(omega), omega > 0 & omega <= 1))
+        stop("Sequencing success rate must be numeric and between 0 and 1.")
+    if (!all(is.numeric(c_ratio), c_ratio > 0))
+        stop("Coefficient of detection ratio must be numeric and greater than 0")
 
-  p_star <- varfreq_obs_freq(p_v1, c_ratio)
-  n <- (log(1 - prob)) / (log(1 - p_star))
-  n_samples <- n / omega
-  return(n_samples)
+    p_star <- varfreq_obs_freq(p_v1, c_ratio)
+    n <- (log(1 - prob))/(log(1 - p_star))
+    n_samples <- n/omega
+    return(n_samples)
 }

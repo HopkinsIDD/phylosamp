@@ -4,12 +4,12 @@
 \alias{translink_expected_links_obs_stsl}
 \title{Calculate expected number of observed pairs assuming single-transmission and single-linkage}
 \usage{
-translink_expected_links_obs_stsl(eta, chi, rho, M)
+translink_expected_links_obs_stsl(sensitivity, specificity, rho, M)
 }
 \arguments{
-\item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
+\item{sensitivity}{scalar or vector giving the sensitivity of the linkage criteria}
 
-\item{chi}{scalar or vector giving the specificity of the linkage criteria}
+\item{specificity}{scalar or vector giving the specificity of the linkage criteria}
 
 \item{rho}{scalar or vector giving the proportion of the final outbreak size that is sampled}
 
@@ -22,17 +22,17 @@ scalar or vector giving the expected number of linked pairs observed in the samp
 This function calculates the expected number of link pairs observed in a sample of size \code{M}.
 The single-transmission and single-linkage method assumes the following:
 \enumerate{
-     \item Each case \eqn{i} is linked by transmission to only one other case \eqn{j} in the population (\eqn{N}).
-     \item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
-     }
+\item Each case \eqn{i} is linked by transmission to only one other case \eqn{j} in the population (\eqn{N}).
+\item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
+}
 }
 \examples{
 # perfect sensitivity and specificity
-translink_expected_links_obs_stsl(eta=1, chi=1, rho=0.5, M=100)
+translink_expected_links_obs_stsl(sensitivity=1, specificity=1, rho=0.5, M=100)
 
-translink_expected_links_obs_stsl(eta=0.99, chi=0.9, rho=1, M=50)
+translink_expected_links_obs_stsl(sensitivity=0.99, specificity=0.9, rho=1, M=50)
 
-translink_expected_links_obs_stsl(eta=0.99, chi=0.9, rho=0.5, M=100)
+translink_expected_links_obs_stsl(sensitivity=0.99, specificity=0.9, rho=0.5, M=100)
 
 }
 \seealso{

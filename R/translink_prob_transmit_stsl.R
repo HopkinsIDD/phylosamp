@@ -7,10 +7,10 @@
 ##'      \item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
 ##'      }
 ##'
-##' For perfect sensitivity, set \code{eta = 1}.
+##' For perfect sensitivity, set `sensitivity = 1`.
 ##'
-##' @param eta scalar or vector giving the sensitivity of the linkage criteria
-##' @param chi scalar or vector giving the specificity of the linkage criteria
+##' @param sensitivity scalar or vector giving the sensitivity of the linkage criteria
+##' @param specificity scalar or vector giving the specificity of the linkage criteria
 ##' @param rho scalar or vector giving the proportion of the final outbreak size that is sampled
 ##' @param M scalar or vector giving the number of cases sampled
 ##'
@@ -20,29 +20,29 @@
 ##'
 ##' @examples
 ##' # perfect sensitivity and specificity
-##' translink_prob_transmit_stsl(eta=1, chi=1, rho=0.2, M=100)
+##' translink_prob_transmit_stsl(sensitivity=1, specificity=1, rho=0.2, M=100)
 ##'
 ##' # perfect sensitivity only
-##' translink_prob_transmit_stsl(eta=1, chi=0.95, rho=0.2, M=100)
+##' translink_prob_transmit_stsl(sensitivity=1, specificity=0.95, rho=0.2, M=100)
 ##'
-##' translink_prob_transmit_stsl(eta=0.99, chi=0.95, rho=0.9, M=50)
+##' translink_prob_transmit_stsl(sensitivity=0.99, specificity=0.95, rho=0.9, M=50)
 ##'
-##' translink_prob_transmit_stsl(eta=0.99, chi=0.95, rho=0.05, M=100)
+##' translink_prob_transmit_stsl(sensitivity=0.99, specificity=0.95, rho=0.05, M=100)
 ##'
 ##' @family transmission linkage functions
 ##'
 ##' @export
 
-translink_prob_transmit_stsl <- function(eta, # sensitivity of the linkage criteria
-                            chi, # specificity of the linkage criteria
-                            rho, # sampling proportion
-                            M # number of cases sampled
-) {
-  if (!all(is.numeric(eta), eta >= 0 & eta <= 1)) stop("eta must be numeric between 0 and 1")
-  if (!all(is.numeric(chi), chi >= 0 & chi <= 1)) stop("chi must be numeric between 0 and 1")
-  if (!all(is.numeric(rho), rho > 0 & rho <= 1)) stop("rho must be numeric > 0 and <= 1")
-  if (!all(is.numeric(M) | is.integer(M), M >= 0)) stop("Sample size (M) must be integer or numeric greater than 0")
+translink_prob_transmit_stsl <- function(sensitivity, specificity, rho, M) {
+    if (!all(is.numeric(sensitivity), sensitivity >= 0 & sensitivity <= 1))
+        stop("sensitivity must be numeric between 0 and 1")
+    if (!all(is.numeric(specificity), specificity >= 0 & specificity <= 1))
+        stop("specificity must be numeric between 0 and 1")
+    if (!all(is.numeric(rho), rho > 0 & rho <= 1))
+        stop("rho must be numeric > 0 and <= 1")
+    if (!all(is.numeric(M) | is.integer(M), M >= 0))
+        stop("Sample size (M) must be integer or numeric greater than 0")
 
-  (eta * rho) /
-    ((eta * rho) + ((1 - chi^(M - 2)) * (1 - eta) * rho) + ((1 - chi^(M - 1)) * (1 - rho)))
+    (sensitivity * rho)/((sensitivity * rho) + ((1 - specificity^(M - 2)) * (1 -
+        sensitivity) * rho) + ((1 - specificity^(M - 1)) * (1 - rho)))
 }

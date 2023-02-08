@@ -4,12 +4,12 @@
 \alias{translink_expected_links_obs_mtsl}
 \title{Calculate expected number of observed pairs assuming multiple-transmission and single-linkage}
 \usage{
-translink_expected_links_obs_mtsl(chi, eta, rho, M, R)
+translink_expected_links_obs_mtsl(specificity, sensitivity, rho, M, R)
 }
 \arguments{
-\item{chi}{scalar or vector giving the specificity of the linkage criteria}
+\item{specificity}{scalar or vector giving the specificity of the linkage criteria}
 
-\item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
+\item{sensitivity}{scalar or vector giving the sensitivity of the linkage criteria}
 
 \item{rho}{scalar or vector giving the proportion of the final outbreak size that is sampled}
 
@@ -24,17 +24,17 @@ scalar or vector giving the expected number of linked pairs observed in the samp
 This function calculates the expected number of pairs observed in a sample of size \code{M}.
 The multiple-transmission and single-linkage method assumes the following:
 \enumerate{
-     \item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
-     \item Each case \eqn{i} is allowed to be linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
-     }
+\item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
+\item Each case \eqn{i} is allowed to be linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
+}
 }
 \examples{
 # Perfect sensitivity and specificity
-translink_expected_links_obs_mtsl(eta=1, chi=1, rho=0.5, M=100, R=1)
+translink_expected_links_obs_mtsl(sensitivity=1, specificity=1, rho=0.5, M=100, R=1)
 
-translink_expected_links_obs_mtsl(eta=0.99, chi=0.9, rho=1, M=50, R=1)
+translink_expected_links_obs_mtsl(sensitivity=0.99, specificity=0.9, rho=1, M=50, R=1)
 
-translink_expected_links_obs_mtsl(eta=0.99, chi=0.9, rho=0.5, M=100, R=1)
+translink_expected_links_obs_mtsl(sensitivity=0.99, specificity=0.9, rho=0.5, M=100, R=1)
 
 }
 \seealso{

@@ -9,10 +9,10 @@ vartrack_cod_ratio(
   phi_v2 = 1,
   gamma_v1 = 1,
   gamma_v2 = 1,
-  alpha_v1 = 1,
-  alpha_v2 = 1,
-  beta_a = 1,
-  beta_s = 1
+  psi_v1 = 1,
+  psi_v2 = 1,
+  tau_a = 1,
+  tau_s = 1
 )
 }
 \arguments{
@@ -24,13 +24,13 @@ vartrack_cod_ratio(
 
 \item{gamma_v2}{probability that a detected infection caused by variant 2 meets some quality threshold}
 
-\item{alpha_v1}{probability that an infection caused by variant 1 is asymptomatic}
+\item{psi_v1}{probability that an infection caused by variant 1 is asymptomatic}
 
-\item{alpha_v2}{probability that an infection caused by variant 2 is asymptomatic}
+\item{psi_v2}{probability that an infection caused by variant 2 is asymptomatic}
 
-\item{beta_a}{probability of testing an asymptomatic infection (any variant); note that this parameter is not required if alpha_v1==alpha_v2}
+\item{tau_a}{probability of testing an asymptomatic infection (any variant); note that this parameter is not required if psi_v1==psi_v2}
 
-\item{beta_s}{probability of testing a symptomatic infection (any variant); note that this parameter is not required if alpha_v1==alpha_v2}
+\item{tau_s}{probability of testing a symptomatic infection (any variant); note that this parameter is not required if psi_v1==psi_v2}
 }
 \value{
 scalar giving the multiplicative bias of variant 1

@@ -9,8 +9,8 @@ vartrack_samplesize_detect_cont(
   t = NA,
   p_v1 = NA,
   omega,
-  p0,
-  r,
+  p0_v1,
+  r_v1,
   c_ratio = 1
 )
 }
@@ -23,9 +23,9 @@ vartrack_samplesize_detect_cont(
 
 \item{omega}{probability of sequencing (or other characterization) success}
 
-\item{p0}{initial variant prevalence (# introductions / infected population size)}
+\item{p0_v1}{initial variant prevalence (# introductions / infected population size)}
 
-\item{r}{logistic growth rate}
+\item{r_v1}{logistic growth rate}
 
 \item{c_ratio}{coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2. Default = 1 (no bias)}
 }
@@ -39,7 +39,8 @@ or a desired prevalence by which to detect the variant by.
 It assumes a periodic sampling strategy, where samples are collected at regular intervals (time steps).
 }
 \examples{
-vartrack_samplesize_detect_cont(prob = 0.95, t = 30, omega = 0.8, p0 = 1/10000, r = 0.1, c_ratio = 1)
+vartrack_samplesize_detect_cont(prob = 0.95, t = 30, omega = 0.8, 
+p0_v1 = 1/10000, r_v1 = 0.1, c_ratio = 1)
 
 }
 \seealso{

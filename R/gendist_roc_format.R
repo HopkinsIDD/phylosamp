@@ -8,9 +8,9 @@
 ##' @param mean_gens_pdf the density distribution of the mean number of generations between cases;
 ##'       the index of this vector is assumed to be the discrete distance between cases
 ##' @param max_link_gens the maximium generations of separation for linked pairs
-##' @param max_gens the maximum number of generations to consider, if \code{NULL} (default) value set to the highest
+##' @param max_gens the maximum number of generations to consider, if `NULL` (default) value set to the highest
 ##'        number of generations in mean_gens_pdf with a non-zero probability
-##' @param max_dist the maximum distance to calculate, if \code{NULL} (default) value set to max_gens * 99.9th percentile
+##' @param max_dist the maximum distance to calculate, if `NULL` (default) value set to max_gens * 99.9th percentile
 ##'       of mut_rate poisson distribution
 ##'
 ##' @return data frame with cutoff, sensitivity, and 1-specificity
@@ -23,7 +23,7 @@
 ##' mut_rate <- 1
 ##'
 ##' # use simulated generation distributions
-##' data("genDistSim")
+##' data('genDistSim')
 ##' mean_gens_pdf <- as.numeric(genDistSim[genDistSim$R == R, -(1:2)])
 ##'
 ##' # get theoretical genetic distance dist based on mutation rate and generation parameters
@@ -32,9 +32,9 @@
 ##'                        max_link_gens = 1))
 ##'
 ##' dists <- reshape2::melt(dists,
-##'                         id.vars = "dist",
-##'                         variable.name = "status",
-##'                         value.name = "prob")
+##'                         id.vars = 'dist',
+##'                         variable.name = 'status',
+##'                         value.name = 'prob')
 ##'
 ##' # get sensitivity and specificity using the same paramters
 ##' roc_calc <- gendist_roc_format(cutoff = 1:(max(dists$dist)-1),
@@ -47,25 +47,24 @@
 ##' @export
 ##'
 
-gendist_roc_format <- function(cutoff,
-                          mut_rate,
-                          mean_gens_pdf,
-                          max_link_gens = 1,
-                          max_gens = NULL,
-                          max_dist = NULL) {
-  if (is.null(max_gens)) max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
-  if (is.null(max_dist)) max_dist <- suppressWarnings(max_gens * stats::qpois(.999, mut_rate))
+gendist_roc_format <- function(cutoff, mut_rate, mean_gens_pdf, max_link_gens = 1,
+    max_gens = NULL, max_dist = NULL) {
+    if (is.null(max_gens))
+        max_gens <- which(mean_gens_pdf != 0)[length(which(mean_gens_pdf != 0))]
+    if (is.null(max_dist))
+        max_dist <- suppressWarnings(max_gens * stats::qpois(0.999, mut_rate))
 
-  rc <- gendist_sensspec_cutoff(cutoff, mut_rate, mean_gens_pdf, max_link_gens, max_gens, max_dist)
+    rc <- gendist_sensspec_cutoff(cutoff, mut_rate, mean_gens_pdf, max_link_gens,
+        max_gens, max_dist)
 
-  # turn this into a data frame that can be used for plotting ROC curves
-  rc <- as.data.frame(rc)
+    # turn this into a data frame that can be used for plotting ROC curves
+    rc <- as.data.frame(rc)
 
-  # calculate 1-specificity for plotting
-  rc$specificity <- 1 - rc$specificity
+    # calculate 1-specificity for plotting
+    rc$specificity <- 1 - rc$specificity
 
-  # add the starting and ending points to make the complete curve
-  rc <- rbind(c(-1, 0, 0), rc, c(Inf, 1, 1))
+    # add the starting and ending points to make the complete curve
+    rc <- rbind(c(-1, 0, 0), rc, c(Inf, 1, 1))
 
-  return(rc)
+    return(rc)
 }

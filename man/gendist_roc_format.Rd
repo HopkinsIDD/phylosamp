@@ -33,7 +33,7 @@ of mut_rate poisson distribution}
 data frame with cutoff, sensitivity, and 1-specificity
 }
 \description{
-This is a wrapper function that takes output from the `gendist_sensspec_cutoff()` function and constructs values for the
+This is a wrapper function that takes output from the \code{gendist_sensspec_cutoff()} function and constructs values for the
 Receiver Operating Characteric (ROC) curve
 }
 \examples{
@@ -42,7 +42,7 @@ R <- 1.5
 mut_rate <- 1
 
 # use simulated generation distributions
-data("genDistSim")
+data('genDistSim')
 mean_gens_pdf <- as.numeric(genDistSim[genDistSim$R == R, -(1:2)])
 
 # get theoretical genetic distance dist based on mutation rate and generation parameters
@@ -51,9 +51,9 @@ dists <- as.data.frame(gendist_distribution(mut_rate = mut_rate,
                        max_link_gens = 1))
 
 dists <- reshape2::melt(dists,
-                        id.vars = "dist",
-                        variable.name = "status",
-                        value.name = "prob")
+                        id.vars = 'dist',
+                        variable.name = 'status',
+                        value.name = 'prob')
 
 # get sensitivity and specificity using the same paramters
 roc_calc <- gendist_roc_format(cutoff = 1:(max(dists$dist)-1),

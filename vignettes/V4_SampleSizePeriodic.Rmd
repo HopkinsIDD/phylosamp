@@ -19,8 +19,8 @@ Once we have an estimate of the coefficient of detection ratio, we can calculate
 |   **$p$**   |       prob       | the desired probability of detection           |
 |   **$t$**   |       t       | the number of days after introduction a variant should be detected by          |
 |   **$P_{V_1}$**    |       p_v1       | the desired prevalence to detect a variant by          |
-|   **$P_0$**   |       p0       | the initial variant prevalence (# introductions / population size)          |
-|   **$r$**   |       r       | the estimated logistic growth rate of the variant (per day)         |
+|   **$P_{0_{V_1}}$**   |       p0_v1       | the initial variant prevalence (# introductions / population size)          |
+|   **$r_{V_1}$**   |       r_v1       | the estimated logistic growth rate of the variant (per day)         |
 |   **$\omega$**   |       omega       | the sequencing success rate          |
 |   **$\frac{C_{V_1}}{C_{V_2}}$**   |       c_ratio       | the coefficient of detection ratio, calculated as the ratio of the coefficients of variant 1 to variant 2 (can be calculated using `calc_cod_ratio()`)           |
 
@@ -35,7 +35,7 @@ library(phylosamp)
 ```{r calc_samplesize_detect_cont}
 
 c1_c2 <- vartrack_cod_ratio(phi_v1=0.975, phi_v2=0.95, gamma_v1=0.8, gamma_v2=0.6)
-vartrack_samplesize_detect(prob=0.95, p_v1=0.01, p0=3/10000, r=0.1, 
+vartrack_samplesize_detect(prob=0.95, p_v1=0.01, p0_v1=3/10000, r_v1=0.1, 
                            omega=0.8, c_ratio=c1_c2, sampling_freq="cont")
 
 ```
@@ -47,7 +47,7 @@ If instead we are interested in detecting a variant within the first month of it
 ```{r calc_samplesize_detect_cont2}
 
 c1_c2 <- vartrack_cod_ratio(phi_v1=0.975, phi_v2=0.95, gamma_v1=0.8, gamma_v2=0.6)
-vartrack_samplesize_detect(prob=0.95, t=30, p0=3/10000, r=0.1, 
+vartrack_samplesize_detect(prob=0.95, t=30, p0_v1=3/10000, r_v1=0.1, 
                            omega=0.8, c_ratio=c1_c2, sampling_freq="cont")
 
 ```

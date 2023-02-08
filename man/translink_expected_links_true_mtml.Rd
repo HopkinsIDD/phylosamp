@@ -4,10 +4,10 @@
 \alias{translink_expected_links_true_mtml}
 \title{Calculate expected number of true transmission pairs assuming multiple-transmission and multiple-linkage}
 \usage{
-translink_expected_links_true_mtml(eta, rho, M, R)
+translink_expected_links_true_mtml(sensitivity, rho, M, R)
 }
 \arguments{
-\item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
+\item{sensitivity}{scalar or vector giving the sensitivity of the linkage criteria}
 
 \item{rho}{scalar or vector giving the proportion of the final outbreak size that is sampled}
 
@@ -22,13 +22,13 @@ scalar or vector giving the expected number of true transmission pairs in the sa
 This function calculates the expected number of true transmission pairs in a sample of size \code{M}.
 The multiple-transmission and multiple-linkage method assumes the following:
 \enumerate{
-     \item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
-     \item Each case \eqn{i} is allowed to be linked by the linkage criteria to multiple cases \eqn{j} in the sampled population (\eqn{M}).
-     \item Linkage events are independent of one another (i.e, linkage of case \eqn{i} to case \eqn{j} has no bearing on linkage of case \eqn{i} to any other sample).
-     }
+\item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
+\item Each case \eqn{i} is allowed to be linked by the linkage criteria to multiple cases \eqn{j} in the sampled population (\eqn{M}).
+\item Linkage events are independent of one another (i.e, linkage of case \eqn{i} to case \eqn{j} has no bearing on linkage of case \eqn{i} to any other sample).
+}
 }
 \examples{
-translink_expected_links_true_mtml(eta=0.95, rho=0.2, M=1000, R=1)
+translink_expected_links_true_mtml(sensitivity=0.95, rho=0.2, M=1000, R=1)
 
 }
 \seealso{

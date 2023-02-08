@@ -4,10 +4,16 @@
 \alias{translink_expected_links_true}
 \title{Calculate expected number of true transmission pairs}
 \usage{
-translink_expected_links_true(eta, rho, M, R = NULL, assumption = "mtml")
+translink_expected_links_true(
+  sensitivity,
+  rho,
+  M,
+  R = NULL,
+  assumption = "mtml"
+)
 }
 \arguments{
-\item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
+\item{sensitivity}{scalar or vector giving the sensitivity of the linkage criteria}
 
 \item{rho}{scalar or vector giving the proportion of the final outbreak size that is sampled}
 
@@ -17,10 +23,10 @@ translink_expected_links_true(eta, rho, M, R = NULL, assumption = "mtml")
 
 \item{assumption}{a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 \enumerate{
-     \item \code{'stsl'} for the single-transmission single-linkage assumption.
-     \item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
-     \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
-     }}
+\item \code{'stsl'} for the single-transmission single-linkage assumption.
+\item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
+\item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
+}}
 }
 \value{
 scalar or vector giving the expected number of true transmission pairs in the sample
@@ -30,7 +36,7 @@ This function calculates the expected number true transmission pairs in a sample
 Assumptions about transmission and linkage (single or multiple) can be specified.
 }
 \examples{
-translink_expected_links_true(eta=0.99, rho=0.75, M=100, R=1)
+translink_expected_links_true(sensitivity=0.99, rho=0.75, M=100, R=1)
 
 }
 \seealso{

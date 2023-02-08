@@ -4,10 +4,10 @@
 \alias{translink_expected_links_true_stsl}
 \title{Calculate expected number of true transmission pairs assuming single-transmission and single-linkage}
 \usage{
-translink_expected_links_true_stsl(eta, rho, M)
+translink_expected_links_true_stsl(sensitivity, rho, M)
 }
 \arguments{
-\item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
+\item{sensitivity}{scalar or vector giving the sensitivity of the linkage criteria}
 
 \item{rho}{scalar or vector giving the proportion of the final outbreak size that is sampled}
 
@@ -20,12 +20,12 @@ scalar or vector giving the expected number of true transmission pairs in the sa
 This function calculates the expected number of true transmission pairs in a sample of size \code{M}.
 The single-transmission and single-linkage method assumes the following:
 \enumerate{
-     \item Each case \eqn{i} is linked by transmissino to only one other case \eqn{j} in the population (\eqn{N}).
-     \item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
-     }
+\item Each case \eqn{i} is linked by transmissino to only one other case \eqn{j} in the population (\eqn{N}).
+\item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
+}
 }
 \examples{
-translink_expected_links_true_stsl(eta=0.95, rho=0.2, M=200)
+translink_expected_links_true_stsl(sensitivity=0.95, rho=0.2, M=200)
 
 }
 \seealso{

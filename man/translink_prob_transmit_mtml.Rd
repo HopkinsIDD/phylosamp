@@ -4,12 +4,12 @@
 \alias{translink_prob_transmit_mtml}
 \title{Calculate probability of transmission assuming multiple-transmission and multiple-linkage}
 \usage{
-translink_prob_transmit_mtml(eta, chi, rho, M, R)
+translink_prob_transmit_mtml(sensitivity, specificity, rho, M, R)
 }
 \arguments{
-\item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
+\item{sensitivity}{scalar or vector giving the sensitivity of the linkage criteria}
 
-\item{chi}{scalar or vector giving the specificity of the linkage criteria}
+\item{specificity}{scalar or vector giving the specificity of the linkage criteria}
 
 \item{rho}{scalar or vector giving the proportion of the final outbreak size that is sampled}
 
@@ -24,18 +24,18 @@ scalar or vector giving the probability of transmission between two cases given 
 This function calculates the probabilitiy that two cases are linked by direct transmission
 given that they have been linked by phylogenetic criteria. The multiple-transmission and multiple-linkage method assumes the following:
 \enumerate{
-     \item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
-     \item Each case \eqn{i} is allowed to be linked by the linkage criteria to multiple cases \eqn{j} in the sampled population (\eqn{M}).
-     \item Linkage events are independent of one another (i.e, linkage of case \eqn{i} to case \eqn{j} has no bearing on linkage of case \eqn{i} to any other sample).
-     }
+\item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})
+\item Each case \eqn{i} is allowed to be linked by the linkage criteria to multiple cases \eqn{j} in the sampled population (\eqn{M}).
+\item Linkage events are independent of one another (i.e, linkage of case \eqn{i} to case \eqn{j} has no bearing on linkage of case \eqn{i} to any other sample).
+}
 }
 \examples{
 # Perfect sensitivity and specificity
-translink_prob_transmit_mtml(eta=1, chi=1, rho=0.5, M=100, R=1)
+translink_prob_transmit_mtml(sensitivity=1, specificity=1, rho=0.5, M=100, R=1)
 
-translink_prob_transmit_mtml(eta=0.99, chi=0.9, rho=1, M=50, R=1)
+translink_prob_transmit_mtml(sensitivity=0.99, specificity=0.9, rho=1, M=50, R=1)
 
-translink_prob_transmit_mtml(eta=0.99, chi=0.9, rho=0.5, M=100, R=1)
+translink_prob_transmit_mtml(sensitivity=0.99, specificity=0.9, rho=0.5, M=100, R=1)
 
 }
 \seealso{

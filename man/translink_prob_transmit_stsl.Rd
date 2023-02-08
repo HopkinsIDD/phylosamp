@@ -4,12 +4,12 @@
 \alias{translink_prob_transmit_stsl}
 \title{Calculate probability of transmission assuming single-transmission and single-linkage}
 \usage{
-translink_prob_transmit_stsl(eta, chi, rho, M)
+translink_prob_transmit_stsl(sensitivity, specificity, rho, M)
 }
 \arguments{
-\item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
+\item{sensitivity}{scalar or vector giving the sensitivity of the linkage criteria}
 
-\item{chi}{scalar or vector giving the specificity of the linkage criteria}
+\item{specificity}{scalar or vector giving the specificity of the linkage criteria}
 
 \item{rho}{scalar or vector giving the proportion of the final outbreak size that is sampled}
 
@@ -22,23 +22,23 @@ scalar or vector giving the probability of transmission between two cases given 
 This function calculates the probabilitiy that two cases are linked by direct transmission
 given that they have been linked by phylogenetic criteria. The single-transmission and single-linkage method assumes the following:
 \enumerate{
-     \item Each case \eqn{i} is linked by transmission to only one other case \eqn{j} in the population (\eqn{N}).
-     \item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
-     }
+\item Each case \eqn{i} is linked by transmission to only one other case \eqn{j} in the population (\eqn{N}).
+\item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
+}
 }
 \details{
-For perfect sensitivity, set \code{eta = 1}.
+For perfect sensitivity, set \code{sensitivity = 1}.
 }
 \examples{
 # perfect sensitivity and specificity
-translink_prob_transmit_stsl(eta=1, chi=1, rho=0.2, M=100)
+translink_prob_transmit_stsl(sensitivity=1, specificity=1, rho=0.2, M=100)
 
 # perfect sensitivity only
-translink_prob_transmit_stsl(eta=1, chi=0.95, rho=0.2, M=100)
+translink_prob_transmit_stsl(sensitivity=1, specificity=0.95, rho=0.2, M=100)
 
-translink_prob_transmit_stsl(eta=0.99, chi=0.95, rho=0.9, M=50)
+translink_prob_transmit_stsl(sensitivity=0.99, specificity=0.95, rho=0.9, M=50)
 
-translink_prob_transmit_stsl(eta=0.99, chi=0.95, rho=0.05, M=100)
+translink_prob_transmit_stsl(sensitivity=0.99, specificity=0.95, rho=0.05, M=100)
 
 }
 \seealso{

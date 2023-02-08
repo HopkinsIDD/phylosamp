@@ -4,12 +4,19 @@
 \alias{translink_prob_transmit}
 \title{Calculate probability of transmission}
 \usage{
-translink_prob_transmit(eta, chi, rho, M, R, assumption = "mtml")
+translink_prob_transmit(
+  sensitivity,
+  specificity,
+  rho,
+  M,
+  R,
+  assumption = "mtml"
+)
 }
 \arguments{
-\item{eta}{scalar or vector giving the sensitivity of the linkage criteria}
+\item{sensitivity}{scalar or vector giving the sensitivity of the linkage criteria}
 
-\item{chi}{scalar or vector giving the specificity of the linkage criteria}
+\item{specificity}{scalar or vector giving the specificity of the linkage criteria}
 
 \item{rho}{scalar or vector giving the proportion of the final outbreak size that is sampled}
 
@@ -19,10 +26,10 @@ translink_prob_transmit(eta, chi, rho, M, R, assumption = "mtml")
 
 \item{assumption}{a character vector indicating which assumptions about transmission and linkage criteria. Default = \code{'mtml'}. Accepted arguments are:
 \enumerate{
-     \item \code{'stsl'} for the single-transmission single-linkage assumption.
-     \item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
-     \item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
-     }}
+\item \code{'stsl'} for the single-transmission single-linkage assumption.
+\item \code{'mtsl'} for the multiple-transmission single-linkage assumption.
+\item \code{'mtml'} for the multiple-transmission multiple-linkage assumption.
+}}
 }
 \value{
 scalar or vector giving the probability of transmission between two cases given linkage by phylogeneitic criteria
@@ -33,7 +40,7 @@ given that they have been linked by phylogenetic criteria.
 Assumptions about transmission and linkage (single or multiple) can be specified.
 }
 \examples{
-translink_prob_transmit(eta=0.99, chi=0.9, rho=0.5, M=100, R=1)
+translink_prob_transmit(sensitivity=0.99, specificity=0.9, rho=0.5, M=100, R=1)
 
 }
 \seealso{
