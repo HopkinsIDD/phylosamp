@@ -24,7 +24,7 @@ Assumptions about transmission and linkage (single or multiple) can be specified
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -98,12 +98,18 @@ Assumptions about transmission and linkage (single or multiple) can be specified
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">translink_expected_links_true</span><span class="op">(</span><span class="va">eta</span>, <span class="va">rho</span>, <span class="va">M</span>, R <span class="op">=</span> <span class="cn">NULL</span>, assumption <span class="op">=</span> <span class="st">"mtml"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">translink_expected_links_true</span><span class="op">(</span></span>
+<span>  <span class="va">sensitivity</span>,</span>
+<span>  <span class="va">rho</span>,</span>
+<span>  <span class="va">M</span>,</span>
+<span>  R <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  assumption <span class="op">=</span> <span class="st">"mtml"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>eta</dt>
+    <dl><dt>sensitivity</dt>
 <dd><p>scalar or vector giving the sensitivity of the linkage criteria</p></dd>
 
 
@@ -157,7 +163,7 @@ Assumptions about transmission and linkage (single or multiple) can be specified
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">translink_expected_links_true</span><span class="op">(</span>eta<span class="op">=</span><span class="fl">0.99</span>, rho<span class="op">=</span><span class="fl">0.75</span>, M<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">translink_expected_links_true</span><span class="op">(</span>sensitivity<span class="op">=</span><span class="fl">0.99</span>, rho<span class="op">=</span><span class="fl">0.75</span>, M<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Calculating expected number of links assuming multiple-transmission and multiple-linkage</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 74.25</span>
 <span class="r-in"><span></span></span>

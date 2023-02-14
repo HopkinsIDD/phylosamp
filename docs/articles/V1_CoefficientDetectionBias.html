@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -125,15 +125,28 @@ prevalence</h1>
     
 <p>This vignette provides an overview of functions that are useful for
 understanding bias in the detection of pathogen variants and estimation
-of their prevalence in a population. Central to these functions is the
-assumption that biological differences in pathogen variants may affect
-how infections are tested and characterized. For example, a variant that
-causes more severe clinical outcomes may result in a higher testing
-rate, since more individuals get sick enough to present at a healthcare
-facility. This higher testing rate may mean that a higher proportion of
-the samples selected for molecular characterization (e.g., sequencing)
-belong to this variant than the true underlying frequency of this
-variant in the population.</p>
+of their prevalence in a population. These functions are important
+because defining the population and estimating the parameters that may
+bias variant surveillance is often the first step in estimating the
+sample size needed to answer the questions at hand (<strong>Figure
+1</strong>).</p>
+<p><br></p>
+<div class="figure">
+<img src="variant-surveillance-decision-tree-02.png" style="width:80.0%" alt=""><p class="caption"><strong>Figure 1.</strong> Defining the population of
+interest and approximating population- and variant-specific parameters
+is the first step in designing any pathogen variant surveillance
+program.</p>
+</div>
+<p><br></p>
+<p>Central to these functions is the assumption that biological
+differences in pathogen variants may affect how infections are tested
+and characterized. For example, a variant that causes more severe
+clinical outcomes may result in a higher testing rate, since more
+individuals get sick enough to present at a healthcare facility. This
+higher testing rate may mean that a higher proportion of the samples
+selected for molecular characterization (e.g., sequencing) belong to
+this variant than the true underlying frequency of this variant in the
+population.</p>
 <p>The combination of the factors that may affect the detection and
 characterization of a particular variant can be summarized in a
 parameter termed the <em>coefficient of detection</em>, which in turn
@@ -179,42 +192,44 @@ some quality threshold</td>
 some quality threshold</td>
 </tr>
 <tr class="odd">
-<td align="center"><strong><span class="math inline">\(\alpha_{V_1}\)</span></strong></td>
-<td align="center">alpha_v1</td>
+<td align="center"><strong><span class="math inline">\(\psi_{V_1}\)</span></strong></td>
+<td align="center">psi_v1</td>
 <td>the probability that an infection caused by variant 1 is
 asymptomatic</td>
 </tr>
 <tr class="even">
-<td align="center"><strong><span class="math inline">\(\alpha_{V_2}\)</span></strong></td>
-<td align="center">alpha_v2</td>
+<td align="center"><strong><span class="math inline">\(\psi_{V_2}\)</span></strong></td>
+<td align="center">psi_v2</td>
 <td>the probability that an infection caused by variant 2 is
 asymptomatic</td>
 </tr>
 <tr class="odd">
-<td align="center"><strong><span class="math inline">\(\beta_{a}\)</span></strong></td>
-<td align="center">beta_a</td>
+<td align="center"><strong><span class="math inline">\(\tau_{a}\)</span></strong></td>
+<td align="center">tau_a</td>
 <td>the probability of testing an asymptomatic infection (any
 variant)</td>
 </tr>
 <tr class="even">
-<td align="center"><strong><span class="math inline">\(\beta_{s}\)</span></strong></td>
-<td align="center">beta_s</td>
+<td align="center"><strong><span class="math inline">\(\tau_{s}\)</span></strong></td>
+<td align="center">tau_s</td>
 <td>the probability of testing a symptomatic infection (any
 variant)</td>
 </tr>
 </tbody>
 </table>
 <p>While it may be difficult to estimate all of the parameters needed to
-estimate this coefficient, we find that only the <em>ratio</em> in the
-coefficients of detection for two variants (more commonly, the variant
-of interest and the values for the rest of the pathogen population) is
-necessary for understanding the biases in a sample. Therefore, it may
-not be necessary to estimate the true value of each parameter, provided
-we can estimate the ratio between their values for the two variants in
-question. We can use the <code><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio()</a></code> function to
-estimate the coefficient of detection ratio, only providing parameters
-which are expected to differ between variants. The ratio between any
-variants not provided is assumed to be equal to one.</p>
+estimate this coefficient (for examples on how to approximate these
+parameters in real-world scenarios, see <a href="V6_IllustrativeExample.html"><em>Variant surveillance example</em>
+vignette</a>), we find that only the <em>ratio</em> in the coefficients
+of detection for two variants (more commonly, the variant of interest
+and the values for the rest of the pathogen population) is necessary for
+understanding the biases in a sample. Therefore, it may not be necessary
+to estimate the true value of each parameter, provided we can estimate
+the ratio between their values for the two variants in question. We can
+use the <code><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio()</a></code> function to estimate the
+coefficient of detection ratio, only providing parameters which are
+expected to differ between variants. The ratio between any variants not
+provided is assumed to be equal to one.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/HopkinsIDD/phylosamp" class="external-link">phylosamp</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -260,6 +275,19 @@ observed variant prevalence divided by the true variance prevalence:</p>
 <code><a href="../reference/varfreq_obs_freq.html">varfreq_obs_freq()</a></code> function divided by the true underlying
 prevalence. This value tells use that we are overestimating the variant
 of interest frequency by roughly 25%.</p>
+<div class="section level5">
+<h5 id="sample-size-calculations">Sample size calculations<a class="anchor" aria-label="anchor" href="#sample-size-calculations"></a>
+</h5>
+<p>To learn more about the package functions that can be used to
+calculate the sample size needed to detect or monitor a variant given
+different sampling scenarios, see the <em>Estimating the sample size
+needed for variant monitoring</em> <a href="V2_SampleSizeCrossSectional.html"><em>cross-sectional</em></a> and
+<a href="V2_SampleSizeCrossSectional.html"><em>periodic
+sampling</em></a> vignettes. To learn more about the package functions
+that can be used to estimate the probability of variant detection, see
+the <em>Estimating the probability of detecting a variant</em> <a href="V3_ProbCrossSectional.html"><em>cross-sectional</em></a> and <a href="V5_ProbDetectPeriodic.html"><em>periodic sampling</em></a>
+vignettes.</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

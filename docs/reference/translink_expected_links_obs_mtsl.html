@@ -28,7 +28,7 @@ Each case \(i\) is allowed to be linked by the linkage criteria to only one othe
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -103,16 +103,16 @@ The multiple-transmission and single-linkage method assumes the following:</p><o
 </ol></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">translink_expected_links_obs_mtsl</span><span class="op">(</span><span class="va">chi</span>, <span class="va">eta</span>, <span class="va">rho</span>, <span class="va">M</span>, <span class="va">R</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">translink_expected_links_obs_mtsl</span><span class="op">(</span><span class="va">specificity</span>, <span class="va">sensitivity</span>, <span class="va">rho</span>, <span class="va">M</span>, <span class="va">R</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>chi</dt>
+    <dl><dt>specificity</dt>
 <dd><p>scalar or vector giving the specificity of the linkage criteria</p></dd>
 
 
-<dt>eta</dt>
+<dt>sensitivity</dt>
 <dd><p>scalar or vector giving the sensitivity of the linkage criteria</p></dd>
 
 
@@ -160,13 +160,13 @@ The multiple-transmission and single-linkage method assumes the following:</p><o
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Perfect sensitivity and specificity</span></span></span>
-<span class="r-in"><span><span class="fu">translink_expected_links_obs_mtsl</span><span class="op">(</span>eta<span class="op">=</span><span class="fl">1</span>, chi<span class="op">=</span><span class="fl">1</span>, rho<span class="op">=</span><span class="fl">0.5</span>, M<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">translink_expected_links_obs_mtsl</span><span class="op">(</span>sensitivity<span class="op">=</span><span class="fl">1</span>, specificity<span class="op">=</span><span class="fl">1</span>, rho<span class="op">=</span><span class="fl">0.5</span>, M<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 50</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">translink_expected_links_obs_mtsl</span><span class="op">(</span>eta<span class="op">=</span><span class="fl">0.99</span>, chi<span class="op">=</span><span class="fl">0.9</span>, rho<span class="op">=</span><span class="fl">1</span>, M<span class="op">=</span><span class="fl">50</span>, R<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">translink_expected_links_obs_mtsl</span><span class="op">(</span>sensitivity<span class="op">=</span><span class="fl">0.99</span>, specificity<span class="op">=</span><span class="fl">0.9</span>, rho<span class="op">=</span><span class="fl">1</span>, M<span class="op">=</span><span class="fl">50</span>, R<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 57.3837</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">translink_expected_links_obs_mtsl</span><span class="op">(</span>eta<span class="op">=</span><span class="fl">0.99</span>, chi<span class="op">=</span><span class="fl">0.9</span>, rho<span class="op">=</span><span class="fl">0.5</span>, M<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">translink_expected_links_obs_mtsl</span><span class="op">(</span>sensitivity<span class="op">=</span><span class="fl">0.99</span>, specificity<span class="op">=</span><span class="fl">0.9</span>, rho<span class="op">=</span><span class="fl">0.5</span>, M<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 78.7677</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

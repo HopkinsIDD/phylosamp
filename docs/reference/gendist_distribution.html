@@ -24,7 +24,7 @@ with the given parameters"><!-- mathjax --><script src="https://cdnjs.cloudflare
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -156,7 +156,7 @@ of mut_rate poisson distribution</p></dd>
 <span class="r-in"><span><span class="va">mut_rate</span> <span class="op">&lt;-</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># use simulated generation distributions from the provided 'genDistSim' data object</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"genDistSim"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'genDistSim'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mean_gens_pdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">genDistSim</span><span class="op">[</span><span class="va">genDistSim</span><span class="op">$</span><span class="va">R</span> <span class="op">==</span> <span class="va">R</span>, <span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># get theoretical genetic distance dist based on mutation rate and generation parameters</span></span></span>

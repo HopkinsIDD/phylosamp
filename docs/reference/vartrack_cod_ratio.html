@@ -26,7 +26,7 @@ Parameters not provided are assumed to be equivalent between the two variants.">
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -107,10 +107,10 @@ Parameters not provided are assumed to be equivalent between the two variants.</
 <span>  phi_v2 <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  gamma_v1 <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  gamma_v2 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  alpha_v1 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  alpha_v2 <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  beta_a <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  beta_s <span class="op">=</span> <span class="fl">1</span></span>
+<span>  psi_v1 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  psi_v2 <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  tau_a <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  tau_s <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -132,20 +132,20 @@ Parameters not provided are assumed to be equivalent between the two variants.</
 <dd><p>probability that a detected infection caused by variant 2 meets some quality threshold</p></dd>
 
 
-<dt>alpha_v1</dt>
+<dt>psi_v1</dt>
 <dd><p>probability that an infection caused by variant 1 is asymptomatic</p></dd>
 
 
-<dt>alpha_v2</dt>
+<dt>psi_v2</dt>
 <dd><p>probability that an infection caused by variant 2 is asymptomatic</p></dd>
 
 
-<dt>beta_a</dt>
-<dd><p>probability of testing an asymptomatic infection (any variant); note that this parameter is not required if alpha_v1==alpha_v2</p></dd>
+<dt>tau_a</dt>
+<dd><p>probability of testing an asymptomatic infection (any variant); note that this parameter is not required if psi_v1==psi_v2</p></dd>
 
 
-<dt>beta_s</dt>
-<dd><p>probability of testing a symptomatic infection (any variant); note that this parameter is not required if alpha_v1==alpha_v2</p></dd>
+<dt>tau_s</dt>
+<dd><p>probability of testing a symptomatic infection (any variant); note that this parameter is not required if psi_v1==psi_v2</p></dd>
 
 </dl></div>
     <div id="value">

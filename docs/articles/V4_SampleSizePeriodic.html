@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -127,22 +127,38 @@ monitoring</h1>
 <p>This vignette provides an overview of the functions that can be used
 to estimate the sample size needed to detect a pathogen variant in a
 population, given a periodic sampling scheme.</p>
+<div class="section level5">
+<h5 id="variant-detection">Variant detection<a class="anchor" aria-label="anchor" href="#variant-detection"></a>
+</h5>
+<div class="figure">
+<img src="variant-surveillance-decision-tree-05.png" style="width:80.0%" alt=""><p class="caption"><strong>Figure 1.</strong> Identifying the key
+question (detection vs prevalence) is the second step in designing a
+pathogen surveillance system. Determining the sample size needed to
+answer this question then requires determining the sampling frequency,
+i.e., if samples will be collected and sequenced just once
+(cross-sectional sampling) or with some regularity over a period of time
+(periodic surveillance).</p>
+</div>
+<p><br></p>
 <p>By specifying <code>sampling_freq = "cont"</code>, the
 <code><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect()</a></code> function can be used to
 calculate the sample size needed to detect a particular variant in the
 population within a specific number of days since its introduction, OR
 by the time a variant reaches a specific frequency. As when specifying
-cross-sectional sampling with <code>sampling_freq = "xsect"</code>,
-applying the <code><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect()</a></code> function to
-calculate a sample size assuming periodic sampling requires knowledge of
-the coefficient of detection ratio between two pathogen variants (or,
-more commonly, one variant and the rest of the pathogen population). The
-coefficient of detection ratio for two variants can be calculated using
-the <code><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio()</a></code> function. Since we are only
-interested in the ratio of the coefficients of detection, applying this
-function only requires providing parameters which are expected to differ
-between variants. The ratio between any variants not provided is assumed
-to be equal to one.</p>
+cross-sectional sampling with <code>sampling_freq = "xsect"</code> (see
+<em>Estimating the sample size needed for variant monitoring:</em> <a href="V2_SampleSizeCrossSectional.html"><em>cross-sectional
+sampling</em></a> for details), applying the
+<code><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect()</a></code> function to calculate a sample
+size assuming periodic sampling (<strong>Figure 1</strong>) requires
+knowledge of the coefficient of detection ratio between two pathogen
+variants (or, more commonly, one variant and the rest of the pathogen
+population). The coefficient of detection ratio for two variants can be
+calculated using the <code><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio()</a></code> function (see <a href="V1_CoefficientDetectionBias.html"><em>Estimating bias in observed
+variant prevalence</em></a>). Since we are only interested in the ratio
+of the coefficients of detection, applying this function only requires
+providing parameters which are expected to differ between variants. The
+ratio between any variants not provided is assumed to be equal to
+one.</p>
 <p>Once we have an estimate of the coefficient of detection ratio, we
 can calculate the sample size needed for detection from the following
 parameters:</p>
@@ -175,14 +191,14 @@ by</td>
 <td>the desired prevalence to detect a variant by</td>
 </tr>
 <tr class="even">
-<td align="center"><strong><span class="math inline">\(P_0\)</span></strong></td>
-<td align="center">p0</td>
+<td align="center"><strong><span class="math inline">\(P_{0_{V_1}}\)</span></strong></td>
+<td align="center">p0_v1</td>
 <td>the initial variant prevalence (# introductions / population
 size)</td>
 </tr>
 <tr class="odd">
-<td align="center"><strong><span class="math inline">\(r\)</span></strong></td>
-<td align="center">r</td>
+<td align="center"><strong><span class="math inline">\(r_{V_1}\)</span></strong></td>
+<td align="center">r_v1</td>
 <td>the estimated logistic growth rate of the variant (per day)</td>
 </tr>
 <tr class="even">
@@ -212,7 +228,7 @@ the population, we can apply the
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/HopkinsIDD/phylosamp" class="external-link">phylosamp</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">c1_c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>phi_v1<span class="op">=</span><span class="fl">0.975</span>, phi_v2<span class="op">=</span><span class="fl">0.95</span>, gamma_v1<span class="op">=</span><span class="fl">0.8</span>, gamma_v2<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fl">0.95</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0<span class="op">=</span><span class="fl">3</span><span class="op">/</span><span class="fl">10000</span>, r<span class="op">=</span><span class="fl">0.1</span>, </span>
+<span><span class="fu"><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fl">0.95</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0_v1<span class="op">=</span><span class="fl">3</span><span class="op">/</span><span class="fl">10000</span>, r_v1<span class="op">=</span><span class="fl">0.1</span>, </span>
 <span>                           omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="va">c1_c2</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating sample size for variant detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 25.81341</span></span></code></pre>
@@ -228,13 +244,24 @@ sequencing will occur on a weekly basis, this means we need to process
 <span class="math inline">\(26*7=182\)</span> samples per week (ideally
 from infections spread evenly over the 7 days) to ensure we detect a
 variant by the time it reaches 1% frequency in the population.</p>
+</div>
+<div class="section level5">
+<h5 id="variant-prevalence">Variant prevalence<a class="anchor" aria-label="anchor" href="#variant-prevalence"></a>
+</h5>
+<div class="figure">
+<img src="variant-surveillance-decision-tree-06.png" style="width:80.0%" alt=""><p class="caption"><strong>Figure 2.</strong> Other functions in the
+<code>phylosamp</code> package can be used to determine the sample size
+needed to accurately monitor variant prevalence given a periodic
+sampling strategy.</p>
+</div>
+<p><br></p>
 <p>If instead we are interested in detecting a variant within the first
 month of its introduction into the population (assuming all other
 parameters are the same as above), we can use the
 <code><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect()</a></code> function as follows:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">c1_c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>phi_v1<span class="op">=</span><span class="fl">0.975</span>, phi_v2<span class="op">=</span><span class="fl">0.95</span>, gamma_v1<span class="op">=</span><span class="fl">0.8</span>, gamma_v2<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fl">0.95</span>, t<span class="op">=</span><span class="fl">30</span>, p0<span class="op">=</span><span class="fl">3</span><span class="op">/</span><span class="fl">10000</span>, r<span class="op">=</span><span class="fl">0.1</span>, </span>
+<span><span class="fu"><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fl">0.95</span>, t<span class="op">=</span><span class="fl">30</span>, p0_v1<span class="op">=</span><span class="fl">3</span><span class="op">/</span><span class="fl">10000</span>, r_v1<span class="op">=</span><span class="fl">0.1</span>, </span>
 <span>                           omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="va">c1_c2</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating sample size for variant detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 47.98564</span></span></code></pre>
@@ -242,6 +269,17 @@ parameters are the same as above), we can use the
 day (which, assuming an 80% sequencing success rate, means generating 39
 high quality sequences per day) to ensure detection within the first
 month of variant introduction into the population.</p>
+</div>
+<div class="section level5">
+<h5 id="other-sampling-scenarios">Other sampling scenarios<a class="anchor" aria-label="anchor" href="#other-sampling-scenarios"></a>
+</h5>
+<p>For information on functions that can be used to estimate the sample
+size given a cross-sectional sampling approach, see <em>Estimating the
+sample size needed for variant monitoring:</em> <a href="V2_SampleSizeCrossSectional.html"><em>cross-sectional
+sampling</em></a>. These functions can also be used in “reverse”, to
+calculate the probability of detection given some sampling scheme, as in
+the <em>Estimating the probability of detecting a variant</em> <a href="V3_ProbCrossSectional.html"><em>cross-sectional</em></a> and <a href="V5_ProbDetectPeriodic.html"><em>periodic</em></a> vignettes.</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

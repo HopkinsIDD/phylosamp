@@ -34,6 +34,7 @@ reference:
   - starts_with("gendist")
   - optim_roc_threshold
   - genDistSim
+  - gen_dists
   
 - title: "Estimating variant frequency"
   desc: "Functions to esimtate the pathogen variant frequency in a population"
@@ -64,6 +65,18 @@ reference:
   desc: "Functions to calculate the sample size needed to estimate the prevalence of a variant in a population"
   contents:
   - matches("samplesize_prev")
+
+- title: internal
+  contents:
+  - falsediscoveryrate
+  - truediscoveryrate
+  - starts_with("prob_trans_")
+  - exp_links
+  - starts_with("obs_pairs_")
+  - starts_with("true_pairs")
+  - samplesize
+  - get_optim_roc
+  - starts_with("sens_spec_")
 
 navbar:
   components:

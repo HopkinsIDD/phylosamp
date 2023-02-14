@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -146,13 +146,13 @@ size of the outbreak, and the desired minimum true discovery rate (<span class="
 <tbody>
 <tr class="odd">
 <td align="center"><strong><span class="math inline">\(\eta\)</span></strong></td>
-<td align="center">eta</td>
+<td align="center">sensitivity</td>
 <td>the sensitivity of the linkage criteria for identifying transmission
 links</td>
 </tr>
 <tr class="even">
 <td align="center"><strong><span class="math inline">\(\chi\)</span></strong></td>
-<td align="center">chi</td>
+<td align="center">specificity</td>
 <td>the specificity of the linkage criteria for identifying transmission
 links</td>
 </tr>
@@ -168,7 +168,7 @@ links</td>
 </tr>
 <tr class="odd">
 <td align="center"><strong><span class="math inline">\(\phi\)</span></strong></td>
-<td align="center">phi</td>
+<td align="center">tdr</td>
 <td>the desired minimum true discovery rate</td>
 </tr>
 </tbody>
@@ -183,7 +183,8 @@ we use the default <code>assumption</code> argument,
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/HopkinsIDD/phylosamp" class="external-link">phylosamp</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/translink_samplesize.html">translink_samplesize</a></span><span class="op">(</span>eta<span class="op">=</span><span class="fl">0.99</span>, chi<span class="op">=</span><span class="fl">0.995</span>, N<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span>, phi<span class="op">=</span><span class="fl">0.75</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/translink_samplesize.html">translink_samplesize</a></span><span class="op">(</span>sensitivity<span class="op">=</span><span class="fl">0.99</span>, specificity<span class="op">=</span><span class="fl">0.995</span>, </span>
+<span>                     N<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span>, tdr<span class="op">=</span><span class="fl">0.75</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 10</span></span></code></pre>
 <p>Although 10 samples will ensure a false discovery rate of no more
 than 25%, 10 samples may not provide enough data for analysis. In this
@@ -192,21 +193,23 @@ require that the expected number of links (calculated using the
 <code><a href="../reference/translink_expected_links_obs.html">translink_expected_links_obs()</a></code> function) is at least some
 minimum value:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/translink_samplesize.html">translink_samplesize</a></span><span class="op">(</span>eta<span class="op">=</span><span class="fl">0.99</span>, chi<span class="op">=</span><span class="fl">0.995</span>, N<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span>, phi<span class="op">=</span><span class="fl">0.75</span>, min_pairs<span class="op">=</span><span class="fl">30</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/translink_samplesize.html">translink_samplesize</a></span><span class="op">(</span>sensitivity<span class="op">=</span><span class="fl">0.99</span>, specificity<span class="op">=</span><span class="fl">0.995</span>, </span>
+<span>                     N<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span>, tdr<span class="op">=</span><span class="fl">0.75</span>, min_pairs<span class="op">=</span><span class="fl">30</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 50</span></span></code></pre>
 <p>In another example, it may be crucial that links are identified with
 high certainty. So we increase the minimum true discovery rate to
 95%:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/translink_samplesize.html">translink_samplesize</a></span><span class="op">(</span>eta<span class="op">=</span><span class="fl">0.99</span>, chi<span class="op">=</span><span class="fl">0.995</span>, N<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span>, phi<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Error in translink_samplesize(eta = 0.99, chi = 0.995, N = 100, R = 1, : Input values do no produce a viable solution</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/translink_samplesize.html">translink_samplesize</a></span><span class="op">(</span>sensitivity<span class="op">=</span><span class="fl">0.99</span>, specificity<span class="op">=</span><span class="fl">0.995</span>, </span>
+<span>                     N<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span>, tdr<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error in translink_samplesize(sensitivity = 0.99, specificity = 0.995, : Input values do no produce a viable solution</span></span></code></pre>
 <p>This result suggests it is not possible to obtain such high certainty
 with this linkage criteria. We can confirm this with the
 <code>translink_tdr</code> function, which shows that even with 100%
 sampling of this outbreak, we will correctly identify transmission links
 no more than 80% of the time.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/translink_tdr.html">translink_tdr</a></span><span class="op">(</span>eta<span class="op">=</span><span class="fl">0.99</span>, chi<span class="op">=</span><span class="fl">0.995</span>, rho<span class="op">=</span><span class="fl">1</span>, M<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/translink_tdr.html">translink_tdr</a></span><span class="op">(</span>sensitivity<span class="op">=</span><span class="fl">0.99</span>, specificity<span class="op">=</span><span class="fl">0.995</span>, rho<span class="op">=</span><span class="fl">1</span>, M<span class="op">=</span><span class="fl">100</span>, R<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating true discovery rate assuming multiple-transmission and multiple-linkage</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 0.8032454</span></span></code></pre>
 <p>Further exploration of the <code><a href="../reference/translink_samplesize.html">translink_samplesize()</a></code>

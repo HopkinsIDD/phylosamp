@@ -26,7 +26,7 @@ It assumes a periodic sampling strategy, where samples are collected at regular 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -107,8 +107,8 @@ It assumes a periodic sampling strategy, where samples are collected at regular 
 <span>  t <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  p_v1 <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  <span class="va">omega</span>,</span>
-<span>  <span class="va">p0</span>,</span>
-<span>  <span class="va">r</span>,</span>
+<span>  <span class="va">p0_v1</span>,</span>
+<span>  <span class="va">r_v1</span>,</span>
 <span>  c_ratio <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -131,11 +131,11 @@ It assumes a periodic sampling strategy, where samples are collected at regular 
 <dd><p>probability of sequencing (or other characterization) success</p></dd>
 
 
-<dt>p0</dt>
+<dt>p0_v1</dt>
 <dd><p>initial variant prevalence (# introductions / infected population size)</p></dd>
 
 
-<dt>r</dt>
+<dt>r_v1</dt>
 <dd><p>logistic growth rate</p></dd>
 
 
@@ -176,7 +176,8 @@ It assumes a periodic sampling strategy, where samples are collected at regular 
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">vartrack_samplesize_detect_cont</span><span class="op">(</span>prob <span class="op">=</span> <span class="fl">0.95</span>, t <span class="op">=</span> <span class="fl">30</span>, omega <span class="op">=</span> <span class="fl">0.8</span>, p0 <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r <span class="op">=</span> <span class="fl">0.1</span>, c_ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">vartrack_samplesize_detect_cont</span><span class="op">(</span>prob <span class="op">=</span> <span class="fl">0.95</span>, t <span class="op">=</span> <span class="fl">30</span>, omega <span class="op">=</span> <span class="fl">0.8</span>, </span></span>
+<span class="r-in"><span>p0_v1 <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r_v1 <span class="op">=</span> <span class="fl">0.1</span>, c_ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 196.3915</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -128,20 +128,32 @@ variant</h1>
 to estimate the probability of detecting a pathogen variant in a
 population, given a periodic sampling scheme with a fixed sample
 size.</p>
+<div class="figure">
+<img src="variant-surveillance-decision-tree-05.png" style="width:80.0%" alt=""><p class="caption"><strong>Figure 1.</strong> Identifying the key
+question (detection vs prevalence) is the second step in designing a
+pathogen surveillance system. Determining confidence in the result
+(e.g., the probability of detection or confidence in frequency
+estimation) then requires determining the sampling frequency
+(cross-sectional or periodic).</p>
+</div>
+<p><br></p>
 <p>By specifying <code>sampling_freq = "cont"</code>, the
 <code><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect()</a></code> function can be used to
 calculate the probability of detecting a particular variant in the
 population within a specific number of days since its introduction, OR
 by the time the variant reaches a specific frequency. As with the
-cross-sectional option (<code>sampling_freq = "xsect"</code>), this
+cross-sectional option (<code>sampling_freq = "xsect"</code>; see
+<em>Estimating the probability of detecting a variant:</em> <a href="V3_ProbCrossSectional.html"><em>cross-sectional</em></a>), this
 requires knowledge of the coefficient of detection ratio between two
 pathogen variants (or, more commonly, one variant and the rest of the
 pathogen population). The coefficient of detection ratio for two
 variants can be calculated using the <code><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio()</a></code>
-function. Since we are only interested in the ratio of the coefficients
-of detection, applying this function only requires providing parameters
-which are expected to differ between variants. The ratio between any
-variants not provided is assumed to be equal to one.</p>
+function (see <a href="V1_CoefficientDetectionBias.html"><em>Estimating
+bias in observed variant prevalence</em></a> for more details). Since we
+are only interested in the ratio of the coefficients of detection,
+applying this function only requires providing parameters which are
+expected to differ between variants. The ratio between any variants not
+provided is assumed to be equal to one.</p>
 <p>Once we have an estimate of the coefficient of detection ratio, we
 can calculate the sample size needed for detection from the following
 parameters:</p>
@@ -179,14 +191,14 @@ by</td>
 <td>the sequencing success rate</td>
 </tr>
 <tr class="odd">
-<td align="center"><strong><span class="math inline">\(P_0\)</span></strong></td>
-<td align="center">p0</td>
+<td align="center"><strong><span class="math inline">\(P_{0_{V_1}}\)</span></strong></td>
+<td align="center">p0_v1</td>
 <td>the initial variant prevalence (# introductions / population
 size)</td>
 </tr>
 <tr class="even">
-<td align="center"><strong><span class="math inline">\(r\)</span></strong></td>
-<td align="center">r</td>
+<td align="center"><strong><span class="math inline">\(r_{V_1}\)</span></strong></td>
+<td align="center">r_v1</td>
 <td>the estimated logistic growth rate of the variant (per day)</td>
 </tr>
 <tr class="odd">
@@ -210,8 +222,8 @@ apply the <code><a href="../reference/vartrack_prob_detect.html">vartrack_prob_d
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/HopkinsIDD/phylosamp" class="external-link">phylosamp</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">c1_c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>phi_v1<span class="op">=</span><span class="fl">0.975</span>, phi_v2<span class="op">=</span><span class="fl">0.95</span>, gamma_v1<span class="op">=</span><span class="fl">0.8</span>, gamma_v2<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, omega<span class="op">=</span><span class="fl">0.8</span>, p0<span class="op">=</span><span class="fl">3</span><span class="op">/</span><span class="fl">10000</span>, </span>
-<span>                          r<span class="op">=</span><span class="fl">0.1</span>, c_ratio<span class="op">=</span><span class="va">c1_c2</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, omega<span class="op">=</span><span class="fl">0.8</span>, p0_v1<span class="op">=</span><span class="fl">3</span><span class="op">/</span><span class="fl">10000</span>, </span>
+<span>                          r_v1<span class="op">=</span><span class="fl">0.1</span>, c_ratio<span class="op">=</span><span class="va">c1_c2</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating probability of detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 0.9018312</span></span></code></pre>
 <p>In other words, we have a 90% probability of detecting a variant by
@@ -224,13 +236,29 @@ parameters are the same as above), we can use the
 <code>calc_prob_detect()</code> function as follows:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">c1_c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>phi_v1<span class="op">=</span><span class="fl">0.975</span>, phi_v2<span class="op">=</span><span class="fl">0.95</span>, gamma_v1<span class="op">=</span><span class="fl">0.8</span>, gamma_v2<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>, t<span class="op">=</span><span class="fl">30</span>, omega<span class="op">=</span><span class="fl">0.8</span>, p0<span class="op">=</span><span class="fl">3</span><span class="op">/</span><span class="fl">10000</span>, r<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>, t<span class="op">=</span><span class="fl">30</span>, omega<span class="op">=</span><span class="fl">0.8</span>, p0_v1<span class="op">=</span><span class="fl">3</span><span class="op">/</span><span class="fl">10000</span>, r_v1<span class="op">=</span><span class="fl">0.1</span>,</span>
 <span>                     c_ratio<span class="op">=</span><span class="va">c1_c2</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating probability of detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 0.7130925</span></span></code></pre>
 <p>Here we can see that we have only a 71% chance of detecting the
 variant within 30 days given the same sampling scheme and sequencing
 success rate.</p>
+<div class="section level5">
+<h5 id="variant-prevalence">Variant prevalence<a class="anchor" aria-label="anchor" href="#variant-prevalence"></a>
+</h5>
+<div class="figure">
+<img src="variant-surveillance-decision-tree-06.png" style="width:80.0%" alt=""><p class="caption"><strong>Figure 2.</strong> The <code>phylosamp</code>
+package currently does not provide functionality for estimating the
+confidence in a prevalence estimate given a periodic sampling
+strategy.</p>
+</div>
+<p><br></p>
+<p>The <code>phylosamp</code> package currently does not provide
+functionality for estimating the confidence in a prevalence estimate
+given a periodic sampling strategy. However, it can be used to calculate
+the sample size needed given a confidence level and either <a href="V4_SampleSizePeriodic.html">periodic</a> or <a href="V2_SampleSizeCrossSectional.html">cross-sectional</a> sampling
+strategies.</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -28,7 +28,7 @@ Each case \(i\) is linked by the linkage criteria to only one other case \(j\) i
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -103,16 +103,16 @@ The single-transmission and single-linkage method assumes the following:</p><ol>
 </ol></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">translink_expected_links_obs_stsl</span><span class="op">(</span><span class="va">eta</span>, <span class="va">chi</span>, <span class="va">rho</span>, <span class="va">M</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">translink_expected_links_obs_stsl</span><span class="op">(</span><span class="va">sensitivity</span>, <span class="va">specificity</span>, <span class="va">rho</span>, <span class="va">M</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>eta</dt>
+    <dl><dt>sensitivity</dt>
 <dd><p>scalar or vector giving the sensitivity of the linkage criteria</p></dd>
 
 
-<dt>chi</dt>
+<dt>specificity</dt>
 <dd><p>scalar or vector giving the specificity of the linkage criteria</p></dd>
 
 
@@ -156,13 +156,13 @@ The single-transmission and single-linkage method assumes the following:</p><ol>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># perfect sensitivity and specificity</span></span></span>
-<span class="r-in"><span><span class="fu">translink_expected_links_obs_stsl</span><span class="op">(</span>eta<span class="op">=</span><span class="fl">1</span>, chi<span class="op">=</span><span class="fl">1</span>, rho<span class="op">=</span><span class="fl">0.5</span>, M<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">translink_expected_links_obs_stsl</span><span class="op">(</span>sensitivity<span class="op">=</span><span class="fl">1</span>, specificity<span class="op">=</span><span class="fl">1</span>, rho<span class="op">=</span><span class="fl">0.5</span>, M<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 25</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">translink_expected_links_obs_stsl</span><span class="op">(</span>eta<span class="op">=</span><span class="fl">0.99</span>, chi<span class="op">=</span><span class="fl">0.9</span>, rho<span class="op">=</span><span class="fl">1</span>, M<span class="op">=</span><span class="fl">50</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">translink_expected_links_obs_stsl</span><span class="op">(</span>sensitivity<span class="op">=</span><span class="fl">0.99</span>, specificity<span class="op">=</span><span class="fl">0.9</span>, rho<span class="op">=</span><span class="fl">1</span>, M<span class="op">=</span><span class="fl">50</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 24.99841</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">translink_expected_links_obs_stsl</span><span class="op">(</span>eta<span class="op">=</span><span class="fl">0.99</span>, chi<span class="op">=</span><span class="fl">0.9</span>, rho<span class="op">=</span><span class="fl">0.5</span>, M<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">translink_expected_links_obs_stsl</span><span class="op">(</span>sensitivity<span class="op">=</span><span class="fl">0.99</span>, specificity<span class="op">=</span><span class="fl">0.9</span>, rho<span class="op">=</span><span class="fl">0.5</span>, M<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 49.99925</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

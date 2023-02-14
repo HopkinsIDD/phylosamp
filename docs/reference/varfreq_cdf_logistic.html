@@ -24,7 +24,7 @@ given a logistic growth rate and initial variant prevalence."><!-- mathjax --><s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@ given a logistic growth rate and initial variant prevalence.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">varfreq_cdf_logistic</span><span class="op">(</span><span class="va">t</span>, <span class="va">p0</span>, <span class="va">r</span>, c_ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">varfreq_cdf_logistic</span><span class="op">(</span><span class="va">t</span>, <span class="va">p0_v1</span>, <span class="va">r_v1</span>, c_ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -107,11 +107,11 @@ given a logistic growth rate and initial variant prevalence.</p>
 <dd><p>time step number (e.g., days) at which to calculate prevalence</p></dd>
 
 
-<dt>p0</dt>
+<dt>p0_v1</dt>
 <dd><p>initial variant prevalence (# introductions / infected population size)</p></dd>
 
 
-<dt>r</dt>
+<dt>r_v1</dt>
 <dd><p>logistic growth rate</p></dd>
 
 
@@ -141,7 +141,7 @@ given a logistic growth rate and initial variant prevalence.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">varfreq_cdf_logistic</span><span class="op">(</span>t <span class="op">=</span> <span class="fl">30</span>, p0 <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r <span class="op">=</span> <span class="fl">0.1</span>, c_ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">varfreq_cdf_logistic</span><span class="op">(</span>t <span class="op">=</span> <span class="fl">30</span>, p0_v1 <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r_v1 <span class="op">=</span> <span class="fl">0.1</span>, c_ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 92.12247</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

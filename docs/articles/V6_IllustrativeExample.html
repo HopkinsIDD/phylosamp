@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -126,85 +126,103 @@
 prepare for the emergence of a new variant of a SARS-CoV-2-like pathogen
 into a fictional population, based on current whole genome sequencing
 capacity and experience with previous variants of concern.</p>
-<p>The first step in applying our method is to determine the population
-of interest. In this example, we’ll assume we are interested in tracking
-variants of Pathogen X in a small country with a well-defined
-population. Next, we need to identify the key question we are trying to
-answer with our surveillance scheme. In this example, we will assume we
-are interested in calculating the sample size needed to detect the
-emergence of a new variant of Pathogen X by the time it reaches a
-frequency of 1% across all infected individuals in our country. In other
-words, we will focus on <strong>variant detection</strong>. Finally, we
-need to identify the sampling frequency we have the capacity to
-maintain. In our case, we’ll assume we want to develop a weekly sampling
-scheme, in which pathogen samples collected over a 7-day period are
-sequenced in weekly batches (i.e., <strong>periodic
-surveillance</strong>).</p>
+<p>There are three steps in applying our method:</p>
+<ol style="list-style-type: decimal">
+<li><p>Determine the population of interest (<strong>Figure 1</strong>).
+In this example, we’ll assume we are interested in tracking variants of
+Pathogen X in a small country with a well-defined population.</p></li>
+<li><p>Identify the key question we are trying to answer with our
+surveillance scheme. In this example, we will assume we are interested
+in calculating the sample size needed to detect the emergence of a new
+variant of Pathogen X by the time it reaches a frequency of 1% across
+all infected individuals in our country. In other words, we will focus
+on <strong>variant detection</strong>.</p></li>
+<li><p>Identify the sampling frequency we have the capacity to maintain.
+In our case, we’ll assume we want to develop a weekly sampling scheme,
+in which pathogen samples collected over a 7-day period are sequenced in
+weekly batches (i.e., <strong>periodic surveillance</strong>).</p></li>
+</ol>
+<div class="figure">
+<img src="variant-surveillance-decision-tree-01.png" style="width:80.0%" alt=""><p class="caption"><strong>Figure 1.</strong> Key steps in setting up a
+pathogen surveillance system.</p>
+</div>
+<p><br></p>
 <p>Now that we’ve identified our surveillance goals, we need to estimate
 some basic parameters for our population of interest, such as the
 pathogen testing rate, the sensitivity of the tests used, etc. However,
 since these values may vary by pathogen variant, we need to explore and
 estimate these parameters in a variant-specific context. In the current
 implementation of the sample size calculation methodology described
-herein, the specific parameters we will need to consider are (see Table
-1): the variant-specific asymptomatic rate, the asymptomatic and
-symptomatic testing rates, the variant-specific testing sensitivity
-using currently available technologies, the variant-specific sampling
-success rate (i.e., the expected number of samples of high enough
-quality for variant characterization by whole genome sequencing), and
-the sequencing success rate. Let’s consider each of these parameters in
-turn.</p>
+herein, the specific parameters we will need to consider are (see
+<strong>Table 1</strong>): the variant-specific asymptomatic rate, the
+asymptomatic and symptomatic testing rates, the variant-specific testing
+sensitivity using currently available technologies, the variant-specific
+sampling success rate (i.e., the expected number of samples of high
+enough quality for variant characterization by whole genome sequencing),
+and the sequencing success rate. Let’s consider each of these parameters
+in turn (see also: <a href="V1_CoefficientDetectionBias.html"><em>Estimating bias in observed
+variant prevalence</em></a>).</p>
 <div class="section level3">
-<h3 id="variant-specific-parameter-estimation">Variant-specific parameter estimation<a class="anchor" aria-label="anchor" href="#variant-specific-parameter-estimation"></a>
+<h3 id="guidance-for-determining-variant-specific-parameters">Guidance for determining variant-specific parameters<a class="anchor" aria-label="anchor" href="#guidance-for-determining-variant-specific-parameters"></a>
 </h3>
-<p><em>The asymptomatic rate (<span class="math inline">\(\alpha\)</span>)</em>. So far, epidemiologists
-have determined that the asymptomatic rate of Pathogen X has ranged from
-30-40%. The currently circulating variant has an asymptomatic rate of
-30%. Given this, we want to plan for variants that could have
-asymptomatic rates ranging from 25-45%. A lower asymptomatic rate causes
-enrichment of the variant in sampled infections; conversely, a higher
-asymptomatic rate would artificially deplete samples belonging to the
-variant of interest in the pool of detected infections. Therefore, an
-asymptomatic rate of 25% represents the least conservative scenario
-(since enrichment of a variant of interest would mean fewer sequences
-are required to detect it) while an asymptomatic rate of 45% represents
-the most conservative scenario.</p>
-<p><em>The testing rate (<span class="math inline">\(\beta\)</span>)</em>. Given the widespread
-availability of rapid antigen tests for Pathogen X, we assume that only
-50% of symptomatic infections (of any variant) are tested, and only 10%
-of asymptomatic infections are detected and samples sent to national
-public health laboratories. We anticipate that testing rates could drop
-as low as 40% (symptomatic) / 5% (asymptomatic) as the population
-becomes increasingly desensitized to disease spread. Because of the
-complex relationship between testing rates and sampling bias, we’ll
-explore these two scenarios independently when performing sample size
-calculations.</p>
-<p><em>The testing sensitivity (<span class="math inline">\(\phi\)</span>)</em>. The current gold-standard PCR
-test for Pathogen X has a sensitivity of 95% for the currently
-circulating variant. Historical data shows this rate has changed very
-little between variants. However, to account for the possibility that a
-future variant may significantly change the viral load present in
-patient samples or mutate in such a way that tests temporarily become
-less effective (until an updated PCR target can be developed), we will
-perform sample size calculations assuming no change in sensitivity
-(least conservative scenario) as well as a drop in sensitivity down to
-90% (most conservative scenario).</p>
-<p><em>The sampling success rate (<span class="math inline">\(\gamma\)</span>)</em>. In many laboratory
-settings, viral load is measured for each sample by qPCR prior to
-sequencing, and the results are used to select samples for sequencing.
-Only sequencing the highest quality samples ensures the sequencing
-process is maximally cost effective. For the sake of example, we will
-assume that the sampling success rate is expected to be the same across
-all potential variants. However, we can imagine that a variant with a
-lower sampling success rate would require additional sampling for
-accurate detection.</p>
-<p><em>The sequencing success rate (<span class="math inline">\(\omega\)</span>)</em>. Not all samples selected
-for sequencing will produce high quality genomes that can be used for
-variant characterization. We assume that sequencing success is fixed
-across all variants, as the factors that affect sequencing success are
-not independent of those affecting infection detection and sample
-quality. In the national laboratory of our country of interest, the
-sequencing success rate is 80%.</p>
+<p><em>The asymptomatic rate (<span class="math inline">\(\psi\)</span>)</em>.</p>
+<ul>
+<li>So far, epidemiologists have determined that the asymptomatic rate
+of Pathogen X has ranged from 30-40%. The currently circulating variant
+has an asymptomatic rate of 30%. Given this, we want to plan for
+variants that could have asymptomatic rates ranging from 25-45%. A lower
+asymptomatic rate causes enrichment of the variant in sampled
+infections; conversely, a higher asymptomatic rate would artificially
+deplete samples belonging to the variant of interest in the pool of
+detected infections. Therefore, an asymptomatic rate of 25% represents
+the least conservative scenario (since enrichment of a variant of
+interest would mean fewer sequences are required to detect it) while an
+asymptomatic rate of 45% represents the most conservative scenario.</li>
+</ul>
+<p><em>The testing rate (<span class="math inline">\(\tau\)</span>)</em>.</p>
+<ul>
+<li>Given the widespread availability of rapid antigen tests for
+Pathogen X, we assume that only 50% of symptomatic infections (of any
+variant) are tested, and only 10% of asymptomatic infections are
+detected and samples sent to national public health laboratories. We
+anticipate that testing rates could drop as low as 40% (symptomatic) /
+5% (asymptomatic) as the population becomes increasingly desensitized to
+disease spread. Because of the complex relationship between testing
+rates and sampling bias, we’ll explore these two scenarios independently
+when performing sample size calculations.</li>
+</ul>
+<p><em>The testing sensitivity (<span class="math inline">\(\phi\)</span>)</em>.</p>
+<ul>
+<li>The current gold-standard PCR test for Pathogen X has a sensitivity
+of 95% for the currently circulating variant. Historical data shows this
+rate has changed very little between variants. However, to account for
+the possibility that a future variant may significantly change the viral
+load present in patient samples or mutate in such a way that tests
+temporarily become less effective (until an updated PCR target can be
+developed), we will perform sample size calculations assuming no change
+in sensitivity (least conservative scenario) as well as a drop in
+sensitivity down to 90% (most conservative scenario).</li>
+</ul>
+<p><em>The sampling success rate (<span class="math inline">\(\gamma\)</span>)</em>.</p>
+<ul>
+<li>In many laboratory settings, viral load is measured for each sample
+by qPCR prior to sequencing, and the results are used to select samples
+for sequencing. Only sequencing the highest quality samples ensures the
+sequencing process is maximally cost effective. For the sake of example,
+we will assume that the sampling success rate is expected to be the same
+across all potential variants. However, we can imagine that a variant
+with a lower sampling success rate would require additional sampling for
+accurate detection.</li>
+</ul>
+<p><em>The sequencing success rate (<span class="math inline">\(\omega\)</span>)</em>.</p>
+<ul>
+<li>Not all samples selected for sequencing will produce high quality
+genomes that can be used for variant characterization. We assume that
+sequencing success is fixed across all variants, as the factors that
+affect sequencing success are not independent of those affecting
+infection detection and sample quality. In the national laboratory of
+our country of interest, the sequencing success rate is 80%.</li>
+</ul>
 </div>
 <div class="section level3">
 <h3 id="the-coefficient-of-detection-ratio">The coefficient of detection ratio<a class="anchor" aria-label="anchor" href="#the-coefficient-of-detection-ratio"></a>
@@ -212,7 +230,9 @@ sequencing success rate is 80%.</p>
 <p>Once we have estimated the parameter ranges of interest, we can
 calculate the <strong>coefficient of detection</strong> in the most and
 least conservative scenarios. We can do this using the
-<code><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio()</a></code> function as shown below.</p>
+<code><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio()</a></code> function as shown below (for more
+details, see <a href="V1_CoefficientDetectionBias.html"><em>Estimating
+bias in observed variant prevalence</em></a>).</p>
 <p>When calculating the coefficient of detection, keep in mind that the
 <span class="math inline">\(\gamma\)</span> parameter can be left out
 for both the variant of interest and general population parameters,
@@ -228,21 +248,21 @@ correspond to the general pathogen population.)</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/HopkinsIDD/phylosamp" class="external-link">phylosamp</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Least conservative scenario assuming higher testing rate:</span></span>
-<span><span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>alpha_v1<span class="op">=</span><span class="fl">0.25</span>, alpha_v2<span class="op">=</span><span class="fl">0.3</span>, beta_a<span class="op">=</span><span class="fl">0.1</span>, beta_s<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>psi_v1<span class="op">=</span><span class="fl">0.25</span>, psi_v2<span class="op">=</span><span class="fl">0.3</span>, tau_a<span class="op">=</span><span class="fl">0.1</span>, tau_s<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 1.052632</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Least conservative scenario assuming lower testing rate:</span></span>
-<span><span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>alpha_v1<span class="op">=</span><span class="fl">0.25</span>, alpha_v2<span class="op">=</span><span class="fl">0.3</span>, beta_a<span class="op">=</span><span class="fl">0.05</span>, beta_s<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>psi_v1<span class="op">=</span><span class="fl">0.25</span>, psi_v2<span class="op">=</span><span class="fl">0.3</span>, tau_a<span class="op">=</span><span class="fl">0.05</span>, tau_s<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 1.059322</span></span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Most conservative scenario assuming higher testing rate:</span></span>
-<span><span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>alpha_v1<span class="op">=</span><span class="fl">0.45</span>, alpha_v2<span class="op">=</span><span class="fl">0.3</span>, phi_v1<span class="op">=</span><span class="fl">0.9</span>, phi_v2<span class="op">=</span><span class="fl">0.95</span>,</span>
-<span>                   beta_a<span class="op">=</span><span class="fl">0.1</span>, beta_s<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>psi_v1<span class="op">=</span><span class="fl">0.45</span>, psi_v2<span class="op">=</span><span class="fl">0.3</span>, phi_v1<span class="op">=</span><span class="fl">0.9</span>, phi_v2<span class="op">=</span><span class="fl">0.95</span>,</span>
+<span>                   tau_a<span class="op">=</span><span class="fl">0.1</span>, tau_s<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.7977839</span></span></code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Most conservative scenario assuming lower testing rate:</span></span>
-<span><span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>alpha_v1<span class="op">=</span><span class="fl">0.45</span>, alpha_v2<span class="op">=</span><span class="fl">0.3</span>, phi_v1<span class="op">=</span><span class="fl">0.9</span>, phi_v2<span class="op">=</span><span class="fl">0.95</span>,</span>
-<span>                   beta_a<span class="op">=</span><span class="fl">0.05</span>, beta_s<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>psi_v1<span class="op">=</span><span class="fl">0.45</span>, psi_v2<span class="op">=</span><span class="fl">0.3</span>, phi_v1<span class="op">=</span><span class="fl">0.9</span>, phi_v2<span class="op">=</span><span class="fl">0.95</span>,</span>
+<span>                   tau_a<span class="op">=</span><span class="fl">0.05</span>, tau_s<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.778769</span></span></code></pre>
 <p>Given these results, we can move forward to sample size calculations
 with two values of the coefficient of detection ratio to test: 0.779
@@ -257,72 +277,84 @@ we can perform sample size calculations. As our aim is to ensure variant
 detection using a periodic sampling strategy, we need to use the
 <code>sampling_freq = "cont"</code> option of the
 <code><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect()</a></code> function of the
-<code>phylosamp</code> R package.</p>
+<code>phylosamp</code> R package (see <em>Estimating the sample size
+needed for variant monitoring:</em> <a href="V4_SampleSizePeriodic.html"><em>periodic sampling</em></a> for
+more details).</p>
 <p>To do this, there are a few more parameters we need to estimate:</p>
-<p><em>The desired probability of detection (<span class="math inline">\(prob\)</span>)</em>. We can again select a
-parameter range to explore for our sample size calculations. In our
-case, we want to ensure a good chance of detecting a new variant of
-Pathogen X when it enters our country, so we will explore probabilities
-of detection between 75% (least conservative) to 95% (most
-conservative).</p>
-<p><em>The desired variant prevalence (<span class="math inline">\(p_{\text{detect}}\)</span>)</em>. As stated above,
-we want to ensure we catch any variant by the time it has reached 1%
-prevalence in the population of infected individuals.</p>
-<p><em>Initial variant prevalence (<span class="math inline">\(p_0\)</span>)</em>. The method we will use for
-sample size calculations assumes logistic growth of any new variants of
-concern, with a starting prevalence and growth rate that can be
-specified. This initial prevalence depends on the number of simultaneous
-variant introductions into our country of interest as well as the total
-infected population size. Over the last year, we have observed a total
-of between 5,000 and 10,000 total cases of Pathogen X in our country at
-any given time, and we expect the number of cases to be similar if a new
-variant is introduced. Because of the complex relationship between
-initial prevalence and the shape of the logistic growth curve, we will
-estimate the required sample size in two scenarios: (1) if a new variant
-could be introduced via a single index case, at a time when nearly
-10,000 people are infected (initial prevalence <span class="math inline">\(=1/10000\)</span>); and (2) if 5 different
-travelers are be infected by a new variant and bring it into the country
-in the same week, at a time when only 5,000 individuals are infected
-(initial prevalence <span class="math inline">\(=5/5000=1/1000\)</span>).</p>
-<p><em>Logistic growth rate (<span class="math inline">\(r\)</span>)</em>. We also need to estimate a
-variant growth rate over time. Based on historical data of Pathogen X,
-we know that a recently introduced variant may grow as slowly as
-0.1x/day (least conservative, as fewer samples are needed to ensure we
-catch the variant before it goes above 1% frequency) or as quickly as
-0.2x/day (most conservative).</p>
+<p><em>The desired probability of detection (<span class="math inline">\(prob\)</span>)</em>.</p>
+<ul>
+<li>We can again select a parameter range to explore for our sample size
+calculations. In our case, we want to ensure a good chance of detecting
+a new variant of Pathogen X when it enters our country, so we will
+explore probabilities of detection between 75% (least conservative) to
+95% (most conservative).</li>
+</ul>
+<p><em>The desired variant prevalence (<span class="math inline">\(p_{\text{detect}}\)</span>)</em>.</p>
+<ul>
+<li>As stated above, we want to ensure we catch any variant by the time
+it has reached 1% prevalence in the population of infected
+individuals.</li>
+</ul>
+<p><em>Initial variant prevalence (<span class="math inline">\(p_0\)</span>)</em>.</p>
+<ul>
+<li>The method we will use for sample size calculations assumes logistic
+growth of any new variants of concern, with a starting prevalence and
+growth rate that can be specified. This initial prevalence depends on
+the number of simultaneous variant introductions into our country of
+interest as well as the total infected population size. Over the last
+year, we have observed a total of between 5,000 and 10,000 total cases
+of Pathogen X in our country at any given time, and we expect the number
+of cases to be similar if a new variant is introduced. Because of the
+complex relationship between initial prevalence and the shape of the
+logistic growth curve, we will estimate the required sample size in two
+scenarios: (1) if a new variant could be introduced via a single index
+case, at a time when nearly 10,000 people are infected (initial
+prevalence <span class="math inline">\(=1/10000\)</span>); and (2) if 5
+different travelers are be infected by a new variant and bring it into
+the country in the same week, at a time when only 5,000 individuals are
+infected (initial prevalence <span class="math inline">\(=5/5000=1/1000\)</span>).</li>
+</ul>
+<p><em>Logistic growth rate (<span class="math inline">\(r\)</span>)</em>.</p>
+<ul>
+<li>We also need to estimate a variant growth rate over time. Based on
+historical data of Pathogen X, we know that a recently introduced
+variant may grow as slowly as 0.1x/day (least conservative, as fewer
+samples are needed to ensure we catch the variant before it goes above
+1% frequency) or as quickly as 0.2x/day (most conservative).</li>
+</ul>
 <p>We now have all of the values we need to estimate the sample size
 needed for detecting a variant by the time it reaches 1% in the
 population, assuming weekly periodic sampling. Additionally, it is
 important to remember that the number of required
 <strong>sequences</strong> is not the same as the number of required
-<strong>samples</strong>, because of the sequencing success rate (<span class="math inline">\(\omega\)</span>) discussed above. Both the Excel
-spreadsheet and <code>phylosamp</code> R package output the number of
-samples required, taking into account that not all samples selected for
-sequencing will result in high quality samples suitable for variant
+<strong>samples</strong>, because of the sequencing success rate (<span class="math inline">\(\omega\)</span>) discussed above. The
+<code>phylosamp</code> functions output the number of samples required,
+taking into account that not all samples selected for sequencing will
+result in high quality samples suitable for variant
 characterization:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/HopkinsIDD/phylosamp" class="external-link">phylosamp</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Least conservative scenario with low initial prevalence:</span></span>
-<span><span class="fu"><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fl">0.75</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span><span class="fu"><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fl">0.75</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0_v1<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r_v1<span class="op">=</span><span class="fl">0.1</span>,</span>
 <span>                           omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="fl">1.059</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating sample size for variant detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 15.106</span></span></code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Least conservative scenario with high initial prevalence:</span></span>
-<span><span class="fu"><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fl">0.75</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">1000</span>, r<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span><span class="fu"><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fl">0.75</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0_v1<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">1000</span>, r_v1<span class="op">=</span><span class="fl">0.1</span>,</span>
 <span>                           omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="fl">1.059</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating sample size for variant detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 16.41287</span></span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Most conservative scenario with low initial prevalence:</span></span>
-<span><span class="fu"><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fl">0.95</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span><span class="fu"><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fl">0.95</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0_v1<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r_v1<span class="op">=</span><span class="fl">0.2</span>,</span>
 <span>                           omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="fl">0.779</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating sample size for variant detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 80.14972</span></span></code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Most conservative scenario with high initial prevalence:</span></span>
-<span><span class="fu"><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fl">0.95</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">1000</span>, r<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span><span class="fu"><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fl">0.95</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0_v1<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">1000</span>, r_v1<span class="op">=</span><span class="fl">0.2</span>,</span>
 <span>                           omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="fl">0.779</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating sample size for variant detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 96.2708</span></span></code></pre>
@@ -343,18 +375,19 @@ support sequencing of 200 Pathogen X samples per week. Given our most
 conservative scenario of a coefficient of detection of 0.779 and a
 growth rate of 0.2, we can use the <code><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect()</a></code>
 function to calculate the probability of detecting a variant before it
-crosses the 1% prevalence threshold in the population.</p>
+crosses the 1% prevalence threshold in the population (see
+<em>Estimating the probability of detecting a variant:</em> <a href="V5_ProbDetectPeriodic.html"><em>periodic sampling</em></a>).</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/HopkinsIDD/phylosamp" class="external-link">phylosamp</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Most conservative scenario with low initial prevalence</span></span>
-<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">28</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">28</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0_v1<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r_v1<span class="op">=</span><span class="fl">0.2</span>,</span>
 <span>                     omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="fl">0.779</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating probability of detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 0.6488521</span></span></code></pre>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Most conservative scenario with high initial prevalence</span></span>
-<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">28</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">1000</span>, r<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">28</span>, p_v1<span class="op">=</span><span class="fl">0.01</span>, p0_v1<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">1000</span>, r_v1<span class="op">=</span><span class="fl">0.2</span>,</span>
 <span>                     omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="fl">0.779</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating probability of detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 0.5815917</span></span></code></pre>
@@ -375,13 +408,13 @@ repeated with a higher number of weekly samples.</p>
 <span><span class="co">## DETECTION BEFORE REACHING 2% PREVALENCE</span></span>
 <span></span>
 <span><span class="co"># Most conservative scenario with low initial prevalence</span></span>
-<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">28</span>, p_v1<span class="op">=</span><span class="fl">0.02</span>, p0<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">28</span>, p_v1<span class="op">=</span><span class="fl">0.02</span>, p0_v1<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r_v1<span class="op">=</span><span class="fl">0.2</span>,</span>
 <span>                     omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="fl">0.779</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating probability of detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 0.8514334</span></span></code></pre>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Most conservative scenario with high initial prevalence</span></span>
-<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">28</span>, p_v1<span class="op">=</span><span class="fl">0.02</span>, p0<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">1000</span>, r<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">28</span>, p_v1<span class="op">=</span><span class="fl">0.02</span>, p0_v1<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">1000</span>, r_v1<span class="op">=</span><span class="fl">0.2</span>,</span>
 <span>                     omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="fl">0.779</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating probability of detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 0.8693221</span></span></code></pre>
@@ -389,13 +422,13 @@ repeated with a higher number of weekly samples.</p>
 <code class="sourceCode R"><span><span class="co">## DETECTION BEFORE REACHING 5% PREVALENCE</span></span>
 <span></span>
 <span><span class="co"># Most conservative scenario with low initial prevalence</span></span>
-<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">28</span>, p_v1<span class="op">=</span><span class="fl">0.05</span>, p0<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">28</span>, p_v1<span class="op">=</span><span class="fl">0.05</span>, p0_v1<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10000</span>, r_v1<span class="op">=</span><span class="fl">0.2</span>,</span>
 <span>                     omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="fl">0.779</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating probability of detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 0.9940441</span></span></code></pre>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Most conservative scenario with high initial prevalence</span></span>
-<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">28</span>, p_v1<span class="op">=</span><span class="fl">0.05</span>, p0<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">1000</span>, r<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span><span class="fu"><a href="../reference/vartrack_prob_detect.html">vartrack_prob_detect</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">28</span>, p_v1<span class="op">=</span><span class="fl">0.05</span>, p0_v1<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">1000</span>, r_v1<span class="op">=</span><span class="fl">0.2</span>,</span>
 <span>                     omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="fl">0.779</span>, sampling_freq<span class="op">=</span><span class="st">"cont"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating probability of detection assuming periodic sampling</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 0.989769</span></span></code></pre>
@@ -411,9 +444,12 @@ high confidence.</p>
 <p>Although the example provided here focuses on the question of
 detection with periodic sampling, the same principles (though different
 functions/spreadsheet tabs) can be applied to a cross-sectional sampling
-scheme and/or estimating variant prevalence. The section on the
-coefficient of detection remains identical, and only the sampling
-calculations need to be updated to suit the surveillance goals.</p>
+scheme (see <em>Estimating the sample size needed for variant
+monitoring:</em> <a href="V2_SampleSizeCrossSectional.html"><em>cross-sectional</em></a> and
+<em>Estimating the probability of detecting a variant:</em> <a href="V3_ProbCrossSectional.html"><em>cross-sectional</em></a>) and/or
+estimating variant prevalence. The section on the coefficient of
+detection remains identical, and only the sampling calculations need to
+be updated to suit the surveillance goals.</p>
 </div>
   </div>
 

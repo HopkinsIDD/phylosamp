@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -129,19 +129,34 @@ sampling</h3>
 to estimate the sample size needed to detect a pathogen variant or
 estimate its frequency in a population, given molecular characterization
 of a single cross-sectional sample of pathogen infections.</p>
+<div class="section level5">
+<h5 id="variant-detection">Variant detection<a class="anchor" aria-label="anchor" href="#variant-detection"></a>
+</h5>
+<div class="figure">
+<img src="variant-surveillance-decision-tree-03.png" style="width:80.0%" alt=""><p class="caption"><strong>Figure 1.</strong> Identifying the key
+question (detection vs prevalence monitoring) is the second step in
+designing a pathogen surveillance system. Determining the sample size
+needed to answer this question then requires determining the sampling
+frequency, i.e., if samples will be collected and sequenced just once
+(cross-sectional sampling) or with some regularity over a period of time
+(periodic surveillance).</p>
+</div>
+<p><br></p>
 <p>When the goal is detecting the presence or absence of a specific
-variant in a population using a single cross-sectional sample, we can
-use the <code><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect()</a></code> function with the
+variant in a population using a single cross-sectional sample
+(<strong>Figure 1</strong>), we can use the
+<code><a href="../reference/vartrack_samplesize_detect.html">vartrack_samplesize_detect()</a></code> function with the
 <code>sampling_freq = "xsect"</code> option. Applying this function,
 however, requires knowledge of the coefficient of detection ratio
 between two pathogen variants (or, more commonly, one variant and the
 rest of the pathogen population). The coefficient of detection ratio for
 two variants can be calculated using the
-<code><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio()</a></code> function. Since we are only interested
-in the ratio of the coefficients of detection, applying this function
-only requires providing parameters which are expected to differ between
-variants. The ratio between any variants not provided is assumed to be
-equal to one.</p>
+<code><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio()</a></code> function (see <a href="V1_CoefficientDetectionBias.html"><em>Estimating bias in observed
+variant prevalence</em></a> for more details). Since we are only
+interested in the ratio of the coefficients of detection, applying this
+function only requires providing parameters which are expected to differ
+between variants. The ratio between any variants not provided is assumed
+to be equal to one.</p>
 <p>Once we have an estimate of the coefficient of detection ratio, we
 can calculate the sample size needed for detection from the following
 parameters:</p>
@@ -189,20 +204,32 @@ coefficients of variant 1 to variant 2 (can be calculated using
 <span>                           c_ratio<span class="op">=</span><span class="fl">1.368</span>, sampling_freq<span class="op">=</span><span class="st">"xsect"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating sample size for variant detection assuming single cross-sectional sample</span></span></code></pre>
 <pre><code><span><span class="co">## [1] 135.9928</span></span></code></pre>
-<p>In other words, 137 samples are needed to detect a variant at 2% (or
+<p>In other words, 136 samples are needed to detect a variant at 2% (or
 higher) in a population with 95% of detection, given a coefficient of
 detection ratio (<span class="math inline">\(\frac{C_{V_1}}{C_{V_2}}\)</span>) of 1.368 and a
 single, cross-sectional sample. This takes into account the fact that
 not all samples sequenced (or otherwise characterized) will be
 successful. We assume an 80% success rate (<span class="math inline">\(\omega=0.8\)</span>), which ensures a selection of
-137 samples will produce the 109 high quality data points that can be
+136 samples will produce the 109 high quality data points that can be
 used to detect the presence of a pathogen variant.</p>
+</div>
+<div class="section level5">
+<h5 id="variant-prevalence">Variant prevalence<a class="anchor" aria-label="anchor" href="#variant-prevalence"></a>
+</h5>
+<div class="figure">
+<img src="variant-surveillance-decision-tree-04.png" style="width:80.0%" alt=""><p class="caption"><strong>Figure 2.</strong> Other functions in the
+<code>phylosamp</code> package can be used to determine the sample size
+needed to accurately monitor variant prevalence, again assuming a single
+cross-sectional sample.</p>
+</div>
+<p><br></p>
 <p>In some cases, it may not be enough to simply <em>detect</em> a
-variant—we may want to estimate its frequency in the population. In that
-case, we can use the <code><a href="../reference/vartrack_samplesize_prev.html">vartrack_samplesize_prev()</a></code> function to
-determine the sample size needed to estimate the prevalence of a variant
-in a population given some desired precision. This function requires the
-user to specific a slightly different set of parameters:</p>
+variant—we may want to estimate its frequency in the population
+(<strong>Figure 2</strong>). In that case, we can use the
+<code><a href="../reference/vartrack_samplesize_prev.html">vartrack_samplesize_prev()</a></code> function to determine the sample
+size needed to estimate the prevalence of a variant in a population
+given some desired precision. This function requires the user to
+specific a slightly different set of parameters:</p>
 <table class="table">
 <colgroup>
 <col width="20%">
@@ -246,17 +273,29 @@ coefficients of variant 1 to variant 2 (can be calculated using
 </table>
 <p>We then can calculate sample size as follows:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">c1_c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>alpha_v1<span class="op">=</span><span class="fl">0.25</span>, alpha_v2<span class="op">=</span><span class="fl">0.4</span>, beta_a<span class="op">=</span><span class="fl">0.05</span>, beta_s<span class="op">=</span><span class="fl">0.3</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">c1_c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/vartrack_cod_ratio.html">vartrack_cod_ratio</a></span><span class="op">(</span>psi_v1<span class="op">=</span><span class="fl">0.25</span>, psi_v2<span class="op">=</span><span class="fl">0.4</span>, tau_a<span class="op">=</span><span class="fl">0.05</span>, tau_s<span class="op">=</span><span class="fl">0.3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/vartrack_samplesize_prev.html">vartrack_samplesize_prev</a></span><span class="op">(</span>p_v1<span class="op">=</span><span class="fl">0.1</span>,prob<span class="op">=</span><span class="fl">0.95</span>,precision<span class="op">=</span><span class="fl">0.25</span>, </span>
 <span>                         omega<span class="op">=</span><span class="fl">0.8</span>, c_ratio<span class="op">=</span><span class="va">c1_c2</span>, sampling_freq<span class="op">=</span><span class="st">"xsect"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Calculating sample size for variant prevalence estimation assuming single cross-sectional sample</span></span></code></pre>
+<pre><code><span><span class="co">## [1] 582.2843</span></span></code></pre>
 <p>In other words, 583 samples must be processed in order to estimate
 the population prevalence of a variant with at least 10% prevalence in
 the population, with a precision of 25% of the true value, and a
 confidence of 95% in the prevalence estimate. Again, we assume an 80%
 success rate, which ensures successful characterization of 466 of the
-583 samples selected for sequencing. so they can be used to detect the
+583 samples selected for sequencing so they can be used to detect the
 presence of a pathogen variant.</p>
+</div>
+<div class="section level5">
+<h5 id="other-sampling-scenarios">Other sampling scenarios<a class="anchor" aria-label="anchor" href="#other-sampling-scenarios"></a>
+</h5>
+<p>For information on functions that can be used to estimate the sample
+size given a periodic sampling approach, see <em>Estimating the sample
+size needed for variant monitoring:</em> <a href="V4_SampleSizePeriodic.html"><em>periodic sampling</em></a>. These
+functions can also be used in “reverse”, to calculate the probability of
+detection given some sampling scheme, as in the <em>Estimating the
+probability of detecting a variant</em> <a href="V3_ProbCrossSectional.html"><em>cross-sectional</em></a> and <a href="V5_ProbDetectPeriodic.html"><em>periodic</em></a> vignettes.</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
