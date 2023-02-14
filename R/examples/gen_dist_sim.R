@@ -1,1 +1,0 @@
-data(gen_dist_sim)

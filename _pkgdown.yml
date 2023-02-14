@@ -4,33 +4,111 @@ template:
 
 reference:
 - title: "Probability of transmission"
-  desc: "Calculate the transmission probability in a sample"
-- contents:
-  - truediscoveryrate
-  - falsediscoveryrate
-  - starts_with("prob_trans")
+  desc: "Functions to calculate the transmission probability in a sample"
+  contents:
+  - translink_fdr
+  - translink_tdr
+  - translink_prob_transmit
+  - starts_with("translink_prob_transmit")
   
-- title: "Expected pairs"
-  desc: "Calculate the expected number of links in a sample"
-- contents:
-  - exp_links
-  - starts_with("obs_pairs")
+- title: "Observed transmission pairs"
+  desc: "Functions to calculate the expected number of observed transmission pairs in a sample"
+  contents:
+  - translink_expected_links_obs
+  - starts_with("translink_expected_links_obs")
   
 - title: "True transmission pairs"
-  desc: "Calculate the expected number true transmission pairs in a sample"
-- contents:
-  - true_pairs
+  desc: "Functions to calculate the expected number true transmission pairs in a sample"
+  contents:
+  - translink_expected_links_true
+  - starts_with("translink_expected_links_true")
+  
+- title: "Sample size calculations for transmission linkage"
+  desc: "Functions to calculate the sample size needed to identify transmission pairs given a specified false discovery rate"
+  contents:
+  - translink_samplesize
+  
+- title: "Genetic distance as a linkage criteria"
+  desc: "Functions and data to calculate the sensitivity and specificity of genetic distance measures"
+  contents:
+  - starts_with("gendist")
+  - optim_roc_threshold
+  - genDistSim
+  - gen_dists
+  
+- title: "Estimating variant frequency"
+  desc: "Functions to esimtate the pathogen variant frequency in a population"
+  contents:
+  - starts_with("varfreq")
+
+- title: "The coefficient of detection"
+  desc: "Functions to calculate coefficient of detection ratio between two pathogen variants"
+  contents:
+  - vartrack_cod_ratio
+
+- title: "Probability of variant detection"
+  desc: "Functions to estimate the probability of detecting a pathogen variant given a sample size"
+  contents:
+  - matches("prob_detect")
+
+- title: "Sample size for variant detection"
+  desc: "Functions to calculate the sample size needed to detect a pathogen variant"
+  contents:
+  - matches("samplesize_detect")
+
+- title: "Confidence in variant prevalence estimate"
+  desc: "Functions to estimate the confidence in a variant prevalence estimate given a sample size"
+  contents:
+  - matches("prob_prev")
+
+- title: "Sample size for variant prevalence estimation"
+  desc: "Functions to calculate the sample size needed to estimate the prevalence of a variant in a population"
+  contents:
+  - matches("samplesize_prev")
+
+- title: internal
+  contents:
+  - falsediscoveryrate
+  - truediscoveryrate
+  - starts_with("prob_trans_")
+  - exp_links
+  - starts_with("obs_pairs_")
   - starts_with("true_pairs")
-  
-- title: "Power calculations"
-  desc: "Sample size needed to obtain specified false discovery rate"
-- contents:
   - samplesize
-  
-- title: "Performance of a linkage criteria"
-  desc: "Calculate the sensitivity and specificity for genetic distance measures"
-- contents:
-  - starts_with("gen_")
-  - starts_with("sens_")
   - get_optim_roc
-  
+  - starts_with("sens_spec_")
+
+navbar:
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    articles:
+      text: Vignettes
+      menu:
+      - text: Transmission Linkage
+      - text: Estimating the linkage false discovery rate
+        href: articles/L1_FalseDiscoveryRate.html
+      - text: Sample size calculations for transmission linkage
+        href: articles/L2_SampleSize.html
+      - text: Estimating sensitivity and specificity of a linkage criteria
+        href: articles/L3_SensitivitySpecificity.html
+      - text: Illustrative Examples
+        href: articles/L4_IllustrativeExamples.html
+      - text: -------
+      - text: Variant Tracking
+      - text: Estimating bias in observed variant prevalence
+        href: articles/V1_CoefficientDetectionBias.html
+      - text: Sample size calculations for variant tracking (cross-sectional sampling)
+        href: articles/V2_SampleSizeCrossSectional.html
+      - text: Probability of detection and prevalence estimation (cross-sectional sampling)
+        href: articles/V3_ProbCrossSectional.html
+      - text: Sample size calculations for variant tracking (periodic sampling)
+        href: articles/V4_SampleSizePeriodic.html
+      - text: Probability of detection (periodic sampling)
+        href: articles/V5_ProbDetectPeriodic.html
+      - text: Variant Surveillance Example
+        href: articles/V6_IllustrativeExample.html

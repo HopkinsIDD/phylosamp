@@ -1,10 +1,16 @@
-pandoc: 2.11.4
-pkgdown: 1.6.1
+pandoc: 2.19.2
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
-  V1_FalseDicoveryRate: V1_FalseDicoveryRate.html
-  V2_SampleSize: V2_SampleSize.html
-  V3_SensitivitySpecificity: V3_SensitivitySpecificity.html
-  V4_FullExamples: V4_FullExamples.html
-last_built: 2021-11-20T21:49Z
+  L1_FalseDiscoveryRate: L1_FalseDiscoveryRate.html
+  L2_SampleSize: L2_SampleSize.html
+  L3_SensitivitySpecificity: L3_SensitivitySpecificity.html
+  L4_IllustrativeExamples: L4_IllustrativeExamples.html
+  V1_CoefficientDetectionBias: V1_CoefficientDetectionBias.html
+  V2_SampleSizeCrossSectional: V2_SampleSizeCrossSectional.html
+  V3_ProbCrossSectional: V3_ProbCrossSectional.html
+  V4_SampleSizePeriodic: V4_SampleSizePeriodic.html
+  V5_ProbDetectPeriodic: V5_ProbDetectPeriodic.html
+  V6_IllustrativeExample: V6_IllustrativeExample.html
+last_built: 2023-02-14T18:57Z
 
