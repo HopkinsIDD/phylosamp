@@ -2,7 +2,7 @@ Package: phylosamp
 Type: Package
 Title: Sample Size Calculations for Molecular and Phylogenetic Studies
 Version: 1.0.0
-Date: 2023-01-18
+Date: 2023-02-14
 Authors@R: c(person("Shirlee", "Wohl", role=c("aut", "ctb"), email="swohl@scripps.edu"),
               person("Elizabeth C", "Lee", role=c("aut", "ctb"), email="elizabeth.c.lee@jhu.edu"),
               person("John R", "Giles", role=c("aut", "ctb"), email="jrgiles@uw.edu"),
