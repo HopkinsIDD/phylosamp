@@ -10,7 +10,11 @@ vignette: >
 
 This vignette provides an overview of the functions that can be used to estimate the probability of detecting a pathogen variant in a population, given a periodic sampling scheme with a fixed sample size.
 
-By specifying `sampling_freq = "cont"`, the `vartrack_samplesize_detect()` function can be used to calculate the probability of detecting a particular variant in the population within a specific number of days since its introduction, OR by the time the variant reaches a specific frequency. As with the cross-sectional option (`sampling_freq = "xsect"`), this requires knowledge of the coefficient of detection ratio between two pathogen variants (or, more commonly, one variant and the rest of the pathogen population). The coefficient of detection ratio for two variants can be calculated using the `vartrack_cod_ratio()` function. Since we are only interested in the ratio of the coefficients of detection, applying this function only requires providing parameters which are expected to differ between variants. The ratio between any variants not provided is assumed to be equal to one.
+![**Figure 1.** Identifying the key question (detection vs prevalence) is the second step in designing a pathogen surveillance system. Determining confidence in the result (e.g., the probability of detection or confidence in frequency estimation) then requires determining the sampling frequency (cross-sectional or periodic).](variant-surveillance-decision-tree-05.png){width=80%}
+
+<br>
+
+By specifying `sampling_freq = "cont"`, the `vartrack_samplesize_detect()` function can be used to calculate the probability of detecting a particular variant in the population within a specific number of days since its introduction, OR by the time the variant reaches a specific frequency. As with the cross-sectional option (`sampling_freq = "xsect"`; see *Estimating the probability of detecting a variant:* [*cross-sectional*](V3_ProbCrossSectional.html)), this requires knowledge of the coefficient of detection ratio between two pathogen variants (or, more commonly, one variant and the rest of the pathogen population). The coefficient of detection ratio for two variants can be calculated using the `vartrack_cod_ratio()` function (see [*Estimating bias in observed variant prevalence*](V1_CoefficientDetectionBias.html) for more details). Since we are only interested in the ratio of the coefficients of detection, applying this function only requires providing parameters which are expected to differ between variants. The ratio between any variants not provided is assumed to be equal to one.
 
 Once we have an estimate of the coefficient of detection ratio, we can calculate the sample size needed for detection from the following parameters:
 
@@ -53,3 +57,11 @@ vartrack_prob_detect(n=20, t=30, omega=0.8, p0_v1=3/10000, r_v1=0.1,
 ```
 
 Here we can see that we have only a 71% chance of detecting the variant within 30 days given the same sampling scheme and sequencing success rate.
+
+##### Variant prevalence
+
+![**Figure 2.** The `phylosamp` package currently does not provide functionality for estimating the confidence in a prevalence estimate given a periodic sampling strategy.](variant-surveillance-decision-tree-06.png){width=80%}
+
+<br>
+
+The `phylosamp` package currently does not provide functionality for estimating the confidence in a prevalence estimate given a periodic sampling strategy. However, it can be used to calculate the sample size needed given a confidence level and either [periodic](V4_SampleSizePeriodic.html) or [cross-sectional](V2_SampleSizeCrossSectional.html) sampling strategies.
