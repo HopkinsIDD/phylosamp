@@ -1,3 +1,4 @@
 *.DS_Store
 *.Rhistory
 .pre-commit-config.yaml
+.Rproj.user
