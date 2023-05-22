@@ -23,6 +23,7 @@ Authors:
 \itemize{
   \item Shirlee Wohl \email{swohl@scripps.edu} [contributor]
   \item Elizabeth C Lee \email{elizabeth.c.lee@jhu.edu} [contributor]
+  \item Lucy D'Agostino McGowan \email{lucydagostino@gmail.com} (\href{https://orcid.org/0000-0002-6983-2759}{ORCID}) [contributor]
   \item John R Giles \email{jrgiles@uw.edu} [contributor]
 }
 
