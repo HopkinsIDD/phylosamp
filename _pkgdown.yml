@@ -66,6 +66,16 @@ reference:
   contents:
   - matches("samplesize_prev")
 
+- title: "Sample size for detecting differential transmission"
+  desc: "Functions to calculate the sample size needed to detect differential transmission between groups"
+  contents:
+  - starts_with("relR_samplesize")
+
+- title: "Power for detecting differential transmission"
+  desc: "Functions to calculate the power given parameters used to detect differential transmission between groups"
+  contents:
+  - starts_with("relR_power")
+  
 - title: internal
   contents:
   - falsediscoveryrate
