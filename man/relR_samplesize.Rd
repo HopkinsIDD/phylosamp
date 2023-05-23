@@ -63,3 +63,31 @@ under assumptions. Will return \code{NA} and throw a warning if impossible.
 Function for calculating sample size given a set of assumptions. This is the
 high level wrapper function that users should call directly.
 }
+\examples{
+
+## Calculate sample size needed to detect a difference between groups where 
+## group A has a reproductive value of 2, group B has a reproductive 
+## value of 2.5, the groups are balanced, and the total outbreak size is 
+## 1,000
+
+relR_samplesize(R_a = 2, 
+                R_b = 2.5, 
+                p_a = 0.5,
+                N = 1000)
+
+## Update the above calculation to account for imperfect sensitivity = 0.7
+relR_samplesize(R_a = 2, 
+                R_b = 2.5, 
+                p_a = 0.5,
+                N = 1000,
+                sensitivity = 0.7)
+
+## Update the above calculation to allow for overdispersion
+relR_samplesize(R_a = 2, 
+                R_b = 2.5, 
+                p_a = 0.5,
+                N = 1000,
+                sensitivity = 0.7,
+                overdispersion = 2000)
+
+}
