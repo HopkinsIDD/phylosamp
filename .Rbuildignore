@@ -9,3 +9,4 @@
 ^pkgdown$
 ^man-roxygen$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
