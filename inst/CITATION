@@ -19,14 +19,14 @@ bibentry(
   journal = "Cell Reports Medicine",
   year = "2023",
   url = "https://doi.org/10.1016/j.xcrm.2023.101022",
-  publisher = "Elsevier"",
+  publisher = "Elsevier",
   doi = "10.1016/j.xcrm.2023.101022",
   textVersion = "Wohl, S., Lee, E. C., DiPrete, B. L., & Lessler, J. (2023). Sample size calculations for pathogen variant surveillance in the presence of biological and systematic biases. Cell Reports Medicine. https://doi.org/10.1016/j.xcrm.2023.101022")
   
 bibentry(
 "Article",
   title = "Power and sample size calculations for testing the ratio of reproductive values in phylogenetic samples",  
-  author = "D'Agostino McGowan, Lucy and Wohl, Shirlee and Lessler, Justin",
+  author = "{D'Agostino McGowan}, Lucy and Wohl, Shirlee and Lessler, Justin",
   journal = "arXiv",
   year = "2023",
   url = "https://doi.org/10.48550/arXiv.2305.12184",
