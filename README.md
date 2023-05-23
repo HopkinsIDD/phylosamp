@@ -2,12 +2,13 @@
 
 # phylosamp
 
-This repository provides code for the `phylosamp` R package, which was designed to help users conduct and evaluate sample size calculations for phylogenetic studies. Presently, the functions can be used to calculate sample size in two types of scenarios that frequently arise when analyzing pathogen genomic data: (1) trying to determine if pathogen infections are linked by transmission ([linkage scenario](#Determining-linkage-between-pathogen-infections)); (2) trying to estimate the frequency of a known pathogen lineage or variant of concern ([variant tracking scenario](#Determining-the-frequency-of-a-pathogen-VOC)).
+This repository provides code for the `phylosamp` R package, which was designed to help users conduct and evaluate sample size calculations for phylogenetic studies. Presently, the functions can be used to calculate sample size in three types of scenarios that frequently arise when analyzing pathogen genomic data: (1) trying to determine if pathogen infections are linked by transmission ([linkage scenario](#Determining-linkage-between-pathogen-infections)); (2) trying to estimate the frequency of a known pathogen lineage or variant of concern ([variant tracking scenario](#Determining-the-frequency-of-a-pathogen-VOC)); (3) trying to determine if pathogen transmissibility differs between groups of infected hosts ([relative R scenario] (#Estimating-differential-transmission-between-groups)).
 
 All key functions of each scenario are documented, along with realistic examples, in the [associated vignettes](https://hopkinsidd.github.io/phylosamp/index.html). Vignettes are organized as follows:
 
 * Transmission Linkage Vignettes (L1-L4): linkage scenario vignettes and examples
 * Variant Tracking Vignettes (V1-V6): variant tracking scenario vignettes and examples
+* Differential Transmission Vignettes: _relative R scenario vignettes coming soon!_
 
 ## Determining linkage between pathogen infections
 
@@ -34,6 +35,18 @@ All calculations assume a two-variant system; in other words, that there is a pa
 A detailed description of the VOC estimation methods can be found in:
 
 [Sample Size Calculations for Variant Surveillance in the Presence of Biological and Systematic Biases (Wohl, Lee, Diprete, and Lessler 2022)](https://doi.org/10.1101/2021.12.30.21268453)
+
+## Estimating differential transmission between groups
+
+Finally, the package includes an additional set of functions that can be used to determine the sample size needed to detect differential transmission between groups of potential pathogen hosts. It also includes functions that do the reverse: calculate the power given parameters such as the effect size and the number of samples.
+
+We assume the user is interested in detecting differential transmission between two groups of individuals, denoted as A and B, which can optionally be of different sizes. The main function allows the user to specify the estimated reproductive number in group A, the estimated reproductive number in group B, the proportion of the infected population that are in group A (equivalent to 1 minus the proportion in group B), the total size of the outbreak, the desired type 1 error rate, and the desired power. These parameters are then used to calculate the sample size needed to detect if the reproductive number differs between groups A and B.
+
+The user can specify whether they are interested in a one-sided or two-sided hypothesis test and whether there is any linkage misclassification, via sensitivity and specificity parameters. Additionally, the user can optionally specify an overdispersion parameter if overdispersion is suspected in the transmission process.
+
+A detailed escription of the differential transmission methods can be found in:
+
+[Power and Samples Size Calculations for Testing the Ratio of Reproductive Values in Pylogenetic Samples (D'Agostino McGowan, Wohl, and Lessler 2023)](https://doi.org/10.48550/arXiv.2305.12184)
 
 
 ## Installation
