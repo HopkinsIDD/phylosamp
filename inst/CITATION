@@ -16,8 +16,9 @@ bibentry(
 "Article",
   title = "Sample size calculations for variant surveillance in the presence of biological and systematic biases",  
   author = "Wohl, Shirlee and Lee, Elizabeth C. and DiPrete, Bethany and Lessler, Justin",
-  journal = "medRxiv",
-  year = "2022",
-  url = "https://doi.org/10.1101/2021.12.30.21268453",
-  doi = "10.1101/2021.12.30.21268453",
-  textVersion = "Wohl et al. (2022) Sample size calculations for variant surveillance in the presence of biological and systematic biases, medRxiv, https://doi.org/10.1101/2021.12.30.21268453")
+  journal = "Cell Reports Medicine",
+  year = "2023",
+  url = "https://doi.org/10.1016/j.xcrm.2023.101022",
+  publisher={Elsevier},
+  doi = "10.1016/j.xcrm.2023.101022",
+  textVersion = Wohl, S., Lee, E. C., DiPrete, B. L., & Lessler, J. (2023). Sample size calculations for pathogen variant surveillance in the presence of biological and systematic biases. Cell Reports Medicine. https://doi.org/10.1016/j.xcrm.2023.101022")
