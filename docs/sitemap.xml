@@ -109,6 +109,33 @@
     <loc>/reference/prob_trans_stsl.html</loc>
   </url>
   <url>
+    <loc>/reference/relR_power.html</loc>
+  </url>
+  <url>
+    <loc>/reference/relR_power_simulated.html</loc>
+  </url>
+  <url>
+    <loc>/reference/relR_samplesize.html</loc>
+  </url>
+  <url>
+    <loc>/reference/relR_samplesize_basic.html</loc>
+  </url>
+  <url>
+    <loc>/reference/relR_samplesize_ci.html</loc>
+  </url>
+  <url>
+    <loc>/reference/relR_samplesize_linkerr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/relR_samplesize_opterr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/relR_samplesize_simsolve.html</loc>
+  </url>
+  <url>
+    <loc>/reference/relR_samplesize_solve.html</loc>
+  </url>
+  <url>
     <loc>/reference/samplesize.html</loc>
   </url>
   <url>

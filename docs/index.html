@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">phylosamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.1</span>
       </span>
     </div>
 
@@ -117,11 +117,13 @@
 <div class="section level1">
 <div class="page-header"><h1 id="phylosamp">phylosamp<a class="anchor" aria-label="anchor" href="#phylosamp"></a>
 </h1></div>
-<p>This repository provides code for the <code>phylosamp</code> R package, which was designed to help users conduct and evaluate sample size calculations for phylogenetic studies. Presently, the functions can be used to calculate sample size in two types of scenarios that frequently arise when analyzing pathogen genomic data: (1) trying to determine if pathogen infections are linked by transmission (<a href="#Determining-linkage-between-pathogen-infections">linkage scenario</a>); (2) trying to estimate the frequency of a known pathogen lineage or variant of concern (<a href="#Determining-the-frequency-of-a-pathogen-VOC">variant tracking scenario</a>).</p>
+<p>This repository provides code for the <code>phylosamp</code> R package, which was designed to help users conduct and evaluate sample size calculations for phylogenetic studies. Presently, the functions can be used to calculate sample size in three types of scenarios that frequently arise when analyzing pathogen genomic data: (1) trying to determine if pathogen infections are linked by transmission (<a href="#Determining-linkage-between-pathogen-infections">linkage scenario</a>); (2) trying to estimate the frequency of a known pathogen lineage or variant of concern (<a href="#Determining-the-frequency-of-a-pathogen-VOC">variant tracking scenario</a>); (3) trying to determine if pathogen transmissibility differs between groups of infected hosts ([relative R scenario] (#Estimating-differential-transmission-between-groups)).</p>
 <p>All key functions of each scenario are documented, along with realistic examples, in the <a href="https://hopkinsidd.github.io/phylosamp/index.html" class="external-link">associated vignettes</a>. Vignettes are organized as follows:</p>
 <ul>
 <li>Transmission Linkage Vignettes (L1-L4): linkage scenario vignettes and examples</li>
 <li>Variant Tracking Vignettes (V1-V6): variant tracking scenario vignettes and examples</li>
+<li>Differential Transmission Vignettes: <em>relative R scenario vignettes coming soon!</em>
+</li>
 </ul>
 <div class="section level2">
 <h2 id="determining-linkage-between-pathogen-infections">Determining linkage between pathogen infections<a class="anchor" aria-label="anchor" href="#determining-linkage-between-pathogen-infections"></a>
@@ -141,6 +143,15 @@
 <p>All calculations assume a two-variant system; in other words, that there is a particular variant of interest that may behave differently from the rest of the pathogen population (in terms of asymptomatic rate, testing sensitivity, etc.). Detection biases due to these differences are incorporated into function calculations. That said, the framework could be easily extended to a multi-variant system in the future.</p>
 <p>A detailed description of the VOC estimation methods can be found in:</p>
 <p><a href="https://doi.org/10.1101/2021.12.30.21268453" class="external-link">Sample Size Calculations for Variant Surveillance in the Presence of Biological and Systematic Biases (Wohl, Lee, Diprete, and Lessler 2022)</a></p>
+</div>
+<div class="section level2">
+<h2 id="estimating-differential-transmission-between-groups">Estimating differential transmission between groups<a class="anchor" aria-label="anchor" href="#estimating-differential-transmission-between-groups"></a>
+</h2>
+<p>Finally, the package includes an additional set of functions that can be used to determine the sample size needed to detect differential transmission between groups of potential pathogen hosts. It also includes functions that do the reverse: calculate the power given parameters such as the effect size and the number of samples.</p>
+<p>We assume the user is interested in detecting differential transmission between two groups of individuals, denoted as A and B, which can optionally be of different sizes. The main function allows the user to specify the estimated reproductive number in group A, the estimated reproductive number in group B, the proportion of the infected population that are in group A (equivalent to 1 minus the proportion in group B), the total size of the outbreak, the desired type 1 error rate, and the desired power. These parameters are then used to calculate the sample size needed to detect if the reproductive number differs between groups A and B.</p>
+<p>The user can specify whether they are interested in a one-sided or two-sided hypothesis test and whether there is any linkage misclassification, via sensitivity and specificity parameters. Additionally, the user can optionally specify an overdispersion parameter if overdispersion is suspected in the transmission process.</p>
+<p>A detailed escription of the differential transmission methods can be found in:</p>
+<p><a href="https://doi.org/10.48550/arXiv.2305.12184" class="external-link">Power and Samples Size Calculations for Testing the Ratio of Reproductive Values in Pylogenetic Samples (D’Agostino McGowan, Wohl, and Lessler 2023)</a></p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -192,6 +203,7 @@
 <ul class="list-unstyled">
 <li>Shirlee Wohl <br><small class="roles"> Author, contributor </small>  </li>
 <li>Elizabeth C Lee <br><small class="roles"> Author, contributor </small>  </li>
+<li>Lucy D'Agostino McGowan <br><small class="roles"> Author, contributor </small> <a href="https://orcid.org/0000-0002-6983-2759" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>John R Giles <br><small class="roles"> Author, contributor </small>  </li>
 <li>Justin Lessler <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
@@ -210,7 +222,7 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Shirlee Wohl, Elizabeth C Lee, John R Giles, Justin Lessler.</p>
+<p>Developed by Shirlee Wohl, Elizabeth C Lee, Lucy D’Agostino McGowan, John R Giles, Justin Lessler.</p>
 </div>
 
 <div class="pkgdown">
