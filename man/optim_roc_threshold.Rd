@@ -7,14 +7,14 @@
 optim_roc_threshold(roc)
 }
 \arguments{
-\item{roc}{a dataframe produced by the \code{gendist_roc_format()} function containing the Receiver Operating Characteriztic (ROC) curve}
+\item{roc}{a dataframe produced by the \code{gendist_roc_format()} function containing the Receiver Operating Characteristic (ROC) curve}
 }
 \value{
-vector contaitng optimal thresholds ofsensitivity and specificity
+vector containing optimal thresholds of sensitivity and specificity
 }
 \description{
-This function takes the dataframe output of the \code{gendist_roc_format()} function and finds the optimnal threshold
-of sensitivity and specificity by minimizing the distance to the top left corner of the Receiver Operating Characteriztic (ROC) curve
+This function takes the dataframe output of the \code{gendist_roc_format()} function and finds the optimal threshold
+of sensitivity and specificity by minimizing the distance to the top left corner of the Receiver Operating Characteristic (ROC) curve
 }
 \examples{
 # ebola-like pathogen

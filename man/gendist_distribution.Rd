@@ -13,18 +13,18 @@ gendist_distribution(
 )
 }
 \arguments{
-\item{mut_rate}{mean number of mutations per generation, assumed to be poisson distributed}
+\item{mut_rate}{mean number of mutations per generation, assumed to be Poisson distributed}
 
 \item{mean_gens_pdf}{the density distribution of the mean number of generations between cases;
 the index of this vector is assumed to be the discrete distance between cases}
 
-\item{max_link_gens}{the maximium generations of separation for linked pairs}
+\item{max_link_gens}{the maximum generations of separation for linked pairs}
 
 \item{max_gens}{the maximum number of generations to consider, if \code{NULL} (default) value is set to the highest
 number of generations in mean_gens_pdf with a non-zero probability}
 
 \item{max_dist}{the maximum distance to calculate, if \code{NULL} (default) value is set to max_gens * 99.9th percentile
-of mut_rate poisson distribution}
+of mut_rate Poisson distribution}
 }
 \value{
 a data frame with distances and probabilities

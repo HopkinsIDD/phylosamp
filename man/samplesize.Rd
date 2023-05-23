@@ -31,7 +31,7 @@ scalar or vector giving the sample size needed to meet the given conditions
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
-This function calculates the sample size needed to obtain at least a defined false disovery rate given
+This function calculates the sample size needed to obtain at least a defined false discovery rate given
 a final outbreak size \eqn{N}.
 }
 \examples{

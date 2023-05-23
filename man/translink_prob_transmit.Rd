@@ -32,10 +32,10 @@ translink_prob_transmit(
 }}
 }
 \value{
-scalar or vector giving the probability of transmission between two cases given linkage by phylogeneitic criteria
+scalar or vector giving the probability of transmission between two cases given linkage by phylogenetic criteria
 }
 \description{
-This function calculates the probabilitiy that two cases are linked by direct transmission
+This function calculates the probability that two cases are linked by direct transmission
 given that they have been linked by phylogenetic criteria.
 Assumptions about transmission and linkage (single or multiple) can be specified.
 }

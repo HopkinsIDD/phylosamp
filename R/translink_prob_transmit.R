@@ -1,6 +1,6 @@
 ##' Calculate probability of transmission
 ##'
-##' This function calculates the probabilitiy that two cases are linked by direct transmission
+##' This function calculates the probability that two cases are linked by direct transmission
 ##' given that they have been linked by phylogenetic criteria.
 ##' Assumptions about transmission and linkage (single or multiple) can be specified.
 ##'
@@ -16,7 +16,7 @@
 ##'      \item `'mtml'` for the multiple-transmission multiple-linkage assumption.
 ##'      }
 ##'
-##' @return scalar or vector giving the probability of transmission between two cases given linkage by phylogeneitic criteria
+##' @return scalar or vector giving the probability of transmission between two cases given linkage by phylogenetic criteria
 ##'
 ##' @author John Giles, Shirlee Wohl, and Justin Lessler
 ##'

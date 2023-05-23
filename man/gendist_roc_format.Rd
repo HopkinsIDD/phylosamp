@@ -16,25 +16,25 @@ gendist_roc_format(
 \arguments{
 \item{cutoff}{the maximum genetic distance at which to consider cases linked}
 
-\item{mut_rate}{mean number of mutations per generation, assumed to be poisson distributed}
+\item{mut_rate}{mean number of mutations per generation, assumed to be Poisson distributed}
 
 \item{mean_gens_pdf}{the density distribution of the mean number of generations between cases;
 the index of this vector is assumed to be the discrete distance between cases}
 
-\item{max_link_gens}{the maximium generations of separation for linked pairs}
+\item{max_link_gens}{the maximum generations of separation for linked pairs}
 
 \item{max_gens}{the maximum number of generations to consider, if \code{NULL} (default) value set to the highest
 number of generations in mean_gens_pdf with a non-zero probability}
 
 \item{max_dist}{the maximum distance to calculate, if \code{NULL} (default) value set to max_gens * 99.9th percentile
-of mut_rate poisson distribution}
+of mut_rate Poisson distribution}
 }
 \value{
 data frame with cutoff, sensitivity, and 1-specificity
 }
 \description{
 This is a wrapper function that takes output from the \code{gendist_sensspec_cutoff()} function and constructs values for the
-Receiver Operating Characteric (ROC) curve
+Receiver Operating Characteristic (ROC) curve
 }
 \examples{
 # ebola-like pathogen

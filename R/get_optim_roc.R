@@ -2,12 +2,12 @@
 ##'
 ##' @description
 ##' `r lifecycle::badge('deprecated')`
-##' This function takes the dataframe output of the `sens_spec_roc()` function and finds the optimnal threshold
-##' of sensitivity and specificity by minimizing the distance to the top left corner of the Receiver Operating Characteriztic (ROC) curve
+##' This function takes the dataframe output of the `sens_spec_roc()` function and finds the optimal threshold
+##' of sensitivity and specificity by minimizing the distance to the top left corner of the Receiver Operating Characteristic (ROC) curve
 ##'
 ##' @param roc a dataframe produced by the `sens_spec_roc()` function containing the Receiver Operating Characteristic (ROC) curve
 ##'
-##' @return vector contaitng optimal thresholds of sensitivity and specificity
+##' @return vector containing optimal thresholds of sensitivity and specificity
 ##'
 ##' @author Shirlee Wohl, John Giles, and Justin Lessler
 ##'

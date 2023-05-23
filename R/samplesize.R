@@ -3,7 +3,7 @@
 ##'
 ##' @description
 ##' `r lifecycle::badge('deprecated')`
-##' This function calculates the sample size needed to obtain at least a defined false disovery rate given
+##' This function calculates the sample size needed to obtain at least a defined false discovery rate given
 ##' a final outbreak size \eqn{N}.
 ##'
 ##' @param eta scalar or vector giving the sensitivity of the linkage criteria

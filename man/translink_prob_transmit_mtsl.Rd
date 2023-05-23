@@ -18,10 +18,10 @@ translink_prob_transmit_mtsl(specificity, sensitivity, rho, M, R)
 \item{R}{scalar or vector giving the effective reproductive number of the pathogen}
 }
 \value{
-scalar or vector giving the probability of transmission between two cases given linkage by phylogeneitic criteria
+scalar or vector giving the probability of transmission between two cases given linkage by phylogenetic criteria
 }
 \description{
-This function calculates the probabilitiy that two cases are linked by direct transmission
+This function calculates the probability that two cases are linked by direct transmission
 given that they have been linked by phylogenetic criteria. The multiple-transmission and single-linkage method assumes the following:
 \enumerate{
 \item Each case \eqn{i} is, on average, the infector of \code{R} cases in the population (\eqn{N})

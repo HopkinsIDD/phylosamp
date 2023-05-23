@@ -10,12 +10,12 @@ get_optim_roc(roc)
 \item{roc}{a dataframe produced by the \code{sens_spec_roc()} function containing the Receiver Operating Characteristic (ROC) curve}
 }
 \value{
-vector contaitng optimal thresholds of sensitivity and specificity
+vector containing optimal thresholds of sensitivity and specificity
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
-This function takes the dataframe output of the \code{sens_spec_roc()} function and finds the optimnal threshold
-of sensitivity and specificity by minimizing the distance to the top left corner of the Receiver Operating Characteriztic (ROC) curve
+This function takes the dataframe output of the \code{sens_spec_roc()} function and finds the optimal threshold
+of sensitivity and specificity by minimizing the distance to the top left corner of the Receiver Operating Characteristic (ROC) curve
 }
 \examples{
 # ebola-like pathogen

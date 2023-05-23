@@ -16,11 +16,11 @@ prob_trans_stsl(eta, chi, rho, M)
 \item{M}{scalar or vector giving the number of cases sampled}
 }
 \value{
-scalar or vector giving the probability of transmission between two cases given linkage by phylogeneitic criteria
+scalar or vector giving the probability of transmission between two cases given linkage by phylogenetic criteria
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
-This function calculates the probabilitiy that two cases are linked by direct transmission
+This function calculates the probability that two cases are linked by direct transmission
 given that they have been linked by phylogenetic criteria. The single-transmission and single-linkage method assumes the following:
 \enumerate{
 \item Each case \eqn{i} is linked by transmission to only one other case \eqn{j} in the population (\eqn{N}).

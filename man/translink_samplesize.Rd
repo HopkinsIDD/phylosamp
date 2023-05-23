@@ -39,7 +39,7 @@ scalar or vector giving the sample size needed to meet the given conditions
 }
 \description{
 This function calculates the sample size needed to identify transmission links at
-a pre-defined false disovery rate, given a final outbreak size \eqn{N}.
+a predefined false discovery rate, given a final outbreak size \eqn{N}.
 }
 \examples{
 translink_samplesize(sensitivity=0.99, specificity=0.995, N=100, R=1, tdr=0.75)

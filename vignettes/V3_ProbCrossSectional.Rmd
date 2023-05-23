@@ -8,7 +8,7 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-In this vignette we discuss how the variant tracking functions can be used in reverse, to calculate the probability or confidence of detection (or effective prevalence estimation) given a fixed sample size. In other words, if we have a pre-determined number of infections we can sequence or otherwise characterize, we can use the `phylosamp` package to determine the probability we will detect or correctly estimate the prevalence of a known pathogen variant.
+In this vignette we discuss how the variant tracking functions can be used in reverse, to calculate the probability or confidence of detection (or effective prevalence estimation) given a fixed sample size. In other words, if we have a predetermined number of infections we can sequence or otherwise characterize, we can use the `phylosamp` package to determine the probability we will detect or correctly estimate the prevalence of a known pathogen variant.
 
 ##### Variant detection
 

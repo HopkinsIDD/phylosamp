@@ -145,7 +145,7 @@
 <p>Functions are provided for sample size calculations in a cross-sectional scenario, where a single batch of samples will be collected and sequenced, and in a periodic surveillance scenario, where samples are collected and sequenced repeatedly at some regular interval. In the latter case, the user must also provide information on how the variant frequency may be changing over time (in the form of an initial frequency and estimated logistic growth rate).</p>
 <p>All calculations assume a two-variant system; in other words, that there is a particular variant of interest that may behave differently from the rest of the pathogen population (in terms of asymptomatic rate, testing sensitivity, etc.). Detection biases due to these differences are incorporated into function calculations. That said, the framework could be easily extended to a multi-variant system in the future.</p>
 <p>A detailed description of the VOC estimation methods can be found in:</p>
-<p><a href="https://doi.org/10.1101/2021.12.30.21268453" class="external-link">Sample Size Calculations for Variant Surveillance in the Presence of Biological and Systematic Biases (Wohl, Lee, Diprete, and Lessler 2022)</a></p>
+<p><a href="https://doi.org/10.1101/2021.12.30.21268453" class="external-link">Sample Size Calculations for Variant Surveillance in the Presence of Biological and Systematic Biases (Wohl, Lee, DiPrete, and Lessler 2022)</a></p>
 </div>
 <div class="section level2">
 <h2 id="estimating-differential-transmission-between-groups">Estimating differential transmission between groups<a class="anchor" aria-label="anchor" href="#estimating-differential-transmission-between-groups"></a>
@@ -153,8 +153,8 @@
 <p>Finally, the package includes an additional set of functions that can be used to determine the sample size needed to detect differential transmission between groups of potential pathogen hosts. It also includes functions that do the reverse: calculate the power given parameters such as the effect size and the number of samples.</p>
 <p>We assume the user is interested in detecting differential transmission between two groups of individuals, denoted as A and B, which can optionally be of different sizes. The main function allows the user to specify the estimated reproductive number in group A, the estimated reproductive number in group B, the proportion of the infected population that are in group A (equivalent to 1 minus the proportion in group B), the total size of the outbreak, the desired type 1 error rate, and the desired power. These parameters are then used to calculate the sample size needed to detect if the reproductive number differs between groups A and B.</p>
 <p>The user can specify whether they are interested in a one-sided or two-sided hypothesis test and whether there is any linkage misclassification, via sensitivity and specificity parameters. Additionally, the user can optionally specify an overdispersion parameter if overdispersion is suspected in the transmission process.</p>
-<p>A detailed escription of the differential transmission methods can be found in:</p>
-<p><a href="https://doi.org/10.48550/arXiv.2305.12184" class="external-link">Power and Samples Size Calculations for Testing the Ratio of Reproductive Values in Pylogenetic Samples (D’Agostino McGowan, Wohl, and Lessler 2023)</a></p>
+<p>A detailed description of the differential transmission methods can be found in:</p>
+<p><a href="https://doi.org/10.48550/arXiv.2305.12184" class="external-link">Power and Samples Size Calculations for Testing the Ratio of Reproductive Values in Phylogenetic Samples (D’Agostino McGowan, Wohl, and Lessler 2023)</a></p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>

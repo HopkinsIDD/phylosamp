@@ -2,7 +2,7 @@
 ##'
 ##' @description
 ##' `r lifecycle::badge('deprecated')`
-##' This function calculates the probabilitiy that two cases are linked by direct transmission
+##' This function calculates the probability that two cases are linked by direct transmission
 ##' given that they have been linked by phylogenetic criteria. The multiple-transmission and single-linkage method assumes the following:
 ##' \enumerate{
 ##'      \item Each case \eqn{i} is, on average, the infector of `R` cases in the population (\eqn{N})
@@ -15,7 +15,7 @@
 ##' @param M scalar or vector giving the number of cases sampled
 ##' @param R scalar or vector giving the effective reproductive number of the pathogen
 ##'
-##' @return scalar or vector giving the probability of transmission between two cases given linkage by phylogeneitic criteria
+##' @return scalar or vector giving the probability of transmission between two cases given linkage by phylogenetic criteria
 ##'
 ##' @author John Giles, Shirlee Wohl, and Justin Lessler
 ##'

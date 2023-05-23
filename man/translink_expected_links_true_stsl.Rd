@@ -20,7 +20,7 @@ scalar or vector giving the expected number of true transmission pairs in the sa
 This function calculates the expected number of true transmission pairs in a sample of size \code{M}.
 The single-transmission and single-linkage method assumes the following:
 \enumerate{
-\item Each case \eqn{i} is linked by transmissino to only one other case \eqn{j} in the population (\eqn{N}).
+\item Each case \eqn{i} is linked by transmission to only one other case \eqn{j} in the population (\eqn{N}).
 \item Each case \eqn{i} is linked by the linkage criteria to only one other case \eqn{j} in the sampled population (\eqn{M}).
 }
 }

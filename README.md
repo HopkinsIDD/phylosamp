@@ -34,7 +34,7 @@ All calculations assume a two-variant system; in other words, that there is a pa
 
 A detailed description of the VOC estimation methods can be found in:
 
-[Sample Size Calculations for Variant Surveillance in the Presence of Biological and Systematic Biases (Wohl, Lee, Diprete, and Lessler 2022)](https://doi.org/10.1101/2021.12.30.21268453)
+[Sample Size Calculations for Variant Surveillance in the Presence of Biological and Systematic Biases (Wohl, Lee, DiPrete, and Lessler 2022)](https://doi.org/10.1101/2021.12.30.21268453)
 
 ## Estimating differential transmission between groups
 
@@ -44,9 +44,9 @@ We assume the user is interested in detecting differential transmission between 
 
 The user can specify whether they are interested in a one-sided or two-sided hypothesis test and whether there is any linkage misclassification, via sensitivity and specificity parameters. Additionally, the user can optionally specify an overdispersion parameter if overdispersion is suspected in the transmission process.
 
-A detailed escription of the differential transmission methods can be found in:
+A detailed description of the differential transmission methods can be found in:
 
-[Power and Samples Size Calculations for Testing the Ratio of Reproductive Values in Pylogenetic Samples (D'Agostino McGowan, Wohl, and Lessler 2023)](https://doi.org/10.48550/arXiv.2305.12184)
+[Power and Samples Size Calculations for Testing the Ratio of Reproductive Values in Phylogenetic Samples (D'Agostino McGowan, Wohl, and Lessler 2023)](https://doi.org/10.48550/arXiv.2305.12184)
 
 
 ## Installation

@@ -3,17 +3,17 @@
 ##' @description
 ##' `r lifecycle::badge('deprecated')`
 ##' This is a wrapper function that takes output from the `sens_spec_calc()` function and constructs values for the
-##' Receiver Operating Characteric (ROC) curve
+##' Receiver Operating Characteristic (ROC) curve
 ##'
 ##' @param cutoff the maximum genetic distance at which to consider cases linked
-##' @param mut_rate mean number of mutations per generation, assumed to be poisson distributed
+##' @param mut_rate mean number of mutations per generation, assumed to be Poisson distributed
 ##' @param mean_gens_pdf the density distribution of the mean number of generations between cases;
 ##'       the index of this vector is assumed to be the discrete distance between cases
-##' @param max_link_gens the maximium generations of separation for linked pairs
+##' @param max_link_gens the maximum generations of separation for linked pairs
 ##' @param max_gens the maximum number of generations to consider, if `NULL` (default) value set to the highest
 ##'        number of generations in mean_gens_pdf with a non-zero probability
 ##' @param max_dist the maximum distance to calculate, if `NULL` (default) value set to max_gens * 99.9th percentile
-##'       of mut_rate poisson distribution
+##'       of mut_rate Poisson distribution
 ##'
 ##' @return data frame with cutoff, sensitivity, and 1-specificity
 ##'

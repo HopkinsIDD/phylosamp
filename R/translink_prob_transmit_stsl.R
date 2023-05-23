@@ -1,6 +1,6 @@
 ##' Calculate probability of transmission assuming single-transmission and single-linkage
 ##'
-##' This function calculates the probabilitiy that two cases are linked by direct transmission
+##' This function calculates the probability that two cases are linked by direct transmission
 ##' given that they have been linked by phylogenetic criteria. The single-transmission and single-linkage method assumes the following:
 ##' \enumerate{
 ##'      \item Each case \eqn{i} is linked by transmission to only one other case \eqn{j} in the population (\eqn{N}).
@@ -14,7 +14,7 @@
 ##' @param rho scalar or vector giving the proportion of the final outbreak size that is sampled
 ##' @param M scalar or vector giving the number of cases sampled
 ##'
-##' @return scalar or vector giving the probability of transmission between two cases given linkage by phylogeneitic criteria
+##' @return scalar or vector giving the probability of transmission between two cases given linkage by phylogenetic criteria
 ##'
 ##' @author John Giles, Shirlee Wohl, and Justin Lessler
 ##'
