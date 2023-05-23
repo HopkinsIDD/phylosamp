@@ -1,4 +1,7 @@
-##' Calculate Sample Size with Uncertainty Bounds. This function assumes you
+##' Calculate sample size for detecting differential transmission with uncertainty bounds
+##' 
+##' @description 
+##' This function assumes you
 ##' want to correct for imbalance, if not there is a closed form solution
 ##' for the estimated sample size that does not include uncertainty bounds.
 ##' (see [`relR_samplesize`]).
@@ -25,7 +28,7 @@
 ##'     under assumptions. Will return NA and throw a warning if impossible.
 ##' * lower bound: The lower bound of an uncertainty interval
 ##' * upper bound: The upper bound of an uncertainty interval
-##'
+##' @export
 
 relR_samplesize_ci <- function(R_a,
                                R_b,

@@ -2,8 +2,7 @@
 % Please edit documentation in R/relR_samplesize_linkerr.R
 \name{relR_samplesize_linkerr}
 \alias{relR_samplesize_linkerr}
-\title{Function to run the sample size calculation correcting for imperfect
-sensitivity and specificity, but not doing any simulation based corrections.}
+\title{Calculate sample size for detecting differential transmission correcting for sensitivity and specificity}
 \usage{
 relR_samplesize_linkerr(
   R_a,

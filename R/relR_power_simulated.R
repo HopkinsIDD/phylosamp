@@ -1,4 +1,4 @@
-##' Simulate power using Poisson distributions
+##' Simulate power for detecting differential transmission
 ##'
 ##' @param m the sample size.
 ##' @template R_a
@@ -13,6 +13,7 @@
 ##' @param nsims Numeric. The number of simulations. Default: 100000
 ##'
 ##' @return Simulated power
+##' @export
 relR_power_simulated <- function(m,
                                  R_a,
                                  R_b,

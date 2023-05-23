@@ -2,9 +2,7 @@
 % Please edit documentation in R/relR_power.R
 \name{relR_power}
 \alias{relR_power}
-\title{Function to calculate the power given a sample size. This is the top
-level function to be called to calculate power given a sample size m
-and a proportion sampled.}
+\title{Calculate power for detecting differential transmission given a sample size}
 \usage{
 relR_power(
   m,

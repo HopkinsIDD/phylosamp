@@ -2,10 +2,7 @@
 % Please edit documentation in R/relR_samplesize_ci.R
 \name{relR_samplesize_ci}
 \alias{relR_samplesize_ci}
-\title{Calculate Sample Size with Uncertainty Bounds. This function assumes you
-want to correct for imbalance, if not there is a closed form solution
-for the estimated sample size that does not include uncertainty bounds.
-(see \code{\link{relR_samplesize}}).}
+\title{Calculate sample size for detecting differential transmission with uncertainty bounds}
 \usage{
 relR_samplesize_ci(
   R_a,
@@ -75,7 +72,7 @@ under assumptions. Will return NA and throw a warning if impossible.
 }
 }
 \description{
-Calculate Sample Size with Uncertainty Bounds. This function assumes you
+This function assumes you
 want to correct for imbalance, if not there is a closed form solution
 for the estimated sample size that does not include uncertainty bounds.
 (see \code{\link{relR_samplesize}}).

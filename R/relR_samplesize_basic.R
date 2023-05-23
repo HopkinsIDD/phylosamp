@@ -1,3 +1,6 @@
+##' Calculate simple derived sample size for detecting differential transmission
+##' 
+##' @description
 ##' Function that does the simple derived sample size calculation with
 ##' no corrections. I.e., directly applies the math as if sensitivity
 ##' and specificity are perfect.
@@ -14,6 +17,7 @@
 ##'    returned that is greater than the input `N`. Default: `FALSE`.
 ##'
 ##' @return The required sample size. `NA` if larger than `N`.
+##' @export
 ##'
 relR_samplesize_basic <- function(R_a,
                                   R_b,

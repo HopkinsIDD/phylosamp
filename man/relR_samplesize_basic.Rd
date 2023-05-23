@@ -2,9 +2,7 @@
 % Please edit documentation in R/relR_samplesize_basic.R
 \name{relR_samplesize_basic}
 \alias{relR_samplesize_basic}
-\title{Function that does the simple derived sample size calculation with
-no corrections. I.e., directly applies the math as if sensitivity
-and specificity are perfect.}
+\title{Calculate simple derived sample size for detecting differential transmission}
 \usage{
 relR_samplesize_basic(
   R_a,

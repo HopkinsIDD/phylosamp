@@ -1,3 +1,6 @@
+##' Calculate sample size for detecting differential transmission correcting for sensitivity and specificity
+##' 
+##' @description 
 ##' Function to run the sample size calculation correcting for imperfect
 ##' sensitivity and specificity, but not doing any simulation based corrections.
 ##'

@@ -1,3 +1,6 @@
+##' Calculate power for detecting differential transmission given a sample size
+##' 
+##' @description 
 ##' Function to calculate the power given a sample size. This is the top
 ##' level function to be called to calculate power given a sample size m
 ##' and a proportion sampled.
@@ -15,6 +18,7 @@
 ##' @template overdispersion
 ##'
 ##' @return The power given `m`
+##' @export
 ##'
 relR_power <- function(m,
                        R_a,

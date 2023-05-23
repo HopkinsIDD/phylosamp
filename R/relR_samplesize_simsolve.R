@@ -1,4 +1,9 @@
-##' Function to calculate optimized sample size
+##' Calculate optimized sample size for detecting differential transmission
+##' 
+##' @description 
+##' Function to calculate optimized sample size by solving the  
+##' transcendental equation that occurs when you replace the R values with ones
+##' that account for sensitivity and specificity.
 ##'
 ##' @template R_a
 ##' @template R_b
