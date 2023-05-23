@@ -21,7 +21,7 @@ bibentry(
   url = "https://doi.org/10.1016/j.xcrm.2023.101022",
   publisher={Elsevier},
   doi = "10.1016/j.xcrm.2023.101022",
-  textVersion = Wohl, S., Lee, E. C., DiPrete, B. L., & Lessler, J. (2023). Sample size calculations for pathogen variant surveillance in the presence of biological and systematic biases. Cell Reports Medicine. https://doi.org/10.1016/j.xcrm.2023.101022")
+  textVersion = "Wohl, S., Lee, E. C., DiPrete, B. L., & Lessler, J. (2023). Sample size calculations for pathogen variant surveillance in the presence of biological and systematic biases. Cell Reports Medicine. https://doi.org/10.1016/j.xcrm.2023.101022")
   
 bibentry(
 "Article",
@@ -31,6 +31,6 @@ bibentry(
   year = "2023",
   url = "https://doi.org/10.48550/arXiv.2305.12184",
   doi = "10.48550/arXiv.2305.12184",
-  textVersion = D'Agostino McGowan, L., Wohl, S., & Lessler, J. (2023). Power and sample size calculations for testing the ratio of reproductive values in phylogenetic samples. arXiv. https://doi.org/10.48550/arXiv.2305.12184")
+  textVersion = "D'Agostino McGowan, L., Wohl, S., & Lessler, J. (2023). Power and sample size calculations for testing the ratio of reproductive values in phylogenetic samples. arXiv. https://doi.org/10.48550/arXiv.2305.12184")
   
 
