@@ -1,3 +1,6 @@
+##' Calculate sample size needed to detect differential transmission
+##' 
+##' @description 
 ##' Function for calculating sample size given a set of assumptions. This is the
 ##' high level wrapper function that users should call directly.
 ##'
@@ -17,7 +20,7 @@
 ##'
 ##' @return Sample size needed achieve desired type I and II error rates
 ##'     under assumptions. Will return `NA` and throw a warning if impossible.
-##'
+##' @export
 relR_samplesize <- function(R_a,
                             R_b,
                             p_a,

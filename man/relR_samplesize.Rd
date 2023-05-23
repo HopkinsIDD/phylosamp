@@ -2,8 +2,7 @@
 % Please edit documentation in R/relR_samplesize.R
 \name{relR_samplesize}
 \alias{relR_samplesize}
-\title{Function for calculating sample size given a set of assumptions. This is the
-high level wrapper function that users should call directly.}
+\title{Calculate sample size needed to detect differential transmission}
 \usage{
 relR_samplesize(
   R_a,

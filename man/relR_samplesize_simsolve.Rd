@@ -2,7 +2,7 @@
 % Please edit documentation in R/relR_samplesize_simsolve.R
 \name{relR_samplesize_simsolve}
 \alias{relR_samplesize_simsolve}
-\title{Function to calculate optimized sample size}
+\title{Calculate optimized sample size for detecting differential transmission}
 \usage{
 relR_samplesize_simsolve(
   R_a,
@@ -66,5 +66,7 @@ Simulated sample size needed achieve desired type I and II error rates
 under assumptions. Will return NA and throw a warning if impossible.
 }
 \description{
-Function to calculate optimized sample size
+Function to calculate optimized sample size by solving the
+transcendental equation that occurs when you replace the R values with ones
+that account for sensitivity and specificity.
 }

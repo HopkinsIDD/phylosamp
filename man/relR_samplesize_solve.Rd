@@ -2,7 +2,7 @@
 % Please edit documentation in R/relR_samplesize_solve.R
 \name{relR_samplesize_solve}
 \alias{relR_samplesize_solve}
-\title{Function to solve for optimal sample size when the specificity isn't 1}
+\title{Calculate optimal sample size for detecting differential transmission with imperfect specificity}
 \usage{
 relR_samplesize_solve(
   R_a,

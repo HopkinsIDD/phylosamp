@@ -2,7 +2,7 @@
 % Please edit documentation in R/relR_power_simulated.R
 \name{relR_power_simulated}
 \alias{relR_power_simulated}
-\title{Simulate power using Poisson distributions}
+\title{Simulate power for detecting differential transmission}
 \usage{
 relR_power_simulated(
   m,
@@ -56,5 +56,5 @@ equivalent to setting the overdispersion parameter to \code{Inf}.}
 Simulated power
 }
 \description{
-Simulate power using Poisson distributions
+Simulate power for detecting differential transmission
 }

@@ -1,3 +1,6 @@
+##' Calculate optimal sample size for detecting differential transmission with imperfect specificity
+##' 
+##' @description 
 ##' Function to solve for optimal sample size when the specificity isn't 1
 ##'
 ##' @template R_a
