@@ -71,6 +71,9 @@
       <a href="../articles/V6_IllustrativeExample.html">Variant Surveillance Example</a>
     </li>
   </ul></li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/HopkinsIDD/phylosamp/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -284,26 +287,19 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="relR_samplesize.html">relR_samplesize()</a></code> </p>
         </td>
-        <td><p>Function for calculating sample size given a set of assumptions. This is the
-high level wrapper function that users should call directly.</p></td>
+        <td><p>Calculate sample size needed to detect differential transmission</p></td>
       </tr><tr><td>
           <p><code><a href="relR_samplesize_basic.html">relR_samplesize_basic()</a></code> </p>
         </td>
-        <td><p>Function that does the simple derived sample size calculation with
-no corrections. I.e., directly applies the math as if sensitivity
-and specificity are perfect.</p></td>
+        <td><p>Calculate simple derived sample size for detecting differential transmission</p></td>
       </tr><tr><td>
           <p><code><a href="relR_samplesize_ci.html">relR_samplesize_ci()</a></code> </p>
         </td>
-        <td><p>Calculate Sample Size with Uncertainty Bounds. This function assumes you
-want to correct for imbalance, if not there is a closed form solution
-for the estimated sample size that does not include uncertainty bounds.
-(see <code>relR_samplesize</code>).</p></td>
+        <td><p>Calculate sample size for detecting differential transmission with uncertainty bounds</p></td>
       </tr><tr><td>
           <p><code><a href="relR_samplesize_linkerr.html">relR_samplesize_linkerr()</a></code> </p>
         </td>
-        <td><p>Function to run the sample size calculation correcting for imperfect
-sensitivity and specificity, but not doing any simulation based corrections.</p></td>
+        <td><p>Calculate sample size for detecting differential transmission correcting for sensitivity and specificity</p></td>
       </tr><tr><td>
           <p><code><a href="relR_samplesize_opterr.html">relR_samplesize_opterr()</a></code> </p>
         </td>
@@ -311,11 +307,11 @@ sensitivity and specificity, but not doing any simulation based corrections.</p>
       </tr><tr><td>
           <p><code><a href="relR_samplesize_simsolve.html">relR_samplesize_simsolve()</a></code> </p>
         </td>
-        <td><p>Function to calculate optimized sample size</p></td>
+        <td><p>Calculate optimized sample size for detecting differential transmission</p></td>
       </tr><tr><td>
           <p><code><a href="relR_samplesize_solve.html">relR_samplesize_solve()</a></code> </p>
         </td>
-        <td><p>Function to solve for optimal sample size when the specificity isn't 1</p></td>
+        <td><p>Calculate optimal sample size for detecting differential transmission with imperfect specificity</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="power-for-detecting-differential-transmission">Power for detecting differential transmission <a href="#power-for-detecting-differential-transmission" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Functions to calculate the power given parameters used to detect differential transmission between groups</p>
@@ -323,13 +319,11 @@ sensitivity and specificity, but not doing any simulation based corrections.</p>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="relR_power.html">relR_power()</a></code> </p>
         </td>
-        <td><p>Function to calculate the power given a sample size. This is the top
-level function to be called to calculate power given a sample size m
-and a proportion sampled.</p></td>
+        <td><p>Calculate power for detecting differential transmission given a sample size</p></td>
       </tr><tr><td>
           <p><code><a href="relR_power_simulated.html">relR_power_simulated()</a></code> </p>
         </td>
-        <td><p>Simulate power using Poisson distributions</p></td>
+        <td><p>Simulate power for detecting differential transmission</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
